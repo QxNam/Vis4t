@@ -13,7 +13,7 @@
                                 <div class="row">
                                     <div class="avatar col-3">
                                         <div class="wrap-img">
-                                            <img src="{% static 'images/testImages.png' %}" alt="vis4t">
+                                            <img src="{% static 'home/images/testImages.png' %}" alt="vis4t">
                                         </div>
                                     </div>
                                     <div class="listInfo col-9">
@@ -27,13 +27,13 @@
                                                 <div class="col-6">
                                                     <label>
                                                         MSGV:
-                                                        <span>89898989</span>
+                                                        <span>{{teacher.teacher_id}}</span>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
                                                         Lớp chủ nhiệm:
-                                                        <span>DHKHDL16A</span>
+                                                        <span>{{classes.0.name}}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -43,7 +43,7 @@
                                                 <div class="col-6">
                                                     <label>
                                                         Họ và tên:
-                                                        <span>Trương Vĩnh Linh</span>
+                                                        <span>{{ teacher.fullname }}</span>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
@@ -59,13 +59,13 @@
                                                 <div class="col-6">
                                                     <label>
                                                         Giới tính:
-                                                        <span>Nam</span>
+                                                        <span>{{ teacher.sex }}</span>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
                                                         Trình độ:
-                                                        <span>Thạc sĩ</span>
+                                                        <span>{{ teacher.academic_title }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -74,14 +74,14 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <label>
-                                                        Ngày sinh:
-                                                        <span>30/02/19??</span>
+                                                        Năm sinh:
+                                                        <span>{{ teacher.year_of_birth }}</span>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
                                                         Ngành:
-                                                        <span>Data Science</span>
+                                                        <span>{{ teacher.major }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -96,11 +96,14 @@
                             <p>Lớp hiện tại</p>
                             <div class="dropdown">
                                 <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span>DHKHDL16A</span>
+                                    <span id="class-name">{{classes.0.name}}</span>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
-                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a>
+                                    {% for c in classes %}
+                                        <a class="dropdown-item" href="#" onclick="renderChart({{ c.number_of_student }})">{{c.name}}</a>
+                                    {% endfor %}
+                                    <!-- <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
+                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a> -->
                                 </div>
                             </div>
                         </div>
@@ -112,7 +115,7 @@
                                             Sĩ số
                                         </p>
                                         <div>
-                                            <span>60</span>
+                                            <span id="current-class-number">{{ classes.0.number_of_student }}</span>
                                             <span><i class="fa-solid fa-people-group"></i></span>
                                         </div>
                                     </div>
@@ -136,8 +139,13 @@
             </div>
 
     </div>
-    <!-- Create a JS function that -->
+    <!-- Create a JS function that change the classes number on renderChart()-->
     <script>
-        
+        function renderChart(newNumber) {
+            // Update the current class's number_of_student value
+            //document.getElementById("class-name").innerText = name;
+            console.log(newNumber);
+            document.getElementById("current-class-number").innerText = newNumber;
+        }
     </script>
 {% endblock %}
