@@ -1,66 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vis For Teacher</title>
-    <!-- CSS only -->
-    {% load static %}
-    <link  rel="stylesheet" href="{% static 'css/home.css' %}">
-    <!--Jquery-->
-    <!-- <script src="jquery-3.6.1.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <!--dropdown Lib-->
-    <!-- <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script> -->
-    <!-- <script src="https://unpkg.com/@popperjs/core@2"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <!--Bootstrap-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<body>
+{% extends './layout.html'%}
+{% block main_body %}
+{% load static %}
+
     <div class="main">
-        <header class="header container-fluid">
-            <div class="container wrap-header">
-                <div class="logo">
-                    <a href="/">
-                        <img src="{% static 'images/Logo_IUH.png'%}" alt="vis4t" style="height: 100%; width: 111px;">
-                    </a>
-                </div>
-                <div class="wrap-option">
-                        <div class="option">
-                            <span class="icon"><i class="fa-sharp fa-solid fa-house"></i></span>
-                            <a href="home">
-                                <span>Trang chủ</span>
-                            </a>
-                        </div>
-                        <div class="option">
-                            <span class="icon"><i class="fa-solid fa-bell"></i></span>
-                            <a href="home">
-                                <span>Thông báo</span>
-                            </a>
-                        </div>
-                        <div class="option">
-                            <span class="icon"><i class="fa-solid fa-user"></i></span>
-                                <span class="name">Trương Vĩnh Linh</span>
-                            <span class="icon down"><i class="fa-solid fa-chevron-down"></i></span>
-                            <div class="wrap-menu">
-                                <ul class="menu">
-                                    <li class="itemMenu"><a href="">Thông tin</a></li>
-                                    <li class="itemMenu"><a href="">Quên rồi</a></li>
-                                    <li class="itemMenu"><a href="/">Đăng xuất</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </header>
         <div class="content container">
             <div class="wrap-content">
                 <div class="row">
                     <div class="wrap-info col-8">
                         <div class="info">
-                            <h1 class="title">Thông tin giáo viên</h1>
+                            <h1 class="title" style="padding-top: 5px;">Thông tin giáo viên</h1>
                            <div class="form">
                                 <div class="row">
                                     <div class="avatar col-3">
@@ -70,7 +18,12 @@
                                     </div>
                                     <div class="listInfo col-9">
                                         <div class="form-group">
-                                            <div class="row">
+                                            <style>
+                                                .row{
+                                                    padding-top: 5px;
+                                                }
+                                            </style>
+                                            <div class="row" style="padding-top:0">
                                                 <div class="col-6">
                                                     <label>
                                                         MSGV:
@@ -95,8 +48,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
-                                                        Thâm niên:
-                                                        <span>2008 - 2022</span>
+                                                        Nơi sinh:
+                                                        <span>Hồ Chí Minh</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -127,22 +80,6 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
-                                                        Loại hình đào tạo:
-                                                        <span>Chính quy</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Nơi sinh:
-                                                        <span>Hồ Chí Minh</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
                                                         Ngành:
                                                         <span>Data Science</span>
                                                     </label>
@@ -159,12 +96,11 @@
                             <p>Lớp hiện tại</p>
                             <div class="dropdown">
                                 <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span>DHDL99P</span>
+                                    <span>DHKHDL16A</span>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="/">DHDL99*P</a>
-                                    <a class="dropdown-item" href="home">DHDL99OP</a>
-                                    <a class="dropdown-item" href="#">DHDL99SP</a>
+                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
+                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a>
                                 </div>
                             </div>
                         </div>
@@ -172,9 +108,11 @@
                             <div class="row">
                                 <div class="classInYear col-6">
                                     <div class="wrap">
-                                        <p>Số lượng lớp chủ nhiệm</p>
+                                        <p style="text-align: center;">
+                                            Sĩ số
+                                        </p>
                                         <div>
-                                            <span>8</span>
+                                            <span>60</span>
                                             <span><i class="fa-solid fa-people-group"></i></span>
                                         </div>
                                     </div>
@@ -183,7 +121,7 @@
                                     <div class="wrap">
                                         <p>Số lượng lớp đang chủ nhiệm</p>
                                         <div>
-                                            <span>8</span>
+                                            <span>2</span>
                                             <span><i class="fa-solid fa-people-group"></i></span>
                                         </div>
                                     </div>
@@ -191,13 +129,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart col-12"></div>
+                    <div class="chart col-12">
+                        DHKHDL16A
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
-        <!--fontawesome icon-->
-<script src="https://kit.fontawesome.com/5466b985c0.js" crossorigin="anonymous"></script>
 
-</html>
+    </div>
+    <!-- Create a JS function that -->
+    <script>
+        
+    </script>
+{% endblock %}
