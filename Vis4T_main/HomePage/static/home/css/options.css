@@ -1,0 +1,18 @@
+.wrap-options {
+    padding-top: 8px;
+}
+.option-1 {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+    border-radius: 8px;
+    height: 100px;
+    padding: 10px;
+    text-align: center;
+}
+.option-1 p {
+    font-size: 13px;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+    padding-bottom: 2px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
