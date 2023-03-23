@@ -2,8 +2,8 @@
 {% block main_body %} 
 {% load static %}
 
-    <div class="main">
-        <div class="content container">
+<div class="main">
+    <div class="content container">
             <div class="wrap-content">
                 <div class="row">
                     <div class="wrap-info col-8">
@@ -162,23 +162,6 @@
                             </div>
                             <div class="wrap-option-1 col-2 ">
                                 <div class="option-1">
-                                    <!-- <style>
-                                        .option-1 {
-                                            background-color: #ffffff;
-                                            box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
-                                            border-radius: 8px;
-                                            height: 100px;
-                                            padding: 10px;
-                                            text-align: center;
-                                        }
-                                        .option-1 p {
-                                            font-size: 13px;
-                                            border-bottom: 1px solid rgb(0 0 0 / 20%);
-                                            padding-bottom: 2px;
-                                            margin-bottom: 0;
-                                            font-weight: 500;
-                                        }
-                                    </style> -->
                                     <p>hello</p>
                                 </div>
                             </div>
@@ -205,12 +188,10 @@
                     <div class="chart col-12">DHKHDL16A</div>
                 </div>
             </div>
-        </div>
-        <!-- Start sidebar -->
-            <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        <!-- Modal -->
+        <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <link  rel="stylesheet" href="{% static 'home/css/modal.css' %}">
             <div class="modal-dialog" role="document">
@@ -238,10 +219,9 @@
                     </div>
                 </div><!-- modal-content -->
             </div><!-- modal-dialog -->
-        </div><!-- modal -->
-        <!-- End sidebar -->
+        </div>
+        
 
-        <!-- Create a JS function that change the classes number on renderChart()-->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll(".dropdown-item").forEach((item) => {
@@ -255,4 +235,5 @@
             });
         </script>
     </div>
+</div>
 {% endblock %}
