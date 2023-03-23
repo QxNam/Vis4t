@@ -1,157 +1,262 @@
-{% extends './layout.html'%}
-{% block main_body %}
-{% load static %}
+{% extends './layout.html'%} {% block main_body %} {% load static %}
 
-    <div class="main">
-        <div class="content container">
-            <div class="wrap-content">
-                <div class="row">
-                    <div class="wrap-info col-8">
-                        <div class="info">
-                            <h1 class="title" style="padding-top: 5px;">Thông tin giáo viên</h1>
-                           <div class="form">
-                                <div class="row">
-                                    <div class="avatar col-3">
-                                        <div class="wrap-img">
-                                            <img src="{% static 'home/images/testImages.png' %}" alt="vis4t">
-                                        </div>
-                                    </div>
-                                    <div class="listInfo col-9">
-                                        <div class="form-group">
-                                            <style>
-                                                .row{
-                                                    padding-top: 5px;
-                                                }
-                                            </style>
-                                            <div class="row" style="padding-top:0">
-                                                <div class="col-6">
-                                                    <label>
-                                                        MSGV:
-                                                        <span>{{teacher.teacher_id}}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Lớp chủ nhiệm:
-                                                        <span id="class-name">{{classes.0.name}}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Họ và tên:
-                                                        <span>{{ teacher.fullname }}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Nơi sinh:
-                                                        <span>Hồ Chí Minh</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Giới tính:
-                                                        <span>{{ teacher.sex }}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Trình độ:
-                                                        <span>{{ teacher.academic_title }}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Năm sinh:
-                                                        <span>{{ teacher.year_of_birth }}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Ngành:
-                                                        <span>{{ teacher.major }}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="portlet col-4">
-                        <div class="currentClass">
-                            <p>Lớp hiện tại</p>
-                            <div class="dropdown">
-                                <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span >{{classes.0.name}}</span>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    {% for c in classes %}
-                                        <a class="dropdown-item" href="#" id="{{c.name}} {{c.number_of_student}}">{{c.name}}</a>
-
-                                    {% endfor %}
-                                    <!-- <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
-                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="class container">
+<div class="main">
+    <div class="content container">
+        <div class="wrap-content">
+            <div class="row">
+                <div class="wrap-info col-8">
+                    <div class="info">
+                        <h1 class="title" style="padding-top: 5px">
+                            Thông tin giáo viên
+                        </h1>
+                        <div class="form">
                             <div class="row">
-                                <div class="classInYear col-6">
-                                    <div class="wrap">
-                                        <p style="text-align: center;">
-                                            Sĩ số
-                                        </p>
-                                        <div>
-                                            <span id="current-class-number">{{ classes.0.number_of_student }}</span>
-                                            <span><i class="fa-solid fa-people-group"></i></span>
-                                        </div>
+                                <div class="avatar col-3">
+                                    <div class="wrap-img">
+                                        <img
+                                            src="{% static 'home/images/testImages.png' %}"
+                                            alt="vis4t"
+                                        />
                                     </div>
                                 </div>
-                                <div class="totalClass col-6">
-                                    <div class="wrap">
-                                        <p>Số lượng lớp đang chủ nhiệm</p>
-                                        <div>
-                                            <span>2</span>
-                                            <span><i class="fa-solid fa-people-group"></i></span>
+                                <div class="listInfo col-9">
+                                    <div class="form-group">
+                                        <style>
+                                            .row {
+                                                padding-top: 5px;
+                                            }
+                                        </style>
+                                        <div class="row" style="padding-top: 0">
+                                            <div class="col-6">
+                                                <label>
+                                                    MSGV:
+                                                    <span
+                                                        >{{teacher.teacher_id}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Lớp chủ nhiệm:
+                                                    <span id="class-name"
+                                                        >{{classes.0.name}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Họ và tên:
+                                                    <span
+                                                        >{{ teacher.fullname}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Nơi sinh:
+                                                    <span>Hồ Chí Minh</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Giới tính:
+                                                    <span
+                                                        >{{teacher.sex}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Trình độ:
+                                                    <span
+                                                        >{{teacher.academic_title}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Năm sinh:
+                                                    <span
+                                                        >{{teacher.year_of_birth}}</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Ngành:
+                                                    <span
+                                                        >{{teacher.major}}</span
+                                                    >
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="chart col-12">
-                        DHKHDL16A
                     </div>
                 </div>
-            </div>
+                <div class="portlet col-4">
+                    <div class="currentClass">
+                        <p>Lớp hiện tại</p>
+                        <div class="dropdown">
+                            <button
+                                class="btn custom-btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <span>{{classes.0.name}}</span>
+                            </button>
+                            <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdownMenuButton"
+                            >
+                                {% for c in classes %}
+                                <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    id="{{c.name}} {{c.number_of_student}}"
+                                    >{{c.name}}</a
+                                >
 
+                                {% endfor %}
+                                <!-- <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
+                                    <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class container">
+                        <div class="row">
+                            <div class="classInYear col-6">
+                                <div class="wrap">
+                                    <p style="text-align: center">Sĩ số</p>
+                                    <div>
+                                        <span id="current-class-number"
+                                            >{{ classes.0.number_of_student}}</span
+                                        >
+                                        <span
+                                            ><i
+                                                class="fa-solid fa-people-group"
+                                            ></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="totalClass col-6">
+                                <div class="wrap">
+                                    <p>Số lượng lớp đang chủ nhiệm</p>
+                                    <div>
+                                        <span>2</span>
+                                        <span
+                                            ><i
+                                                class="fa-solid fa-people-group"
+                                            ></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-options col-12">
+                    <div class="row">
+                        <div class="wrap-option-1 col-2 ">
+                           
+                        </div>
+                        <div class="wrap-option-1 col-2 ">
+                            <div class="option-1">
+                                <p>hello</p>
+                            </div>
+                        </div>
+                        <div class="wrap-option-1 col-2 ">
+                            <div class="option-1">
+                                <p>hello</p>
+                            </div>
+                        </div>
+                        <div class="wrap-option-2 col-2">
+                            <div class="option-1">
+                                <p>hello</p>
+                            </div>
+                        </div>
+                        <div class="wrap-option-3 col-2">
+                            <div class="option-1">
+                                <p>hello</p>
+                            </div>
+                        </div>
+                        <div class="wrap-option-4 col-2">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="chart col-12">DHKHDL16A</div>
+            </div>
+        </div>
     </div>
+    <!-- Start sidebar -->
+		<button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
+			<i class="fa-solid fa-bars"></i>
+		</button>
+    <!-- Modal -->
+	<div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">More</h4>
+					<button type="button" class="close-sidebar" data-dismiss="modal" aria-label="Close">
+                        <i class="fa-sharp fa-regular fa-circle-xmark"></i>
+                    </button>
+				</div>
+				<div class="modal-body">
+					<div class="position-sticky">
+                        <div class="list-group list-group-flush mx-3 mt-4">
+                          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            ><i class="fas fa-building fa-fw me-3"></i><span>Partners</span></a
+                          >
+                          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            ><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a
+                          >
+                          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+                          >
+                          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
+                          >
+                        </div>
+                      </div>
+                  
+				</div>
+			</div><!-- modal-content -->
+		</div><!-- modal-dialog -->
+	</div><!-- modal -->
+    <!-- End sidebar -->
+
     <!-- Create a JS function that change the classes number on renderChart()-->
     <script>
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.dropdown-item').forEach(item => {
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".dropdown-item").forEach((item) => {
                 item.onclick = () => {
-                    document.querySelector('#class-name').innerHTML = item.innerHTML;
-                    document.querySelector('#current-class-number').innerHTML = item.id.split(" ")[1];    
-                }
-            })
+                    document.querySelector("#class-name").innerHTML =
+                        item.innerHTML;
+                    document.querySelector("#current-class-number").innerHTML =
+                        item.id.split(" ")[1];
+                };
+            });
         });
-
-        
     </script>
-{% endblock %}
+    {% endblock %}
+</div>
