@@ -38,7 +38,7 @@
                                                 <div class="col-6">
                                                     <label>
                                                         Lớp chủ nhiệm:
-                                                        <span id="class-name">{{classes.0.name}}</span>
+                                                        <span id="class-name">{{classes.0.class_name}}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -53,8 +53,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
-                                                        Nơi sinh:
-                                                        <span>Hồ Chí Minh</span>
+                                                        SĐT:
+                                                        <span>{{ teacher.phone_number }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label>
-                                                        Ngành:
+                                                        Chuyên ngành:
                                                         <span>{{teacher.major}}</span>
                                                     </label>
                                                 </div>
@@ -110,7 +110,7 @@
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    <span>{{classes.0.name}}</span>
+                                    <span>{{classes.0.class_name}}</span>
                                 </button>
                                 <div
                                     class="dropdown-menu"
@@ -120,8 +120,8 @@
                                     <a
                                         class="dropdown-item"
                                         href="#"
-                                        id="{{c.name}} {{c.number_of_student}}"
-                                    >{{c.name}}</a>
+                                        id="{{c.class_name}} {{c.number_of_student}}"
+                                    >{{c.class_name}}</a>
 
                                     {% endfor %}
                                     <!-- <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
@@ -146,7 +146,7 @@
                                     <div class="wrap">
                                         <p>Số lượng lớp đang chủ nhiệm</p>
                                         <div>
-                                            <span>2</span>
+                                            <span>{{classes|length}}</span>
                                             <span><i class="fa-solid fa-people-group"></i></span>
                                         </div>
                                     </div>
