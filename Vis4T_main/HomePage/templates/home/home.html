@@ -33,7 +33,7 @@
                                                 <div class="col-6">
                                                     <label>
                                                         Lớp chủ nhiệm:
-                                                        <span>{{classes.0.name}}</span>
+                                                        <span id="class-name">{{classes.0.name}}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -96,11 +96,11 @@
                             <p>Lớp hiện tại</p>
                             <div class="dropdown">
                                 <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span id="class-name">{{classes.0.name}}</span>
+                                    <span >{{classes.0.name}}</span>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     {% for c in classes %}
-                                        <a class="dropdown-item" href="#" onclick="renderChart({{ c.number_of_student }})">{{c.name}}</a>
+                                        <a class="dropdown-item" href="#" id="{{c.name}} {{c.number_of_student}}">{{c.name}}</a>
                                     {% endfor %}
                                     <!-- <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL16A</a>
                                     <a class="dropdown-item" href="/" onclick="renderChart()">DHKHDL15A</a> -->
@@ -141,11 +141,16 @@
     </div>
     <!-- Create a JS function that change the classes number on renderChart()-->
     <script>
-        function renderChart(newNumber) {
-            // Update the current class's number_of_student value
-            //document.getElementById("class-name").innerText = name;
-            console.log(newNumber);
-            document.getElementById("current-class-number").innerText = newNumber;
-        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.onclick = () => {
+                    document.querySelector('#class-name').innerHTML = item.innerHTML;
+                    document.querySelector('#current-class-number').innerHTML = item.id.split(" ")[1];    
+                }
+            })
+        });
+
+        
     </script>
 {% endblock %}
