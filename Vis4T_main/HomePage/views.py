@@ -22,6 +22,7 @@ def login(request):
             print(username, password)
             teacher = Teacher.objects.get(login_name=username)
             classes = University_class.objects.filter(teacher=teacher)
+            print(len(classes))
             return home(request, teacher, classes)
             # return render(request, 'home/home.html', context={'teacher': teacher})
     return render(request, 'login/login_form.html', 

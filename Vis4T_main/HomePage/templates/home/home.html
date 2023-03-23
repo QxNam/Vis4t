@@ -161,23 +161,27 @@
                             
                             </div>
                             <div class="wrap-option-1 col-2 ">
-                                <div class="option-1">
-                                    <p>hello</p>
+                                <div class="option-1" id="overview">
+                                    <p>Tổng Quan</p>
+                                    <div class="fa fa-pie-chart" style="font-size:48px;margin-top:7px;"></div>
                                 </div>
                             </div>
                             <div class="wrap-option-1 col-2 ">
-                                <div class="option-1">
-                                    <p>hello</p>
+                                <div class="option-1" id="chart-to-class">
+                                    <p>Biểu Đồ Theo Lớp</p>
+                                    <div class="fa fa-bar-chart" style="font-size:48px;margin-top:7px;"></div>
                                 </div>
                             </div>
                             <div class="wrap-option-2 col-2">
-                                <div class="option-1">
-                                    <p>hello</p>
+                                <div class="option-1" id="chart-to-student">
+                                    <p>Biểu Đồ Theo Sinh Viên</p>
+                                    <div class='far fa-id-badge' style='font-size:48px;margin-top:7px;'></div>
                                 </div>
                             </div>
                             <div class="wrap-option-3 col-2">
-                                <div class="option-1">
-                                    <p>hello</p>
+                                <div class="option-1" id="course-book">
+                                    <p>Cập Nhật Niên Giám</p>
+                                    <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
                                 </div>
                             </div>
                             <div class="wrap-option-4 col-2">
@@ -185,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart col-12">DHKHDL16A</div>
+                    <div class="chart col-12" id="class-name">{{ classes.0.class_name}}</div>
                 </div>
             </div>
         <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
@@ -206,13 +210,13 @@
                         <div class="position-sticky">
                             <div class="list-group list-group-flush mx-3 mt-4">
                             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-building fa-fw me-3"></i><span>Partners</span></a>
+                                <i class="fas fa-building fa-fw me-3"></i><span>Thêm lớp mới</span></a>
                             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
+                                <i class="fas fa-calendar fa-fw me-3"></i><span>Cập nhật niên giám</span></a>
                             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
+                                <i class="fas fa-users fa-fw me-3"></i><span>Về chúng tôi</span></a>
                             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
+                                <i class="fas fa-money-bill fa-fw me-3"></i><span>Đăng xuất</span></a>
                             </div>
                         </div>
                     
@@ -226,13 +230,31 @@
             document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll(".dropdown-item").forEach((item) => {
                     item.onclick = () => {
-                        document.querySelector("#class-name").innerHTML =
-                            item.innerHTML;
+                        [name, number] = item.id.split(" ")
+                        document.querySelectorAll("#class-name").forEach((item) => {
+                            item.innerHTML = name;
+                        });
                         document.querySelector("#current-class-number").innerHTML =
-                            item.id.split(" ")[1];
+                            number;
+                            document.querySelector("#dropdownMenuButton").innerHTML = name;
                     };
                 });
             });
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelectorAll(".option-1").forEach((item) => {
+                    item.onclick = () => {
+                            item.style.color = 'green';
+                            let green_item = item;
+                            document.querySelectorAll(".option-1").forEach((item) => {
+                                if (item != green_item) {
+                                    item.style.color = 'black';
+                                }
+                            });
+                        };
+                    });
+                });
+
         </script>
     </div>
 </div>
