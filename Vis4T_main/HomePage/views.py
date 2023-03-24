@@ -20,7 +20,7 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             print(username, password)
-            teacher = Teacher.objects.get(login_name=username)
+            teacher = Teacher.objects.get(username=username)
             classes = University_class.objects.filter(teacher=teacher)
             print(len(classes))
             return home(request, teacher, classes)

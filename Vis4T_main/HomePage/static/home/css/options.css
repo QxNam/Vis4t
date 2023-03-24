@@ -19,3 +19,7 @@
     margin-bottom: 0;
     font-weight: 500;
 }
+.option-1:hover{
+    cursor: pointer;
+    color: green;
+}

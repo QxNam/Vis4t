@@ -10,7 +10,7 @@ class University_class(models.Model):
         return self.class_name
     
 class Teacher(models.Model):
-    login_name = models.CharField(unique=True, max_length=100)
+    username = models.CharField(unique=True, max_length=100)
     password = models.CharField(max_length=100)
     
     teacher_id = models.BigAutoField(primary_key=True, unique=True)
@@ -19,7 +19,6 @@ class Teacher(models.Model):
     academic_title = models.CharField(max_length=50)
     major = models.CharField(max_length=70)
     
-    number_of_current_class = models.IntegerField()
     sex = models.CharField(max_length=3)
     phone_number = models.CharField(max_length=10)
     

@@ -1,6 +1,5 @@
 from Vis4T_main.wsgi import *
 from HomePage.models import University_class, Teacher
-from django.contrib.auth.models import User
 
 # user = User.objects.create_user(
 #     username='test',
@@ -8,7 +7,7 @@ from django.contrib.auth.models import User
 # )
 
 t = Teacher(
-    login_name='test',
+    username='test',
     password='test',
     fullname = 'Trương Vĩnh Linh',
     teacher_id = "111",

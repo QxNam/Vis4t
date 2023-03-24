@@ -13,6 +13,7 @@
 .modal.left .modal-content{
 height: 100%;
 overflow-y: auto;
+border-radius: 8px;
 }
 
 .modal.left .modal-body{
