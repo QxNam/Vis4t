@@ -23,9 +23,9 @@ class Teacher(models.Model):
     phone_number = models.CharField(max_length=10)
     
     def __str__(self):
-        res = """fullname: {}\n
-        login_name: {}\n
-        password: {}\n
-        """.format(self.fullname, self.login_name, self.password)
+        res = """fullname: {}\t
+        login_name: {}\t
+        password: {}\t
+        """.format(self.fullname, self.username, self.password)
         return res
 
