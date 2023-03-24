@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-Vis4T_main/HomePage/migrations/
+HomePage/migrations/
 # Distribution / packaging
 .Python
 build/
@@ -60,7 +60,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
+migrations/*.py
 # Flask stuff:
 instance/
 .webassets-cache
