@@ -64,9 +64,13 @@
                                                 <div class="col-6">
                                                     <label>
                                                         Giới tính:
-                                                        <span
-                                                            >{{teacher.sex}}</span
-                                                        >
+                                                        <span>
+                                                            {% if teacher.sex == 'M' %}
+                                                            Nam
+                                                            {% else %}
+                                                            Nữ
+                                                            {% endif %}
+                                                        </span>
                                                     </label>
                                                 </div>
                                                 <div class="col-6">
