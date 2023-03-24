@@ -10,10 +10,10 @@ class University_class(models.Model):
         return self.class_name
     
 class Teacher(models.Model):
-    username = models.CharField(unique=True, max_length=100)
+    username = models.CharField(primary_key=True, max_length=100)
     password = models.CharField(max_length=100)
     
-    teacher_id = models.BigAutoField(primary_key=True, unique=True)
+    teacher_id = models.CharField(max_length = 8, unique=True)
     fullname = models.CharField(max_length=50)
     year_of_birth = models.IntegerField()
     academic_title = models.CharField(max_length=50)
@@ -29,3 +29,18 @@ class Teacher(models.Model):
         """.format(self.fullname, self.username, self.password)
         return res
 
+
+class Student(models.Model):
+    student_id = models.CharField(primary_key=True, max_length=8)
+    class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)
+    
+    student_name = models.CharField(max_length=50)
+    student_gmail = models.CharField(max_length=50)
+    passed_credit = models.IntegerField()
+    score_10 = models.FloatField()
+    score_4 = models.FloatField()
+    score_char = models.CharField(max_length=2)
+    rank = models.CharField(max_length=10)
+    
+    def __str__(self):
+        return "{} - {} - {}".format(self.student_id, self.student_name, self.class_name)
