@@ -19,10 +19,8 @@ def login(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            print(username, password)
             teacher = Teacher.objects.get(username=username)
             classes = University_class.objects.filter(teacher=teacher)
-            print(len(classes))
             return home(request, teacher, classes)
             # return render(request, 'home/home.html', context={'teacher': teacher})
     return render(request, 'login/login_form.html', 
