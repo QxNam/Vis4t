@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class University_class(models.Model):
-    class_name = models.CharField(max_length=10, primary_key=True, unique=True)
+    class_name = models.CharField(max_length=10, primary_key=True)
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     number_of_student = models.IntegerField()
     class_major = models.CharField(max_length=70)

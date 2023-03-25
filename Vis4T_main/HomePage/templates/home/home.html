@@ -1,7 +1,11 @@
 {% extends './layout.html'%} 
 {% block main_body %} 
 {% load static %}
-
+<script>
+    function get_class_url (class_name) {
+        return "{% url 'class_api' %}" + class_name;
+    }
+</script>
 <div class="main">
     <div class="content container">
             <div class="wrap-content">
@@ -122,7 +126,7 @@
                                 >
                                     {% for c in classes %}
                                     <a
-                                        class="dropdown-item"
+                                        class="dropdown-item dropdown-class"
                                         href="#"
                                         id="{{c.class_name}} {{c.number_of_student}}"
                                     >{{c.class_name}}</a>
@@ -192,16 +196,31 @@
                         </div>
                     </div>
                     <div class="chart col-12" id="class-name">
-                        <div class="overall atv col-12">
-                            Tổng Quan
+                        <div class="feature overview atv col-12">
+                            <table id="my-table">
+                                <thead>
+                                  <tr>
+                                    <th>MSSV</th>
+                                    <th>Họ tên học sinh</th>
+                                    <th>Tín chỉ đã học</th>
+                                    <th>Điểm theo thang 10</th>
+                                    <th>Điểm theo thang 1</th>
+                                    <th>Điểm chữ</th>
+                                    <th>Học lực</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                              </table>
+                              
                         </div>
-                        <div class="feature feature-1 col-12">
+                        <div class="feature chart-to-class col-12">
                             Biểu Đồ Theo Lớp
                         </div>
-                        <div class="feature feature-2 col-12">
+                        <div class="feature chart-to-student col-12">
                             Biểu Đồ Theo Sinh Viên
                         </div>
-                        <div class="feature feature-3 col-12">
+                        <div class="feature info-class col-12">
                             Cập Nhật Niên Giám
                         </div>
                         <div class="arrow"></div>
@@ -213,155 +232,11 @@
         </button>
 
         
-        
-
-        <script>
-            console.log("{% url 'class_api' %}");
-
-            document.addEventListener("DOMContentLoaded", () => {
-                document.querySelectorAll(".dropdown-item").forEach((item) => {
-                    item.onclick = () => {
-                        [name, number] = item.id.split(" ")
-                        document.querySelectorAll("#class-name").forEach((item) => {
-                            item.innerHTML = name;
-                        });
-                        document.querySelector("#current-class-number").innerHTML =
-                            number;
-                            document.querySelector("#dropdownMenuButton").innerHTML = name;
-                    };
-                });
-            });
-
-            document.addEventListener("DOMContentLoaded", () => {
-                const overallBtn = document.querySelector('.overall-btn')
-                const overall = document.querySelector('.overall')
-                const feature1 = document.querySelector('.feature-1')
-                const feature2 = document.querySelector('.feature-2')
-                const feature3 = document.querySelector('.feature-3')
-                const featureBtn1 = document.querySelector('.feature-btn-1')
-                const featureBtn2 = document.querySelector('.feature-btn-2')
-                const featureBtn3 = document.querySelector('.feature-btn-3')
-                const arrowEl = document.querySelector(".arrow")
-
-                const chartPos = document.querySelector(".chart").getBoundingClientRect().left
-
-                const posBtn = overallBtn.getBoundingClientRect()
-                 let Y =posBtn.left
-                 let w = posBtn.width
-                 
-                arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
-
-                overallBtn.onclick = (e) => {
-                 const posBtn = overallBtn.getBoundingClientRect()
-                 let Y =posBtn.left
-                 let w = posBtn.width
-                 
-                arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
-
-
-                    setTimeout(() => {
-                        window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth' ,
-                        })
-                    },0)
-
-                    
-
-                    overallBtn.classList.add("active")
-                    featureBtn1.classList.remove("active")
-                    featureBtn2.classList.remove("active")
-                    featureBtn3.classList.remove("active")
-
-                    overall.classList.add("atv")
-                    feature1.classList.remove("atv")
-                    feature2.classList.remove("atv")
-                    feature3.classList.remove("atv")
-                }
-                featureBtn1.onclick = (e) => {
-
-                const posBtn = featureBtn1.getBoundingClientRect()
-                 let Y =posBtn.left
-                 let w = posBtn.width
-                 
-                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
-
-                    setTimeout(() => {
-                        window.scrollTo({
-                        top: 99999,
-                        behavior: 'smooth',
-                    })
-                    },0)
-
-                    
-
-                    overallBtn.classList.remove("active")
-                    featureBtn1.classList.add("active")
-                    featureBtn2.classList.remove("active")
-                    featureBtn3.classList.remove("active")
-
-                    feature1.classList.add("atv")
-                    overall.classList.remove("atv")
-                    feature2.classList.remove("atv")
-                    feature3.classList.remove("atv")
-                  
-                }
-                featureBtn2.onclick = (e) => {
-
-                    const posBtn = featureBtn2.getBoundingClientRect()
-                 let Y =posBtn.left
-                 let w = posBtn.width
-                 
-                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
-
-                    setTimeout(() => {
-                        window.scrollTo({
-                        top: 99999,
-                        behavior: 'smooth',
-                    })
-                    },0)
-                    
-
-                    overallBtn.classList.remove("active")
-                    featureBtn1.classList.remove("active")
-                    featureBtn2.classList.add("active")
-                    featureBtn3.classList.remove("active")
-
-                    feature2.classList.add("atv")
-                    overall.classList.remove("atv")
-                    feature1.classList.remove("atv")
-                    feature3.classList.remove("atv")
-                  
-                }
-                featureBtn3.onclick = (e) => {
-
-                    const posBtn = featureBtn3.getBoundingClientRect()
-                 let Y =posBtn.left
-                 let w = posBtn.width
-                 
-                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
-                    
-                    setTimeout(() => {
-                        window.scrollTo({
-                        top: 99999,
-                        behavior: 'smooth',
-                    })
-                    },0)
-                
-
-                    overallBtn.classList.remove("active")
-                    featureBtn1.classList.remove("active")
-                    featureBtn2.classList.remove("active")
-                    featureBtn3.classList.add("active")
-
-                    feature3.classList.add("atv")
-                    overall.classList.remove("atv")
-                    feature2.classList.remove("atv")
-                    feature1.classList.remove("atv")
-                  
-                }
-            });
+        <script src="{% static 'home/js/home.js' %}">
             
+        </script>
+        
+        <script src="{% static 'home/js/student.js' %}">
         </script>
     </div>
 </div>
