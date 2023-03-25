@@ -33,6 +33,11 @@ def login_view(request):
             else:
                 messages.error(request, 'Tài khoản hoặc mật khẩu không đúng')
                 redirect('login')
-            # return render(request, 'home/home.html', context={'teacher': teacher})
     return render(request, 'login/login_form.html', 
                   {'form': LoginForm})
+
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.") 
+    return redirect("login")
