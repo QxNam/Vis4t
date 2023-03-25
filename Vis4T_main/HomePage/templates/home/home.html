@@ -181,8 +181,8 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="option-1 feature-btn-3" id="course-book">
-                                    <p>Cập Nhật Niên Giám</p>
+                                <div class="option-1 feature-btn-3" id="info-class">
+                                    <p>Cập Nhật Thông Tin Lớp</p>
                                     <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
                                 </div>
                             </div>
@@ -216,6 +216,8 @@
         
 
         <script>
+            console.log("{% url 'class_api' %}");
+
             document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll(".dropdown-item").forEach((item) => {
                     item.onclick = () => {
