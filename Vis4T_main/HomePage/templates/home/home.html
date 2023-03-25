@@ -163,25 +163,25 @@
                             
                             </div>
                             <div class="col-2 ">
-                                <div class="option-1" id="overview" style="color: green;">
+                                <div class="option-1 overall-btn active" id="overview" >
                                     <p>Tổng Quan</p>
                                     <div class="fa fa-pie-chart" style="font-size:48px;margin-top:7px;"></div>
                                 </div>
                             </div>
                             <div class="col-2 ">
-                                <div class="option-1" id="chart-to-class">
+                                <div class="option-1 feature-btn-1" id="chart-to-class">
                                     <p>Biểu Đồ Theo Lớp</p>
                                     <div class="fa fa-bar-chart" style="font-size:48px;margin-top:7px;"></div>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="option-1" id="chart-to-student">
+                                <div class="option-1 feature-btn-2" id="chart-to-student">
                                     <p>Biểu Đồ Theo Sinh Viên</p>
                                     <div class='far fa-id-badge' style='font-size:48px;margin-top:7px;'></div>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="option-1" id="course-book">
+                                <div class="option-1 feature-btn-3" id="course-book">
                                     <p>Cập Nhật Niên Giám</p>
                                     <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
                                 </div>
@@ -191,7 +191,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart col-12" id="class-name">{{ classes.0.class_name}}</div>
+                    <div class="chart col-12" id="class-name">
+                        <div class="overall atv col-12">
+                            Tổng Quan
+                        </div>
+                        <div class="feature feature-1 col-12">
+                            Biểu Đồ Theo Lớp
+                        </div>
+                        <div class="feature feature-2 col-12">
+                            Biểu Đồ Theo Sinh Viên
+                        </div>
+                        <div class="feature feature-3 col-12">
+                            Cập Nhật Niên Giám
+                        </div>
+                        <div class="arrow"></div>
+                    </div>
                 </div>
             </div>
         <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
@@ -217,19 +231,135 @@
             });
 
             document.addEventListener("DOMContentLoaded", () => {
-                document.querySelectorAll(".option-1").forEach((item) => {
-                    item.onclick = () => {
-                            item.style.color = 'green';
-                            let green_item = item;
-                            document.querySelectorAll(".option-1").forEach((item) => {
-                                if (item != green_item) {
-                                    item.style.color = 'black';
-                                }
-                            });
-                        };
-                    });
-                });
+                const overallBtn = document.querySelector('.overall-btn')
+                const overall = document.querySelector('.overall')
+                const feature1 = document.querySelector('.feature-1')
+                const feature2 = document.querySelector('.feature-2')
+                const feature3 = document.querySelector('.feature-3')
+                const featureBtn1 = document.querySelector('.feature-btn-1')
+                const featureBtn2 = document.querySelector('.feature-btn-2')
+                const featureBtn3 = document.querySelector('.feature-btn-3')
+                const arrowEl = document.querySelector(".arrow")
 
+                const chartPos = document.querySelector(".chart").getBoundingClientRect().left
+
+                const posBtn = overallBtn.getBoundingClientRect()
+                 let Y =posBtn.left
+                 let w = posBtn.width
+                 
+                arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
+
+                overallBtn.onclick = (e) => {
+                 const posBtn = overallBtn.getBoundingClientRect()
+                 let Y =posBtn.left
+                 let w = posBtn.width
+                 
+                arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
+
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' ,
+                        })
+                    },0)
+
+                    
+
+                    overallBtn.classList.add("active")
+                    featureBtn1.classList.remove("active")
+                    featureBtn2.classList.remove("active")
+                    featureBtn3.classList.remove("active")
+
+                    overall.classList.add("atv")
+                    feature1.classList.remove("atv")
+                    feature2.classList.remove("atv")
+                    feature3.classList.remove("atv")
+                }
+                featureBtn1.onclick = (e) => {
+
+                const posBtn = featureBtn1.getBoundingClientRect()
+                 let Y =posBtn.left
+                 let w = posBtn.width
+                 
+                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                        top: 99999,
+                        behavior: 'smooth',
+                    })
+                    },0)
+
+                    
+
+                    overallBtn.classList.remove("active")
+                    featureBtn1.classList.add("active")
+                    featureBtn2.classList.remove("active")
+                    featureBtn3.classList.remove("active")
+
+                    feature1.classList.add("atv")
+                    overall.classList.remove("atv")
+                    feature2.classList.remove("atv")
+                    feature3.classList.remove("atv")
+                  
+                }
+                featureBtn2.onclick = (e) => {
+
+                    const posBtn = featureBtn2.getBoundingClientRect()
+                 let Y =posBtn.left
+                 let w = posBtn.width
+                 
+                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                        top: 99999,
+                        behavior: 'smooth',
+                    })
+                    },0)
+                    
+
+                    overallBtn.classList.remove("active")
+                    featureBtn1.classList.remove("active")
+                    featureBtn2.classList.add("active")
+                    featureBtn3.classList.remove("active")
+
+                    feature2.classList.add("atv")
+                    overall.classList.remove("atv")
+                    feature1.classList.remove("atv")
+                    feature3.classList.remove("atv")
+                  
+                }
+                featureBtn3.onclick = (e) => {
+
+                    const posBtn = featureBtn3.getBoundingClientRect()
+                 let Y =posBtn.left
+                 let w = posBtn.width
+                 
+                 arrowEl.style.left = Y - chartPos + w / 2 - 7 + 'px' // lay mot nua :))
+                    
+                    setTimeout(() => {
+                        window.scrollTo({
+                        top: 99999,
+                        behavior: 'smooth',
+                    })
+                    },0)
+                
+
+                    overallBtn.classList.remove("active")
+                    featureBtn1.classList.remove("active")
+                    featureBtn2.classList.remove("active")
+                    featureBtn3.classList.add("active")
+
+                    feature3.classList.add("atv")
+                    overall.classList.remove("atv")
+                    feature2.classList.remove("atv")
+                    feature1.classList.remove("atv")
+                  
+                }
+            });
+            
         </script>
     </div>
 </div>
