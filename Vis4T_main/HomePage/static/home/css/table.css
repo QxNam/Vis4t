@@ -1,0 +1,14 @@
+.tabulator{
+    background-color: #056117;
+    /* height: 80%;
+    top: 20%; */
+}
+.tabulator-header{
+    background-color: #35be48;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+}
