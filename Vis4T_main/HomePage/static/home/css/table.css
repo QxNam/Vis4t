@@ -12,3 +12,7 @@
     z-index: 9;
     box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
 }
+
+.csv-table {
+    height: 100%;
+}
