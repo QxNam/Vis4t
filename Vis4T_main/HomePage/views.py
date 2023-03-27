@@ -100,3 +100,8 @@ class StudentDetail(APIView):
 class StudentView(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    
+@login_required(login_url='login')
+@csrf_protect 
+def course_overview(request):
+    return render(request, './course/course_overview.html')
