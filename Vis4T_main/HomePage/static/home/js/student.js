@@ -58,15 +58,17 @@ document.addEventListener("DOMContentLoaded", function() {
             placeholder:"Chưa có lớp",
             data: tabledata,
             layout:"fitColumns",
+            // layout:"fitDataTable",
+
             tooltips:true,  
             columns: [
-                {title: "Mã số", field: "Mã số", width: 150},
+                {title: "Mã số", field: "Mã số", width: 80},
                 {title: "Họ tên", field: "Họ tên", width: 150},
-                {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right", width: 50},
-                {title: "Điểm 4", field: "Điểm 4", width: 50},
-                {title: "Điểm chữ", field: "Điểm chữ", width: 50},
-                {title: "Xếp hạng", field: "Xếp hạng", width: 60},
-                {title: "Số tín chỉ đã học xong", field: "Số tín chỉ đã học xong", width: 150}
+                {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right", width: 90},
+                {title: "Điểm 4", field: "Điểm 4", width: 90},
+                {title: "Điểm chữ", field: "Điểm chữ", width: 100},
+                {title: "Xếp hạng", field: "Xếp hạng", width: 120},
+                {title: "Số tín chỉ", field: "Số tín chỉ đã học xong", width: 200},
             ]  
         });
 
