@@ -13,6 +13,7 @@ from .models import Student, Teacher, University_class
 from .serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from .utils import *
 # from rest_framework.generics import ListAPIView, RetrieveAPIView
 # Create your views here.
 
@@ -71,7 +72,14 @@ class ClassDetail(APIView):
         class_serializer = University_classSerializer(class_)
         student_ = Student.objects.filter(class_name=class_)
         student_serializer = StudentSerializer(student_, many=True)
-        response = {'class_info': class_serializer.data, 'student': student_serializer.data}
+        student_data = student_serializer.data
+        
+        response = {
+            'class_info': class_serializer.data, 
+            'score_char_data': query_student_data_with_nominal_data(student_data, 'score_char'),
+            'rank_data': query_student_data_with_nominal_data(student_data, 'rank'),
+            'student': student_data
+        }
         return JsonResponse({'data': response}, safe=False)
         
         

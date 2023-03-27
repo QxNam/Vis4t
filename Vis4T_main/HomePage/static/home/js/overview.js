@@ -3,7 +3,7 @@ function renderCSVTable(class_name){
     .then(response => response.json())
     .then(data => {
         var tabledata = []
-        var { class_info, student } = data.data;
+        var { class_info, student, score_char_data, rank_data } = data.data;
         for (var i = 0; i < student.length; i++) {
             tabledata.push({
                 "Mã số": student[i].student_id,
@@ -15,7 +15,7 @@ function renderCSVTable(class_name){
                 "Số tín chỉ đã học xong": student[i].passed_credit
             })
         }
-        var table = new Tabulator(".csv-table", {
+        new Tabulator(".csv-table", {
             placeholder:"Chưa có lớp",
             data: tabledata,
             layout:"fitColumns",
@@ -32,7 +32,25 @@ function renderCSVTable(class_name){
             ]  
         });
 
-        
+        const ctx = document.getElementById('myClassChart');
+        ctx.clear();
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: score_char_data[0],
+            datasets: [{
+              data: score_char_data[1],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
     });
 }
 
@@ -47,22 +65,3 @@ document.addEventListener("DOMContentLoaded", function() {
     renderCSVTable(class_name);
 });
 
-const ctx = document.getElementById('myClassChart');
-new Chart(ctx, {
-  type: 'pie',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
