@@ -1,10 +1,11 @@
 .tabulator{
-    background-color: #056117;
+    /* background-color: rgba(24, 252, 3, 0.2); */
+    background-color: transparent;
     /* height: 80%;
     top: 20%; */
 }
 .tabulator-header{
-    background-color: #35be48;
+    background-color: black;
     position: fixed;
     top: 0;
     right: 0;

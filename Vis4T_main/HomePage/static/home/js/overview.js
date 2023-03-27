@@ -23,12 +23,12 @@ function renderCSVTable(class_name){
             tooltips:true,  
             columns: [
                 {title: "Mã số", field: "Mã số", width: 80},
-                {title: "Họ tên", field: "Họ tên", width: 150},
+                {title: "Họ tên", field: "Họ tên", width: 155},
                 {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right", width: 90},
                 {title: "Điểm 4", field: "Điểm 4", width: 90},
                 {title: "Điểm chữ", field: "Điểm chữ", width: 100},
                 {title: "Xếp hạng", field: "Xếp hạng", width: 120},
-                {title: "Số tín chỉ", field: "Số tín chỉ đã học xong", width: 1000},
+                {title: "Số tín chỉ", field: "Số tín chỉ đã học xong", width: 100},
             ]  
         });
 
