@@ -6,6 +6,7 @@ class University_class(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     number_of_student = models.IntegerField()
     class_major = models.CharField(max_length=70)
+    teacher_note = models.TextField(blank=True)
     def __str__(self):
         return self.class_name
     
