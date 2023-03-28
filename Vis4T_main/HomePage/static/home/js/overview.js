@@ -45,10 +45,8 @@ function renderCSVTable(class_name){
           options: {
             plugins: {
               legend: {
-                  display: false,
-                  labels: {
-                      color: 'rgb(255, 99, 132)'
-                  }
+                display: true,
+                position: 'pie'
               }
             },
             scales: {
