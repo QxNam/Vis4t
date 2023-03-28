@@ -33,7 +33,7 @@ function renderCSVTable(class_name){
         });
 
         const ctx = document.getElementById('myClassChart');
-        new Chart(ctx, {
+        var chart = new Chart(ctx, {
           type: 'pie',
           data: {
             labels: score_char_data[0],
@@ -43,6 +43,14 @@ function renderCSVTable(class_name){
             }]
           },
           options: {
+            plugins: {
+              legend: {
+                  display: false,
+                  labels: {
+                      color: 'rgb(255, 99, 132)'
+                  }
+              }
+            },
             scales: {
               y: {
                 beginAtZero: true
@@ -53,9 +61,10 @@ function renderCSVTable(class_name){
     });
 }
 
-
 $(".dropdown-class").on("click", function() {
     class_name = this.id.split(" ")[0];
+    $("canvas").remove();
+    $(".pie-chart").append('<canvas id="myClassChart" width="400" height="400"></canvas>');
     renderCSVTable(class_name);
 });
 
