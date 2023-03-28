@@ -33,7 +33,6 @@ function renderCSVTable(class_name){
         });
 
         const ctx = document.getElementById('myClassChart');
-        ctx.clear();
         new Chart(ctx, {
           type: 'pie',
           data: {
