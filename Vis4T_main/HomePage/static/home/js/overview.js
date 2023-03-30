@@ -55,6 +55,11 @@ function renderCSVTable(class_name){
               labels: {
                 color: 'green'  
               }
+            },
+            title: {
+              display: true,
+              text: 'BIỂU ĐỒ THỐNG KÊ ĐIỂM CHỮ CỦA LỚP ' + class_name,
+              fontSize: 30
             }
           }
         }
