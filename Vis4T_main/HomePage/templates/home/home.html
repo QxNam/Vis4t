@@ -2,11 +2,12 @@
 {% block main_body %} 
 {% load static %}
 <script>
+    
     function get_class_url (class_name) {
         return "{% url 'class_api' %}" + class_name;
     }
+    
 </script>
-
 <div class="main">
     <div class="content container">
             <div class="wrap-content">
@@ -187,7 +188,7 @@
                             </div>
                             <div class="col-2">
                                 <div class="option-1 feature-btn-3" id="info-class">
-                                    <p>Cập Nhật Thông Tin Lớp</p>
+                                    <p>Cập Nhật Thông Tin Lớp </p>
                                     <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
                                 </div>
                             </div>
@@ -241,12 +242,12 @@
         </button>
 
         
+        
         <script src="{% static 'home/js/home.js' %}"></script>
         
         <script src="{% static 'home/js/overview.js' %}"></script>
 
         <script src="{% static 'home/js/student.js' %}"></script>
-        
     </div>
 </div>
 {% endblock %}

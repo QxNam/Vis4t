@@ -21,7 +21,7 @@
 }
 .option-1:hover{
     cursor: pointer;
-    color: green;
+    color: rgba(71, 193, 101, 0.896);
 }
 
 .overall {
@@ -61,7 +61,7 @@
 }
 
 .active {
-    color: green;
+    color: rgba(71, 193, 101, 0.896);
 
 }
 
