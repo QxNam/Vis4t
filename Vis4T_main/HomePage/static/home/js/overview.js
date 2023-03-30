@@ -32,37 +32,33 @@ function renderCSVTable(class_name){
           ]  
       });
 
-        const ctx = document.getElementById('myClassChart');
-        const LABELS = {'A+': '#257a24', 'A': '#3C8321', 'B': '#5A8C1E', 
-                        'B+': '#7E951A', 'C': '#9E9315', 'C+': '#A38413', 
-                        'D': '#AC600D', 'D+': '#B53307', 'F': '#BF0303'}; // Array of labels
-        
-
-        // Sort the data by value in descending order
-        
-        // Create the chart with the modified data and colors
-        var chart = new Chart(ctx, {
-          type: 'pie',
-          data: {
-            labels: Object.keys(score_char_data),
-            datasets: [{
-              data: Object.values(score_char_data),
-              borderWidth: 1,
-              backgroundColor: Object.values(LABELS)
-            }]
-          },
-          options: {
-            plugins: {
-              legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                  color: 'green'
-                }
+      const ctx = document.getElementById('myClassChart');
+      const LABELS = {'A+': '#257a24', 'A': '#3C8321', 'B': '#5A8C1E', 
+                      'B+': '#7E951A', 'C': '#9E9315', 'C+': '#A38413', 
+                      'D': '#AC600D', 'D+': '#B53307', 'F': '#BF0303'}; // Array of labels
+      console.log(score_char_data);
+      var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: Object.keys(score_char_data),
+          datasets: [{
+            data: Object.values(score_char_data),
+            borderWidth: 1,
+            backgroundColor: Object.values(LABELS)
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                color: 'green'  
               }
             }
           }
-        });
+        }
+      });
   });
 }
 

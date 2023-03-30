@@ -76,8 +76,8 @@ class ClassDetail(APIView):
         
         response = {
             'class_info': class_serializer.data, 
-            'score_char_data': query_student_data_with_nominal_data(student_data, 'score_char'),
-            'rank_data': query_student_data_with_nominal_data(student_data, 'rank'),
+            'score_char_data': query_student_data_with_nominal_data(student_data, 'score_char')['count'],
+            'rank_data': query_student_data_with_nominal_data(student_data, 'rank')['count'],
             'student': student_data
         }
         return JsonResponse({'data': response}, safe=False)
