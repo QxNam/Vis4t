@@ -41,3 +41,41 @@
 .csv-table {
     height: 100%;
 }
+
+.form-check-input {
+    width: 100px !important;
+    height: 28px;
+    outline: none;
+}
+
+.form-check-input:checked {
+    background-color:  rgb(110, 240, 110);
+    border-color:  rgb(110, 240, 110);
+}
+
+.form-check-input:focus {
+    border-color:  rgb(110, 240, 110);
+    box-shadow: none;
+}
+.text_score{
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    pointer-events: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+.academic-rank{
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    pointer-events: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+
+.actBtn {
+    display: block !important;
+}
