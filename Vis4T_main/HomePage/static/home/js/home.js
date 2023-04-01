@@ -27,4 +27,17 @@ $(".option-1").click(function () {
     })},0);
 }); 
 
+let isCheckChangeChart = $('.btn-change-chart')
+isCheckChangeChart.click(function(){
+    if(isCheckChangeChart.is(":checked")){
+        $('.text_score').toggleClass('actBtn')
+        $('.number_score').toggleClass('actBtn')
+    }else{
+        $('.text_score').toggleClass('actBtn')
+        $('.number_score').toggleClass('actBtn')
+    }
+})
+
+
+
 
