@@ -199,14 +199,15 @@
                     </div>
                     <div class="chart col-12" id="class-name">
                         <div class="feature overview atv col-12 container">
+                            <link rel="stylesheet" href="{% static 'home/css/overview.css' %}"/>
                             <div class="row" style="width: 100%; height: 100%; padding: 0; margin : 0 ;">
                                 <div class="col-5 chart-info">
                                     <div class="csv pie-chart" style="display: flex; justify-content: space-evenly;">
                                         <div style="display: flex; align-items: center;">
                                             <div class="form-check form-switch" style="position: relative;">
                                                 <input class="form-check-input btn-change-chart" type="checkbox" id="flexSwitchCheckDefault">
-                                                <span class="text_score">Điểm chữ</span>
-                                                <span class="number_score actBtn">Học lực</span>
+                                                <span class="text_score">Học lực</span>
+                                                <span class="academic-rank actBtn">Điểm chữ</span>
                                               </div>
                                         </div>
                                         <canvas id="myClassChart" width="400" height="400"></canvas>
@@ -214,7 +215,6 @@
                                     
                                 </div>
                                 <div class="col-7 chart-info">
-                                    <link rel="stylesheet" href="{% static 'home/css/table.css' %}"/>
                                     
                                     <div class="csv csv-table"></div>
 
