@@ -58,7 +58,7 @@ class ClassList(APIView):
         queryset = University_class.objects.all()
         serializer = University_classSerializer(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
-    
+   
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
@@ -78,10 +78,24 @@ class ClassDetail(APIView):
             'class_info': class_serializer.data, 
             'score_char_data': query_student_data_with_nominal_data(student_data, 'score_char')['count'],
             'rank_data': query_student_data_with_nominal_data(student_data, 'rank')['count'],
-            'student': student_data
+            'score10_data': get_student_final_score(student_data),
+            'score4_data': get_student_final_score(student_data, 'score_4')
         }
         return JsonResponse({'data': response}, safe=False)
-        
+class ClassListDetail(APIView):
+    def get_object(self, pk: str):
+        try:
+            return University_class.objects.get(class_name=pk)
+        except University_class.DoesNotExist:
+            raise Http404
+    
+    def get(self, request, pk, format=None):
+        pk = pk.upper()
+        class_ = self.get_object(pk)
+        student = Student.objects.filter(class_name=class_)
+        student_serializer = StudentSerializer(student, many=True)
+        response = {'student': student_serializer.data}
+        return JsonResponse(response, safe=False)       
         
 class TeacherDetail(APIView):
     def get_object(self, pk: str):

@@ -21,7 +21,12 @@ urlpatterns = format_suffix_patterns([
 
     
     path('class/', views.ClassList.as_view(), name='class_api'),
+    path('class_list/', views.ClassListDetail.as_view(), name='class_list_api'),
+    path('class_list/<str:pk>', views.ClassListDetail.as_view(), name='class_list_api'),
+    
     path('class/<str:pk>/', views.ClassDetail.as_view(), name='class_detail_api'),
+    
+    
     path('teacher/<str:pk>', views.TeacherDetail.as_view(), name='teacher_api'),
     path('student/', views.StudentView.as_view(
         {'get': 'list', 'post': 'create'}), name='student_api'),

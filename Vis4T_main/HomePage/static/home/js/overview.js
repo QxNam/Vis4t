@@ -9,7 +9,7 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
     const LABELS = {'A+': '#68F600', 'A': '#6BDC18', 'B': '#78B13B', 
                     'B+': '#8FA238', 'C': '#E8E525', 'C+': '#E8C525', 
                     'D': '#E8A425', 'D+': '#E89225', 'F': '#EE310B'}; // Array of labels
-    var { class_info, student, score_char_data, rank_data } = data.data;
+    var { score_char_data, rank_data } = data.data;
     if (score_text == 'HỌC LỰC') {
       rendered_data = rank_data;
     }
@@ -47,11 +47,11 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
 }
 
 function renderCSVTable(class_name){
-  fetch(get_class_url(class_name))
+  fetch(get_class_detail_url(class_name))
   .then(response => response.json())
   .then(data => {
       var tabledata = []
-      var { class_info, student, score_char_data, rank_data } = data.data;
+      var student = data.student;
       for (var i = 0; i < student.length; i++) {
           tabledata.push({
               "Mã số": student[i].student_id,
