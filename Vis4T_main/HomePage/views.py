@@ -83,9 +83,23 @@ class ClassDetail(APIView):
         return JsonResponse({'data': response}, safe=False)
         
         
-class TeacherView(viewsets.ModelViewSet):
-    queryset = Teacher.objects.all()
-    serializer_class = TeacherSerializer
+class TeacherDetail(APIView):
+    def get_object(self, pk: str):
+        try:
+            return Teacher.objects.get(teacher_id=pk)
+        except Teacher.DoesNotExist:
+            raise Http404
+    
+    def get(self, request, pk, format=None):
+        teacher = self.get_object(pk)
+        teach_serializer = TeacherSerializer(teacher)
+        class_ = University_class.objects.filter(teacher=teacher)
+        class_serializer = University_classSerializer(class_, many=True)
+        response = {
+            "teacher": teach_serializer.data,
+            "class": class_serializer.data
+        }
+        return JsonResponse(response, safe=False)
 
 class StudentView( APIView):
     def get(self, request, class_name, format=None):
