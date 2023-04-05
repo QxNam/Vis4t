@@ -204,6 +204,9 @@
     border-radius: 8px;
     padding: 8px;
 }
+.currentClass p{
+    color: #1da1f2;
+}
 .dropdown{
     height: 80px;
     display: flex;
@@ -235,11 +238,22 @@
     width: 100vw;
     z-index: 9999;
 }
-.classInYear {
+.classSize {
     padding-left: 0 !important;
+
 }
+.classSize .wrap{
+    background: #e0fbff;
+    color:#4da1e8;
+}
+
 .totalClass{
     padding-right: 0 !important;
+}
+
+.totalClass .wrap{
+    background: #fff2d4;
+    color: #ff9205;
 }
 
 .wrap{

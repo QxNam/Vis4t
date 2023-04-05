@@ -1,14 +1,14 @@
 function is_checked() {
   return $('#flexSwitchCheckDefault').is(':checked');
 }
+
 function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
   fetch(get_class_url(class_name))
   .then(response => response.json())
   .then(data => {
-    const ctx = document.getElementById('myClassChart');
-    const LABELS = {'A+': '#257a24', 'A': '#3C8321', 'B': '#5A8C1E', 
-                    'B+': '#7E951A', 'C': '#9E9315', 'C+': '#A38413', 
-                    'D': '#AC600D', 'D+': '#B53307', 'F': '#BF0303'}; // Array of labels
+    const LABELS = {'A+': '#68F600', 'A': '#6BDC18', 'B': '#78B13B', 
+                    'B+': '#8FA238', 'C': '#E8E525', 'C+': '#E8C525', 
+                    'D': '#E8A425', 'D+': '#E89225', 'F': '#EE310B'}; // Array of labels
     var { class_info, student, score_char_data, rank_data } = data.data;
     if (score_text == 'HỌC LỰC') {
       rendered_data = rank_data;
@@ -16,33 +16,33 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
     else {
       rendered_data = score_char_data;
     }
-    var chart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: Object.keys(rendered_data),
-        datasets: [{
-          data: Object.values(rendered_data),
-          borderWidth: 1,
-          backgroundColor: Object.values(LABELS)
-        }]
+    var options = {
+      series: Object.values(rendered_data),
+      chart: {
+        width: 400,
+        height: 300,  
+        type: 'pie'
       },
-      options: {
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              color: 'green'  
-            }
-          },
-          title: {
-            display: true,
-            text: `BIỂU ĐỒ THỐNG KÊ ${score_text} CỦA LỚP ` + class_name,
-            fontSize: 30
+    labels: Object.keys(rendered_data),
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 300,
+              height: 300
+            },
+            legend: {
+              position: 'bottom'
+            },
+            
           }
-        }
-      }
-    });
+        }]};
+    
+        new ApexCharts(
+          document.querySelector('#myClassChart'), 
+          options
+        ).render();
+  
   })
 }
 
@@ -86,8 +86,8 @@ function renderCSVTable(class_name){
 
 $(".dropdown-class").on("click", function() {
     class_name = this.id.split(" ")[0];
-    $("canvas").remove();
-    $(".pie-chart").append('<canvas id="myClassChart" width="400" height="400"></canvas>');
+    $("#myClassChart").remove();
+    $(".pie-chart").append('<div id="myClassChart"></div>');
     renderCSVTable(class_name);
     is_check = is_checked();
     if (!is_check) {
@@ -115,8 +115,9 @@ let isCheckChangeChart = $('.btn-change-chart')
           $('.academic-rank').toggleClass('actBtn');
           score_text = "ĐIỂM CHỮ";
       }
-      $("canvas").remove();
-      $(".pie-chart").append('<canvas id="myClassChart" width="400" height="400"></canvas>');
+      $("#myClassChart").remove();
+      $(".pie-chart").append('<div id="myClassChart"></div>');
+
       var class_name = $('#class-name').text();
       render_pie_chart(class_name, score_text);
   })

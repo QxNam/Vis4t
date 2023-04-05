@@ -1,13 +1,7 @@
 {% extends '../layout.html'%} 
 {% block main_body %} 
 {% load static %}
-<script>
-    
-    function get_class_url (class_name) {
-        return "{% url 'class_api' %}" + class_name;
-    }
-    
-</script>
+
 <div class="main">
     <div class="content container">
             <div class="wrap-content">
@@ -139,7 +133,7 @@
                         </div>
                         <div class="class container">
                             <div class="row">
-                                <div class="classInYear col-6">
+                                <div class="classSize col-6">
                                     <div class="wrap">
                                         <p style="text-align: center">Sĩ số</p>
                                         <div>
@@ -210,7 +204,7 @@
                                                 <span class="academic-rank actBtn">Điểm chữ</span>
                                               </div>
                                         </div>
-                                        <canvas id="myClassChart" width="400" height="400"></canvas>
+                                        <div id="myClassChart"></div>
                                     </div>
                                     
                                 </div>
@@ -249,7 +243,13 @@
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        
+        <script>
+    
+            function get_class_url (class_name) {
+                return "{% url 'class_api' %}" + class_name;
+            }
+            
+        </script>
         
         <script src="{% static 'home/js/home.js' %}"></script>
         
