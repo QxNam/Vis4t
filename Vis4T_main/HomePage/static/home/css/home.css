@@ -281,7 +281,7 @@
     height: 50%;
     padding: 5px !important;
 }
-.csv {
+.overview {
     padding: 10px;
     width: 100%;
     height: 100%;
@@ -289,7 +289,7 @@
     border-radius: 8px;
     overflow: hidden;
 }
-.csv .csv-table .tabulator {
+.overview .csv-table .tabulator {
     background-color: blue !important;
 }
 
