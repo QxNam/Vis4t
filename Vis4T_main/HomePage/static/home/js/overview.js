@@ -2,6 +2,16 @@ function is_checked() {
   return $('#flexSwitchCheckDefault').is(':checked');
 }
 
+function render_bar_chart(class_name){
+  fetch(get_class_url(class_name))
+  .then(response => response.json())
+  .then(data => {
+    var { score10_data, score4_data } = data.data;
+    console.log(score10_data);
+  })
+}
+
+
 function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
   fetch(get_class_url(class_name))
   .then(response => response.json())
@@ -96,12 +106,16 @@ $(".dropdown-class").on("click", function() {
     else {
       render_pie_chart(class_name, 'HỌC LỰC');
     }
+
+    render_bar_chart(class_name);
+
 });
 
 document.addEventListener("DOMContentLoaded", function() {
     var class_name = document.getElementById("class-name").innerHTML;
     renderCSVTable(class_name);
-    render_pie_chart(class_name)
+    render_bar_chart(class_name);
+    render_pie_chart(class_name);
 });
 
 let isCheckChangeChart = $('.btn-change-chart')
@@ -120,4 +134,5 @@ let isCheckChangeChart = $('.btn-change-chart')
 
       var class_name = $('#class-name').text();
       render_pie_chart(class_name, score_text);
+      render_bar_chart(class_name);
   })
