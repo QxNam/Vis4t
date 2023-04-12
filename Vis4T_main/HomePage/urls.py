@@ -15,7 +15,7 @@ urlpatterns = format_suffix_patterns([
     # path('api-auth/', include('rest_framework.urls')),
     path('', views.login_view, name='login'),
     path('login/', views.login_view, name='login'),
-    path('home/', auth_views.LoginView.as_view(template_name='./home/home.html'), name='home'),
+    path('home/', views.home, name='home'),
     path('course/', views.course_overview, name='course'),
     path("logout", views.logout_request, name= "logout"),
 

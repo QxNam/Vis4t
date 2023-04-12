@@ -7,7 +7,52 @@ function render_bar_chart(class_name){
   .then(response => response.json())
   .then(data => {
     var { score10_data, score4_data } = data.data;
-    console.log(score10_data);
+    rendered_data = score10_data;
+    console.log(rendered_data);
+    var options = {
+      series: [{
+        data: Object.values(rendered_data),
+        type: "column",
+    }, 
+    {
+      data: Object.values(rendered_data),
+      type: "line",
+    }],
+      chart: {
+        height: 300 ,
+        type: "line",
+        toolbar: {
+            show: !0
+        }
+      },
+      stroke: {
+          width: [0, 3],
+          curve: "smooth"
+      },
+      plotOptions: {
+          bar: {
+              horizontal: !1,
+              columnWidth: "20%"
+          }
+      },
+      dataLabels: {
+          enabled: !1
+      },
+      legend: {
+          show: !1
+      },
+      
+      colors: ["#6d77b9", "#5bceac"],
+      labels: Object.keys(score10_data),
+
+    };
+    
+    const chart = new ApexCharts(
+        document.querySelector('#myBarChart'), 
+        options
+      )
+    
+    chart.render();
   })
 }
 
@@ -48,11 +93,13 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
           }
         }]};
     
-        new ApexCharts(
+      const chart = new ApexCharts(
           document.querySelector('#myClassChart'), 
           options
-        ).render();
-  
+        )
+      
+      chart.render();
+        
   })
 }
 
@@ -108,14 +155,17 @@ $(".dropdown-class").on("click", function() {
     }
 
     render_bar_chart(class_name);
-
+    // Remove all content in div with class "bar-chart"
+    $("#myBarChart").remove();
+    $(".bar-chart").append('<div id="myBarChart"></div>');
 });
 
 document.addEventListener("DOMContentLoaded", function() {
     var class_name = document.getElementById("class-name").innerHTML;
     renderCSVTable(class_name);
-    render_bar_chart(class_name);
     render_pie_chart(class_name);
+    render_bar_chart(class_name);
+
 });
 
 let isCheckChangeChart = $('.btn-change-chart')
@@ -135,4 +185,5 @@ let isCheckChangeChart = $('.btn-change-chart')
       var class_name = $('#class-name').text();
       render_pie_chart(class_name, score_text);
       render_bar_chart(class_name);
-  })
+})
+
