@@ -187,3 +187,10 @@ let isCheckChangeChart = $('.btn-change-chart')
       render_bar_chart(class_name);
 })
 
+const dropdownClassName = document.querySelector('.all-classname');
+dropdownClassName.addEventListener('click', function() {
+  const dropdown__classes = document.querySelector('.dropdown-classes');
+  dropdown__classes.classList.toggle('show-dropdown-classname');
+});
+
+
