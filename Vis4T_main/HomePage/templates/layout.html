@@ -52,7 +52,7 @@
                         </div>
                         <div class="option">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
-                                <span class="name">Quản lý tài khoản</span>
+                                <span class="name">{{ teacher.fullname}}</span>
                             <span class="icon down"><i class="fa-solid fa-chevron-down"></i></span>
                             <div class="wrap-menu">
                                 <ul class="menu">
@@ -73,15 +73,11 @@
                             <i class="fas fa-users fa-fw me-3"></i><span>Các lớp chủ nhiệm</span>
                         </div>
                         <ul class="dropdown-classes">
-                            <li class="class-name">
-                                <a href="#">Lớp 1</a>                                 
-                            </li>
-                            <li class="class-name">
-                                <a href="#">Lớp 2</a>
-                            </li>
-                            <li class="class-name">
-                                <a href="#">Lớp 3</a>
-                            </li>
+                            {% for c in classes %}
+                                <li class="class-name">
+                                    <a href="#">{{c.class_name}}</a>                                 
+                                </li>
+                            {% endfor %}
                         </ul>
                        
                         

@@ -409,3 +409,12 @@
     color: black;
     font-weight: 600;
 }
+
+.sidebar {
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+}
