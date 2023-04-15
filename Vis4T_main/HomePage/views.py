@@ -29,22 +29,10 @@ class HomeView(LoginRequiredMixin, ListView):
         queryset = super().get_queryset()
         queryset = queryset.filter(teacher__teacher_id=teacher.teacher_id)
         return queryset
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-
-    #     context['classes'] = context['classes'].filter(teacher=self.request.user)
-
-    #     context['count'] = context['classes'].count()
-
-    #     # Add support for searching the list of classes by name
-    #     search = self.request.GET.get('search')
-    #     if search:
-    #         context['classes'] = context['classes'].filter(class_name__icontains=search)
-    #     context['search_value'] = search
-
-    #     return context
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['teacher'] = self.request.user
+        return context
 class Login(LoginView):
     template_name = 'login/login_form.html'
     fields = '__all__'
@@ -54,7 +42,19 @@ class Login(LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
-
+class TeacherView(ListView):
+    model = Teacher
+    template_name = 'teacher/teacher.html'
+    context_object_name = 'teacher'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        return context
+    
 class ClassList(APIView):   
     def get(self, request,  format=None):
         queryset = University_class.objects.all()
