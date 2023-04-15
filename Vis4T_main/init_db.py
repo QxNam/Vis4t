@@ -2,39 +2,39 @@ from Vis4T_main.wsgi import *
 from HomePage.models import University_class, Teacher, Student
 from django.contrib.auth.models import User
 import json
-# user = User.objects.create_user(
-#     username='test',
-#     password='test',
-# )
-superuser = User.objects.create_user(username='admin', password='admin', is_superuser=True, is_staff=True)
+from django.contrib.auth.hashers import make_password
+superuser = Teacher.objects.create_user(username='admin', password='admin', is_superuser=True, is_staff=True)
 superuser.save()
-teacher_user1 = User.objects.create_user(username='test', password='test')
-teacher_user2 = User.objects.create_user(username='test2', password='test2')
-
 
 t1 = Teacher(
     username='test',
-    password='test',
-    fullname = 'Trương Vĩnh Linh',
+    password=make_password('test'),
+    first_name = 'Trương',
+    last_name = 'Vĩnh Linh',
     teacher_id = "111",
     year_of_birth = 1979,
     academic_title = 'Thạc sĩ',
     major = 'Khoa học máy tính',
     sex = 'M',
     phone_number = "123456789",
+    is_staff = False,
+    is_active = True,
 )
 t1.save()
 
 t2 = Teacher(
     username='test2',
-    password='test2',
-    fullname = 'Nguyễn Hữu Tình',
+    password=make_password('test2'),
+    first_name = 'Nguyễn',
+    last_name = 'Hữu Tình',
     teacher_id = "222",
     year_of_birth = 1970,
     academic_title = 'Thạc sĩ',
     major = 'Công nghệ thông tin',
     sex = 'M',
     phone_number = "234567891",
+    is_staff = False,
+    is_active = True,
 )
 t2.save()
 khdl16a = University_class(
