@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-class LoginForm(forms.Form):
+class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Username',
         widget=forms.TextInput(attrs={
             'class': 'input',
@@ -10,6 +10,7 @@ class LoginForm(forms.Form):
             'required': 'required'
         })
     )
+    
     password = forms.CharField(label='Password', 
         widget=forms.PasswordInput(attrs={
             'class': 'input password',
@@ -18,4 +19,10 @@ class LoginForm(forms.Form):
             'required': 'required'
         }),
     )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = False
+        self.fields['password'].label = False
+
     
+        

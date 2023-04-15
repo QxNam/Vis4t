@@ -1,64 +1,66 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse, Http404
+from django.contrib.auth.views import LoginView
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
 from rest_framework import viewsets
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.list import ListView
 from .forms import LoginForm
 from .models import Student, Teacher, University_class
 from .serializers import *
-from rest_framework.decorators import api_view
-from rest_framework.views import APIView
 from .utils import *
-# from rest_framework.generics import ListAPIView, RetrieveAPIView
+
 # Create your views here.
 
+class HomeView(LoginRequiredMixin, ListView):
+    model = University_class
+    template_name = 'home/home.html'
+    context_object_name = 'classes'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        queryset = super().get_queryset()
+        queryset = queryset.filter(teacher__teacher_id=teacher.teacher_id)
+        return queryset
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
-@login_required(login_url='login')
-@csrf_protect 
-def home(request, teacher, classes):
-    # students = Student.objects.filter(class_name=classes[2])
-    # print(students)
-    students = 0
-    context = {'teacher': teacher, 'classes': classes, 'students': students}
-    return render(request, './home/home.html', context=context)
+    #     context['classes'] = context['classes'].filter(teacher=self.request.user)
 
-        
-def login_view(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                teacher = Teacher.objects.get(username=username)
-                classes = University_class.objects.filter(teacher=teacher)
-                return home(request, teacher, classes)
-            else:
-                messages.error(request, 'Tài khoản hoặc mật khẩu không đúng')
-                redirect('login')
-    return render(request, 'login/login_form.html', 
-                  {'form': LoginForm})
+    #     context['count'] = context['classes'].count()
 
+    #     # Add support for searching the list of classes by name
+    #     search = self.request.GET.get('search')
+    #     if search:
+    #         context['classes'] = context['classes'].filter(class_name__icontains=search)
+    #     context['search_value'] = search
 
-def logout_request(request):
-    logout(request)
-    messages.info(request, "You have successfully logged out.") 
-    return redirect("login")
-        
+    #     return context
+
+class Login(LoginView):
+    template_name = 'login/login_form.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+    authentication_form = LoginForm
+    
+    def get_success_url(self):
+        return reverse_lazy('home')
+
 
 class ClassList(APIView):   
     def get(self, request,  format=None):
         queryset = University_class.objects.all()
         serializer = University_classSerializer(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
-   
+
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
@@ -76,8 +78,8 @@ class ClassDetail(APIView):
         
         response = {
             'class_info': class_serializer.data, 
-            'score_char_data': query_student_data_with_nominal_data(student_data, 'score_char')['count'],
-            'rank_data': query_student_data_with_nominal_data(student_data, 'rank')['count'],
+            'score_char_data': query_student_data_with_ordinal_data(student_data, 'score_char')['count'],
+            'rank_data': query_student_data_with_ordinal_data(student_data, 'rank')['count'],
             'score10_data': get_student_final_score(student_data),
             'score4_data': get_student_final_score(student_data, 'score_4')
         }

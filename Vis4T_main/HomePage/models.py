@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class University_class(models.Model):
     class_name = models.CharField(max_length=10, primary_key=True)
@@ -9,13 +10,10 @@ class University_class(models.Model):
     def __str__(self):
         return self.class_name
     
-class Teacher(models.Model):
-    username = models.CharField(primary_key=True, max_length=100)
-    password = models.CharField(max_length=100)
-    
+class Teacher(AbstractUser):
     teacher_id = models.CharField(max_length = 8, unique=True)
-    fullname = models.CharField(max_length=50)
-    year_of_birth = models.IntegerField()
+    
+    year_of_birth = models.IntegerField(null=True)
     academic_title = models.CharField(max_length=50)
     major = models.CharField(max_length=70)
     
@@ -23,11 +21,7 @@ class Teacher(models.Model):
     phone_number = models.CharField(max_length=10)
     
     def __str__(self):
-        res = """fullname: {}\t
-        login_name: {}\t
-        password: {}\t
-        """.format(self.fullname, self.username, self.password)
-        return res
+        return "{} - {}".format(self.teacher_id, self.get_full_name())
 
 
 class Student(models.Model):

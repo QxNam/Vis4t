@@ -52,7 +52,7 @@
                         </div>
                         <div class="option">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
-                                <span class="name">{{ teacher.fullname}}</span>
+                                <span class="name">{{teacher.first_name}} {{ teacher.last_name}}</span>
                             <span class="icon down"><i class="fa-solid fa-chevron-down"></i></span>
                             <div class="wrap-menu">
                                 <ul class="menu">
@@ -98,7 +98,10 @@
                         </div>
                         
                         <div class="list-group-item list-group-item-action py-2 ripple" style= "cursor: pointer;">
-                            <i class="fa-solid fa-arrow-right-from-bracket me-3"></i><span>Đăng xuất</span>
+                            <i class="fa-solid fa-arrow-right-from-bracket me-3"></i>
+                            <a href = "{% url 'logout' %}">
+                                <span>Đăng xuất</span>
+                            </a>
                         </div>
                     </div>
                 </div>
