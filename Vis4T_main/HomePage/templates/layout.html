@@ -33,7 +33,7 @@
         <div class="header container-fluid">
             <header class="wrap-header">
                 <div class="logo">
-                    <a href="{% url 'home' %}">
+                    <a href="{% url 'home' cached_class_name %}">
                         <img src="{% static 'login/images/Logo_IUH.png'%}" alt="vis4t" style="height: 100%; width: 111px;">
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                             <span class="icon down"><i class="fa-solid fa-chevron-down"></i></span>
                             <div class="wrap-menu">
                                 <ul class="menu">
-                                    <li class="itemMenu"><a href="{% url 'home' %}">Trang chủ</a></li>
+                                    <li class="itemMenu"><a href="{% url 'home' cached_class_name %}">Trang chủ</a></li>
                                     <li class="itemMenu"><a href="{% url 'teacher' %}">Thông tin giảng viên</a></li>
                                     <li class="itemMenu"><a href="">Tài khoản</a></li>
                                     <li class="itemMenu"><a href = "{% url 'logout' %}">Đăng xuất</a></li>
@@ -83,7 +83,7 @@
                         <ul class="dropdown-classes">
                             {% for c in classes %}
                                 <li class="class-name">
-                                    <a href="{% url 'class_home' c.class_name %}" id="{{c.class_name}} {{c.number_of_student}}">{{c.class_name}}</a>                                 
+                                    <a href="{% url 'home' c.class_name %}" id="{{c.class_name}} {{c.number_of_student}}">{{c.class_name}}</a>                                 
                                 </li>
                             {% endfor %}
                         </ul>

@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 from django.views.decorators.csrf import csrf_protect
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -14,7 +14,6 @@ from .forms import LoginForm
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
-
 # Create your views here.
     
 class Login(LoginView):
@@ -22,7 +21,10 @@ class Login(LoginView):
     fields = ['username', 'password']
     redirect_authenticated_user = True
     authentication_form = LoginForm
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        class_ = University_class.objects.filter(teacher=self.request.user).first()
+        class_name = class_.class_name
+        return reverse_lazy('home', kwargs={'class_name': class_name})
     
 
 class HomeView(LoginRequiredMixin, ListView):
@@ -38,13 +40,20 @@ class HomeView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
-        context['class_name'] = self.kwargs.get('class_name')
+        
+        class_name = self.kwargs['class_name']
+        cached_class_name = cache.get('class_name')
+        if cached_class_name == class_name:
+            context['cached_class_name'] = cached_class_name
+        else:
+            university_class = University_class.objects.get(class_name=class_name)
+            context['cached_class_name'] = university_class.class_name
+            cache.set('class_name', university_class.class_name)
         return context
     
-    def class_home(self, class_id):
-        university_class = University_class.objects.get(id=class_id)
-        
-        return redirect('home', teacher__teacher_id=self.request.user.teacher_id, university_class=university_class)
+    def class_home(self):
+        return self.render_to_response(self.get_context_data())
+    
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
@@ -56,6 +65,7 @@ class TeacherView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
         return context
 
 
