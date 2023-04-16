@@ -56,7 +56,8 @@
                             <span class="icon down"><i class="fa-solid fa-chevron-down"></i></span>
                             <div class="wrap-menu">
                                 <ul class="menu">
-                                    <li class="itemMenu"><a href="">Thông tin</a></li>
+                                    <li class="itemMenu"><a href="{% url 'home' %}">Trang chủ</a></li>
+                                    <li class="itemMenu"><a href="{% url 'teacher' %}">Thông tin giảng viên</a></li>
                                     <li class="itemMenu"><a href="">Tài khoản</a></li>
                                     <li class="itemMenu"><a href = "{% url 'logout' %}">Đăng xuất</a></li>
                                 </ul>
@@ -72,10 +73,17 @@
                         <div class="list-group-item list-group-item-action py-2 ripple all-classname" style= "cursor: pointer;">
                             <i class="fas fa-users fa-fw me-3"></i><span>Các lớp chủ nhiệm</span>
                         </div>
+                        <script>
+                            $(document).ready(function(){
+                                $(".all-classname").click(function(){
+                                    $(".dropdown-classes").toggle();
+                                });
+                            });
+                        </script>
                         <ul class="dropdown-classes">
                             {% for c in classes %}
                                 <li class="class-name">
-                                    <a href="#" id="{{c.class_name}} {{c.number_of_student}}">{{c.class_name}}</a>                                 
+                                    <a href="{% url 'class_home' c.class_name %}" id="{{c.class_name}} {{c.number_of_student}}">{{c.class_name}}</a>                                 
                                 </li>
                             {% endfor %}
                         </ul>

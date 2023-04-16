@@ -1,5 +1,3 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import Http404, HttpResponse, JsonResponse
@@ -40,7 +38,13 @@ class HomeView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
+        context['class_name'] = self.kwargs.get('class_name')
         return context
+    
+    def class_home(self, class_id):
+        university_class = University_class.objects.get(id=class_id)
+        
+        return redirect('home', teacher__teacher_id=self.request.user.teacher_id, university_class=university_class)
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'

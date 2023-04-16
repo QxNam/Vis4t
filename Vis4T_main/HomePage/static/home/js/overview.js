@@ -8,7 +8,6 @@ function render_bar_chart(class_name){
   .then(data => {
     var { score10_data, score4_data } = data.data;
     rendered_data = score10_data;
-    console.log(rendered_data);
     var options = {
       series: [{
         data: Object.values(rendered_data),
@@ -141,27 +140,7 @@ function renderCSVTable(class_name){
   });
 }
 
-$(".dropdown-class").on("click", function() {
-    class_name = this.id.split(" ")[0];
-    $("#myClassChart").remove();
-    $(".pie-chart").append('<div id="myClassChart"></div>');
-    renderCSVTable(class_name);
-    is_check = is_checked();
-    if (!is_check) {
-      render_pie_chart(class_name);
-    }
-    else {
-      render_pie_chart(class_name, 'HỌC LỰC');
-    }
-
-    render_bar_chart(class_name);
-    // Remove all content in div with class "bar-chart"
-    $("#myBarChart").remove();
-    $(".bar-chart").append('<div id="myBarChart"></div>');
-});
-
 document.addEventListener("DOMContentLoaded", function() {
-    var class_name = document.getElementById("class-name").innerHTML;
     renderCSVTable(class_name);
     render_pie_chart(class_name);
     render_bar_chart(class_name);
@@ -182,15 +161,7 @@ let isCheckChangeChart = $('.btn-change-chart')
       $("#myClassChart").remove();
       $(".pie-chart").append('<div id="myClassChart"></div>');
 
-      var class_name = $('#class-name').text();
       render_pie_chart(class_name, score_text);
       render_bar_chart(class_name);
-})
-
-const dropdownClassName = document.querySelector('.all-classname');
-dropdownClassName.addEventListener('click', function() {
-  const dropdown__classes = document.querySelector('.dropdown-classes');
-  dropdown__classes.classList.toggle('show-dropdown-classname');
 });
-
 

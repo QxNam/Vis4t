@@ -5,11 +5,13 @@ from django.contrib.auth.views import LogoutView
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = format_suffix_patterns([
+    path('', views.Login.as_view(), name="login"),
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='login'), name="logout"),
     
-    path('', views.HomeView.as_view(), name="home"),
+    path('', views.Login.as_view(), name="login"),
     path('home/', views.HomeView.as_view(), name="home"),
+    path('home/<str:class_name>/', views.HomeView.as_view(class_home=True), name='class_home'),
     
     path('course/', views.course_overview, name='course'),
     path('class/', views.ClassList.as_view(), name='class_api'),
