@@ -23,6 +23,3 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = False
         self.fields['password'].label = False
-
-    
-        

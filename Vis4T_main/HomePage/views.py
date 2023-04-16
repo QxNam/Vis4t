@@ -18,6 +18,14 @@ from .serializers import *
 from .utils import *
 
 # Create your views here.
+    
+class Login(LoginView):
+    template_name = 'login/login_form.html'
+    fields = ['username', 'password']
+    redirect_authenticated_user = True
+    authentication_form = LoginForm
+    success_url = reverse_lazy('home')
+    
 
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class
@@ -33,16 +41,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
         return context
-class Login(LoginView):
-    template_name = 'login/login_form.html'
-    fields = '__all__'
-    redirect_authenticated_user = True
-    authentication_form = LoginForm
-    
-    def get_success_url(self):
-        return reverse_lazy('home')
-
-class TeacherView(ListView):
+class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
     context_object_name = 'teacher'
@@ -54,7 +53,9 @@ class TeacherView(ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         return context
-    
+
+
+
 class ClassList(APIView):   
     def get(self, request,  format=None):
         queryset = University_class.objects.all()
