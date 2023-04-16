@@ -9,13 +9,9 @@ urlpatterns = format_suffix_patterns([
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='login'), name="logout"),
     
-    path('', views.Login.as_view(), name="login"),
-    path('home/', views.HomeView.as_view(), name="home"),
-    path('home/<str:class_name>/', views.HomeView.as_view(class_home=True), name='class_home'),
+    path('home/<str:class_name>/', views.HomeView.as_view(class_home=True), name='home'),
     
     path('course/', views.course_overview, name='course'),
-    path('class/', views.ClassList.as_view(), name='class_api'),
-    path('class_list/', views.ClassListDetail.as_view(), name='class_list_api'),
     path('class_list/<str:pk>', views.ClassListDetail.as_view(), name='class_list_api'),
     
     path('class/<str:pk>/', views.ClassDetail.as_view(), name='class_detail_api'),
