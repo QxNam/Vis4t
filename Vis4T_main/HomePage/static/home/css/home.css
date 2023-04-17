@@ -148,11 +148,22 @@
 }
 
 .dropdown-classes {
-    display: none;
+    /* display: none; */
     margin: 0;
     list-style: none;
-    width: 100%;
+    width: 0%;
     padding:5px 60px;
+    animation: showClassName .6s linear;
+}
+
+@keyframes showClassName {
+    from{
+        width: 0%;
+    }
+    to{
+        width: 100%;
+    }
+    
 }
 .dropdown-classes ul  {
     width: 100%;
@@ -170,7 +181,7 @@
     display: block;
 }
 .class-name a {
-    color: black !important;
+    color: black;
     width: 100%;
     height: 100%;
     text-decoration: none;
