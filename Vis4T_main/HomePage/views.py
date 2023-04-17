@@ -26,7 +26,15 @@ class Login(LoginView):
         class_name = class_.class_name
         return reverse_lazy('home', kwargs={'class_name': class_name})
     
-
+    @staticmethod
+    def send_gmail(request):
+        if request.method == 'POST':
+            gmail_value = request.POST.get('gmail')
+            print(gmail_value)
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'error'})
+        
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class
     template_name = 'home/home.html'

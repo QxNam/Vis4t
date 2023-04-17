@@ -5,7 +5,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={
             'class': 'input',
             'type': 'text',
-            'placeholder': 'Tài khoản *', #max_length=100,
+            'placeholder': 'Tài khoản *',
             'autofocus': True,
             'required': 'required'
         })

@@ -29,4 +29,25 @@ $('.forgot-password').click(() => {
     
     $('.back-form').addClass('flip-down').hide();
     $('.up-form').show().addClass('flip-up');
-  });
+});
+
+$(document).ready(function() {
+    $('#send-gmail').click(function(event) {
+      event.preventDefault();
+      var gmailValue = $('#gmail').val();
+      $.ajax({
+        url: '/gmail/',
+        type: 'POST',
+        data: {
+          'gmail': gmailValue,
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function(response) {
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+        }
+      });
+    });
+  });   
