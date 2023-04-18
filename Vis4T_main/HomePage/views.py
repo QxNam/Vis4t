@@ -60,8 +60,8 @@ class HomeView(LoginRequiredMixin, ListView):
         return context
     
     def class_home(self):
-        return self.render_to_response(self.get_context_data())
-    
+        return self.render_to_response(self.get_context_data())   
+     
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
@@ -107,6 +107,8 @@ class ClassDetail(APIView):
             'score4_data': get_student_final_score(student_data, 'score_4')
         }
         return JsonResponse({'data': response}, safe=False)
+    
+    
 class ClassListDetail(APIView):
     def get_object(self, pk: str):
         try:

@@ -148,7 +148,7 @@
 }
 
 .dropdown-classes {
-    /* display: none; */
+    display: none;
     margin: 0;
     list-style: none;
     width: 0%;
