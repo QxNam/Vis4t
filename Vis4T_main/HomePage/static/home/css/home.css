@@ -27,7 +27,7 @@
     right: 0;
     left: 0;
     z-index: 9;
-    height: 55px;
+    height: 100px;
     box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
 }
 .wrap-header{
@@ -38,8 +38,8 @@
     align-items: center;
 }
 .logo{
-    width: 100px;
-    height: 100%;
+    width: 150px;
+    height: 100px;
 }
 .wrap-option{
     height: 100%;
@@ -130,8 +130,9 @@
     background-color: #ffffff;
     box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
     /* border-right: 1px solid rgb(0 0 0 / 20%); */
-    width: 280px;
+    width: 260px;
     position: fixed;
+    padding-top: 50px;
     top: 0;
     left: 0;
     bottom: 0;
@@ -189,7 +190,7 @@
 }
 .content{
     /* background-color: blue; */
-    padding-top: 60px;
+    padding-top: 100px;
 }
 
 .info{
@@ -251,13 +252,30 @@
     width: 100%;
     height: 100%;
 }
-.portlet p{
+.portlet{
     font-size: 13px;
     border-bottom: 1px solid rgb(0 0 0 / 20%);
-    padding-bottom: 2px;
+    padding-bottom: 8px;
+    padding: 8px 20px;
     margin-bottom: 0;
     font-weight: 500;
 }
+.portlet p {
+    padding: 0;
+    margin: 0;
+}
+.portlet h2 {
+    padding: 0;
+    margin: 0;
+}
+.portlet:last-child{
+    border-bottom: none;
+}
+
+.portlet:first-child{
+    margin-top: 18px;
+}
+
 .currentClass{
     height: 110px;
     margin-bottom: 16px;
@@ -421,11 +439,13 @@
     font-weight: 600;
 }
 
-.sidebar {
-    width: 15%;
-    height: 100vh;
-    position: fixed;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
+.wrap-box {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    /* margin-top: 20px; */
+    border: 2px solid rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    background-color:  #ffffff;
+    overflow: hidden;
 }
