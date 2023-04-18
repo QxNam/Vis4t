@@ -4,380 +4,476 @@
 
 <div class="main">
     <div class="content">
-            <div class="wrap-content container-fluid">
-                <div class="row">
-                    <div class="wrap-info col-8">
-                        <div class="info">
-                            <h1 class="title" style="padding-top: 5px">
-                                Thông tin giáo viên
-                            </h1>
-                            <div class="form">
-                                <div class="row">
-                                    <div class="avatar col-3">
-                                        <div class="wrap-img">
-                                            <img
-                                                src="{% static 'home/images/testImages.png' %}"
-                                                alt="vis4t"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="listInfo col-9">
-                                        <div class="form-group">
-                                            <style>
-                                                .row {
-                                                    padding-top: 5px;
-                                                }
-                                            </style>
-                                            <div class="row" style="padding-top: 0">
-                                                <div class="col-6">
-                                                    <label>
-                                                        MSGV:
-                                                        <span>{{teacher.teacher_id}}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Lớp chủ nhiệm:
-                                                        <span id="class-name">{{cached_class_name}}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Họ và tên:
-                                                        <span>{{teacher.first_name}} {{ teacher.last_name}}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        SĐT:
-                                                        <span>{{ teacher.phone_number }}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Giới tính:
-                                                        <span>
-                                                            {% if teacher.sex == 'M' %}
-                                                            Nam
-                                                            {% else %}
-                                                            Nữ
-                                                            {% endif %}
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Trình độ:
-                                                        <span>{{teacher.academic_title}}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label>
-                                                        Năm sinh:
-                                                        <span>{{teacher.year_of_birth}}</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label>
-                                                        Chuyên ngành:
-                                                        <span>{{teacher.major}}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        <div class="wrap-content container-fluid">
+            <div class="row">
+                <div class="col-12 line-1 " style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-xl-8 col-md-12 ">
+                            <div class="wrap-box bar-chart">
+                                <div id="myBarChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-12 ">
+                            <div class="wrap-box">
+                                <div class="portlet">
+                                    <h3 >Dong 1</h3>
+                                    <p>dong 1</p>
+                                </div>
+                                <div class="portlet">
+                                    <h3 >Dong 2</h3>
+                                    <p>dong 1</p>
+                                </div>
+                                <div class="portlet">
+                                    <h3 >Dong 3</h3>
+                                    <p>dong 1</p>
+                                </div>
+                                <div class="portlet">
+                                    <h3 >Dong 4</h3>
+                                    <p>dong 1</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="portlet col-4">
-                        <div class="currentClass">
-                            <p>Lớp hiện tại</p>
-                            <div class="dropdown">
-                                <button
-                                    class="btn custom-btn btn-secondary dropdown-toggle"
-                                    type="button"
-                                    id="dropdownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <span>{{cached_class_name}}</span>
-                                </button>
-                                <div
-                                    class="dropdown-menu"
-                                    aria-labelledby="dropdownMenuButton"
-                                >
-                                    {% for c in classes %}
-                                    <a
-                                        class="dropdown-item dropdown-class"
-                                        href="#"
-                                        id="{{c.class_name}} {{c.number_of_student}}"
-                                    >{{c.class_name}}</a>
+                </div>
+                <div class="col-12 line-2" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="wrap-box" style="height: 400px;">
+                                <div class="overview csv-table"></div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="wrap-box"  style="height: 400px;">
+                                <div style="display: flex;">
+                                    <div class="form-check form-switch" style="position: relative;">
+                                        <input class="form-check-input btn-change-chart" type="checkbox" id="flexSwitchCheckDefault">
+                                        <span class="text_score">Học lực</span>
+                                        <span class="academic-rank actBtn">Điểm chữ</span>
+                                        </div>
+                                </div>
+                                <div id="myClassChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 line-3" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="wrap-box"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="wrap-box"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 line-4" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="wrap-box"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="wrap-box"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="wrap-box"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 line-5" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="wrap-box"></div>
+                        </div>
+                        <div class="col-3">
+                            <div class="wrap-box"></div>
+                        </div>
+                        <div class="col-3">
+                            <div class="wrap-box"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 footer row" style="margin-top: 20px;">
+                    <div class="col-12">
+                        <div class="wrap-box"></div>
+                    </div>
+                </div>
 
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="class container">
+
+
+
+                <!-- <div class="wrap-info col-8">
+                    <div class="info">
+                        <h1 class="title" style="padding-top: 5px">
+                            Thông tin giáo viên
+                        </h1>
+                        <div class="form">
                             <div class="row">
-                                <div class="classSize col-6">
-                                    <div class="wrap">
-                                        <p style="text-align: center">Sĩ số</p>
-                                        <div>
-                                            <span id="current-class-number">{{ classes.0.number_of_student}}</span>
-                                            <span>
-                                                <i class="fa-solid fa-people-group"></i>
-                                            </span>
-                                        </div>
+                                <div class="avatar col-3">
+                                    <div class="wrap-img">
+                                        <img
+                                            src="{% static 'home/images/testImages.png' %}"
+                                            alt="vis4t"
+                                        />
                                     </div>
                                 </div>
-                                <div class="totalClass col-6">
-                                    <div class="wrap">
-                                        <p>Số lượng lớp đang chủ nhiệm</p>
-                                        <div>
-                                            <span>{{classes|length}}</span>
-                                            <span><i class="fa-solid fa-people-group"></i></span>
+                                <div class="listInfo col-9">
+                                    <div class="form-group">
+                                        <style>
+                                            .row {
+                                                padding-top: 5px;
+                                            }
+                                        </style>
+                                        <div class="row" style="padding-top: 0">
+                                            <div class="col-6">
+                                                <label>
+                                                    MSGV:
+                                                    <span>{{teacher.teacher_id}}</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Lớp chủ nhiệm:
+                                                    <span id="class-name">{{cached_class_name}}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Họ và tên:
+                                                    <span>{{teacher.first_name}} {{ teacher.last_name}}</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    SĐT:
+                                                    <span>{{ teacher.phone_number }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Giới tính:
+                                                    <span>
+                                                        {% if teacher.sex == 'M' %}
+                                                        Nam
+                                                        {% else %}
+                                                        Nữ
+                                                        {% endif %}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Trình độ:
+                                                    <span>{{teacher.academic_title}}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>
+                                                    Năm sinh:
+                                                    <span>{{teacher.year_of_birth}}</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label>
+                                                    Chuyên ngành:
+                                                    <span>{{teacher.major}}</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="wrap-options col-12">
-                        <link rel="stylesheet" href="{% static 'home/css/options.css' %}" />
+                </div>
+                <div class="portlet col-4">
+                    <div class="currentClass">
+                        <p>Lớp hiện tại</p>
+                        <div class="dropdown">
+                            <button
+                                class="btn custom-btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <span>{{cached_class_name}}</span>
+                            </button>
+                            <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdownMenuButton"
+                            >
+                                {% for c in classes %}
+                                <a
+                                    class="dropdown-item dropdown-class"
+                                    href="#"
+                                    id="{{c.class_name}} {{c.number_of_student}}"
+                                >{{c.class_name}}</a>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class container">
                         <div class="row">
-                            <div class="col-2 ">
+                            <div class="classSize col-6">
+                                <div class="wrap">
+                                    <p style="text-align: center">Sĩ số</p>
+                                    <div>
+                                        <span id="current-class-number">{{ classes.0.number_of_student}}</span>
+                                        <span>
+                                            <i class="fa-solid fa-people-group"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="totalClass col-6">
+                                <div class="wrap">
+                                    <p>Số lượng lớp đang chủ nhiệm</p>
+                                    <div>
+                                        <span>{{classes|length}}</span>
+                                        <span><i class="fa-solid fa-people-group"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-options col-12">
+                    <link rel="stylesheet" href="{% static 'home/css/options.css' %}" />
+                    <div class="row">
+                        <div class="col-2 ">
+                        
+                        </div>
+                        <div class="col-2 ">
+                            <div class="option-1 overall-btn active" id="overview" >
+                                <p>Tổng Quan</p>
+                                <div class="fa fa-pie-chart" style="font-size:48px;margin-top:7px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-2 ">
+                            <div class="option-1 feature-btn-1" id="chart-to-class">
+                                <p>Chi tiết Học Kì</p>
+                                <div class="fa fa-bar-chart" style="font-size:48px;margin-top:7px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="option-1 feature-btn-2" id="chart-to-student">
+                                <p>Chi tiết Sinh Viên</p>
+                                <div class='far fa-id-badge' style='font-size:48px;margin-top:7px;'></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="option-1 feature-btn-3" id="info-class">
+                                <p>Cập Nhật Thông Tin Lớp </p>
+                                <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
                             
-                            </div>
-                            <div class="col-2 ">
-                                <div class="option-1 overall-btn active" id="overview" >
-                                    <p>Tổng Quan</p>
-                                    <div class="fa fa-pie-chart" style="font-size:48px;margin-top:7px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart col-12" id="class-name">
+                    <div class="feature overview atv col-12 container-fluid">
+                        <link rel="stylesheet" href="{% static 'home/css/overview.css' %}"/>
+                        <div class="row" style="width: 100%; height: 100%; padding: 0; margin : 0 ;">
+                            <div class="col-5 chart-info">
+                                <div class="overview pie-chart" style="display: flex; justify-content: space-evenly;">
+                                    <div style="display: flex;">
+                                        <div class="form-check form-switch" style="position: relative;">
+                                            <input class="form-check-input btn-change-chart" type="checkbox" id="flexSwitchCheckDefault">
+                                            <span class="text_score">Học lực</span>
+                                            <span class="academic-rank actBtn">Điểm chữ</span>
+                                            </div>
+                                    </div>
+                                    <div id="myClassChart"></div>
                                 </div>
+                                
                             </div>
-                            <div class="col-2 ">
-                                <div class="option-1 feature-btn-1" id="chart-to-class">
-                                    <p>Chi tiết Học Kì</p>
-                                    <div class="fa fa-bar-chart" style="font-size:48px;margin-top:7px;"></div>
+                            <div class="col-7 chart-info">
+                                
+                                <div class="overview csv-table"></div>
+
+                            </div>
+                            
+                            <div class="col-8 chart-info">
+                                <div class="overview bar-chart">
+                                    <div id="myBarChart"></div>
                                 </div>
+                                
                             </div>
-                            <div class="col-2">
-                                <div class="option-1 feature-btn-2" id="chart-to-student">
-                                    <p>Chi tiết Sinh Viên</p>
-                                    <div class='far fa-id-badge' style='font-size:48px;margin-top:7px;'></div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="option-1 feature-btn-3" id="info-class">
-                                    <p>Cập Nhật Thông Tin Lớp </p>
-                                    <div class="fa-sharp fa-solid fa-book" style='font-size:48px;margin-top:7px;'></div>
-                                </div>
-                            </div>
-                            <div class="col-2">
+                            <div class="col-4 chart-info">
+                                <div class="overview"></div>
                                 
                             </div>
                         </div>
+
+                    
                     </div>
-                    <div class="chart col-12" id="class-name">
-                        <div class="feature overview atv col-12 container-fluid">
-                            <link rel="stylesheet" href="{% static 'home/css/overview.css' %}"/>
-                            <div class="row" style="width: 100%; height: 100%; padding: 0; margin : 0 ;">
-                                <div class="col-5 chart-info">
-                                    <div class="overview pie-chart" style="display: flex; justify-content: space-evenly;">
-                                        <div style="display: flex;">
-                                            <div class="form-check form-switch" style="position: relative;">
-                                                <input class="form-check-input btn-change-chart" type="checkbox" id="flexSwitchCheckDefault">
-                                                <span class="text_score">Học lực</span>
-                                                <span class="academic-rank actBtn">Điểm chữ</span>
-                                              </div>
-                                        </div>
-                                        <div id="myClassChart"></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-7 chart-info">
-                                    
-                                    <div class="overview csv-table"></div>
-
-                                </div>
-                               
-                                <div class="col-8 chart-info">
-                                    <div class="overview bar-chart">
-                                        <div id="myBarChart"></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-4 chart-info">
-                                    <div class="overview"></div>
-                                    
-                                </div>
-                            </div>
-
-                        
-                        </div>
-                        <div class="feature chart-to-class col-12">
-                            Biểu Đồ Theo Lớp
-                        </div>
-                        <div class="feature chart-to-student col-12">
-                            <div class="row" style="width: 100%; height: 100%; padding: 0; margin : 0 ;">
-                                    <div class="col-5" style="height: 40%; padding:5px !important ;">
-                                        <div class="col-12" style="height: calc(25% - 5px); margin-bottom: 5px; position: relative;">
-                                            <div class="wrap-detail-student" style="overflow: unset;">
-                                                <div class="dropdownStudent">
-                                                    <button
-                                                        class="btn custom-btn btn-secondary dropdown-toggle"
-                                                        type="button"
-                                                        id="dropdownStudentName"
-                                                        data-toggle="dropdown"
-                                                        aria-haspopup="true"
-                                                        aria-expanded="false"
-                                                        style="border: none;"
-                                                    >
-                                                        <span>NGUYEN PHU VINH</span>
-                                                    </button>
-                                                    <div
-                                                        class="dropdown-menu dropdown-menu-student"
-                                                        aria-labelledby="dropdownStudentName"
-                                                    >
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH</a>                   
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 2</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                        <a
-                                                            class="dropdown-item dropdown-class"
-                                                            href="#"
-                                                            id=""
-                                                        >NGUYEN PHU VINH 3</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12" style="height: calc(75% - 5px); margin-top: 10px;">
-                                            <div class="wrap-detail-student"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5" style="height: 40%; padding:5px !important ;">
-                                        <div class="row" style="height: 100%; padding-top: 0;">
-                                            <div class="col-12" style="height: calc(50% - 5px);  margin-bottom: 5px;">
-                                                <div class="wrap-detail-student">
-                                                    <div class="name-student">
-                                                        <h2>NGUYEN  PHU VINH</h2>
-                                                    </div>
-                                                    <div class="mssv">
-                                                        <div><label>MSSV: </label><span> 88888888</span></div>
-                                                        <div><label>Khóa: </label><span> 15</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-right :5px ;">
-                                                <div class="wrap-detail-student">
-                                                    <div class="rank-in-class">
-                                                        <p>Điểm 10</p>
-                                                        <div>8 <span style="padding: 0 10px;">/</span> 10</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-left : 5px;">
-                                                <div class="wrap-detail-student">
-                                                    <div class="rank-in-class">
-                                                        <p>Điểm 4</p>
-                                                        <div>3.5 <span style="padding: 0 10px;">/</span> 4</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2" style="height: 40%; padding:5px !important ;">
-                                        <div class="row" style="height: 100%; padding-top: 0;">
-                                            <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
-                                                <div class="wrap-detail-student">
-                                                    <div class="rank-in-class">
-                                                        <p>Xếp hạng</p>
-                                                        <div>12 <span style="padding: 0 10px;">/</span> 64</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="height: calc(50% - 5px);  margin-top: 5px;">
-                                                <div class="wrap-detail-student">
-                                                    <div class="rank-in-class">
-                                                        <p>Điểm chữ</p>
-                                                        <div>A</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4" style="height: 60%; padding:5px !important ;">
-                                        <div class="wrap-detail-student">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-8" style="height: 60%; padding:5px !important ;">
-                                        <div class="wrap-detail-student">
-
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="feature info-class col-12">
-                            Cập Nhật Niên Giám
-                        </div>
-                        <div class="arrow"></div>
+                    <div class="feature chart-to-class col-12">
+                        Biểu Đồ Theo Lớp
                     </div>
-                </div>
+                    <div class="feature chart-to-student col-12">
+                        <div class="row" style="width: 100%; height: 100%; padding: 0; margin : 0 ;">
+                                <div class="col-5" style="height: 40%; padding:5px !important ;">
+                                    <div class="col-12" style="height: calc(25% - 5px); margin-bottom: 5px; position: relative;">
+                                        <div class="wrap-detail-student" style="overflow: unset;">
+                                            <div class="dropdownStudent">
+                                                <button
+                                                    class="btn custom-btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownStudentName"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    style="border: none;"
+                                                >
+                                                    <span>NGUYEN PHU VINH</span>
+                                                </button>
+                                                <div
+                                                    class="dropdown-menu dropdown-menu-student"
+                                                    aria-labelledby="dropdownStudentName"
+                                                >
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH</a>                   
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 2</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                    <a
+                                                        class="dropdown-item dropdown-class"
+                                                        href="#"
+                                                        id=""
+                                                    >NGUYEN PHU VINH 3</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" style="height: calc(75% - 5px); margin-top: 10px;">
+                                        <div class="wrap-detail-student"></div>
+                                    </div>
+                                </div>
+                                <div class="col-5" style="height: 40%; padding:5px !important ;">
+                                    <div class="row" style="height: 100%; padding-top: 0;">
+                                        <div class="col-12" style="height: calc(50% - 5px);  margin-bottom: 5px;">
+                                            <div class="wrap-detail-student">
+                                                <div class="name-student">
+                                                    <h2>NGUYEN  PHU VINH</h2>
+                                                </div>
+                                                <div class="mssv">
+                                                    <div><label>MSSV: </label><span> 88888888</span></div>
+                                                    <div><label>Khóa: </label><span> 15</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-right :5px ;">
+                                            <div class="wrap-detail-student">
+                                                <div class="rank-in-class">
+                                                    <p>Điểm 10</p>
+                                                    <div>8 <span style="padding: 0 10px;">/</span> 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-left : 5px;">
+                                            <div class="wrap-detail-student">
+                                                <div class="rank-in-class">
+                                                    <p>Điểm 4</p>
+                                                    <div>3.5 <span style="padding: 0 10px;">/</span> 4</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2" style="height: 40%; padding:5px !important ;">
+                                    <div class="row" style="height: 100%; padding-top: 0;">
+                                        <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
+                                            <div class="wrap-detail-student">
+                                                <div class="rank-in-class">
+                                                    <p>Xếp hạng</p>
+                                                    <div>12 <span style="padding: 0 10px;">/</span> 64</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="height: calc(50% - 5px);  margin-top: 5px;">
+                                            <div class="wrap-detail-student">
+                                                <div class="rank-in-class">
+                                                    <p>Điểm chữ</p>
+                                                    <div>A</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="height: 60%; padding:5px !important ;">
+                                    <div class="wrap-detail-student">
+
+                                    </div>
+                                </div>
+                                <div class="col-8" style="height: 60%; padding:5px !important ;">
+                                    <div class="wrap-detail-student">
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="feature info-class col-12">
+                        Cập Nhật Niên Giám
+                    </div>
+                    <div class="arrow"></div>
+                </div> -->
             </div>
-        <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
+        </div>
+
+        <!-- <button style="background-color: #ffffff;box-shadow: 0 1px 4px rgb(0 0 0 / 20%);border-radius: 8px;" type="button" class="btn btn-demo btn-sidebar" data-toggle="modal" data-target="#myModal">
             <i class="fa-solid fa-bars"></i>
-        </button>
+        </button> -->
 
         <script>
             var class_name = "{{ cached_class_name }}";
