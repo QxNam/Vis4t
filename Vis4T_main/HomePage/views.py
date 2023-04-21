@@ -50,13 +50,17 @@ class HomeView(LoginRequiredMixin, ListView):
         context['teacher'] = self.request.user
         
         class_name = self.kwargs['class_name']
+        university_class = University_class.objects.get(class_name=class_name)
+        context['class'] = university_class
+        
+        
         cached_class_name = cache.get('class_name')
         if cached_class_name == class_name:
             context['cached_class_name'] = cached_class_name
         else:
-            university_class = University_class.objects.get(class_name=class_name)
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
+        
         return context
     
     def class_home(self):

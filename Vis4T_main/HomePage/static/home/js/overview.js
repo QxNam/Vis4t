@@ -2,10 +2,7 @@ function is_checked() {
   return $('#flexSwitchCheckDefault').is(':checked');
 }
 
-function render_bar_chart(class_name){
-  fetch(get_class_url(class_name))
-  .then(response => response.json())
-  .then(data => {
+function render_bar_chart(data){
     var { score10_data, score4_data } = data.data;
     rendered_data = score10_data;
     var options = {
@@ -18,7 +15,7 @@ function render_bar_chart(class_name){
       type: "line",
     }],
       chart: {
-        height: 300 ,
+        height: 350 ,
         type: "line",
         toolbar: {
             show: !0
@@ -27,6 +24,14 @@ function render_bar_chart(class_name){
       stroke: {
           width: [0, 3],
           curve: "smooth"
+      },
+      title:{
+        text: 'Điểm sinh viên',
+        align: 'center',
+        style: {
+          fontSize:  '25px',
+          fontFamily: 'Roboto',
+        }
       },
       plotOptions: {
           bar: {
@@ -52,14 +57,10 @@ function render_bar_chart(class_name){
       )
     
     chart.render();
-  })
-}
+  }
 
 
-function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
-  fetch(get_class_url(class_name))
-  .then(response => response.json())
-  .then(data => {
+function render_pie_chart(data, score_text = 'ĐIỂM CHỮ') {
     const LABELS = {'A+': '#68F600', 'A': '#6BDC18', 'B': '#78B13B', 
                     'B+': '#8FA238', 'C': '#E8E525', 'C+': '#E8C525', 
                     'D': '#E8A425', 'D+': '#E89225', 'F': '#EE310B'}; // Array of labels
@@ -73,8 +74,7 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
     var options = {
       series: Object.values(rendered_data),
       chart: {
-        width: 400,
-        height: 300,  
+        height: 200,
         type: 'pie'
       },
     labels: Object.keys(rendered_data),
@@ -99,8 +99,7 @@ function render_pie_chart(class_name, score_text = 'ĐIỂM CHỮ') {
       
       chart.render();
         
-  })
-}
+  }
 
 function renderCSVTable(class_name){
   fetch(get_class_detail_url(class_name))
@@ -142,8 +141,14 @@ function renderCSVTable(class_name){
 
 document.addEventListener("DOMContentLoaded", function() {
     renderCSVTable(class_name);
-    render_pie_chart(class_name);
-    render_bar_chart(class_name);
+    fetch(get_class_url(class_name))
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      render_pie_chart(data);
+      render_bar_chart(data);
+    });
+    
 
 });
 
