@@ -1,0 +1,128 @@
+<div class="col-4">
+    <div class="wrap-box">
+        <div id="myClassChart"></div>
+    </div>
+</div>
+<div class="col-4">
+    <div class="wrap-box">
+        <div id="myClassChart"></div>
+    </div>
+</div>
+<script>
+    function render_pie_chart(data) {
+
+        var { score_char_data, rank_data } = data.data;
+
+        var options1 = {
+          series:[{
+            data: Object.values(score_char_data),
+            type: "bar",
+          }],
+          chart: {
+            height: 250,
+            type: 'bar',
+            toolbar: {
+              show: !0
+            }
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false
+            }
+          },
+          title:{
+            text: 'Thống kê học lực',
+            align: 'center',
+            style: {
+              fontSize:  '25px',
+              fontFamily: 'Roboto',
+            }
+          },
+          stroke: {
+            width: [0, 3],
+            curve: "smooth"
+          },
+          labels: Object.keys(score_char_data),
+          fill: {
+            colors: '#78B13B'
+          },
+          responsive: [{
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 300,
+                height: 300
+              },
+              legend: {
+                position: 'bottom',
+                show: !1
+              },
+              
+            }
+           }]
+        };
+          
+          
+          position = document.querySelectorAll('#myClassChart');
+          const chart1 = new ApexCharts(
+              position[0],
+              options1
+          )
+          
+          chart1.render();
+          
+    
+    
+          var options2 = {
+            series: [{
+              data: Object.values(rank_data),
+              type: "bar",
+            }],
+            chart: {
+              height: 250,
+              type: 'bar',
+              toolbar: {
+                show: !0
+              }
+            },
+            title:{
+              text: 'Thống kê xếp hạng',
+              align: 'center',
+              style: {
+                fontSize:  '25px',
+                fontFamily: 'Roboto',
+              }
+            },
+            stroke: {
+              width: [0, 3],
+              curve: "smooth"
+            },
+            labels: Object.keys(rank_data),
+            fill: {
+              colors: '#78B13B'
+            },
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 300,
+                  height: 300
+                },
+                legend: {
+                  position: 'bottom',
+                  show: !1
+                },
+                
+              }
+            }]
+          };
+            
+            const chart2 = new ApexCharts(
+                position[1],
+                options2
+            )
+            
+            chart2.render();
+          
+      }
+</script>

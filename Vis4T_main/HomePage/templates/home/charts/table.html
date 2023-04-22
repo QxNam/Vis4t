@@ -1,0 +1,46 @@
+<div class="col-7">
+    <div class="wrap-box" style="height: 400px;">
+        <div class="overview csv-table"></div>
+
+    </div>
+</div>
+
+<script>
+    function renderCSVTable(class_name){
+        fetch(get_class_detail_url(class_name))
+        .then(response => response.json())
+        .then(data => {
+            var tabledata = []
+            var student = data.student;
+            for (var i = 0; i < student.length; i++) {
+                tabledata.push({
+                    "Mã số": student[i].student_id,
+                    "Họ tên": student[i].student_name,
+                    "Điểm 10": student[i].score_10,
+                    "Điểm 4": student[i].score_4,
+                    "Điểm chữ": student[i].score_char,
+                    "Xếp hạng": student[i].rank,
+                    "Số tín chỉ đã học xong": student[i].passed_credit
+                })
+            }
+            new Tabulator(".csv-table", {
+                placeholder:"Chưa có lớp",
+                data: tabledata,
+                layout:"fitColumns",
+      
+                tooltips:true,  
+                columns: [
+                    {title: "Mã số", field: "Mã số", width: 80},
+                    {title: "Họ tên", field: "Họ tên", width: 155},
+                    {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right", width: 90},
+                    {title: "Điểm 4", field: "Điểm 4", width: 90},
+                    {title: "Điểm chữ", field: "Điểm chữ", width: 100},
+                    {title: "Học lực", field: "Xếp hạng", width: 120},
+                    {title: "Số tín chỉ đã học", field: "Số tín chỉ đã học xong", width: 100},
+                ]  
+            });
+      
+            
+        });
+      }
+</script>
