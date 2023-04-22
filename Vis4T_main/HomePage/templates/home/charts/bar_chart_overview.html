@@ -41,6 +41,18 @@
               fontFamily: 'Roboto',
             }
           },
+          xaxis: {
+            categories: Object.keys(score10_data),
+            title: {
+              floating: true,
+              style: {
+                fontSize:  '20px',
+                fontFamily: 'Roboto'
+              },
+            },
+              tickAmount: Object.keys(score10_data).length/2,
+              
+          },
           plotOptions: {
             bar: {
                 horizontal: !1,

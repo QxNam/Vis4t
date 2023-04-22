@@ -3,7 +3,7 @@
         <div id="myClassChart"></div>
     </div>
 </div>
-<div class="col-4">
+<div class="col-5">
     <div class="wrap-box">
         <div id="myClassChart"></div>
     </div>
@@ -17,9 +17,11 @@
           series:[{
             data: Object.values(score_char_data),
             type: "bar",
+            name: "Số lượng",
+
           }],
           chart: {
-            height: 250,
+            height: 300,
             type: 'bar',
             toolbar: {
               show: !0
@@ -38,11 +40,37 @@
               fontFamily: 'Roboto',
             }
           },
+          xaxis: {
+            categories: Object.keys(score_char_data),
+            title: {
+              text: 'Điểm chữ',
+              floating: true,
+              style: {
+                fontSize:  '20px',
+                fontFamily: 'Roboto'
+              },
+            },
+              tickAmount: 10,
+              
+          },
+          yaxis:{
+            title: {
+              text: 'Số lượng',
+              floating: true,
+              style: {
+                fontSize:  '15px',
+                fontFamily: 'Roboto'
+              },
+            },
+            labels:{
+              align: 'center',
+            tickAmount: 6,
+            }
+          },
           stroke: {
             width: [0, 3],
             curve: "smooth"
           },
-          labels: Object.keys(score_char_data),
           fill: {
             colors: '#78B13B'
           },
@@ -62,7 +90,6 @@
            }]
         };
           
-          
           position = document.querySelectorAll('#myClassChart');
           const chart1 = new ApexCharts(
               position[0],
@@ -70,16 +97,15 @@
           )
           
           chart1.render();
-          
-    
     
           var options2 = {
             series: [{
               data: Object.values(rank_data),
               type: "bar",
+              name: "Số lượng",
             }],
             chart: {
-              height: 250,
+              height: 300,
               type: 'bar',
               toolbar: {
                 show: !0
@@ -93,11 +119,42 @@
                 fontFamily: 'Roboto',
               }
             },
+            xaxis: {
+              categories: Object.keys(rank_data),
+              title: {
+                text: 'Xếp hạng',
+                floating: true,
+                style: {
+                  fontSize:  '20px',
+                  fontFamily: 'Roboto'
+                },
+              },
+              tickAmount: 10,
+              labels:{
+                offsetX: 0,
+                offsetY: 0,
+                rotate: 0,
+              }
+                
+            },
+            yaxis:{
+              title: {
+                text: 'Số lượng',
+                floating: true,
+                style: {
+                  fontSize:  '15px',
+                  fontFamily: 'Roboto'
+                },
+              },
+              labels:{
+                align: 'center',
+              tickAmount: 6,
+              }
+            },
             stroke: {
               width: [0, 3],
               curve: "smooth"
             },
-            labels: Object.keys(rank_data),
             fill: {
               colors: '#78B13B'
             },
