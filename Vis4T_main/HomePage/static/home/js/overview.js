@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     renderCSVTable(class_name);
     fetch(get_class_url(class_name))
@@ -6,5 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(data => {
       render_pie_chart(data);
       render_bar_chart(data, class_name);
+      render_box_plot(data, class_name);
     });
 });
