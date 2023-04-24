@@ -1,0 +1,62 @@
+semester_id,name,name_code,credit,major_abbr
+1,Chứng chỉ TOEIC 450,2199450,0,KHMT13
+1,Kỹ năng học tập trong lĩnh vực CNTT,2101524,2,KHMT13
+1,Giáo dục thể chất,2120401,4,KHMT13
+1,Giáo dục Quốc phòng 1,2120402,4,KHMT13
+1,Toán A1,2113420,2,KHMT13
+1,Nhập môn Tin học,2101539,2,KHMT13
+1,Nhập môn Lập trình,2101540,3,KHMT13
+2,Hệ thống máy tính,2101567,4,KHMT13
+2,Tiếng anh 1,2111250,3,KHMT13
+2,Giáo dục Quốc phòng 2,2120403,4,KHMT13
+2,Kỹ thuật lập trình,2101405,3,KHMT13
+2,Toán A2,2113440,2,KHMT13
+2,Cấu trúc rời rạc,2101402,3,KHMT13
+2,Kỹ năng phát triển nghề nghiệp,2107467,2,KHMT13
+3,Những vấn đề xã hội và nghề nghiệp,2101525,3,KHMT13
+3,Pháp luật đại cương,2131472,2,KHMT13
+3,Lập trình hướng đối tượng,2101406,4,KHMT13
+3,Mạng máy tính,2101435,3,KHMT13
+3,Lý thuyết đồ thị,2101404,3,KHMT13
+3,Cấu trúc dữ liệu và giải thuật,2101409,4,KHMT13
+4,Hệ thống và Công nghệ Web,2101551,3,KHMT13
+4,Tiếng Anh 2,2111300,3,KHMT13
+4,Thống kê máy tính & ứng dụng,2101401,3,KHMT13
+4,Phân tích thiết kế hệ thống,2101433,3,KHMT13
+4,Hệ cơ sở dữ liệu,2101436,4,KHMT13
+4,Lập trình hướng sự kiện với công nghệ .NET,2101555,4,KHMT13
+4,Lập trình hướng sự kiện với công  nghệ Java,2101556,4,KHMT13
+5,Phát triển ứng dụng,2101541,4,KHMT13
+5,Nhập môn an toàn thông tin,2101411,3,KHMT13
+5,Những nguyên lý cơ bản của Chủ nghĩa Mác – Lênin,2112007,5,KHMT13
+5,Trí tuệ nhân tạo,2101419,3,KHMT13
+5,Hệ quản trị  cơ sở dữ liệu,2101425,3,KHMT13
+5,Công nghệ phần mềm,2101420,3,KHMT13
+5,Kiến trúc và cài đặt hệ quản trị CSDL,2101426,3,KHMT13
+5,Lập trình phân tán với công nghệ .NET,2101557,3,KHMT13
+5,Lập trình phân tán với công nghệ Java,2101558,3,KHMT13
+6,Đường lối cách mạng của Đảng Cộng sản Việt Nam,2112008,3,KHMT13
+6,Phân tích thiết kế giải thuật,2101439,3,KHMT13
+6,Xử lý ảnh,2101440,4,KHMT13
+6,Khai phá dữ liệu,2101424,3,KHMT13
+6,Các hệ cơ sở tri thức,2101423,3,KHMT13
+6,Automat & ngôn ngữ hình thức,2101441,3,KHMT13
+6,Kiến trúc lưu trữ phân tán,2101566,2,KHMT13
+6,Tính toán số & Matlab,2101446,2,KHMT13
+6,Logic học,2113477,2,KHMT13
+6,Quản trị doanh nghiệp,2107446,2,KHMT13
+6,Tâm lý học đại cương,2110485,2,KHMT13
+6,Điện toán đám mây,2101577,2,KHMT13
+7,Công nghệ mới trong phát triển ứng dụng CNTT,2101517,3,KHMT13
+7,Nhận dạng mẫu,2101445,3,KHMT13
+7,Tư tưởng Hồ Chí Minh,2112005,2,KHMT13
+7,Xử lý ngôn ngữ tự nhiên,2101444,3,KHMT13
+7,Quản lý dự án CNTT,2101421,3,KHMT13
+7,Ngôn ngữ lập trình,2101442,3,KHMT13
+7,Đồ họa máy tính,2101443,3,KHMT13
+7,Hệ hỗ trợ ra quyết định,2101498,3,KHMT13
+7,Tối ưu hóa và phân tích search engine,2101496,3,KHMT13
+7,Tương tác người máy,2101428,3,KHMT13
+7,Công Nghệ Thương Mại Điện tử,2101422,3,KHMT13
+8,Khóa luận tốt nghiệp,2101523,5,KHMT13
+8,Thực tập doanh nghiệp,2101521,5,KHMT13

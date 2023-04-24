@@ -1,0 +1,652 @@
+[
+    {
+        "name": "Toán ứng dụng",
+        "name_code": 2113434,
+        "credit": 3
+    },
+    {
+        "name": "Ngôn ngữ lập trình",
+        "name_code": 2101442,
+        "credit": 3
+    },
+    {
+        "name": "Kỹ năng làm việc nhóm",
+        "name_code": 2132001,
+        "credit": 2
+    },
+    {
+        "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+        "name_code": 2101683,
+        "credit": 2
+    },
+    {
+        "name": "Tâm lý học đại cương",
+        "name_code": 2110485,
+        "credit": 2
+    },
+    {
+        "name": "Lập trình hướng đối tượng",
+        "name_code": 2101623,
+        "credit": 3
+    },
+    {
+        "name": "Lập trình hướng sự kiện với công nghệ .NET",
+        "name_code": 2101555,
+        "credit": 4
+    },
+    {
+        "name": "Tính toán số & Matlab",
+        "name_code": 2101446,
+        "credit": 2
+    },
+    {
+        "name": "Toán A2",
+        "name_code": 2113440,
+        "credit": 2
+    },
+    {
+        "name": "Giải thuật và tối ưu hóa phân tán",
+        "name_code": 2101677,
+        "credit": 3
+    },
+    {
+        "name": "Tiếng Việt thực hành",
+        "name_code": 2111402,
+        "credit": 3
+    },
+    {
+        "name": "Tiếng anh 1",
+        "name_code": 2111250,
+        "credit": 3
+    },
+    {
+        "name": "Quản lý dự án CNTT",
+        "name_code": 2101421,
+        "credit": 3
+    },
+    {
+        "name": "Phát triển ứng dụng",
+        "name_code": 2101541,
+        "credit": 4
+    },
+    {
+        "name": "Tính toán song song",
+        "name_code": 2101690,
+        "credit": 3
+    },
+    {
+        "name": "Kiến trúc và cài đặt hệ quản trị CSDL",
+        "name_code": 2101426,
+        "credit": 3
+    },
+    {
+        "name": "Xã hội học",
+        "name_code": 2113439,
+        "credit": 3
+    },
+    {
+        "name": "Lập trình phân tán với công nghệ Java",
+        "name_code": 2101558,
+        "credit": 3
+    },
+    {
+        "name": "Công Nghệ Thương Mại Điện tử",
+        "name_code": 2101422,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn Khoa học Dữ liệu",
+        "name_code": 2101680,
+        "credit": 3
+    },
+    {
+        "name": "Toán cao cấp 2",
+        "name_code": 2113432,
+        "credit": 2
+    },
+    {
+        "name": "Chủ nghĩa xã hội khoa học",
+        "name_code": 2112014,
+        "credit": 2
+    },
+    {
+        "name": "Phân tích chuỗi thời gian",
+        "name_code": 2101686,
+        "credit": 3
+    },
+    {
+        "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+        "name_code": 2112011,
+        "credit": 3
+    },
+    {
+        "name": "Giáo dục thể chất 1",
+        "name_code": 2120405,
+        "credit": 2
+    },
+    {
+        "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+        "name_code": 2010684,
+        "credit": 2
+    },
+    {
+        "name": "Thực tập doanh nghiệp",
+        "name_code": 2101521,
+        "credit": 5
+    },
+    {
+        "name": "Logic học",
+        "name_code": 2113438,
+        "credit": 3
+    },
+    {
+        "name": "Xác suất trong Khoa học Dữ liệu",
+        "name_code": 2101676,
+        "credit": 2
+    },
+    {
+        "name": "Hội họa",
+        "name_code": 2106529,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn Lập trình",
+        "name_code": 2101540,
+        "credit": 3
+    },
+    {
+        "name": "Thống kê máy tính & ứng dụng",
+        "name_code": 2101401,
+        "credit": 3
+    },
+    {
+        "name": "Quản trị học",
+        "name_code": 2107483,
+        "credit": 3
+    },
+    {
+        "name": "Vật lý đại cương",
+        "name_code": 2113437,
+        "credit": 3
+    },
+    {
+        "name": "Đại số tuyến tính tính toán",
+        "name_code": 2101679,
+        "credit": 3
+    },
+    {
+        "name": "Phân tích thiết kế hệ thống",
+        "name_code": 2101433,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn Lập trình",
+        "name_code": 2101622,
+        "credit": 2
+    },
+    {
+        "name": "Giao tiếp kinh doanh",
+        "name_code": 2107492,
+        "credit": 3
+    },
+    {
+        "name": "Trí tuệ nhân tạo",
+        "name_code": 2101419,
+        "credit": 3
+    },
+    {
+        "name": "Những nguyên lý cơ bản của Chủ nghĩa Mác – Lênin",
+        "name_code": 2112007,
+        "credit": 5
+    },
+    {
+        "name": "Lập trình hướng sự kiện với công  nghệ Java",
+        "name_code": 2101556,
+        "credit": 4
+    },
+    {
+        "name": "Cấu trúc rời rạc",
+        "name_code": 2101402,
+        "credit": 3
+    },
+    {
+        "name": "Học sâu",
+        "name_code": 2101650,
+        "credit": 3
+    },
+    {
+        "name": "Điện toán đám mây",
+        "name_code": 2101577,
+        "credit": 2
+    },
+    {
+        "name": "Mạng máy tính",
+        "name_code": 2101435,
+        "credit": 3
+    },
+    {
+        "name": "Phát triển ứng dụng",
+        "name_code": 2101657,
+        "credit": 3
+    },
+    {
+        "name": "Pháp luật đại cương",
+        "name_code": 2131472,
+        "credit": 2
+    },
+    {
+        "name": "Quản trị doanh nghiệp",
+        "name_code": 2107510,
+        "credit": 3
+    },
+    {
+        "name": "Xử lý ảnh",
+        "name_code": 2101440,
+        "credit": 4
+    },
+    {
+        "name": "Tương tác người máy",
+        "name_code": 2101428,
+        "credit": 3
+    },
+    {
+        "name": "Thị giác máy tính",
+        "name_code": 2101694,
+        "credit": 3
+    },
+    {
+        "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+        "name_code": 2101634,
+        "credit": 3
+    },
+    {
+        "name": "Tâm lý học đại cương",
+        "name_code": 2110585,
+        "credit": 3
+    },
+    {
+        "name": "Chứng chỉ TOEIC 450",
+        "name_code": 2199450,
+        "credit": 0
+    },
+    {
+        "name": "Xử lý ngôn ngữ tự nhiên",
+        "name_code": 2101444,
+        "credit": 3
+    },
+    {
+        "name": "Xử lý ảnh",
+        "name_code": 2101698,
+        "credit": 3
+    },
+    {
+        "name": "Lý thuyết trò chơi",
+        "name_code": 2101693,
+        "credit": 3
+    },
+    {
+        "name": "Đường lối cách mạng của Đảng Cộng sản Việt Nam",
+        "name_code": 2112008,
+        "credit": 3
+    },
+    {
+        "name": "Logic học",
+        "name_code": 2113477,
+        "credit": 2
+    },
+    {
+        "name": "Kỹ thuật tài chính",
+        "name_code": 2101687,
+        "credit": 3
+    },
+    {
+        "name": "Kỹ năng phát triển nghề nghiệp",
+        "name_code": 2107467,
+        "credit": 2
+    },
+    {
+        "name": "Phương pháp tính",
+        "name_code": 2113435,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn Tin học",
+        "name_code": 2101539,
+        "credit": 2
+    },
+    {
+        "name": "Tối ưu hóa cho Khoa học dữ liệu",
+        "name_code": 2101685,
+        "credit": 3
+    },
+    {
+        "name": "Khai thác dữ liệu và ứng dụng",
+        "name_code": 2101627,
+        "credit": 3
+    },
+    {
+        "name": "Hệ quản trị  cơ sở dữ liệu",
+        "name_code": 2101425,
+        "credit": 3
+    },
+    {
+        "name": "Cấu trúc dữ liệu và giải thuật",
+        "name_code": 2101409,
+        "credit": 4
+    },
+    {
+        "name": "Quá trình ngẫu nhiên",
+        "name_code": 2101682,
+        "credit": 2
+    },
+    {
+        "name": "Giáo dục thể chất",
+        "name_code": 2120401,
+        "credit": 4
+    },
+    {
+        "name": "Kiến trúc lưu trữ phân tán",
+        "name_code": 2101566,
+        "credit": 2
+    },
+    {
+        "name": "Kinh tế chính trị Mác - Lênin",
+        "name_code": 2112013,
+        "credit": 2
+    },
+    {
+        "name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+        "name_code": 2101655,
+        "credit": 3
+    },
+    {
+        "name": "Cơ sở văn hóa Việt Nam",
+        "name_code": 2111491,
+        "credit": 3
+    },
+    {
+        "name": "Toán cao cấp 1",
+        "name_code": 2113431,
+        "credit": 2
+    },
+    {
+        "name": "Phương pháp luận nghiên cứu khoa học",
+        "name_code": 2113433,
+        "credit": 2
+    },
+    {
+        "name": "Hệ hỗ trợ ra quyết định",
+        "name_code": 2101498,
+        "credit": 3
+    },
+    {
+        "name": "Tiếng Việt thực hành",
+        "name_code": 2111492,
+        "credit": 3
+    },
+    {
+        "name": "Tiếng Anh 2",
+        "name_code": 2111300,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn an toàn thông tin",
+        "name_code": 2101411,
+        "credit": 3
+    },
+    {
+        "name": "Những vấn đề xã hội và nghề nghiệp",
+        "name_code": 2101525,
+        "credit": 3
+    },
+    {
+        "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+        "name_code": 2101517,
+        "credit": 3
+    },
+    {
+        "name": "Giáo dục Quốc phòng 1",
+        "name_code": 2120402,
+        "credit": 4
+    },
+    {
+        "name": "Kỹ năng học tập trong lĩnh vực CNTT",
+        "name_code": 2101524,
+        "credit": 2
+    },
+    {
+        "name": "Toán A1",
+        "name_code": 2113420,
+        "credit": 2
+    },
+    {
+        "name": "Cơ sở văn hóa Việt Nam",
+        "name_code": 2111401,
+        "credit": 3
+    },
+    {
+        "name": "Khai phá dữ liệu",
+        "name_code": 2101424,
+        "credit": 3
+    },
+    {
+        "name": "Phân tích kinh doanh",
+        "name_code": 2101696,
+        "credit": 3
+    },
+    {
+        "name": "Công nghệ phần mềm",
+        "name_code": 2101420,
+        "credit": 3
+    },
+    {
+        "name": "Giáo dục Quốc phòng và An ninh 1",
+        "name_code": 2120501,
+        "credit": 4
+    },
+    {
+        "name": "Automat & ngôn ngữ hình thức",
+        "name_code": 2101441,
+        "credit": 3
+    },
+    {
+        "name": "Triết học Mác - Lênin",
+        "name_code": 2112012,
+        "credit": 3
+    },
+    {
+        "name": "Quản trị doanh nghiệp",
+        "name_code": 2107446,
+        "credit": 2
+    },
+    {
+        "name": "Giáo dục Quốc phòng 2",
+        "name_code": 2120403,
+        "credit": 4
+    },
+    {
+        "name": "Lý thuyết đồ thị",
+        "name_code": 2101404,
+        "credit": 3
+    },
+    {
+        "name": "Tư tưởng Hồ Chí Minh",
+        "name_code": 2112005,
+        "credit": 2
+    },
+    {
+        "name": "Hệ thống và Công nghệ Web",
+        "name_code": 2101551,
+        "credit": 3
+    },
+    {
+        "name": "Giáo dục thể chất 2",
+        "name_code": 2120406,
+        "credit": 2
+    },
+    {
+        "name": "Kỹ thuật lập trình",
+        "name_code": 2101405,
+        "credit": 3
+    },
+    {
+        "name": "Tiếp thị điện tử",
+        "name_code": 2101544,
+        "credit": 3
+    },
+    {
+        "name": "Máy học",
+        "name_code": 2101631,
+        "credit": 3
+    },
+    {
+        "name": "Lập trình hướng đối tượng",
+        "name_code": 2101406,
+        "credit": 4
+    },
+    {
+        "name": "Hệ khuyến nghị",
+        "name_code": 2101692,
+        "credit": 3
+    },
+    {
+        "name": "Tối ưu hóa và phân tích search engine",
+        "name_code": 2101496,
+        "credit": 3
+    },
+    {
+        "name": "Đồ họa máy tính",
+        "name_code": 2101443,
+        "credit": 3
+    },
+    {
+        "name": "Khai phá đồ thị",
+        "name_code": 2101691,
+        "credit": 3
+    },
+    {
+        "name": "Các nền tảng dữ liệu",
+        "name_code": 2101724,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn dữ liệu lớn",
+        "name_code": 2101582,
+        "credit": 3
+    },
+    {
+        "name": "Nhận dạng mẫu",
+        "name_code": 2101445,
+        "credit": 3
+    },
+    {
+        "name": "Giao dịch định lượng",
+        "name_code": 2101689,
+        "credit": 3
+    },
+    {
+        "name": "Các hệ cơ sở tri thức",
+        "name_code": 2101423,
+        "credit": 3
+    },
+    {
+        "name": "Nhập môn Robot",
+        "name_code": 2101688,
+        "credit": 3
+    },
+    {
+        "name": "Thống kê máy tính và ứng dụng",
+        "name_code": 2101624,
+        "credit": 3
+    },
+    {
+        "name": "Môi trường và con người",
+        "name_code": 2123800,
+        "credit": 3
+    },
+    {
+        "name": "Hệ thống Máy tính",
+        "name_code": 2101567,
+        "credit": 4
+    },
+    {
+        "name": "Hàm phức và phép biến đổi Laplace",
+        "name_code": 2113436,
+        "credit": 3
+    },
+    {
+        "name": "Phân tích thiết kế giải thuật",
+        "name_code": 2101439,
+        "credit": 3
+    },
+    {
+        "name": "Giáo dục quốc phòng và an ninh 2",
+        "name_code": 2120502,
+        "credit": 4
+    },
+    {
+        "name": "Lập trình phân tích dữ liệu",
+        "name_code": 2101681,
+        "credit": 3
+    },
+    {
+        "name": "Kỹ năng xây dựng kế hoạch",
+        "name_code": 2132002,
+        "credit": 3
+    },
+    {
+        "name": "Khóa luận tốt nghiệp",
+        "name_code": 2101700,
+        "credit": 5
+    },
+    {
+        "name": "Khóa luận tốt nghiệp",
+        "name_code": 2101523,
+        "credit": 5
+    },
+    {
+        "name": "Hệ thống máy tính",
+        "name_code": 2101567,
+        "credit": 4
+    },
+    {
+        "name": "Giải tích ngẫu nhiên cho tài chính",
+        "name_code": 2101697,
+        "credit": 3
+    },
+    {
+        "name": "Lập trình phân tán với công nghệ .NET",
+        "name_code": 2101557,
+        "credit": 3
+    },
+    {
+        "name": "Phân tích dữ liệu Bayesian",
+        "name_code": 2101695,
+        "credit": 3
+    },
+    {
+        "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+        "name_code": 2101561,
+        "credit": 3
+    },
+    {
+        "name": "Lịch sử Đảng Cộng sản Việt Nam",
+        "name_code": 2112015,
+        "credit": 2
+    },
+    {
+        "name": "Trực quan hóa dữ liệu",
+        "name_code": 2101678,
+        "credit": 3
+    },
+    {
+        "name": "Hệ cơ sở dữ liệu",
+        "name_code": 2101436,
+        "credit": 4
+    },
+    {
+        "name": "Kế toán cơ bản",
+        "name_code": 2127481,
+        "credit": 3
+    }
+]

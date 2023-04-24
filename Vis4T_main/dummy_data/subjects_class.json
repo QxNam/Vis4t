@@ -1,0 +1,38 @@
+{
+    "KHMT13A": [
+        {
+            "semester_id": 1,
+            "name": "Toán ứng dụng",
+            "name_code": 2113434,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Ngôn ngữ lập trình",
+            "name_code": 2101442,
+            "credit": 3
+        }
+    ],
+    "KHDL15A": [
+        {
+            "semester_id": 1,
+            "name": "Lập trình hướng đối tượng",
+            "name_code": 2101623,
+            "credit": 3
+        }
+    ],
+    "KHDL16A": [
+        {
+            "semester_id": 1,
+            "name": "Ngôn ngữ lập trình",
+            "name_code": 2101442,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Toán A2",
+            "name_code": 2113440,
+            "credit": 2
+        }
+    ]
+}

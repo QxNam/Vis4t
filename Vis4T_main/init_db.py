@@ -1,8 +1,9 @@
 from Vis4T_main.wsgi import *
-from HomePage.models import University_class, Teacher, Student
+from HomePage.models import *
 from django.contrib.auth.models import User
 import json
 from django.contrib.auth.hashers import make_password
+import pandas as pd
 superuser = Teacher.objects.create_user(username='admin', password='admin', is_superuser=True, is_staff=True)
 superuser.save()
 
@@ -37,11 +38,14 @@ t2 = Teacher(
     is_active = True,
 )
 t2.save()
+
 khdl16a = University_class(
     class_name = 'KHDL16A',
     teacher = t1,
     number_of_student = 60,
-    class_major = 'Khoa học dữ liệu'
+    class_major = 'Khoa học dữ liệu',
+    total_semester = 9,
+    total_credit = 156
 )
 khdl16a.save()
 
@@ -49,7 +53,9 @@ khdl15a = University_class(
     class_name = 'KHDL15A',
     teacher = t2,
     number_of_student = 40,
-    class_major = 'Khoa học máy tính'
+    class_major = 'Khoa học máy tính', 
+    total_semester = 8,
+    total_credit = 146
 )
 khdl15a.save()
 
@@ -57,7 +63,9 @@ khmt13a = University_class(
     class_name = 'KHMT13A',
     teacher = t2,
     number_of_student = 40,
-    class_major = 'Khoa học máy tính'
+    class_major = 'Khoa học máy tính',
+    total_semester = 8,
+    total_credit = 148
 )
 khmt13a.save()
 
@@ -65,7 +73,7 @@ khmt13a.save()
 with open('dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
-        Student(
+        s = Student(
             student_id = i['student_id'],
             class_name = khmt13a,
             student_name = i['student_name'],
@@ -75,12 +83,15 @@ with open('dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
             score_4 = i['score_4'],
             score_char = i['score_char'],
             rank = i['rank']
-        ).save()
-        
+        )
+        s.save()
+
+
+
 with open('dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
-        Student(
+        s = Student(
             student_id = i['student_id'],
             class_name = khdl15a,
             student_name = i['student_name'],
@@ -90,4 +101,27 @@ with open('dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
             score_4 = i['score_4'],
             score_char = i['score_char'],
             rank = i['rank']
+        )
+        s.save()
+        
+with open("dummy_data/subjects.json", 'r', encoding='utf-8') as f:
+    subjects_data = json.load(f)
+subjects = []
+for k in subjects_data:
+    r = Subject(
+        subject_id = k['name_code'],
+        subject_name = k['name'],
+        credit = k['credit'],
+    )
+    subjects.append(r)
+    r.save()
+    
+with open("dummy_data/subjects_class.json", 'r', encoding='utf-8') as f:
+    subject_class_data = json.load(f)
+for k in subject_class_data:
+    class_ = University_class.objects.get(class_name=k)
+    for i in subject_class_data[k]:
+        Subject_class(class_name = class_, 
+                      subject_id = Subject.objects.get(subject_id=i['name_code']),
+                      semester_id = i['semester_id']
         ).save()
