@@ -70,7 +70,7 @@ khmt13a = University_class(
 khmt13a.save()
 
 
-with open('dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
+with open('../data_processing/dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
         s = Student(
@@ -88,7 +88,7 @@ with open('dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
 
 
 
-with open('dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
+with open('../data_processing/dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
         s = Student(
@@ -104,7 +104,7 @@ with open('dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
         )
         s.save()
         
-with open("dummy_data/subjects.json", 'r', encoding='utf-8') as f:
+with open("../data_processing/dummy_data/subjects.json", 'r', encoding='utf-8') as f:
     subjects_data = json.load(f)
 subjects = []
 for k in subjects_data:
@@ -116,7 +116,7 @@ for k in subjects_data:
     subjects.append(r)
     r.save()
     
-with open("dummy_data/subjects_class.json", 'r', encoding='utf-8') as f:
+with open("../data_processing/dummy_data/subjects_class.json", 'r', encoding='utf-8') as f:
     subject_class_data = json.load(f)
 for k in subject_class_data:
     class_ = University_class.objects.get(class_name=k)
