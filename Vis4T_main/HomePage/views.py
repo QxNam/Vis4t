@@ -60,7 +60,6 @@ class HomeView(LoginRequiredMixin, ListView):
         else:
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
-        
         return context
     
     def class_home(self):
