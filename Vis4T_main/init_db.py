@@ -1,11 +1,9 @@
-import json
-
-import pandas as pd
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
-from HomePage.models import *
 from Vis4T_main.wsgi import *
-
+from HomePage.models import *
+from django.contrib.auth.models import User
+import json
+from django.contrib.auth.hashers import make_password
+import pandas as pd
 superuser = Teacher.objects.create_user(username='admin', password='admin', is_superuser=True, is_staff=True)
 superuser.save()
 

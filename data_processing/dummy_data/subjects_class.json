@@ -2,37 +2,1519 @@
     "KHMT13A": [
         {
             "semester_id": 1,
+            "name": "Toán cao cấp 1",
+            "name_code": 2113431,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục thể chất 1",
+            "name_code": 2120405,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục Quốc phòng và An ninh 1",
+            "name_code": 2120501,
+            "credit": 4
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Tin học",
+            "name_code": 2101539,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Lập trình",
+            "name_code": 2101622,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Triết học Mác - Lênin",
+            "name_code": 2112012,
+            "credit": 3
+        },
+        {
+            "semester_id": 1,
+            "name": "Kỹ năng làm việc nhóm",
+            "name_code": 2132001,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục quốc phòng và an ninh 2",
+            "name_code": 2120502,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục thể chất 2",
+            "name_code": 2120406,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Hệ thống Máy tính",
+            "name_code": 2101567,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ thuật lập trình",
+            "name_code": 2101405,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kinh tế chính trị Mác - Lênin",
+            "name_code": 2112013,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Tiếng anh 1",
+            "name_code": 2111250,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ năng xây dựng kế hoạch",
+            "name_code": 2132002,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị doanh nghiệp",
+            "name_code": 2107510,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kế toán cơ bản",
+            "name_code": 2127481,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Môi trường và con người",
+            "name_code": 2123800,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị học",
+            "name_code": 2107483,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Giao tiếp kinh doanh",
+            "name_code": 2107492,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Toán cao cấp 2",
+            "name_code": 2113432,
+            "credit": 2
+        },
+        {
+            "semester_id": 3,
+            "name": "Lập trình hướng đối tượng",
+            "name_code": 2101623,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc dữ liệu và giải thuật",
+            "name_code": 2101409,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Hệ cơ sở dữ liệu",
+            "name_code": 2101436,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc rời rạc",
+            "name_code": 2101402,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Tiếng Anh 2",
+            "name_code": 2111300,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Logic học",
+            "name_code": 2113438,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Phương pháp tính",
+            "name_code": 2113435,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Vật lý đại cương",
+            "name_code": 2113437,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
             "name": "Toán ứng dụng",
             "name_code": 2113434,
             "credit": 3
         },
         {
-            "semester_id": 2,
-            "name": "Ngôn ngữ lập trình",
-            "name_code": 2101442,
+            "semester_id": 3,
+            "name": "Hàm phức và phép biến đổi Laplace",
+            "name_code": 2113436,
             "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Pháp luật đại cương",
+            "name_code": 2131472,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Mạng máy tính",
+            "name_code": 2101435,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Nhập môn Khoa học Dữ liệu",
+            "name_code": 2101680,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Xác suất trong Khoa học Dữ liệu",
+            "name_code": 2101676,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Phương pháp luận nghiên cứu khoa học",
+            "name_code": 2113433,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Giải thuật và tối ưu hóa phân tán",
+            "name_code": 2101677,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Trực quan hóa dữ liệu",
+            "name_code": 2101678,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Đại số tuyến tính tính toán",
+            "name_code": 2101679,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Quá trình ngẫu nhiên",
+            "name_code": 2101682,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+            "name_code": 2101683,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+            "name_code": 2010684,
+            "credit": 2
+        },
+        {
+            "semester_id": 5,
+            "name": "Trí tuệ nhân tạo",
+            "name_code": 2101419,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Tối ưu hóa cho Khoa học dữ liệu",
+            "name_code": 2101685,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+            "name_code": 2101655,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Lập trình phân tích dữ liệu",
+            "name_code": 2101681,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Thống kê máy tính và ứng dụng",
+            "name_code": 2101624,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Phân tích chuỗi thời gian",
+            "name_code": 2101686,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Xử lý ảnh",
+            "name_code": 2101698,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Kỹ thuật tài chính",
+            "name_code": 2101687,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Chủ nghĩa xã hội khoa học",
+            "name_code": 2112014,
+            "credit": 2
+        },
+        {
+            "semester_id": 6,
+            "name": "Phát triển ứng dụng",
+            "name_code": 2101657,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai thác dữ liệu và ứng dụng",
+            "name_code": 2101627,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Máy học",
+            "name_code": 2101631,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tiếp thị điện tử",
+            "name_code": 2101544,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tương tác người máy",
+            "name_code": 2101428,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Giao dịch định lượng",
+            "name_code": 2101689,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Nhập môn Robot",
+            "name_code": 2101688,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Công nghệ phần mềm",
+            "name_code": 2101420,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tính toán song song",
+            "name_code": 2101690,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai phá đồ thị",
+            "name_code": 2101691,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lịch sử Đảng Cộng sản Việt Nam",
+            "name_code": 2112015,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Tư tưởng Hồ Chí Minh",
+            "name_code": 2112005,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn dữ liệu lớn",
+            "name_code": 2101582,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Học sâu",
+            "name_code": 2101650,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hệ khuyến nghị",
+            "name_code": 2101692,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn an toàn thông tin",
+            "name_code": 2101411,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lý thuyết trò chơi",
+            "name_code": 2101693,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tâm lý học đại cương",
+            "name_code": 2110585,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Xã hội học",
+            "name_code": 2113439,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Cơ sở văn hóa Việt Nam",
+            "name_code": 2111491,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tiếng Việt thực hành",
+            "name_code": 2111492,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+            "name_code": 2112011,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hội họa",
+            "name_code": 2106529,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Các nền tảng dữ liệu",
+            "name_code": 2101724,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+            "name_code": 2101561,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Thị giác máy tính",
+            "name_code": 2101694,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Xử lý ngôn ngữ tự nhiên",
+            "name_code": 2101444,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích dữ liệu Bayesian",
+            "name_code": 2101695,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+            "name_code": 2101634,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích kinh doanh",
+            "name_code": 2101696,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Giải tích ngẫu nhiên cho tài chính",
+            "name_code": 2101697,
+            "credit": 3
+        },
+        {
+            "semester_id": 9,
+            "name": "Thực tập doanh nghiệp",
+            "name_code": 2101521,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Khóa luận tốt nghiệp",
+            "name_code": 2101700,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Chứng chỉ TOEIC 450",
+            "name_code": 2199450,
+            "credit": 0
         }
     ],
     "KHDL15A": [
         {
             "semester_id": 1,
+            "name": "Toán cao cấp 1",
+            "name_code": 2113431,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục thể chất 1",
+            "name_code": 2120405,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục Quốc phòng và An ninh 1",
+            "name_code": 2120501,
+            "credit": 4
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Tin học",
+            "name_code": 2101539,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Lập trình",
+            "name_code": 2101622,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Triết học Mác - Lênin",
+            "name_code": 2112012,
+            "credit": 3
+        },
+        {
+            "semester_id": 1,
+            "name": "Kỹ năng làm việc nhóm",
+            "name_code": 2132001,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục quốc phòng và an ninh 2",
+            "name_code": 2120502,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục thể chất 2",
+            "name_code": 2120406,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Hệ thống Máy tính",
+            "name_code": 2101567,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ thuật lập trình",
+            "name_code": 2101405,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kinh tế chính trị Mác - Lênin",
+            "name_code": 2112013,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Tiếng anh 1",
+            "name_code": 2111250,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ năng xây dựng kế hoạch",
+            "name_code": 2132002,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị doanh nghiệp",
+            "name_code": 2107510,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kế toán cơ bản",
+            "name_code": 2127481,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Môi trường và con người",
+            "name_code": 2123800,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị học",
+            "name_code": 2107483,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Giao tiếp kinh doanh",
+            "name_code": 2107492,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Toán cao cấp 2",
+            "name_code": 2113432,
+            "credit": 2
+        },
+        {
+            "semester_id": 3,
             "name": "Lập trình hướng đối tượng",
             "name_code": 2101623,
             "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc dữ liệu và giải thuật",
+            "name_code": 2101409,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Hệ cơ sở dữ liệu",
+            "name_code": 2101436,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc rời rạc",
+            "name_code": 2101402,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Tiếng Anh 2",
+            "name_code": 2111300,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Logic học",
+            "name_code": 2113438,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Phương pháp tính",
+            "name_code": 2113435,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Vật lý đại cương",
+            "name_code": 2113437,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Toán ứng dụng",
+            "name_code": 2113434,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Hàm phức và phép biến đổi Laplace",
+            "name_code": 2113436,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Pháp luật đại cương",
+            "name_code": 2131472,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Mạng máy tính",
+            "name_code": 2101435,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Nhập môn Khoa học Dữ liệu",
+            "name_code": 2101680,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Xác suất trong Khoa học Dữ liệu",
+            "name_code": 2101676,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Phương pháp luận nghiên cứu khoa học",
+            "name_code": 2113433,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Giải thuật và tối ưu hóa phân tán",
+            "name_code": 2101677,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Trực quan hóa dữ liệu",
+            "name_code": 2101678,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Đại số tuyến tính tính toán",
+            "name_code": 2101679,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Quá trình ngẫu nhiên",
+            "name_code": 2101682,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+            "name_code": 2101683,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+            "name_code": 2010684,
+            "credit": 2
+        },
+        {
+            "semester_id": 5,
+            "name": "Trí tuệ nhân tạo",
+            "name_code": 2101419,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Tối ưu hóa cho Khoa học dữ liệu",
+            "name_code": 2101685,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+            "name_code": 2101655,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Lập trình phân tích dữ liệu",
+            "name_code": 2101681,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Thống kê máy tính và ứng dụng",
+            "name_code": 2101624,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Phân tích chuỗi thời gian",
+            "name_code": 2101686,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Xử lý ảnh",
+            "name_code": 2101698,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Kỹ thuật tài chính",
+            "name_code": 2101687,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Chủ nghĩa xã hội khoa học",
+            "name_code": 2112014,
+            "credit": 2
+        },
+        {
+            "semester_id": 6,
+            "name": "Phát triển ứng dụng",
+            "name_code": 2101657,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai thác dữ liệu và ứng dụng",
+            "name_code": 2101627,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Máy học",
+            "name_code": 2101631,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tiếp thị điện tử",
+            "name_code": 2101544,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tương tác người máy",
+            "name_code": 2101428,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Giao dịch định lượng",
+            "name_code": 2101689,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Nhập môn Robot",
+            "name_code": 2101688,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Công nghệ phần mềm",
+            "name_code": 2101420,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tính toán song song",
+            "name_code": 2101690,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai phá đồ thị",
+            "name_code": 2101691,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lịch sử Đảng Cộng sản Việt Nam",
+            "name_code": 2112015,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Tư tưởng Hồ Chí Minh",
+            "name_code": 2112005,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn dữ liệu lớn",
+            "name_code": 2101582,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Học sâu",
+            "name_code": 2101650,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hệ khuyến nghị",
+            "name_code": 2101692,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn an toàn thông tin",
+            "name_code": 2101411,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lý thuyết trò chơi",
+            "name_code": 2101693,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tâm lý học đại cương",
+            "name_code": 2110585,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Xã hội học",
+            "name_code": 2113439,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Cơ sở văn hóa Việt Nam",
+            "name_code": 2111491,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tiếng Việt thực hành",
+            "name_code": 2111492,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+            "name_code": 2112011,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hội họa",
+            "name_code": 2106529,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Các nền tảng dữ liệu",
+            "name_code": 2101724,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+            "name_code": 2101561,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Thị giác máy tính",
+            "name_code": 2101694,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Xử lý ngôn ngữ tự nhiên",
+            "name_code": 2101444,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích dữ liệu Bayesian",
+            "name_code": 2101695,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+            "name_code": 2101634,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích kinh doanh",
+            "name_code": 2101696,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Giải tích ngẫu nhiên cho tài chính",
+            "name_code": 2101697,
+            "credit": 3
+        },
+        {
+            "semester_id": 9,
+            "name": "Thực tập doanh nghiệp",
+            "name_code": 2101521,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Khóa luận tốt nghiệp",
+            "name_code": 2101700,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Chứng chỉ TOEIC 450",
+            "name_code": 2199450,
+            "credit": 0
         }
     ],
     "KHDL16A": [
         {
             "semester_id": 1,
-            "name": "Ngôn ngữ lập trình",
-            "name_code": 2101442,
+            "name": "Toán cao cấp 1",
+            "name_code": 2113431,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục thể chất 1",
+            "name_code": 2120405,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Giáo dục Quốc phòng và An ninh 1",
+            "name_code": 2120501,
+            "credit": 4
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Tin học",
+            "name_code": 2101539,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Nhập môn Lập trình",
+            "name_code": 2101622,
+            "credit": 2
+        },
+        {
+            "semester_id": 1,
+            "name": "Triết học Mác - Lênin",
+            "name_code": 2112012,
+            "credit": 3
+        },
+        {
+            "semester_id": 1,
+            "name": "Kỹ năng làm việc nhóm",
+            "name_code": 2132001,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục quốc phòng và an ninh 2",
+            "name_code": 2120502,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Giáo dục thể chất 2",
+            "name_code": 2120406,
+            "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Hệ thống Máy tính",
+            "name_code": 2101567,
+            "credit": 4
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ thuật lập trình",
+            "name_code": 2101405,
             "credit": 3
         },
         {
             "semester_id": 2,
-            "name": "Toán A2",
-            "name_code": 2113440,
+            "name": "Kinh tế chính trị Mác - Lênin",
+            "name_code": 2112013,
             "credit": 2
+        },
+        {
+            "semester_id": 2,
+            "name": "Tiếng anh 1",
+            "name_code": 2111250,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kỹ năng xây dựng kế hoạch",
+            "name_code": 2132002,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị doanh nghiệp",
+            "name_code": 2107510,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Kế toán cơ bản",
+            "name_code": 2127481,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Môi trường và con người",
+            "name_code": 2123800,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Quản trị học",
+            "name_code": 2107483,
+            "credit": 3
+        },
+        {
+            "semester_id": 2,
+            "name": "Giao tiếp kinh doanh",
+            "name_code": 2107492,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Toán cao cấp 2",
+            "name_code": 2113432,
+            "credit": 2
+        },
+        {
+            "semester_id": 3,
+            "name": "Lập trình hướng đối tượng",
+            "name_code": 2101623,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc dữ liệu và giải thuật",
+            "name_code": 2101409,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Hệ cơ sở dữ liệu",
+            "name_code": 2101436,
+            "credit": 4
+        },
+        {
+            "semester_id": 3,
+            "name": "Cấu trúc rời rạc",
+            "name_code": 2101402,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Tiếng Anh 2",
+            "name_code": 2111300,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Logic học",
+            "name_code": 2113438,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Phương pháp tính",
+            "name_code": 2113435,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Vật lý đại cương",
+            "name_code": 2113437,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Toán ứng dụng",
+            "name_code": 2113434,
+            "credit": 3
+        },
+        {
+            "semester_id": 3,
+            "name": "Hàm phức và phép biến đổi Laplace",
+            "name_code": 2113436,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Pháp luật đại cương",
+            "name_code": 2131472,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Mạng máy tính",
+            "name_code": 2101435,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Nhập môn Khoa học Dữ liệu",
+            "name_code": 2101680,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Xác suất trong Khoa học Dữ liệu",
+            "name_code": 2101676,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Phương pháp luận nghiên cứu khoa học",
+            "name_code": 2113433,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Giải thuật và tối ưu hóa phân tán",
+            "name_code": 2101677,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Trực quan hóa dữ liệu",
+            "name_code": 2101678,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Đại số tuyến tính tính toán",
+            "name_code": 2101679,
+            "credit": 3
+        },
+        {
+            "semester_id": 4,
+            "name": "Quá trình ngẫu nhiên",
+            "name_code": 2101682,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+            "name_code": 2101683,
+            "credit": 2
+        },
+        {
+            "semester_id": 4,
+            "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+            "name_code": 2010684,
+            "credit": 2
+        },
+        {
+            "semester_id": 5,
+            "name": "Trí tuệ nhân tạo",
+            "name_code": 2101419,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Tối ưu hóa cho Khoa học dữ liệu",
+            "name_code": 2101685,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+            "name_code": 2101655,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Lập trình phân tích dữ liệu",
+            "name_code": 2101681,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Thống kê máy tính và ứng dụng",
+            "name_code": 2101624,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Phân tích chuỗi thời gian",
+            "name_code": 2101686,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Xử lý ảnh",
+            "name_code": 2101698,
+            "credit": 3
+        },
+        {
+            "semester_id": 5,
+            "name": "Kỹ thuật tài chính",
+            "name_code": 2101687,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Chủ nghĩa xã hội khoa học",
+            "name_code": 2112014,
+            "credit": 2
+        },
+        {
+            "semester_id": 6,
+            "name": "Phát triển ứng dụng",
+            "name_code": 2101657,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai thác dữ liệu và ứng dụng",
+            "name_code": 2101627,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Máy học",
+            "name_code": 2101631,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tiếp thị điện tử",
+            "name_code": 2101544,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tương tác người máy",
+            "name_code": 2101428,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Giao dịch định lượng",
+            "name_code": 2101689,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Nhập môn Robot",
+            "name_code": 2101688,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Công nghệ phần mềm",
+            "name_code": 2101420,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Tính toán song song",
+            "name_code": 2101690,
+            "credit": 3
+        },
+        {
+            "semester_id": 6,
+            "name": "Khai phá đồ thị",
+            "name_code": 2101691,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lịch sử Đảng Cộng sản Việt Nam",
+            "name_code": 2112015,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Tư tưởng Hồ Chí Minh",
+            "name_code": 2112005,
+            "credit": 2
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn dữ liệu lớn",
+            "name_code": 2101582,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Học sâu",
+            "name_code": 2101650,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hệ khuyến nghị",
+            "name_code": 2101692,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Nhập môn an toàn thông tin",
+            "name_code": 2101411,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Lý thuyết trò chơi",
+            "name_code": 2101693,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tâm lý học đại cương",
+            "name_code": 2110585,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Xã hội học",
+            "name_code": 2113439,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Cơ sở văn hóa Việt Nam",
+            "name_code": 2111491,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Tiếng Việt thực hành",
+            "name_code": 2111492,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+            "name_code": 2112011,
+            "credit": 3
+        },
+        {
+            "semester_id": 7,
+            "name": "Hội họa",
+            "name_code": 2106529,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Các nền tảng dữ liệu",
+            "name_code": 2101724,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+            "name_code": 2101561,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Thị giác máy tính",
+            "name_code": 2101694,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Xử lý ngôn ngữ tự nhiên",
+            "name_code": 2101444,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích dữ liệu Bayesian",
+            "name_code": 2101695,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+            "name_code": 2101634,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Phân tích kinh doanh",
+            "name_code": 2101696,
+            "credit": 3
+        },
+        {
+            "semester_id": 8,
+            "name": "Giải tích ngẫu nhiên cho tài chính",
+            "name_code": 2101697,
+            "credit": 3
+        },
+        {
+            "semester_id": 9,
+            "name": "Thực tập doanh nghiệp",
+            "name_code": 2101521,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Khóa luận tốt nghiệp",
+            "name_code": 2101700,
+            "credit": 5
+        },
+        {
+            "semester_id": 9,
+            "name": "Chứng chỉ TOEIC 450",
+            "name_code": 2199450,
+            "credit": 0
         }
     ]
 }
