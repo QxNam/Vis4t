@@ -81,23 +81,22 @@
         </div> -->
     </div>
     <script>
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', "{% url 'student_detail_api' student.student_id %}");
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                let student_data = JSON.parse(xhr.responseText);
-                console.log(student_data);
+        $.ajax({
+            url: "{% url 'student_detail_api' student.student_id %}",
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
             }
-        };
-        xhr.send();
-        
-        xhr.open('GET', get_class_url(class_name));
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                let student_data = JSON.parse(xhr.responseText);
-                console.log(student_data);
+        })
+
+        $.ajax({
+            url: get_class_url(class_name),
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
             }
-        };
-        xhr.send();
+        })
     </script>
 </div>
