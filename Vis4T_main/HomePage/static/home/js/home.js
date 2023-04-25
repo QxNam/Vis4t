@@ -34,12 +34,9 @@ var table = new Tabulator(".csv-table", {
 
 table.on("cellClick", function(e, cell){
   var student_id = cell.getRow().getData()['Mã số'];
-  for (var i = 0; i < student_jsondata.length; i++) {
-    if (student_jsondata[i].student_id == student_id) {
-      var student_index = i;
-      break;
-    }
-  }
+  var student_index = student_jsondata.findIndex(function(student) {
+    return student.student_id == student_id;
+  });
   displayStudentDataOnIndex(student_index);
 });
 

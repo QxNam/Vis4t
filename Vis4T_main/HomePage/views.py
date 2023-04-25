@@ -57,7 +57,10 @@ class HomeView(LoginRequiredMixin, ListView):
         else:
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
-        context['student_list'] = list(Student.objects.filter(class_name=university_class).values())
+        student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
+        for i in range(len(student_list)):
+            student_list[i]['ranking'] = i + 1
+        context['student_list'] = student_list
         context['student'] = context['student_list'][0]
         
         return context
@@ -138,24 +141,6 @@ class TeacherDetail(APIView):
 
 
     
-class StudentDetail(APIView):
-    def get_object(self, pk: str):
-        try:
-            return Student.objects.get(student_id=pk)
-        except Student.DoesNotExist:
-            raise Http404
-    
-    def get(self, request, pk, format=None):
-        student = self.get_object(pk)
-        serializer = StudentSerializer(student)
-        res = serializer.data        
-        class_ = University_class.objects.get(class_name=student.class_name)
-        res.update({'total_credit': class_.total_credit})
-        return JsonResponse(res)
-    
-class StudentView(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
     
 @login_required(login_url='login')
 @csrf_protect 

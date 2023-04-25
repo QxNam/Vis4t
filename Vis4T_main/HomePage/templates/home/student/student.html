@@ -60,16 +60,16 @@
                 <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
                     <div class="wrap-detail-student">
                         <div class="rank-in-class">
-                            <p>Xếp hạng</p>
-                            <div>12 <span style="padding: 0 10px;">/</span> 64</div>
+                            <p>Thứ hạng theo lớp</p>
+                            <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12" style="height: calc(50% - 5px); margin-top: 5px;">
                     <div class="wrap-detail-student">
                         <div class="rank-in-class">
-                            <p>Điểm chữ</p>
-                            <div>A</div>
+                            <p>Số tín chỉ đã học</p>
+                            <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
                         </div>
                     </div>
                 </div>
@@ -84,10 +84,11 @@
     </div>
     {{student_list|json_script:"student-json"}}
 
-    <script>
+    <script data-class-total-credit="{{class.total_credit}}">
         let student_jsondata = JSON.parse($('#student-json').text());
         $('.dropdown-class').click(function(){
-            displayDropdownStudent($(this));
+            let index = $(this).data('student');
+            displayStudentDataOnIndex(index);
         });
 
         function displayStudentDataOnIndex(student_index){
@@ -98,12 +99,11 @@
             $('.mssv div:nth-child(2) span').text(student_data.student_gmail);
             $('.rank-in-class.score-in-class div').text(student_data.score_4 + ' / ' + student_data.score_10 + ' / ' + student_data.score_char);
             $('.rank').text(student_data.rank);
+            $('.student-ranking').text(student_data.ranking + ' / ' + student_jsondata.length);
+            $('.student-credit').text(student_data.passed_credit + ' / ' + document.currentScript.dataset.dataClassTotalCredit);
         }
 
-        function displayDropdownStudent(element){
-            let index = element.data('student');
-            displayStudentDataOnIndex(index);
-        }
         
     </script>
+    <script url></script>
 </div>
