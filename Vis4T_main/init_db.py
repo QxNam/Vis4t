@@ -69,8 +69,50 @@ khmt13a = University_class(
 )
 khmt13a.save()
 
+khmt14a = University_class(
+    class_name = 'KHMT14A',
+    teacher = t1,
+    number_of_student = 72,
+    class_major = 'Khoa học máy tính',
+    total_semester = 8,
+    total_credit = 128,
+    is_active = False
+)
+khmt14a.save()
 
-with open('../data_processing/dummy_data/final_score_KHMT13A.json', 'r', encoding='utf-8') as f:
+with open('../data_processing/dummy_data/KHMT14A.json', 'r', encoding='utf-8') as f:
+    student_data = json.load(f)
+    for i in student_data:
+        s = Student(
+            student_id = i['student_id'],
+            class_name = khmt14a,
+            student_name = i['student_name'],
+            student_gmail = i['student_gmail'],
+            passed_credit = i['passed_credit'],
+            score_10 = i['score_10'],
+            score_4 = i['score_4'],
+            score_char = i['score_char'],
+            rank = i['rank']
+        )
+        s.save()
+
+with open('../data_processing/dummy_data/KHDL16A.json', 'r', encoding='utf-8') as f:
+    student_data = json.load(f)
+    for i in student_data:
+        s = Student(
+            student_id = i['student_id'],
+            class_name = khdl16a,
+            student_name = i['student_name'],
+            student_gmail = i['student_gmail'],
+            passed_credit = i['passed_credit'],
+            score_10 = i['score_10'],
+            score_4 = i['score_4'],
+            score_char = i['score_char'],
+            rank = i['rank']
+        )
+        s.save()
+
+with open('../data_processing/dummy_data/KHMT13A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
         s = Student(
@@ -88,7 +130,7 @@ with open('../data_processing/dummy_data/final_score_KHMT13A.json', 'r', encodin
 
 
 
-with open('../data_processing/dummy_data/final_score_KHDL15A.json', 'r', encoding='utf-8') as f:
+with open('../data_processing/dummy_data/KHDL15A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
     for i in student_data:
         s = Student(
