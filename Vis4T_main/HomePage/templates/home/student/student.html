@@ -5,11 +5,11 @@
                 <div class="wrap-detail-student" style="overflow: unset;">
                     <div class="dropdownStudent">
                         <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownStudentName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
-                            <span></span>
+                            <span>{{student.student_name}}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-student" aria-labelledby="dropdownStudentName">
                             {% for s in student_list %}
-                            <a class="dropdown-item dropdown-class" id="{{s.student_id}}">
+                            <a class="dropdown-item dropdown-class" data-student="{{ forloop.counter0 }}">
                                 {{s.student_name}}
                             </a>
                             {% endfor %}
@@ -29,11 +29,11 @@
                 <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
                     <div class="wrap-detail-student">
                         <div class="name-student">
-                            <h2></h2>
+                            <h2>{{student.student_name}}</h2>
                         </div>
                         <div class="mssv">
-                            <div><label>MSSV: </label><span> </span></div>
-                            <div><label>Gmail: </label><span> </span></div>
+                            <div><label>MSSV: </label><span> {{student.student_id}}</span></div>
+                            <div><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="wrap-detail-student">
                         <div class="rank-in-class score-in-class">
                             <p>Điểm 4 <span style="padding: 0 10px;">/</span> Điểm 10 <span style="padding: 0 10px;">/</span> Điểm chữ</p>
-                            <div></div>
+                            <div>{{student.score_4}} <span style="padding: 0 10px;">/</span> {{student.score_10}} <span style="padding: 0 10px;">/</span> {{student.score_char}}</div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="wrap-detail-student">
                         <div class="rank-in-class">
                             <p>Học lực</p>
-                            <div class="rank"></div>
+                            <div class="rank">{{student.rank}}</div>
                         </div>
                     </div>
                 </div>
@@ -82,40 +82,28 @@
             <div class="wrap-detail-student"></div>
         </div> -->
     </div>
+    {{student_list|json_script:"student-json"}}
+
     <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: "{% url 'student_detail_api' student.student_id %}",
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('button#dropdownStudentName span').text(data.student_name);
-                    $('div.name-student h2').text(data.student_name);
-                    $('div.mssv div:nth-child(1) span').text(' ' + data.student_id);
-                    $('div.mssv div:nth-child(2) span').text(' ' + data.student_gmail);
-                    $('div.score-in-class div').text(data.score_4 + ' / ' + data.score_10 + ' / ' + data.score_char);
-                    $('div.rank').text(data.rank);
-                }
-            })
-        })
-        
-        $('div.dropdown-menu-student a.dropdown-class').click(function() {
-            let id = $(this).attr('id');
-            console.log(url);
-            $.ajax({
-                url: '/student/' + studentId + '/',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('button#dropdownStudentName span').text(data.student_name);
-                    $('div.name-student h2').text(data.student_name);
-                    $('div.mssv div:nth-child(1) span').text(' ' + data.student_id);
-                    $('div.mssv div:nth-child(2) span').text(' ' + data.student_gmail);
-                    $('div.score-in-class div').text(data.score_4 + ' / ' + data.score_10 + ' / ' + data.score_char);
-                    $('div.rank').text(data.rank);
-                }
-            })
-        })
+        let student_jsondata = JSON.parse($('#student-json').text());
+        $('.dropdown-class').click(function(){
+            displayDropdownStudent($(this));
+        });
+
+        function displayStudentDataOnIndex(student_index){
+            student_data = student_jsondata[student_index];
+            $('.dropdownStudent .btn span').text(student_data.student_name);
+            $('.name-student h2').text(student_data.student_name);
+            $('.mssv div:nth-child(1) span').text(student_data.student_id);
+            $('.mssv div:nth-child(2) span').text(student_data.student_gmail);
+            $('.rank-in-class.score-in-class div').text(student_data.score_4 + ' / ' + student_data.score_10 + ' / ' + student_data.score_char);
+            $('.rank').text(student_data.rank);
+        }
+
+        function displayDropdownStudent(element){
+            let index = element.data('student');
+            displayStudentDataOnIndex(index);
+        }
         
     </script>
 </div>

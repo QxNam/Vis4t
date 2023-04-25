@@ -5,7 +5,8 @@ from .models import *
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ['student_id', 'student_name', 'student_gmail', 'passed_credit', 'score_10', 'score_4', 'score_char', 
+                  'rank', 'is_graduated']
 
 class University_classSerializer(serializers.ModelSerializer):
     class Meta:

@@ -3,16 +3,7 @@
 {% load static %}
 
 <div class="main">
-    <script>
-        var class_name = "{{ cached_class_name }}";
-        function get_class_detail_url (class_name) {
-            return "{% url 'class_list_api' cached_class_name %}";
-        }
-        function get_class_url (class_name) {
-            return "{% url 'class_detail_api' cached_class_name %}";
-        }
-        
-    </script>
+    
     <div class="content">
         <div class="wrap-content container-fluid">
             <div class="row">
@@ -49,7 +40,13 @@
                 </div>
                 <div class="col-12 line-3" style="margin-top: 20px;">
                     <div class="row">
-                        {% include 'home/overview/table.html' %}
+                        <div class="col-7">
+                            <div class="wrap-box" style="height: 400px;">
+                                <div class="overview csv-table"></div>
+                        
+                            </div>
+                        </div>
+                        
                         {% include 'home/overview/box_plot_student.html' %}
                     </div>
                 </div>
@@ -58,19 +55,7 @@
                     <div class="wrap-box">
                         {% include 'home/student/student.html' %}
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-4">
-                            <div class="wrap-box">
-
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="wrap-box"></div>
-                        </div>
-                        <div class="col-4">
-                            <div class="wrap-box"></div>
-                        </div>
-                    </div> -->
+                   
                 </div>
                 <div class="col-12 line-5" style="margin-top: 20px;">
                     <div class="row">
@@ -102,12 +87,20 @@
 
  
 
+        <script data-cache-name="{{ cached_class_name }}">
+            const class_name = document.currentScript.dataset.cacheName;
+            function get_class_detail_url () {
+                return "{% url 'class_list_api' cached_class_name %}";
+            }
+            function get_class_url () {
+                return "{% url 'class_detail_api' cached_class_name %}";
+            }
+            
+        </script>
         
         
-        
-        <script src="{% static 'home/js/overview.js' %}"></script>
+        <script src="{% static 'home/js/home.js' %}"></script>
 
-        <script src="{% static 'home/js/student.js' %}"></script>
     </div>
 </div>
 {% endblock %}

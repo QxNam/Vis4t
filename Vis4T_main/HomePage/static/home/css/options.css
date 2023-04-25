@@ -65,20 +65,6 @@
 
 }
 
-.arrow{
-    border-bottom: 1px solid rgb(0 0 0 / 20%);
-    border-left:1px solid  rgb(0 0 0 / 20%);
-    display: flex;
-    top: 8px;
-    left: 0;
-    width: 15px;
-    height: 15px;
-    background-color: #ffffff;
-    position: absolute;
-    animation: showArrow linear 0.5s;
-    transform: rotate(135deg);
-}
-
 
 @keyframes showSlideFeature {
     from{
