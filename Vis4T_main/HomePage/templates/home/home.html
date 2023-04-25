@@ -3,6 +3,16 @@
 {% load static %}
 
 <div class="main">
+    <script>
+        var class_name = "{{ cached_class_name }}";
+        function get_class_detail_url (class_name) {
+            return "{% url 'class_list_api' cached_class_name %}";
+        }
+        function get_class_url (class_name) {
+            return "{% url 'class_detail_api' cached_class_name %}";
+        }
+        
+    </script>
     <div class="content">
         <div class="wrap-content container-fluid">
             <div class="row">
@@ -92,16 +102,7 @@
 
  
 
-        <script>
-            var class_name = "{{ cached_class_name }}";
-            function get_class_detail_url (class_name) {
-                return "{% url 'class_list_api' cached_class_name %}";
-            }
-            function get_class_url (class_name) {
-                return "{% url 'class_detail_api' cached_class_name %}";
-            }
-            
-        </script>
+        
         
         
         <script src="{% static 'home/js/overview.js' %}"></script>

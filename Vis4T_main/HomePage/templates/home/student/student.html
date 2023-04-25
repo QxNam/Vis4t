@@ -5,15 +5,15 @@
                 <div class="wrap-detail-student" style="overflow: unset;">
                     <div class="dropdownStudent">
                         <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownStudentName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
-                            <span>NGUYEN PHU VINH</span>
+                            <span>{{student.student_name}}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-student" aria-labelledby="dropdownStudentName">
-                            <a class="dropdown-item dropdown-class" href="#" id="">
-                                NGUYEN PHU VINH
+                            {% for s in student_list %}
+                            <a class="dropdown-item dropdown-class" href="#" id="{{s.student_id}}">
+                                {{s.student_name}}
                             </a>
-                            <a class="dropdown-item dropdown-class" href="#" id="">
-                                NGUYEN PHU VINH
-                            </a>
+                            {% endfor %}
+                            
                         </div>
                     </div>
                 </div>
@@ -80,4 +80,24 @@
             <div class="wrap-detail-student"></div>
         </div> -->
     </div>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', "{% url 'student_detail_api' student.student_id %}");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                let student_data = JSON.parse(xhr.responseText);
+                console.log(student_data);
+            }
+        };
+        xhr.send();
+        
+        xhr.open('GET', get_class_url(class_name));
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                let student_data = JSON.parse(xhr.responseText);
+                console.log(student_data);
+            }
+        };
+        xhr.send();
+    </script>
 </div>

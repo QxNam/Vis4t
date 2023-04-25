@@ -48,18 +48,18 @@ class HomeView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
-        
         class_name = self.kwargs['class_name']
         university_class = University_class.objects.get(class_name=class_name)
         context['class'] = university_class
-        
-        
         cached_class_name = cache.get('class_name')
         if cached_class_name == class_name:
             context['cached_class_name'] = cached_class_name
         else:
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
+        context['student_list'] = Student.objects.filter(class_name=university_class)
+        context['student'] = context['student_list'][0]
+        
         return context
     
     def class_home(self):
@@ -78,14 +78,6 @@ class TeacherView(LoginRequiredMixin, ListView):
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         return context
-
-
-
-class ClassList(APIView):   
-    def get(self, request,  format=None):
-        queryset = University_class.objects.all()
-        serializer = University_classSerializer(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
 
 class ClassDetail(APIView):
     def get_object(self, pk: str):
@@ -110,7 +102,6 @@ class ClassDetail(APIView):
             'score4_data': get_student_final_score(student_data, 'score_4')
         }
         return JsonResponse({'data': response}, safe=False)
-    
     
 class ClassListDetail(APIView):
     def get_object(self, pk: str):
@@ -145,11 +136,7 @@ class TeacherDetail(APIView):
         }
         return JsonResponse(response, safe=False)
 
-class StudentView( APIView):
-    def get(self, request, class_name, format=None):
-        queryset = Student.objects.all()
-        serializer = StudentSerializer(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
+
     
 class StudentDetail(APIView):
     def get_object(self, pk: str):
@@ -158,7 +145,6 @@ class StudentDetail(APIView):
         except Student.DoesNotExist:
             raise Http404
     
-    # @api_view(['GET'])
     def get(self, request, pk, format=None):
         student = self.get_object(pk)
         serializer = StudentSerializer(student)
