@@ -1,7 +1,7 @@
 <div class="feature chart-to-student col-12">
     <div class="row" style="width: 100%; height: 100%; padding: 0; margin: 0;">
-        <div class="col-4" style="padding : 0">
-            <div class="col-12" style="height: calc(25% - 5px); margin-bottom: 5px; position: relative;">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4" style="padding : 0">
+            <div class="col-12" style="height: calc(20% + 5px); margin-bottom: 5px; position: relative;">
                 <div class="wrap-detail-student" style="overflow: unset;">
                     <div class="dropdownStudent">
                         <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownStudentName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
@@ -13,76 +13,101 @@
                                 {{s.student_name}}
                             </a>
                             {% endfor %}
-                            
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="height: calc(75% - 5px); margin-top: 10px;">
-                <div class="wrap-detail-student">
-                    
+            <div class="col-12" style="height: calc(80%); margin-top: 10px;">
+                <div class="row">
+                    <div class="col-6" style="height:50%; padding-right: 5px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class score-in-class">
+                                <p>Điểm 4</p>
+                                <div>{{student.score_4}} <span style="padding: 0 5px;">/</span> {{student.score_10}} <span style="padding: 0 5px;">/</span> {{student.score_char}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6" style="height:50%;  padding-left: 5px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class">
+                                <p>Điểm 10</p>
+                                <div class="rank">{{student.rank}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6" style="height:50%; margin-top: 10px;  padding-right: 5px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class">
+                                <p>Điểm chữ</p>
+                                <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6" style="height:50%; margin-top: 10px;  padding-left: 5px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class">
+                                <p>Học lực</p>
+                                <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-5">
             <div class="row" style="height: 100%; padding-top: 0;">
-                <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
+                <div class="col-12" style="height: calc(100%); margin-bottom: 5px;">
                     <div class="wrap-detail-student">
-                        <div class="name-student">
+                        <div class="name-student" style="height: 40%;">
                             <h2>{{student.student_name}}</h2>
                         </div>
-                        <div class="mssv">
-                            <div><label>MSSV: </label><span> {{student.student_id}}</span></div>
-                            <div><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-right: 5px;">
-                    <div class="wrap-detail-student">
-                        <div class="rank-in-class score-in-class">
-                            <p>Điểm 4 <span style="padding: 0 10px;">/</span> Điểm 10 <span style="padding: 0 10px;">/</span> Điểm chữ</p>
-                            <div>{{student.score_4}} <span style="padding: 0 10px;">/</span> {{student.score_10}} <span style="padding: 0 10px;">/</span> {{student.score_char}}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" style="height: calc(50% - 5px); margin-top: 5px; padding-left: 5px;">
-                    <div class="wrap-detail-student">
-                        <div class="rank-in-class">
-                            <p>Học lực</p>
-                            <div class="rank">{{student.rank}}</div>
+                        <div class="info-detail-student">
+                            <div class="mssv">
+                                <div><label>Tên lớp: </label><span> {{student.student_id}}</span></div>
+                                <div><label>Chuyên nghành: </label><span> khoa hoc du lieu</span></div>
+                            </div>
+                            <div class="mssv">
+                                <div><label>MSSV: </label><span> {{student.student_id}}</span></div>
+                                <div><label>Khóa: </label><span> {{student.student_gmail}}</span></div>
+                            </div>
+                            <div class="mssv">
+                                <div><label>Tình trạng tốt nghiệp: </label><span> {{student.student_id}}</span></div>
+                                <div><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-3" style="padding : 0">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding : 0">
             <div class="row" style="height: 100%; padding-top: 0;">
-                <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px;">
-                    <div class="wrap-detail-student">
-                        <div class="rank-in-class">
-                            <p>Thứ hạng theo lớp</p>
-                            <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
+                <div class="row" style="height: 100%; padding-right: 0;">
+                    <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px; padding-right: 0px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class">
+                                <p>Thứ hạng theo lớp</p>
+                                <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12" style="height: calc(50% - 5px); margin-top: 5px;">
-                    <div class="wrap-detail-student">
-                        <div class="rank-in-class">
-                            <p>Số tín chỉ đã học</p>
-                            <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
+                    <div class="col-12" style="height: calc(50% - 5px); margin-top: 5px;  padding-right: 0px;">
+                        <div class="wrap-detail-student">
+                            <div class="rank-in-class">
+                                <p>Số tín chỉ đã học</p>
+                                <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="col-4" style="height: 60%; padding: 5px !important ;">
-            <div class="wrap-detail-student"></div>
-        </div>
-        <div class="col-8" style="height: 60%; padding: 5px !important ;">
-            <div class="wrap-detail-student"></div>
-        </div> -->
+        <div class="col-12" style="padding : 0px; margin-top: 10px;"> 
+            <div class="wrap-box" style="height: 300px;"></div>
+        </div> 
     </div>
+    
     {{student_list|json_script:"student-json"}}
+
 
     <script data-class-total-credit="{{class.total_credit}}">
         let student_jsondata = JSON.parse($('#student-json').text());

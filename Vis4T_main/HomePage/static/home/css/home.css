@@ -271,11 +271,6 @@
 .portlet:last-child{
     border-bottom: none;
 }
-
-.portlet:first-child{
-    margin-top: 18px;
-}
-
 .currentClass{
     height: 110px;
     margin-bottom: 16px;
@@ -426,8 +421,8 @@
 }
 .mssv{
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
+    padding: 10px;
 }
 .mssv label{
     font-size: 13px;
@@ -437,6 +432,10 @@
     font-size: 15px;
     color: black;
     font-weight: 600;
+}
+.mssv div{
+    display: block;
+    width: 50%;
 }
 
 .wrap-box {
