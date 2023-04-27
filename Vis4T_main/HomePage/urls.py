@@ -18,6 +18,5 @@ urlpatterns = format_suffix_patterns([
     path('class/<str:pk>/', views.ClassDetail.as_view(), name='class_detail_api'),
     path('student/<str:student_id>', views.StudentDetail.as_view(), name = "student_api"),
     
-    path('teacher/', views.TeacherView.as_view(), name = "teacher"),
-    
+    path('teacher/', views.TeacherView.as_view(), name = "teacher")
 ])
