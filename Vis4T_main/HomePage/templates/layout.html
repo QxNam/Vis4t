@@ -82,7 +82,7 @@
                         <ul class="dropdown-classes">
                             {% for c in classes %}
                                 <li class="class-name">
-                                    <a href="{% url 'home' c.class_name %}" id="{{c.class_name}} {{c.number_of_student}}">{{c.class_name}}</a>                                 
+                                    <a href="{% url 'home' c.class_name %}">{{c.class_name}}</a>                                 
                                 </li>
                             {% endfor %}
                         </ul>
