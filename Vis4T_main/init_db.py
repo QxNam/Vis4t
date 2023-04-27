@@ -167,3 +167,27 @@ for k in subject_class_data:
                       subject_id = Subject.objects.get(subject_id=i['name_code']),
                       semester_id = i['semester_id']
         ).save()
+with open("../data_processing/dummy_data/KHDL15A_score.json", encoding='utf-8') as f:
+    data = json.load(f)
+    for i in data:
+        s = Student.objects.get(student_id=i)
+        for j in data[i][:2]:
+            subject = Subject.objects.get(subject_name=j['subject_name'].strip())
+            s.subjects.add(subject)
+            Subject_student(student_id=s, subject_id=subject, score_10=j['score_10']).save()
+with open("../data_processing/dummy_data/KHDL16A_score.json", encoding='utf-8') as f:
+    data = json.load(f)
+    for i in data:
+        s = Student.objects.get(student_id=i)
+        for j in data[i][:2]:
+            subject = Subject.objects.get(subject_name=j['subject_name'].strip())
+            s.subjects.add(subject)
+            Subject_student(student_id=s, subject_id=subject, score_10=j['score_10']).save()
+with open("../data_processing/dummy_data/KHMT13A_score.json", encoding='utf-8') as f:
+    data = json.load(f)
+    for i in data:
+        s = Student.objects.get(student_id=i)
+        for j in data[i][:2]:
+            subject = Subject.objects.get(subject_name=j['subject_name'].strip())
+            s.subjects.add(subject)
+            Subject_student(student_id=s, subject_id=subject, score_10=j['score_10']).save()
