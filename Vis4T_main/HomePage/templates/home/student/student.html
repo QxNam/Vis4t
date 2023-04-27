@@ -21,17 +21,17 @@
                 <div class="row">
                     <div class="col-6" style="height:50%; padding-right: 5px;">
                         <div class="wrap-detail-student">
-                            <div class="rank-in-class score-in-class">
-                                <p>Điểm 4</p>
-                                <div>{{student.score_4}} <span style="padding: 0 5px;">/</span> {{student.score_10}} <span style="padding: 0 5px;">/</span> {{student.score_char}}</div>
+                            <div class="rank-in-class student-score10">
+                                <p>Điểm 10</p>
+                                <div>{{student.score_10}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6" style="height:50%;  padding-left: 5px;">
                         <div class="wrap-detail-student">
-                            <div class="rank-in-class">
-                                <p>Điểm 10</p>
-                                <div class="rank">{{student.rank}}</div>
+                            <div class="rank-in-class student-score4">
+                                <p>Điểm 4</p>
+                                <div class="rank">{{student.score_4}}</div>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="wrap-detail-student">
                             <div class="rank-in-class">
                                 <p>Điểm chữ</p>
-                                <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
+                                <div class="student-scorechar">{{student.score_char}}</div>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="wrap-detail-student">
                             <div class="rank-in-class">
                                 <p>Học lực</p>
-                                <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
+                                <div class="student-rank">{{student.rank}}</div>
                             </div>
                         </div>
                     </div>
@@ -63,16 +63,22 @@
                         </div>
                         <div class="info-detail-student">
                             <div class="mssv">
-                                <div><label>Tên lớp: </label><span> {{student.student_id}}</span></div>
-                                <div><label>Chuyên nghành: </label><span> khoa hoc du lieu</span></div>
+                                <div class="student-id"><label>MSSV: </label><span> {{student.student_id}}</span></div>
+                                <div class="student-year"><label>Khóa: </label><span> Adding...</span></div>
                             </div>
                             <div class="mssv">
-                                <div><label>MSSV: </label><span> {{student.student_id}}</span></div>
-                                <div><label>Khóa: </label><span> {{student.student_gmail}}</span></div>
+                                <div class="class-name"><label>Tên lớp: </label><span> {{class.class_name}}</span></div>
+                                <div class="class-major"><label>Chuyên nghành: </label><span> {{class.class_major}}</span></div>
                             </div>
                             <div class="mssv">
-                                <div><label>Tình trạng tốt nghiệp: </label><span> {{student.student_id}}</span></div>
-                                <div><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
+                                <div class="student-active"><label>Tình trạng tốt nghiệp: </label><span> 
+                                    {% if student.is_active %}
+                                        Đã tốt nghiệp
+                                    {% else %}
+                                        Chưa tốt nghiệp
+                                    {% endif %}
+                                </span></div>
+                                <div class="student-gmail"><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
                             </div>
                         </div>
                     </div>
@@ -120,12 +126,15 @@
             student_data = student_jsondata[student_index];
             $('.dropdownStudent .btn span').text(student_data.student_name);
             $('.name-student h2').text(student_data.student_name);
-            $('.mssv div:nth-child(1) span').text(student_data.student_id);
-            $('.mssv div:nth-child(2) span').text(student_data.student_gmail);
-            $('.rank-in-class.score-in-class div').text(student_data.score_4 + ' / ' + student_data.score_10 + ' / ' + student_data.score_char);
-            $('.rank').text(student_data.rank);
+            $('.student-score10 div').text(student_data.score_10);
+            $('.student-score4 div').text(student_data.score_4);
+            $('.student-scorechar').text(student_data.score_char);
+            $('.student-rank').text(student_data.rank);
+            $('.student-id span').text(" " + student_data.student_id);
+            $('.student-active span').text(" " + student_data.is_active ? 'Đã tốt nghiệp' : 'Chưa tốt nghiệp');
+            $('.student-gmail span').text(" " + student_data.student_gmail);
             $('.student-ranking').text(student_data.ranking + ' / ' + student_jsondata.length);
-            $('.student-credit').text(student_data.passed_credit + ' / ' + document.currentScript.dataset.dataClassTotalCredit);
+            $('.student-credit').text(student_data.passed_credit + ' / ' + document.currentScript.dataset.classTotalCredit);
         }
 
         

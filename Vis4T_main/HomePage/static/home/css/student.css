@@ -1,0 +1,58 @@
+.wrap-detail-student {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(0 0 0 / 20%);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.rank-in-class {
+    border-radius: 8px;
+    height: 100px;
+    text-align: center;
+}
+
+
+
+.rank-in-class p {
+    font-size: 13px;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+    padding-bottom: 2px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.rank-in-class div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 33px;
+    font-weight: 500;
+    height: 85%;
+}
+.name-student {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mssv{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.mssv label{
+    font-size: 13px;
+    color: rgb(99, 99, 99);
+}
+.mssv span{
+    font-size: 15px;
+    color: black;
+    font-weight: 600;
+}
+.mssv div{
+    display: block;
+    width: 50%;
+}
