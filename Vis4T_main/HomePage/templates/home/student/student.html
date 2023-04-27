@@ -107,10 +107,9 @@
     {{student_list|json_script:"student-json"}}
 
 
-    <script data-class-total-credit="{{class.total_credit}}" data-student-credit="{{student.passed_credit}}">
-        function drawCreditRadialChart(student_credits) {
-            
-            total_credits = document.currentScript.dataset.classTotalCredit;
+    <script id = "student-script" data-class-total-credit="{{class.total_credit}}" data-student-credit="{{student.passed_credit}}">
+        function drawCreditRadialChart(student_credits, total_credits) {
+        var total_credits = $('#student-script').data('class-total-credit');
             var percentage = (student_credits / total_credits) * 100;
             var options = {
               series: [100, percentage],
@@ -142,9 +141,7 @@
               },
               labels: ['Tổng số tín chỉ', 'Tín chỉ đã học']
             };
-            if (typeof chart !== "undefined") {
-                chart.destroy();
-            }
+            $('.student-credit').empty();
             var chart = new ApexCharts(document.querySelector(".student-credit"), options);
             chart.render();
           }
@@ -161,18 +158,19 @@
             $('.student-id span').text(" " + student_data.student_id);
             $('.student-active span').text(" " + student_data.is_active ? 'Đã tốt nghiệp' : 'Chưa tốt nghiệp');
             $('.student-gmail span').text(" " + student_data.student_gmail);
+
+            
             drawCreditRadialChart(student_data.passed_credit);
         }
         let student_jsondata = JSON.parse($('#student-json').text());
         
-        drawCreditRadialChart(document.currentScript.dataset.studentCredit);
-
+        
         $('.dropdown-class').click(function(){
             let index = $(this).data('student');
             displayStudentDataOnIndex(index);
         });
 
-
+        drawCreditRadialChart(document.currentScript.dataset.studentCredit);
         
         
     </script>

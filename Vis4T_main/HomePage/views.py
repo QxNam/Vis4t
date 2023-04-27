@@ -57,6 +57,8 @@ class HomeView(LoginRequiredMixin, ListView):
         else:
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
+            
+            
         student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
         for i in range(len(student_list)):
             student_list[i]['ranking'] = i + 1
@@ -139,7 +141,16 @@ class TeacherDetail(APIView):
         }
         return JsonResponse(response, safe=False)
 
-
+class StudentDetail(APIView):
+    def get_object(self, student_id: str):
+        try:
+            return Student.objects.get(student_id=student_id)
+        except Student.DoesNotExist:
+            raise Http404
+    def get(self, request, student_id):
+        student = self.get_object(student_id)
+        student_serializer = StudentSerializer(student)
+        return JsonResponse(student_serializer.data, safe=False)
     
     
 @login_required(login_url='login')
