@@ -62,3 +62,44 @@ body{
     background-color: #f44336;
     border-color: #f44336;
 }
+
+
+.dropdown-menu-Teacher {
+    height: 150px;
+    overflow: scroll;
+}
+.wrap-title {
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    margin-bottom: 3px;
+    padding: 0;
+}
+.wrap-title p {
+    margin: 0;
+    padding-bottom: 5px;
+}
+.wrap-dropdown {
+    display: flex;
+    justify-content: center;
+}
+.wrap-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.group-info {
+    margin: 10px 3px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.group-info:first-child{
+    padding-top: 10px;
+}
+.group-info label{
+    color: rgba(0,0,0,.9);
+    font-size: 13px;
+}
+
+.group-info span{
+    font-size: 16px;
+    font-weight: 500;
+}

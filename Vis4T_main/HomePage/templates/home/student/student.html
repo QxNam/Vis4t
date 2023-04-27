@@ -65,13 +65,14 @@
                         <div class="info-detail-student">
                             <div class="mssv">
                                 <div class="student-id"><label>MSSV: </label><span> {{student.student_id}}</span></div>
-                                <div class="student-year"><label>Khóa: </label><span> Adding...</span></div>
-                            </div>
-                            <div class="mssv">
-                                <div class="class-name"><label>Tên lớp: </label><span> {{class.class_name}}</span></div>
                                 <div class="class-major"><label>Chuyên nghành: </label><span> {{class.class_major}}</span></div>
                             </div>
                             <div class="mssv">
+                                <div class="class-name"><label>Tên lớp: </label><span> {{class.class_name}}</span></div>
+                                <div class="student-gmail"><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
+                            </div>
+                            <div class="mssv">
+                                <div class="student-year"><label>Khóa: </label><span> Adding...</span></div>
                                 <div class="student-active"><label>Tình trạng tốt nghiệp: </label><span> 
                                     {% if student.is_active %}
                                         Đã tốt nghiệp
@@ -79,7 +80,6 @@
                                         Chưa tốt nghiệp
                                     {% endif %}
                                 </span></div>
-                                <div class="student-gmail"><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
                             </div>
                         </div>
                     </div>
@@ -88,8 +88,8 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding : 0">
             <div class="row" style="height: 100%; padding-top: 0;">
-                <div class="row" style="height: 100%; padding-right: 0;">
-                    <div class="col-12">
+                <div class="row" style="padding-right: 0;">
+                    <div class="col-12" style="padding-right: 0;">
                         <div class="wrap-detail-student wrap-box">
                             <div class="rank-in-class">
                                 <p>Số tín chỉ đã học</p>
