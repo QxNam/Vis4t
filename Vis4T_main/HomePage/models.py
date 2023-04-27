@@ -44,15 +44,11 @@ class Student(models.Model):
     rank = models.CharField(max_length=10) # học lực
     is_graduated = models.BooleanField(default=False)
     
-    subjects = models.ManyToManyField('Subject', through='Subject_student')
+    subjects = models.ManyToManyField('Subject')
     
     def __str__(self):
         return "{} - {} - {}".format(self.student_id, self.student_name, self.class_name)
 
-class Subject_student(models.Model):
-    student_id = models.ForeignKey('Student', on_delete=models.CASCADE)
-    subject_id = models.ForeignKey('Subject', on_delete=models.CASCADE)
-    score_10 = models.FloatField(null=True)
 class Subject_class(models.Model):
     subject_id = models.ForeignKey('Subject', on_delete=models.CASCADE)
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)    
@@ -64,5 +60,6 @@ class Subject(models.Model):
     subject_id = models.CharField(max_length=10, primary_key=True)
     subject_name = models.CharField(max_length=100)
     credit = models.IntegerField()
+    score_10 = models.FloatField(null=True)
     def __str__(self):
         return "{} - {}".format(self.subject_id, self.subject_name)

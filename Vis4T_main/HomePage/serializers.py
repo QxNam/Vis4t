@@ -17,4 +17,9 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = ['teacher_id', 'fullname', 'year_of_birth', 'academic_title', 'major', 'sex', 'phone_number']
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields = ['subject_name', 'score_10', 'credit']
     

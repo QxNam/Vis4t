@@ -141,7 +141,7 @@ class TeacherDetail(APIView):
         }
         return JsonResponse(response, safe=False)
 
-class StudentDetail(APIView):
+class StudentSubjectDetail(APIView):
     def get_object(self, student_id: str):
         try:
             return Student.objects.get(student_id=student_id)
@@ -149,8 +149,11 @@ class StudentDetail(APIView):
             raise Http404
     def get(self, request, student_id):
         student = self.get_object(student_id)
-        student_serializer = StudentSerializer(student)
-        return JsonResponse(student_serializer.data, safe=False)
+        subjects = student.subjects.all()
+        subject_serializer = SubjectSerializer(subjects, many=True)
+        return JsonResponse(subject_serializer.data, safe=False)
+            
+        
     
     
 @login_required(login_url='login')
