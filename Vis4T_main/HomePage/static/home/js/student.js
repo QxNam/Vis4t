@@ -16,7 +16,7 @@ function drawCreditRadialChart(student_credits, total_credits) {
                 value: {
                     fontSize: '16px',
                     formatter: function (val) {
-                        return val*total_credits/100;
+                        return Math.round(val*total_credits/100);
                     }
                 },
                 total: {
