@@ -88,19 +88,11 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding : 0">
             <div class="row" style="height: 100%; padding-top: 0;">
                 <div class="row" style="height: 100%; padding-right: 0;">
-                    <div class="col-12" style="height: calc(50% - 5px); margin-bottom: 5px; padding-right: 0px;">
-                        <div class="wrap-detail-student">
-                            <div class="rank-in-class">
-                                <p>Thứ hạng theo lớp</p>
-                                <div class="student-ranking">{{student.ranking}} <span style="padding: 0 10px;">/</span> {{student_list | length}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12" style="height: calc(50% - 5px); margin-top: 5px;  padding-right: 0px;">
-                        <div class="wrap-detail-student">
+                    <div class="col-12">
+                        <div class="wrap-detail-student wrap-box">
                             <div class="rank-in-class">
                                 <p>Số tín chỉ đã học</p>
-                                <div class="student-credit">{{student.passed_credit}} <span style="padding: 0 10px;">/</span> {{class.total_credit}}</div>
+                                <div class="student-credit"></div>
                             </div>
                         </div>
                     </div>
@@ -116,11 +108,42 @@
 
 
     <script data-class-total-credit="{{class.total_credit}}">
-        let student_jsondata = JSON.parse($('#student-json').text());
-        $('.dropdown-class').click(function(){
-            let index = $(this).data('student');
-            displayStudentDataOnIndex(index);
-        });
+        function drawCreditChart(student_credits, total_credits) {
+            var percentage = (student_credits / total_credits) * 100;
+            var options = {
+              series: [100, percentage],
+              chart: {
+                height: 340,
+                type: 'radialBar'
+              },
+              plotOptions: {
+                radialBar: {
+                  dataLabels: {
+                    name: {
+                      fontSize: '22px'
+                    },
+                    value: {
+                        fontSize: '16px',
+                        formatter: function (val) {
+                            return val*total_credits/100;
+                        }
+                    },
+                    total: {
+                      show: true,
+                      label: 'Tổng số tín chỉ',
+                      formatter: function (_) {
+                        return total_credits;
+                      }
+                    }
+                  }
+                }
+              },
+              labels: ['Tổng số tín chỉ', 'Tín chỉ đã học']
+            };
+            var chart = new ApexCharts(document.querySelector(".student-credit"), options);
+            chart.render();
+          }
+          
 
         function displayStudentDataOnIndex(student_index){
             student_data = student_jsondata[student_index];
@@ -137,6 +160,15 @@
             $('.student-credit').text(student_data.passed_credit + ' / ' + document.currentScript.dataset.classTotalCredit);
         }
 
+        let student_jsondata = JSON.parse($('#student-json').text());
+        $('.dropdown-class').click(function(){
+            let index = $(this).data('student');
+            displayStudentDataOnIndex(index);
+        });
+
+        drawCreditChart(100, document.currentScript.dataset.classTotalCredit);
+
+        
         
     </script>
     <script url></script>
