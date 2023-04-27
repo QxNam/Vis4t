@@ -7,32 +7,6 @@
 </div>
 <script>
     function render_box_plot(data, class_name){
-        var {score10_data} = data.data;
-        var options = {
-          series: [
-          {
-            name: 'box',
-            type: 'boxPlot',
-            data: [
-                {
-                    x: 'Điểm 10',
-                    y: Object.keys(score10_data)
-                }
-            ]
-          },
-          {
-            name: 'outlier',
-            type: 'scatter',
-            data: [
-                {
-                    x: 'Điểm 10',
-                    y: Object.values(score10_data)
-                }
-            ]
-          }
-        ]}
-        const chart = new ApexCharts(document.querySelector("#myBoxPlot"), options);
-
-        chart.render();
+        
     }
 </script>
