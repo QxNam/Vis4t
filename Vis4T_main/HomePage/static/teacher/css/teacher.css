@@ -103,3 +103,25 @@ body{
     font-size: 16px;
     font-weight: 500;
 }
+
+
+.wrap-update-info-teacher {
+    background-color: #e7ecf0;
+    padding-left: 280px;
+}
+.content {
+    padding-top: 100px;
+}
+
+.input-update {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: calc(100% - 30px);
+}
+
+.text-secondary label {
+    margin-left: -30px;
+    pointer-events: none;
+    cursor: pointer;
+}
