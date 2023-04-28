@@ -43,7 +43,7 @@ khdl16a = University_class(
     class_name = 'KHDL16A',
     teacher = t1,
     number_of_student = 60,
-    class_major = 'Khoa học dữ liệu',
+    class_major = 'Khoa Học Dữ Liệu',
     total_semester = 9,
     total_credit = 156
 )
@@ -53,7 +53,7 @@ khdl15a = University_class(
     class_name = 'KHDL15A',
     teacher = t2,
     number_of_student = 40,
-    class_major = 'Khoa học máy tính', 
+    class_major = 'Khoa Học Dữ Liệu', 
     total_semester = 8,
     total_credit = 146
 )
@@ -63,7 +63,7 @@ khmt13a = University_class(
     class_name = 'KHMT13A',
     teacher = t2,
     number_of_student = 40,
-    class_major = 'Khoa học máy tính',
+    class_major = 'Khoa Học Máy Tính',
     total_semester = 8,
     total_credit = 148
 )
@@ -73,7 +73,7 @@ khmt14a = University_class(
     class_name = 'KHMT14A',
     teacher = t1,
     number_of_student = 72,
-    class_major = 'Khoa học máy tính',
+    class_major = 'Khoa Học Máy Tính',
     total_semester = 8,
     total_credit = 128,
     is_active = False
