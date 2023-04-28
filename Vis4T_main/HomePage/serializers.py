@@ -21,5 +21,5 @@ class TeacherSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
-        fields = ['subject_name', 'score_10', 'credit']
+        fields = '__all__'
     

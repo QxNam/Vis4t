@@ -1,129 +1,108 @@
+
 <div class="my-bar-chart-student">
     
 </div>
-<script>
-    var options = {
-        series: [
-        {
-          name: 'Actual',
-          data: [
-            {
-              x: '2011',
-              y: 12,
-              goals: [
+<script id='student-bar-script' data-student-detail="{% url 'student_subject_api' %}" data-student-id="{{student.student_id}}">
+  function renderStudentDetailBarChart(student_id) {
+    $('.my-bar-chart-student').empty();
+    $.ajax({
+        url: $('#student-bar-script').attr('data-student-detail') + '?student_id=' + student_id,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            const chartData = data.map(entry => ({
+                x: entry["subject__subject_name"],
+                y: entry.score_10,
+            }));
+            const options = {
+                series: [{
+                    name: "Điểm theo thang 10",
+                    data: chartData
+                }],
+                chart: {
+                    height: 400,
+                    type: "bar",
+                    toolbar: {
+                      show: !0,
+                    },
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: "30%",
+                        borderRadius: 3,
+                    }
+                },
+                title:{
+                  text: "ĐIỂM TỔNG KẾT CÁC MÔN HỌC THEO THANG 10",
+                  align: 'center',
+                  style: {
+                    fontSize:  '25px',
+                    fontFamily: 'fangsong',
+                  }
+                },
+                xaxis: {
+                  title: {
+                      floating: true,
+                      style: {
+                          fontSize: "20px",
+                          fontFamily: "fangsong",
+                      },
+                  },
+                  tickAmount: 15,
+                  labels: {
+                      offsetX: 0,
+                      offsetY: 0,
+                  },
+                },
+                yaxis: {
+                    title: {
+                        floating: true,
+                        style: {
+                            fontSize: "15px",
+                            fontFamily: "fangsong",
+                        },
+                    },
+                    labels: {
+                        align: "center",
+                        tickAmount: 6,
+                        max: 10,
+                    },
+                },
+                colors: ["#00E396"],
+                dataLabels: {
+                    enabled: false,
+                    style:{
+                      colors: ['#2196F3']
+                    }
+                },
+                responsive: [
                 {
-                  name: 'Expected',
-                  value: 14,
-                  strokeWidth: 2,
-                  strokeDashArray: 2,
-                  strokeColor: '#775DD0'
-                }
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300,
+                            height: 300,
+                        },
+                        legend: {
+                            position: "bottom",
+                            show: !1,
+                        },
+                    },
+                },
               ]
-            },
-            {
-              x: '2012',
-              y: 44,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: 54,
-                  strokeWidth: 5,
-                  strokeHeight: 10,
-                  strokeColor: '#775DD0'
-                }
-              ]
-            },
-            {
-              x: '2013',
-              y: 54,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: 52,
-                  strokeWidth: 10,
-                  strokeHeight: 0,
-                  strokeLineCap: 'round',
-                  strokeColor: '#775DD0'
-                }
-              ]
-            },
-            {
-              x: '2014',
-              y: 66,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: 61,
-                  strokeWidth: 10,
-                  strokeHeight: 0,
-                  strokeLineCap: 'round',
-                  strokeColor: '#775DD0'
-                }
-              ]
-            },
-            {
-              x: '2015',
-              y: 81,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: 66,
-                  strokeWidth: 10,
-                  strokeHeight: 0,
-                  strokeLineCap: 'round',
-                  strokeColor: '#775DD0'
-                }
-              ]
-            },
-            {
-              x: '2016',
-              y: 67,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: 70,
-                  strokeWidth: 5,
-                  strokeHeight: 10,
-                  strokeColor: '#775DD0'
-                }
-              ]
-            }
-          ]
-        }
-      ],
-        chart: {
-        height: 350,
-        type: 'bar'
-      },
-      plotOptions: {
-        bar: {
-            horizontal: !1,
-            columnWidth: "20%"
-        }
-      },
-      colors: ['#00E396'],
-      dataLabels: {
-        formatter: function(val, opt) {
-          const goals =
-            opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex]
-              .goals
-      
-          if (goals && goals.length) {
-            return `${val} / ${goals[0].value}`
-          }
-          return val
-        }
-      },
-      legend: {
-        show: true,
-        showForSingleSeries: true,
-        customLegendItems: ['Actual', 'Expected'],
-        markers: {
-          fillColors: ['#00E396', '#775DD0']
-        }
-      }
-      };
+            };
 
-      var chart = new ApexCharts(document.querySelector(".my-bar-chart-student"), options);
-      chart.render();
+            const chart = new ApexCharts(
+                document.querySelector(".my-bar-chart-student"),
+                options
+            );
+            chart.render();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
+        }
+    });
+  }
+  renderStudentDetailBarChart($('#student-bar-script').attr('data-student-id'));
 </script>

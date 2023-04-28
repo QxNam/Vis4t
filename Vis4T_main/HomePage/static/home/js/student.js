@@ -51,6 +51,7 @@ function drawCreditRadialChart(student_credits, total_credits) {
 
         
         drawCreditRadialChart(student_data.passed_credit);
+        renderStudentDetailBarChart(student_data.student_id);
     }
     let student_jsondata = JSON.parse($('#student-json').text());
     

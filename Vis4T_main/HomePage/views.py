@@ -4,8 +4,6 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_protect
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -99,6 +97,8 @@ class TeacherUpdate(LoginRequiredMixin, ListView):
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         return context
+
+# API Views
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
@@ -162,11 +162,28 @@ class StudentSubjectDetail(APIView):
             return Student.objects.get(student_id=student_id)
         except Student.DoesNotExist:
             raise Http404
-    def get(self, request, student_id):
+    def get(self, request):
+        ENGLISH1 = "2111250"
+        ENGLISH2 = "2111300"
+        
+        student_id = request.query_params.get('student_id')
+        if not student_id:
+            raise Http404
         student = self.get_object(student_id)
-        subjects = student.subjects.all()
-        subject_serializer = SubjectSerializer(subjects, many=True)
-        return JsonResponse(subject_serializer.data, safe=False)
+        subjects = Subject_student.objects\
+            .filter(student = student)\
+            .exclude(subject_id = ENGLISH1)\
+            .exclude(subject_id = ENGLISH2)\
+            .values(
+                'subject__subject_name', 
+                'subject__subject_id',
+                'subject__credit',
+                'score_10'
+            )
+        subjects = subjects.exclude(score_10__isnull=True).order_by('-score_10')
+
+        res = list(subjects)
+        return JsonResponse(res, safe=False)
             
         
     
@@ -174,4 +191,4 @@ class StudentSubjectDetail(APIView):
 @login_required(login_url='login')
 @csrf_protect 
 def course_overview(request):
-    return render(request, './course/course_overview.html')
+    return render(request, './course/course_overview.html') 

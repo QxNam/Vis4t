@@ -192,7 +192,7 @@ for i in class_name:
                 subject_student = Subject_student(
                     student = s,
                     subject = subject,
-                    score_10 = j['score_10']
+                    score_10 = float(j['score_10'])
                 )
                 subject_student.save()
                 s.subjects.add(subject)
