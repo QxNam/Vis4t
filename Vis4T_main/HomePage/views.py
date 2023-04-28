@@ -85,7 +85,20 @@ class TeacherView(LoginRequiredMixin, ListView):
         
         context['cached_class_name'] = cache.get('class_name')
         return context
-
+class TeacherUpdate(LoginRequiredMixin, ListView):
+    model = Teacher
+    template_name = 'teacher/teacher_info_update.html'
+    context_object_name = 'teacher'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['cached_class_name'] = cache.get('class_name')
+        return context
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
