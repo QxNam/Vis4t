@@ -82,7 +82,7 @@ class TeacherView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['graduate_classes'] = University_class.objects.filter(teacher=self.request.user, is_active=False)
         context['undergraduate_classes'] = University_class.objects.filter(teacher=self.request.user, is_active=True)
-        
+        context['classes'] = context['undergraduate_classes']
         context['cached_class_name'] = cache.get('class_name')
         return context
 class TeacherUpdate(LoginRequiredMixin, ListView):
@@ -96,7 +96,7 @@ class TeacherUpdate(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         return context
 class ClassDetail(APIView):
