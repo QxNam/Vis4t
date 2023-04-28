@@ -152,7 +152,7 @@ subjects = []
 for k in subjects_data:
     r = Subject(
         subject_id = k['name_code'],
-        subject_name = k['name'],
+        subject_name = k['name'].strip(),
         credit = k['credit'],
     )
     subjects.append(r)
@@ -163,21 +163,37 @@ with open("../data_processing/dummy_data/subjects_class.json", 'r', encoding='ut
 for k in subject_class_data:
     class_ = University_class.objects.get(class_name=k)
     for i in subject_class_data[k]:
-        Subject_class(class_name = class_, 
-                      subject_id = Subject.objects.get(subject_id=i['name_code']),
-                      semester_id = i['semester_id']
-        ).save()
+        subject = Subject.objects.get(subject_id=i['name_code'])
+        Subject_class.objects.create(
+            class_name = class_, 
+            subject = Subject.objects.get(subject_id=i['name_code']),
+            semester_id = i['semester_id']
+        )
         
-class_name = ['KHMT14A', 'KHMT13A', 'KHDL16A', 'KHDL15A']
+class_name = ['KHMT13A', 'KHDL16A', 'KHDL15A']
 for i in class_name:
-    try:
-        with open(f"../data_processing/dummy_data/{i}_score.json", encoding='utf-8') as f:
-            data = json.load(f)
-            for i in data:
-                s = Student.objects.get(student_id=i)
-                for j in data[i]:
-                    subject = Subject.objects.get(subject_name=j['subject_name'].strip())
-                    subject.update(score_10 = j['score_10'])
-                    s.subjects.add(subject)
-    except:
-        pass
+    uc = University_class.objects.get(class_name=i)
+    with open(f"../data_processing/dummy_data/{i}_score.json", encoding='utf-8') as f:
+        data = json.load(f)
+        for i in data:
+            s = Student.objects.get(student_id=i)
+            for j in data[i]:
+                if j['score_10'] < 0:
+                    continue
+                subject_class = Subject_class.objects.filter(class_name=uc, subject__subject_name=j['subject_name'].strip()).first()
+                if subject_class is None:
+                    try:
+                        subject = Subject.objects.filter(subject_name__icontains=j['subject_name'].strip()).first()
+                    except:
+                        print(uc, j)
+                        continue
+                else:
+                    subject = subject_class.subject          
+                subject_student = Subject_student(
+                    student = s,
+                    subject = subject,
+                    score_10 = j['score_10']
+                )
+                subject_student.save()
+                s.subjects.add(subject)
+ 
