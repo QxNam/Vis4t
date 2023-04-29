@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 import json
 from django.contrib.auth.hashers import make_password
 import pandas as pd
-superuser = Teacher.objects.create_user(username='admin', password='admin', is_superuser=True, is_staff=True)
+superuser = Teacher.objects.create_user(email='admin@gmail.com', password='admin', is_superuser=True, is_staff=True)
 superuser.save()
 
 t1 = Teacher(
-    username='test',
+    email='test@gmail.com',
     password=make_password('test'),
     first_name = 'Trương',
     last_name = 'Vĩnh Linh',
@@ -24,7 +24,7 @@ t1 = Teacher(
 t1.save()
 
 t2 = Teacher(
-    username='test2',
+    email='test2@gmail.com',
     password=make_password('test2'),
     first_name = 'Nguyễn',
     last_name = 'Hữu Tình',

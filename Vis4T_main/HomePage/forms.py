@@ -5,7 +5,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={
             'class': 'input',
             'type': 'text',
-            'placeholder': 'Tài khoản *',
+            'placeholder': 'Gmail *',
             'autofocus': True,
             'required': 'required'
         })
