@@ -1,108 +1,107 @@
 
-<div class="my-bar-chart-student">
-    
-</div>
 <script id='student-bar-script' data-student-detail="{% url 'student_subject_api' %}" data-student-id="{{student.student_id}}">
-  function renderStudentDetailBarChart(student_id) {
-    $('.my-bar-chart-student').empty();
-    $.ajax({
-        url: $('#student-bar-script').attr('data-student-detail') + '?student_id=' + student_id,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            const chartData = data.map(entry => ({
-                x: entry["subject__subject_name"],
-                y: entry.score_10,
-            }));
-            const options = {
-                series: [{
-                    name: "Điểm theo thang 10",
-                    data: chartData
-                }],
-                chart: {
-                    height: 400,
-                    type: "bar",
-                    toolbar: {
-                      show: !0,
-                    },
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: "30%",
-                        borderRadius: 3,
-                    }
-                },
-                title:{
-                  text: "ĐIỂM TỔNG KẾT CÁC MÔN HỌC THEO THANG 10",
-                  align: 'center',
-                  style: {
-                    fontSize:  '25px',
-                    fontFamily: 'fangsong',
-                  }
-                },
-                xaxis: {
-                  title: {
-                      floating: true,
-                      style: {
-                          fontSize: "20px",
-                          fontFamily: "fangsong",
+    function renderStudentDetailBarChart(student_id) {
+      $('.my-bar-chart-student').empty();
+      $.ajax({
+          url: $('#student-bar-script').attr('data-student-detail') + '?student_id=' + student_id,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+              var {subject_score, english_score} = data;
+              const chartData = subject_score.map(entry => ({
+                  x: entry["subject__subject_name"],
+                  y: entry.score_10,
+              }));
+              const options = {
+                  series: [{
+                      name: "Điểm theo thang 10",
+                      data: chartData
+                  }],
+                  chart: {
+                      height: 400,
+                      type: "bar",
+                      toolbar: {
+                        show: !0,
                       },
                   },
-                  tickAmount: 15,
-                  labels: {
-                      offsetX: 0,
-                      offsetY: 0,
+                  plotOptions: {
+                      bar: {
+                          horizontal: false,
+                          columnWidth: "30%",
+                          borderRadius: 3,
+                      }
                   },
-                },
-                yaxis: {
+                  title:{
+                    text: "ĐIỂM TỔNG KẾT CÁC MÔN HỌC THEO THANG 10",
+                    align: 'center',
+                    style: {
+                      fontSize:  '25px',
+                      fontFamily: 'fangsong',
+                    }
+                  },
+                  xaxis: {
                     title: {
                         floating: true,
                         style: {
-                            fontSize: "15px",
+                            fontSize: "20px",
                             fontFamily: "fangsong",
                         },
                     },
+                    tickAmount: 15,
                     labels: {
-                        align: "center",
-                        tickAmount: 6,
-                        max: 10,
+                        offsetX: 0,
+                        offsetY: 0,
                     },
-                },
-                colors: ["#00E396"],
-                dataLabels: {
-                    enabled: false,
-                    style:{
-                      colors: ['#2196F3']
-                    }
-                },
-                responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 300,
-                            height: 300,
-                        },
-                        legend: {
-                            position: "bottom",
-                            show: !1,
-                        },
-                    },
-                },
-              ]
-            };
-
-            const chart = new ApexCharts(
-                document.querySelector(".my-bar-chart-student"),
-                options
-            );
-            chart.render();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
-        }
-    });
-  }
-  renderStudentDetailBarChart($('#student-bar-script').attr('data-student-id'));
-</script>
+                  },
+                  yaxis: {
+                      title: {
+                          floating: true,
+                          style: {
+                              fontSize: "15px",
+                              fontFamily: "fangsong",
+                          },
+                      },
+                      labels: {
+                          align: "center",
+                          tickAmount: 6,
+                          max: 10,
+                      },
+                  },
+                  colors: ["#00E396"],
+                  dataLabels: {
+                      enabled: false,
+                      style:{
+                        colors: ['#2196F3']
+                      }
+                  },
+                  responsive: [
+                  {
+                      breakpoint: 480,
+                      options: {
+                          chart: {
+                              width: 300,
+                              height: 300,
+                          },
+                          legend: {
+                              position: "bottom",
+                              show: !1,
+                          },
+                      },
+                  },
+                ]
+              };
+              
+              const chart = new ApexCharts(
+                  document.querySelector(".my-bar-chart-student"),
+                  options
+              );
+              chart.render();
+              
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
+          }
+      });
+    }
+    renderStudentDetailBarChart($('#student-bar-script').attr('data-student-id'));
+  </script>

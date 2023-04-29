@@ -72,7 +72,7 @@
                                 <div class="student-gmail"><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
                             </div>
                             <div class="mssv">
-                                <div class="student-year"><label>Khóa: </label><span> Adding...</span></div>
+                                <div><label>Điểm Toeic: </label><span id="toeic-score"> </span></div>
                                 <div class="student-active"><label>Tình trạng tốt nghiệp: </label><span> 
                                     {% if student.is_active %}
                                         Đã tốt nghiệp
@@ -100,16 +100,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-12" style="padding : 0px; margin-top: 10px;"> 
-            <div class="wrap-box">
-                {% include './bar_chart_student.html' %}
-            </div>
-        </div> 
+        <div class="col-12" style="padding : 0px; margin-top: 10px;"><div class="wrap-box"><div class="my-bar-chart-student"></div></div></div> 
     </div>
     
     {{student_list|json_script:"student-json"}}
 
-
+    {% include './bar_chart_student.html' %}
+    
     <script 
         src="{% static 'home/js/student.js' %}"
         id="student-script" 

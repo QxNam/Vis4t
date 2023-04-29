@@ -1,3 +1,5 @@
+
+
 function drawCreditRadialChart(student_credits, total_credits) {
     var total_credits = $('#student-script').data('class-total-credit');
         var percentage = (student_credits / total_credits) * 100;

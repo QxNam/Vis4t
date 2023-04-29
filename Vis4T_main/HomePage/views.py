@@ -1,17 +1,20 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.core.cache import cache
+from django.db.models import Q
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from django.core.cache import cache
-from django.views.decorators.csrf import csrf_protect
-from rest_framework.views import APIView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic.list import ListView
-from .forms import LoginForm
+from rest_framework.views import APIView
+
+from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
+
 # Create your views here.
     
 class Login(LoginView):
@@ -96,6 +99,7 @@ class TeacherUpdate(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
+        # context['form'] = UpdateForm()
         return context
 
 # API Views
@@ -165,7 +169,7 @@ class StudentSubjectDetail(APIView):
     def get(self, request):
         ENGLISH1 = "2111250"
         ENGLISH2 = "2111300"
-        
+        TOEIC = '2199450'
         student_id = request.query_params.get('student_id')
         if not student_id:
             raise Http404
@@ -174,6 +178,7 @@ class StudentSubjectDetail(APIView):
             .filter(student = student)\
             .exclude(subject_id = ENGLISH1)\
             .exclude(subject_id = ENGLISH2)\
+            .exclude(subject_id = TOEIC)\
             .values(
                 'subject__subject_name', 
                 'subject__subject_id',
@@ -181,8 +186,11 @@ class StudentSubjectDetail(APIView):
                 'score_10'
             )
         subjects = subjects.exclude(score_10__isnull=True).order_by('-score_10')
-
-        res = list(subjects)
+        english = Subject_student.objects.filter(student = student).filter(Q(subject_id = ENGLISH1) | Q(subject_id = ENGLISH2) | Q(subject_id = TOEIC)).values()
+        res = {
+            'subject_score':list(subjects),
+            'english_score':list(english)
+        }
         return JsonResponse(res, safe=False)
             
         
