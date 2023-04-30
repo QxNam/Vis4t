@@ -1,0 +1,74 @@
+<figure class="highcharts-figure">
+    <div id="myHistChart"></div>
+    <p class="highcharts-description">
+        This chart shows how data labels can be added to the data series. This
+        can increase readability and comprehension for small datasets.
+    </p>
+</figure>
+
+<script>
+    function render_hist_chart(data){
+        var { score10_data, score4_data } = data.data;
+        
+        var rangeBoundaries = [0, 5, 6, 7, 8, 10];
+
+        var rangeFreq = {
+            "0-5": 0,
+            "5-6": 0,
+            "6-7": 0,
+            "7-8": 0,
+            "8-10": 0
+        };
+        for (var key in data) {
+            var score = data[key];
+            if (score >= rangeBoundaries[0] && score < rangeBoundaries[1]) {
+                rangeFreq["0-5"]++;
+            } else if (score >= rangeBoundaries[1] && score < rangeBoundaries[2]) {
+                rangeFreq["5-6"]++;
+            } else if (score >= rangeBoundaries[2] && score < rangeBoundaries[3]) {
+                rangeFreq["6-7"]++;
+            } else if (score >= rangeBoundaries[3] && score < rangeBoundaries[4]) {
+                rangeFreq["7-8"]++;
+            } else if (score >= rangeBoundaries[4] && score <= rangeBoundaries[5]) {
+                rangeFreq["8-10"]++;
+            }
+        }
+
+        // Convert the range frequencies into an array of values
+        var values = Object.values(rangeFreq);
+
+        // Set up the histogram options
+        var options = {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Histogram of Scores by Range'
+            },
+            xAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Students'
+                }
+            },
+            yAxis: {
+                categories: Object.keys(rangeFreq),
+                crosshair: true,
+                title: {
+                    text: 'Score Range'
+                }
+            },
+            
+            series: [{
+                name: 'Number of Students',
+                binwidth: 1,
+                data: values
+            }]
+        };
+
+        // Draw the chart
+        Highcharts.chart('myHistChart', options);
+    }
+    
+
+</script>
