@@ -13,7 +13,7 @@
     }
 }
 .main{
-    background-color: #e7ecf0;
+    background-color: #f5f7f9;
     padding-left: 280px;
 }
 
@@ -272,4 +272,5 @@
     border-radius: 20px;
     background-color:  #ffffff;
     overflow: hidden;   
+    border-color: #ffffff;
 }
