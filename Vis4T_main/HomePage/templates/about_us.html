@@ -1,0 +1,56 @@
+{% extends './layout.html'%} 
+{% block main_body %} 
+{% load static %}
+
+
+<div class="main">
+    <div class="container">
+        <div class="main_body">
+            <link rel="stylesheet" href="{% static 'about_us/css/about_us.css' %}" />
+            <div class="responsive-container-block bigContainer" style="padding-top: 5%;">
+                <div class="responsive-container-block Container">
+                    <img class="mainImg" src="{% static 'about_us/images/image_01.jpg' %}" />
+                    <div class="allText aboveText">
+                        <p class="text-blk headingText">
+                            Our Mission
+                        </p>
+                        <p class="text-blk subHeadingText">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <p class="text-blk description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo in ullamcorper quis vestibulum ligula elementum ut.
+                        </p>
+                        <a href="https://www.facebook.com/aiclub.iuh/">
+                            <button class="explore">
+                                Facebook của chúng tôi
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="responsive-container-block Container bottomContainer">
+                    <img class="mainImg" src="{% static 'about_us/images/image_02.jpg' %}" />
+                    <div class="allText bottomText">
+                        <p class="text-blk headingText">
+                            Our Vision
+                        </p>
+                        <p class="text-blk subHeadingText">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <p class="text-blk description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo in ullamcorper quis vestibulum ligula elementum ut.
+                        </p>
+                        <a href="https://www.facebook.com/groups/538890610129932">
+                            <button class="explore">
+                                Tham gia group của chúng tôi
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

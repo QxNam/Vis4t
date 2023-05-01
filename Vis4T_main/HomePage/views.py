@@ -102,6 +102,24 @@ class TeacherUpdate(LoginRequiredMixin, ListView):
         # context['form'] = UpdateForm()
         return context
 
+class AboutUS(LoginRequiredMixin, ListView):
+    model = Teacher
+    template_name = 'about_us.html'
+    
+    context_object_name = 'teacher'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
+        return context
+    
+    
+
 # API Views
 class ClassDetail(APIView):
     def get_object(self, pk: str):

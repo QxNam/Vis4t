@@ -20,4 +20,6 @@ urlpatterns = format_suffix_patterns([
     
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
     path('teacher/teacher_update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
+    
+    path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
 ])
