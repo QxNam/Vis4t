@@ -30,7 +30,55 @@
     justify-content: center;
     font-size: 33px;
     font-weight: 500;
-    height: 85%;
+    height: calc(100% + 10px);
+}
+.note-box p{
+    font-size: 13px;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+.wrap-icon-add-note {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 40px;
+    width: 100%;
+}
+.wrap-icon-add-note span{
+    font-size: 13px !important;
+    border: 1px solid rgb(0 0 0 / 20%);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+}
+.wrap-icon-add-note span:hover{
+    background-color: #e8e8ee;
+}
+.wrap-item-note {
+    height: 165px;
+    list-style: none;
+    overflow: scroll;
+    padding: 0px;
+    margin: 0;
+}
+.wrap-item-note li {
+    display: flex;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+}
+.wrap-item-note li:last-child {
+    border: none;
+}
+.wrap-item-note li span {
+    display:flex;
+    flex: 1;
+}
+.wrap-item-note li label {
+    padding: 2px 4px;
+    cursor: pointer;
 }
 .name-student {
     width: 100%;
