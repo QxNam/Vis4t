@@ -99,3 +99,13 @@ class Subject(models.Model):
     credit = models.IntegerField()
     def __str__(self):
         return "{} - {}".format(self.subject_id, self.subject_name)
+
+class Note_student(models.Model):
+    student = models.ForeignKey('Student', on_delete=models.CASCADE)
+    content = models.TextField()
+    name = models.DateTimeField(max_length=50)
+
+class Note_class(models.Model):
+    class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)
+    content = models.TextField()
+    name = models.DateTimeField(max_length=50)
