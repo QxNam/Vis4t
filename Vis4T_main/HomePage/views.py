@@ -117,13 +117,14 @@ class ClassDetail(APIView):
         student_ = Student.objects.filter(class_name=class_)
         student_serializer = StudentSerializer(student_, many=True)
         student_data = student_serializer.data
-        
+        score10_data = get_student_final_score(student_data)
         response = {
             'class_info': class_serializer.data, 
             'score_char_data': query_student_data_with_ordinal_data(student_data, 'score_char')['count'],
             'rank_data': query_student_data_with_ordinal_data(student_data, 'rank')['count'],
-            'score10_data': get_student_final_score(student_data),
-            'score4_data': get_student_final_score(student_data, 'score_4')
+            'score10_data': score10_data,
+            'score4_data': get_student_final_score(student_data, 'score_4'),
+            # 'kde_line_data': kde_line(score10_data, 0.1)
         }
         return JsonResponse({'data': response}, safe=False)
     
