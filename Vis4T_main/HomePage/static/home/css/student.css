@@ -105,3 +105,12 @@
     display: block;
     width: 40%;
 }
+
+.student-detail {
+
+    color: #016dd8;
+    font-size: 30px;
+    font-weight: 700;
+    /* background-color: #4d6fef; */
+    /* color: #4567ee; */
+}

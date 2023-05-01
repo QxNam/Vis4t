@@ -47,11 +47,10 @@
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4" >
-            
             <div class="col-12" style="padding-top: 10px;height: 100%;">
                 <div class="row" style="height: 100%">
                     <div class="col-6" style="height:50%; padding-bottom: 12px;">
-                        <div class="wrap-detail-student">
+                        <div class="wrap-detail-student student-detail">
                             <div class="rank-in-class student-score10">
                                 <p>Điểm 10</p>
                                 <div>{{student.score_10}}</div>
@@ -59,7 +58,7 @@
                         </div>
                     </div>
                     <div class="col-6" style="height:50%; padding-bottom: 12px;">
-                        <div class="wrap-detail-student">
+                        <div class="wrap-detail-student student-detail">
                             <div class="rank-in-class student-score4">
                                 <p>Điểm 4</p>
                                 <div class="rank">{{student.score_4}}</div>
@@ -67,7 +66,7 @@
                         </div>
                     </div>
                     <div class="col-6" style="height:50%; padding-top: 12px;">
-                        <div class="wrap-detail-student">
+                        <div class="wrap-detail-student student-detail">
                             <div class="rank-in-class">
                                 <p>Điểm chữ</p>
                                 <div class="student-scorechar">{{student.score_char}}</div>
@@ -75,7 +74,7 @@
                         </div>
                     </div>
                     <div class="col-6" style="height:50%; padding-top: 12px;">
-                        <div class="wrap-detail-student">
+                        <div class="wrap-detail-student student-detail">
                             <div class="rank-in-class">
                                 <p>Học lực</p>
                                 <div class="student-rank">{{student.rank}}</div>
@@ -92,71 +91,7 @@
                     <div class="col-12" style="padding-right: 0;">
                         <div class="wrap-detail-student wrap-box">
                             <div class="note-box">
-                                <p>Ghi chú cho giáo viên</p>
-                                <div class="col-12" style="position: relative;">
-                                        <div class="dropdownNote">
-                                            <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownNoteName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; width: 100%;">
-                                                <span>30/4/2023</span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-student" aria-labelledby="dropdownNoteName" style="width: 100%;">
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 1
-                                                </a>
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 2
-                                                </a>
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 3
-                                                </a>
-                                                
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 4
-                                                </a>
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 5
-                                                </a>
-                                                <a class="dropdown-item dropdown-class">
-                                                    s.student_name 6
-                                                </a>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="wrap-icon-add-note">
-                                    <span>
-                                        <label for="">Thêm</label>
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                </div>
-                                <div class="wrap-detail-student">
-                                    <ul class="wrap-item-note">
-                                        <li>
-                                            <span>note 1 hjdbsbfdsf akhbsdhjbasd kahbsd dsa hasbdabsd hasbdjsa dsakhbdla sadlfkb </span> 
-                                            <label>
-                                                <i class="fas fa-edit"></i>
-                                            </label>
-                                            <label>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <span>note 1 hjdbsbfdsf akhbsdhjbasd kahbsd dsa hasbdabsd hasbdjsa dsakhbdla sadlfkb </span> 
-                                            <label>
-                                                <i class="fas fa-edit"></i>
-                                            </label>
-                                            <label>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </label>
-                                        </li><li>
-                                            <span>note 1 hjdbsbfdsf akhbsdhjbasd kahbsd dsa hasbdabsd hasbdjsa dsakhbdla sadlfkb </span> 
-                                            <label>
-                                                <i class="fas fa-edit"></i>
-                                            </label>
-                                            <label>
-                                                <i class="fas fa-trash-alt"></i>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {% include './student-note.html' %}
                             </div>
                         </div>
                     </div>
