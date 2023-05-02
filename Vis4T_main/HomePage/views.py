@@ -50,7 +50,10 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
-        university_class = University_class.objects.get(class_name=class_name)
+        try:
+            university_class = University_class.objects.get(class_name=class_name)
+        except:
+            university_class = University_class.objects.filter(teacher=self.request.user).first()
         context['class'] = university_class
         cached_class_name = cache.get('class_name')
         if cached_class_name == class_name:
@@ -70,7 +73,20 @@ class HomeView(LoginRequiredMixin, ListView):
     
     def class_home(self):
         return self.render_to_response(self.get_context_data())   
-     
+class AddNewClass(LoginRequiredMixin, ListView):
+    model = Teacher
+    template_name = 'addClass/upload_file.html'
+    context_object_name = 'teacher'
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
+        # context['form'] = UpdateForm()
+        return context
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'

@@ -99,12 +99,16 @@
                         </ul>
 
                         <div class="list-group-item list-group-item-action py-2 ripple" style= "cursor: pointer;">
-                            <i class="fas fa-building fa-fw me-3"></i><span>Thêm lớp mới</span>
+                            <i class="fas fa-calendar fa-fw me-3"></i><span>Cập nhật điểm<span>
                         </div>
 
                         <div class="list-group-item list-group-item-action py-2 ripple" style= "cursor: pointer;">
-                            <i class="fas fa-calendar fa-fw me-3"></i><span>Cập nhật điểm<span>
+                            <i class="fas fa-building fa-fw me-3"></i>
+                            <a href="{% url 'new_class' %}" style="color: black; text-decoration: none;">
+                                <span>Thêm lớp mới</span>
+                            </a>
                         </div>
+
                         <div class="list-group-item list-group-item-action py-2 ripple" style= "cursor: pointer;">
                             <i class="fas fa-user-tie fa-fw me-3"></i>
                             <a href="{% url 'teacher' %}" style="color: black; text-decoration: none;">
