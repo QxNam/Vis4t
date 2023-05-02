@@ -101,15 +101,44 @@
             </div>
         </div>
         <div class="col-12" style="padding : 0px; margin-top: 10px;">
-            <div class="wrap-box">
-                <div class="col-5" style="padding-right: 0; height: 350px;">
+            <div class="row">
+                
+                <div class="col-3" style="height: 350px;">
                         <div class="wrap-detail-student wrap-box">
+                            <div class="row">
+                                <div class="rank-in-class">
+                                    <p>Tiến độ học tập</p>
+                                    <div class="student-credit"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div>
+
+                <div class="col-5">
+                    <div class="wrap-detail-student wrap-box">
+                        <div class="row">
                             <div class="rank-in-class">
-                                <p>Tiến độ học tập</p>
-                                <div class="student-credit"></div>
+                                <p>Điểm môn học</p>
+                            </div>
+                            {% include './student-subject-table.html' %}
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="wrap-detail-student wrap-box">
+                        <div class="row">
+                            <div class="rank-in-class">
+                                <!-- <figure class="highcharts-figure">
+                                    <div id="studentHist"></div>
+                                </figure> -->
                             </div>
                         </div>
+                        
                     </div>
+                </div>
             </div>
         </div> 
 
