@@ -8,7 +8,8 @@ for (var i = 0; i < student.length; i++) {
         "Điểm 4": student[i].score_4,
         "Điểm chữ": student[i].score_char,
         "Xếp hạng": student[i].rank,
-        "Số tín chỉ đã học xong": student[i].passed_credit
+        "Số tín chỉ đã học xong": student[i].passed_credit,
+        "Đã tốt nghiệp": student[i].is_graduated,
     })
 }
 var table = new Tabulator(".csv-table", {
@@ -20,13 +21,14 @@ var table = new Tabulator(".csv-table", {
     columns: [{
         title: "BẢNG KẾT QUẢ HỌC TẬP",
         columns:[
-        {title: "Mã số", field: "Mã số", width: 80},
-        {title: "Họ tên", field: "Họ tên", width: 155},
-        {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right", width: 90},
-        {title: "Điểm 4", field: "Điểm 4", width: 90},
-        {title: "Điểm chữ", field: "Điểm chữ", width: 100},
-        {title: "Học lực", field: "Xếp hạng", width: 120},
-        {title: "Số tín chỉ", field: "Số tín chỉ đã học xong", width: 100},
+        {title: "Mã số", field: "Mã số"},
+        {title: "Họ tên", field: "Họ tên",width : 200},
+        {title: "Điểm 10", field: "Điểm 10", sorter:"number", align:"right"},
+        {title: "Điểm 4", field: "Điểm 4"},
+        {title: "Điểm chữ", field: "Điểm chữ"},
+        {title: "Học lực", field: "Xếp hạng"},
+        {title: "Số tín chỉ", field: "Số tín chỉ đã học xong"},
+        {title: "Tốt nghiệp", field: "Đã tốt nghiệp", hozAlign:"center", formatter:"tickCross", sorter:"boolean", editor:true},
         ]
     }],
   
