@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.views.generic.edit import UpdateView
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponse, JsonResponse
@@ -102,21 +103,31 @@ class TeacherView(LoginRequiredMixin, ListView):
         context['classes'] = context['undergraduate_classes']
         context['cached_class_name'] = cache.get('class_name')
         return context
-class TeacherUpdate(LoginRequiredMixin, ListView):
+class TeacherUpdate(LoginRequiredMixin, UpdateView):
     model = Teacher
+    form_class = TeacherForm
     template_name = 'teacher/teacher_info_update.html'
-    context_object_name = 'teacher'
+    success_url = reverse_lazy('teacher')
     
-    def get_queryset(self):
-        teacher = self.request.user
-        return teacher
+    def get_object(self):
+        return self.request.user
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
-        # context['form'] = UpdateForm()
         return context
+    def form_valid(self, form):
+        teacher = self.get_object()
+        
+        teacher.teacher_fullname = form.cleaned_data['teacher_fullname']
+        teacher.email = form.cleaned_data['email']
+        teacher.phone_number = form.cleaned_data['phone_number']
+        teacher.year_of_birth = form.cleaned_data['year_of_birth']
+        teacher.academic_title = form.cleaned_data['academic_title']
+        teacher.save()
+        
+        return super().form_valid(form)
 
 class AboutUS(LoginRequiredMixin, ListView):
     model = Teacher
