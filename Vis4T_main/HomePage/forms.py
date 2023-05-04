@@ -6,7 +6,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={
             'class': 'input',
             'type': 'text',
-            'placeholder': 'Gmail *',
+            'placeholder': 'Mã số giáo viên',
             'autofocus': True,
             'required': 'required'
         })
@@ -16,7 +16,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={
             'class': 'input password',
             'name': 'pass',
-            'placeholder': 'Mật khẩu *',
+            'placeholder': 'Mật khẩu',
             'required': 'required'
         }),
     )
@@ -28,7 +28,7 @@ class LoginForm(AuthenticationForm):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Teacher
-        fields = ['first_name', 'last_name' ,'email', 'year_of_birth', 'sex', 'academic_title', 'phone_number']
+        fields = ['teacher_fullname' ,'email', 'year_of_birth', 'sex', 'academic_title', 'phone_number']
     # teacher_name = forms.CharField(
     #     widget=forms.TextInput(attrs={
     #         'class': 'input-update',

@@ -1,26 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin, AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, email, password, **extra_fields):
-        if not email:
-            raise ValueError('Users require an email field')
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+    def _create_user(self, teacher_id, password, **extra_fields):
+        if not teacher_id:
+            raise ValueError('Users require an teacher_id field')
+        # teacher_id = self.normalize_email(teacher_id)
+        user = self.model(teacher_id=teacher_id, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, teacher_id, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(teacher_id, password, **extra_fields)
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, teacher_id, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -29,24 +29,27 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(teacher_id, password, **extra_fields)
 
-class Teacher(AbstractUser):
-    username = None
+class Teacher(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email address'), unique=True)
+    teacher_fullname = models.CharField(max_length=50)
     teacher_id = models.CharField(max_length = 8, unique=True)
     year_of_birth = models.IntegerField(null=True)
     academic_title = models.CharField(max_length=50)
     major = models.CharField(max_length=70)
     sex = models.CharField(max_length=3)
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=10, unique=True)
     
     objects = UserManager()
-    email = models.EmailField(_('email address'), unique=True)
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'teacher_id'
     REQUIRED_FIELDS = []
 
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    
     def __str__(self):
-        return "{} - {}".format(self.teacher_id, self.get_full_name())
+        return "{} - {}".format(self.teacher_id, self.teacher_fullname)
 class University_class(models.Model):
     class_name = models.CharField(max_length=10, primary_key=True)
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)

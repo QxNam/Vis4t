@@ -4,38 +4,32 @@ from django.contrib.auth.models import User
 import json
 from django.contrib.auth.hashers import make_password
 import pandas as pd
-superuser = Teacher.objects.create_user(email='admin@gmail.com', password='admin', is_superuser=True, is_staff=True)
+superuser = Teacher.objects.create_user(teacher_id='admin', password='admin', is_superuser=True)
 superuser.save()
 
 t1 = Teacher(
     email='test@gmail.com',
     password=make_password('test'),
-    first_name = 'Trương',
-    last_name = 'Vĩnh Linh',
-    teacher_id = "111",
+    teacher_id = "test",
+    teacher_fullname = 'Trương Vĩnh Linh',
     year_of_birth = 1979,
     academic_title = 'Thạc sĩ',
     major = 'Khoa học máy tính',
     sex = 'M',
     phone_number = "123456789",
-    is_staff = False,
-    is_active = True,
 )
 t1.save()
 
 t2 = Teacher(
     email='test2@gmail.com',
     password=make_password('test2'),
-    first_name = 'Nguyễn',
-    last_name = 'Hữu Tình',
-    teacher_id = "222",
+    teacher_fullname = 'Nguyễn Hữu Tình',
+    teacher_id = "test2",
     year_of_birth = 1970,
     academic_title = 'Thạc sĩ',
     major = 'Công nghệ thông tin',
     sex = 'M',
     phone_number = "234567891",
-    is_staff = False,
-    is_active = True,
 )
 t2.save()
 
