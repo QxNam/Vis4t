@@ -36,7 +36,6 @@ t2.save()
 khdl16a = University_class(
     class_name = 'KHDL16A',
     teacher = t1,
-    number_of_student = 60,
     class_major = 'Khoa Học Dữ Liệu',
     total_semester = 9,
     total_credit = 156
@@ -46,7 +45,6 @@ khdl16a.save()
 khdl15a = University_class(
     class_name = 'KHDL15A',
     teacher = t2,
-    number_of_student = 40,
     class_major = 'Khoa Học Dữ Liệu', 
     total_semester = 8,
     total_credit = 146
@@ -56,7 +54,6 @@ khdl15a.save()
 khmt13a = University_class(
     class_name = 'KHMT13A',
     teacher = t2,
-    number_of_student = 40,
     class_major = 'Khoa Học Máy Tính',
     total_semester = 8,
     total_credit = 148
@@ -89,6 +86,8 @@ with open('../data_processing/dummy_data/KHMT14A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    
+        
 
 with open('../data_processing/dummy_data/KHDL16A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
@@ -105,6 +104,8 @@ with open('../data_processing/dummy_data/KHDL16A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khdl16a.number_of_student = len(student_data)
+    khdl16a.save()
 
 with open('../data_processing/dummy_data/KHMT13A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
@@ -121,6 +122,8 @@ with open('../data_processing/dummy_data/KHMT13A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khmt13a.number_of_student = len(student_data)
+    khmt13a.save()
 
 
 
@@ -139,6 +142,8 @@ with open('../data_processing/dummy_data/KHDL15A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khdl15a.number_of_student = len(student_data)
+    khdl15a.save()
         
 with open("../data_processing/dummy_data/subjects.json", 'r', encoding='utf-8') as f:
     subjects_data = json.load(f)
