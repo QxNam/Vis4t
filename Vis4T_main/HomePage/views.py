@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.views.generic.edit import UpdateView
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponse, JsonResponse
@@ -75,7 +76,7 @@ class HomeView(LoginRequiredMixin, ListView):
         return self.render_to_response(self.get_context_data())   
 class AddNewClass(LoginRequiredMixin, ListView):
     model = Teacher
-    template_name = 'addClass/upload_file.html'
+    template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
     def get_queryset(self):
         teacher = self.request.user
@@ -85,8 +86,35 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
-        # context['form'] = UpdateForm()
         return context
+    
+    # def post(self, request, *args, **kwargs):
+    #     uploaded_file = request.FILES['file']
+    #     print(uploaded_file.name)
+        # if not uploaded_file.name.endswith('.csv') and not uploaded_file.name.endswith('.xls'):
+            # messages.error(request, 'File type is not supported.')
+        #     return redirect('new_class')
+        # print(uploaded_file.name)
+        # cleaned_data = prep(uploaded_file)
+        # class_name = request.POST.get('class_name')
+        # university_class = University_class.objects.create(name=class_name, teacher=request.user)
+        
+        # for row in cleaned_data:
+        #     student_id, student_name, score = row
+        #     # create new Student instance and save to the database
+        #     student = Student.objects.create(
+        #         id=student_id,
+        #         name=student_name,
+        #         score=score,
+        #         university_class=university_class,
+        #     )
+        # response_data = {
+        #     'status': 'success',
+        #     'message': 'New class added successfully.'
+        # }
+        
+        # Return a JSON response
+        # return JsonResponse(response_data)
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
@@ -102,21 +130,31 @@ class TeacherView(LoginRequiredMixin, ListView):
         context['classes'] = context['undergraduate_classes']
         context['cached_class_name'] = cache.get('class_name')
         return context
-class TeacherUpdate(LoginRequiredMixin, ListView):
+class TeacherUpdate(LoginRequiredMixin, UpdateView):
     model = Teacher
+    form_class = TeacherForm
     template_name = 'teacher/teacher_info_update.html'
-    context_object_name = 'teacher'
+    success_url = reverse_lazy('teacher')
     
-    def get_queryset(self):
-        teacher = self.request.user
-        return teacher
+    def get_object(self):
+        return self.request.user
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
-        # context['form'] = UpdateForm()
         return context
+    def form_valid(self, form):
+        teacher = self.get_object()
+        
+        teacher.teacher_fullname = form.cleaned_data['teacher_fullname']
+        
+        teacher.phone_number = form.cleaned_data['phone_number']
+        teacher.year_of_birth = form.cleaned_data['year_of_birth']
+        teacher.academic_title = form.cleaned_data['academic_title']
+        teacher.save()
+        
+        return super().form_valid(form)
 
 class AboutUS(LoginRequiredMixin, ListView):
     model = Teacher

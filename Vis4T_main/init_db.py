@@ -4,45 +4,38 @@ from django.contrib.auth.models import User
 import json
 from django.contrib.auth.hashers import make_password
 import pandas as pd
-superuser = Teacher.objects.create_user(email='admin@gmail.com', password='admin', is_superuser=True, is_staff=True)
+superuser = Teacher.objects.create_user(teacher_id='admin', password='admin', is_superuser=True)
 superuser.save()
 
 t1 = Teacher(
     email='test@gmail.com',
     password=make_password('test'),
-    first_name = 'Trương',
-    last_name = 'Vĩnh Linh',
-    teacher_id = "111",
+    teacher_id = "test",
+    teacher_fullname = 'Trương Vĩnh Linh',
     year_of_birth = 1979,
     academic_title = 'Thạc sĩ',
     major = 'Khoa học máy tính',
     sex = 'M',
     phone_number = "123456789",
-    is_staff = False,
-    is_active = True,
 )
 t1.save()
 
 t2 = Teacher(
     email='test2@gmail.com',
     password=make_password('test2'),
-    first_name = 'Nguyễn',
-    last_name = 'Hữu Tình',
-    teacher_id = "222",
+    teacher_fullname = 'Nguyễn Hữu Tình',
+    teacher_id = "test2",
     year_of_birth = 1970,
     academic_title = 'Thạc sĩ',
     major = 'Công nghệ thông tin',
     sex = 'M',
     phone_number = "234567891",
-    is_staff = False,
-    is_active = True,
 )
 t2.save()
 
 khdl16a = University_class(
     class_name = 'KHDL16A',
     teacher = t1,
-    number_of_student = 60,
     class_major = 'Khoa Học Dữ Liệu',
     total_semester = 9,
     total_credit = 156
@@ -52,7 +45,6 @@ khdl16a.save()
 khdl15a = University_class(
     class_name = 'KHDL15A',
     teacher = t2,
-    number_of_student = 40,
     class_major = 'Khoa Học Dữ Liệu', 
     total_semester = 8,
     total_credit = 146
@@ -62,7 +54,6 @@ khdl15a.save()
 khmt13a = University_class(
     class_name = 'KHMT13A',
     teacher = t2,
-    number_of_student = 40,
     class_major = 'Khoa Học Máy Tính',
     total_semester = 8,
     total_credit = 148
@@ -95,6 +86,8 @@ with open('../data_processing/dummy_data/KHMT14A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    
+        
 
 with open('../data_processing/dummy_data/KHDL16A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
@@ -111,6 +104,8 @@ with open('../data_processing/dummy_data/KHDL16A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khdl16a.number_of_student = len(student_data)
+    khdl16a.save()
 
 with open('../data_processing/dummy_data/KHMT13A.json', 'r', encoding='utf-8') as f:
     student_data = json.load(f)
@@ -127,6 +122,8 @@ with open('../data_processing/dummy_data/KHMT13A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khmt13a.number_of_student = len(student_data)
+    khmt13a.save()
 
 
 
@@ -145,6 +142,8 @@ with open('../data_processing/dummy_data/KHDL15A.json', 'r', encoding='utf-8') a
             rank = i['rank']
         )
         s.save()
+    khdl15a.number_of_student = len(student_data)
+    khdl15a.save()
         
 with open("../data_processing/dummy_data/subjects.json", 'r', encoding='utf-8') as f:
     subjects_data = json.load(f)
