@@ -75,8 +75,8 @@ class Student(models.Model):
     passed_credit = models.IntegerField()
     score_10 = models.FloatField()
     score_4 = models.FloatField()
-    score_char = models.CharField(max_length=2)
-    rank = models.CharField(max_length=10) # học lực
+    score_char = models.CharField(max_length=3)
+    rank = models.CharField(max_length=20) # học lực
     is_graduated = models.BooleanField(default=False)
     
     subjects = models.ManyToManyField('Subject', through='Subject_student', through_fields=('student', 'subject'))

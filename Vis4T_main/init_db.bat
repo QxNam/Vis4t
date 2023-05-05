@@ -1,5 +1,5 @@
 @echo off
-del db.sqlite3
+@REM del db.sqlite3
 del HomePage\migrations\0001_initial.py
 
 call migrate.bat

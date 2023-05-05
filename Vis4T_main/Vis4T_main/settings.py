@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from os import environ
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-omb*b4wxkx1@dlx10j*uv4y!7&7was&t8!fq_ibq39$0-nw3y9'
+SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,19 +77,31 @@ WSGI_APPLICATION = 'Vis4T_main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'railway',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'cc710HgCzASGNpCDlVvL',
-        # 'HOST': 'containers-us-west-92.railway.app',
-        # 'PORT': '5566',
+if environ.get('ENVIRONMENT') == 'PRODUCTION':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': environ['ENGINE'],
+            'NAME': environ['NAME'],
+            'USER': environ['USER'],
+            'PASSWORD': environ['PASSWORD'],
+            'HOST': environ['HOST'],
+            'PORT': environ['PORT'],
+            
+            # 'ENGINE': 'django.db.backends.postgresql',
+            # 'NAME': 'railway',
+            # 'USER': 'postgres',
+            # 'PASSWORD': 'cc710HgCzASGNpCDlVvL',
+            # 'HOST': 'containers-us-west-92.railway.app',
+            # 'PORT': '5566',
+        }
+    }
 
 
 # Password validation
