@@ -279,11 +279,3 @@ class StudentSubjectDetail(APIView):
             'english_score':list(english)
         }
         return JsonResponse(res, safe=False)
-            
-        
-    
-    
-@login_required(login_url='login')
-@csrf_protect 
-def course_overview(request):
-    return render(request, './course/course_overview.html') 
