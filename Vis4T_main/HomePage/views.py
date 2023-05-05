@@ -76,7 +76,7 @@ class HomeView(LoginRequiredMixin, ListView):
         return self.render_to_response(self.get_context_data())   
 class AddNewClass(LoginRequiredMixin, ListView):
     model = Teacher
-    template_name = 'addClass/upload_file.html'
+    template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
     def get_queryset(self):
         teacher = self.request.user
@@ -88,9 +88,9 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context['cached_class_name'] = cache.get('class_name')
         return context
     
-    def post(self, request, *args, **kwargs):
-        uploaded_file = request.FILES['file']
-        print(uploaded_file.name)
+    # def post(self, request, *args, **kwargs):
+    #     uploaded_file = request.FILES['file']
+    #     print(uploaded_file.name)
         # if not uploaded_file.name.endswith('.csv') and not uploaded_file.name.endswith('.xls'):
             # messages.error(request, 'File type is not supported.')
         #     return redirect('new_class')
@@ -108,13 +108,13 @@ class AddNewClass(LoginRequiredMixin, ListView):
         #         score=score,
         #         university_class=university_class,
         #     )
-        response_data = {
-            'status': 'success',
-            'message': 'New class added successfully.'
-        }
+        # response_data = {
+        #     'status': 'success',
+        #     'message': 'New class added successfully.'
+        # }
         
         # Return a JSON response
-        return JsonResponse(response_data)
+        # return JsonResponse(response_data)
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
