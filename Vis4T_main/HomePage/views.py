@@ -86,8 +86,35 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
-        # context['form'] = UpdateForm()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        uploaded_file = request.FILES['file']
+        print(uploaded_file.name)
+        # if not uploaded_file.name.endswith('.csv') and not uploaded_file.name.endswith('.xls'):
+            # messages.error(request, 'File type is not supported.')
+        #     return redirect('new_class')
+        # print(uploaded_file.name)
+        # cleaned_data = prep(uploaded_file)
+        # class_name = request.POST.get('class_name')
+        # university_class = University_class.objects.create(name=class_name, teacher=request.user)
+        
+        # for row in cleaned_data:
+        #     student_id, student_name, score = row
+        #     # create new Student instance and save to the database
+        #     student = Student.objects.create(
+        #         id=student_id,
+        #         name=student_name,
+        #         score=score,
+        #         university_class=university_class,
+        #     )
+        response_data = {
+            'status': 'success',
+            'message': 'New class added successfully.'
+        }
+        
+        # Return a JSON response
+        return JsonResponse(response_data)
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
