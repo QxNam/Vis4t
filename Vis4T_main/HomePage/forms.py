@@ -33,10 +33,10 @@ class TeacherForm(ModelForm):
         fields = ['teacher_fullname', 'email', 'phone_number', 'year_of_birth', 'academic_title']
         widgets = {
             'teacher_fullname': forms.TextInput(attrs={'class': 'input-update'}),
-            'email': forms.EmailInput(attrs={'class': 'input-update'}),
             'phone_number': forms.TextInput(attrs={'class': 'input-update'}),
             'year_of_birth': forms.TextInput(attrs={'class': 'input-update'}),
             'academic_title': forms.TextInput(attrs={'class': 'input-update'}),
+            # 'email': forms.EmailInput(attrs={'class': 'input-update'}),
             # 'sex': forms.RadioSelect(choices=(('M', 'Nam'), ('F', 'Nữ')))
         }
     

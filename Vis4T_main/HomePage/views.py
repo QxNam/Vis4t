@@ -121,7 +121,7 @@ class TeacherUpdate(LoginRequiredMixin, UpdateView):
         teacher = self.get_object()
         
         teacher.teacher_fullname = form.cleaned_data['teacher_fullname']
-        teacher.email = form.cleaned_data['email']
+        
         teacher.phone_number = form.cleaned_data['phone_number']
         teacher.year_of_birth = form.cleaned_data['year_of_birth']
         teacher.academic_title = form.cleaned_data['academic_title']
