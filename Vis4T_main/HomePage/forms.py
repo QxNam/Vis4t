@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Teacher
+from .models import Teacher, University_class
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 class LoginForm(AuthenticationForm):
@@ -39,4 +39,9 @@ class TeacherForm(ModelForm):
             # 'email': forms.EmailInput(attrs={'class': 'input-update'}),
             # 'sex': forms.RadioSelect(choices=(('M', 'Nam'), ('F', 'Nữ')))
         }
-    
+class UniversityClassForm(ModelForm):
+    class Meta:
+        model = University_class
+        fields = ['class_name', 'class_major', 'total_credit', 'total_semester']
+        widgets = {
+        }
