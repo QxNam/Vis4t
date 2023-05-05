@@ -88,6 +88,20 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context['cached_class_name'] = cache.get('class_name')
         return context
     
+class UploadFile(LoginRequiredMixin, ListView):
+    model = Teacher
+    template_name = 'addClass/upload_file.html'
+    context_object_name = 'teacher'
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
+        return context
+     
     # def post(self, request, *args, **kwargs):
     #     uploaded_file = request.FILES['file']
     #     print(uploaded_file.name)
