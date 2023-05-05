@@ -1,118 +1,45 @@
 {% extends '../layout.html'%} 
 {% block main_body %} 
 {% load static %}
+<link rel="stylesheet" href="{% static 'addClass/css/addClass.css' %}" />
 <div class="main">
-    <div class="container">
-        <div class="main_body">
-            <link rel="stylesheet" href="{% static 'addClass/css/addClass.css' %}" />
-            <div class="row gutters-sm">
-                <div id="FileUpload" style="padding-top: 20%;">
-                    <div class="wrapper">
-                        <form method="post" enctype="multipart/form-data" id="upload-form">
-                            {% csrf_token %}
-                            <div class="upload">
-                                <p>Drag file here or <span class="upload__button">Browse</span></p>
-                                <input type="file" id="file-input" name="file">
-                            </div>
-                            <div id="progress-container"></div>
-                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                        </form>
-                        <div id="message-container"></div>
-                    </div>
+    <div class="wrap-form-add-class">
+        <div class="form-box">
+            <h2>Thêm lớp mới</h2>
+            <form>
+                <div class="mb-3">
+                  <label for="form-input" class="form-label">Tên lớp *</label>
+                  <label for="form-input" class="form-text">( VD: KHDL16A, KHMT15BTT ... )</label>
+                  <input type="text" class="form-control" id="form-input">
                 </div>
-                
-                <script>
-                    const fileInput = document.getElementById('file-input');
-                    const progressContainer = document.getElementById('progress-container');
-                    const messageContainer = document.getElementById('message-container');
-                
-                    fileInput.addEventListener('change', (event) => {
-                        const file = event.target.files[0];
-                        if (file) {
-                            const uploadedFile = createUploadedFile(file.name);
-                            const progressBar = createProgressBar();
-                            progressContainer.appendChild(uploadedFile);
-                            uploadedFile.appendChild(progressBar);
-                        }
-                    });
-                
-                    function createUploadedFile(fileName) {
-                        const uploadedFile = document.createElement('div');
-                        uploadedFile.classList.add('uploaded');
-                        uploadedFile.innerHTML = `
-                            <i class="far fa-file-excel"></i>
-                            <div class="file">
-                                <div class="file__name">
-                                    <p>${fileName}</p>
-                                    <i class="fas fa-times"></i>
-                                </div>
-                            </div>
-                        `;
-                        return uploadedFile;
-                    }
-                
-                    function createProgressBar() {
-                        const progressBar = document.createElement('div');
-                        progressBar.classList.add('progress');
-                        progressBar.innerHTML = `
-                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"></div>
-                        `;
-                        return progressBar;
-                    }
-                
-                    document.getElementById('upload-form').addEventListener('submit', (event) => {
-                        event.preventDefault();
-                        const formData = new FormData();
-                        const file = fileInput.files[0];
-                        
-                        if (!file) {
-                            showMessage('Please select a file.', 'danger');
-                            return;
-                        }
-                        
-                        formData.append('file', file);
-                
-                        $.ajax({
-                            url: '/new_class/',
-                            type: 'POST',
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            xhr: function() {
-                                const xhr = new XMLHttpRequest();
-                                xhr.upload.addEventListener('progress', (event) => {
-                                    if (event.lengthComputable) {
-                                        const percentComplete = event.loaded / event.total * 100;
-                                        progressContainer.querySelector('.progress-bar').style.width = `${percentComplete}%`;
-                                    }
-                                });
-                                return xhr;
-                            },
-                            success: function(response) {
-                                showMessage('Data đã được upload thành công.', 'success');
-                                <!-- setTimeout(function() {
-                                    window.location.href = '/login/?next=/home/' + response.class_name + '/';
-                                }, 3000); -->
-                            },
-                            error: function(xhr, status, error) {
-                                showMessage('Data lỗi, hãy thử lại.', 'danger');
-                            },
-                            headers: {
-                                'X-CSRFToken': '{{ csrf_token }}'
-                            }
-                        });
-                    });
-                
-                    function showMessage(message, type) {
-                        const alert = document.createElement('div');
-                        alert.classList.add('alert', `alert-${type}`, 'mt-3');
-                        alert.textContent = message;
-                        messageContainer.appendChild(alert);
-                    }
-                </script>
-                
-            </div>
-            
+                <div class="mb-3">
+                    <label for="form-input" class="form-label">Chuyên ngành *</label>
+                    <label for="form-input" class="form-text">( VD: Khoa học dữ liệu, KHMT ... )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-input" class="form-label">Tổng số tín chỉ *</label>
+                    <label for="form-input" class="form-text">( Khoảng từ 100 đến 120 )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-input" class="form-label">Tổng số học kì *</label>
+                    <label for="form-input" class="form-text">( VD: 9 )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                <div class="wrap-btn">
+                    <button type="submit" class="btn btn-success btn-submit-form">Thêm
+                        <label>
+                            <i class="fas fa-plus"></i>
+                        </label>
+                    </button>
+                    <button type="submit" class="btn btn-danger">Hủy
+                        <label>
+                            <i class="fas fa-arrow-rotate-left"></i>
+                        </label>
+                    </button>
+                </div>
+              </form>
         </div>
     </div>
     

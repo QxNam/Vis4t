@@ -1,82 +1,36 @@
-body {
-    border-bottom: 0px solid black;
-    height: 450px;
+
+/*============================================*/
+.main {
+    background-color: #f5f7f9;
+    height: 100vh;
+    width: 100vw;
+}
+.wrap-form-add-class {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
-
-/* === Wrapper Styles === */
-#FileUpload {
-display: flex;
-justify-content: center;
+.form-box {
+    width: 50%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgb(0 0 0 / 20%);
 }
-.wrapper {
-margin: 30px;
-padding: 10px;
-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-border-radius: 10px;
-width: 415px;
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
 }
-
-/* === Upload Box === */
-.upload {
-margin: 10px;
-height: 85px;
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 5px;
-}
-.upload p {
-margin-top: 12px;
-line-height: 0;
-font-size: 22px;
-color: #0c3214;
-letter-spacing: 1.5px;
-}
-.upload__button {
-background-color: #e6f5e9;
-border-radius: 10px;
-padding: 0px 8px 0px 10px;
-}
-.upload__button:hover {
-cursor: pointer;
-opacity: 0.8;
+.wrap-btn {
+    display: flex;
+    justify-content: space-between;
 }
 
-/* === Uploaded Files === */
-.uploaded {
-width: 375px;
-margin: 10px;
-background-color: #e6f5e9;
-border-radius: 10px;
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: center;
-}
-.file {
-display: flex;
-flex-direction: column;
-}
-.file__name {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: baseline;
-width: 300px;
-line-height: 0;
-color: #0c3214;
-font-size: 18px;
-letter-spacing: 1.5px;
-}
-.fa-times:hover {
-cursor: pointer;
-opacity: 0.8;
-}
-.fa-file-pdf {
-padding: 15px;
-font-size: 40px;
-color: #0c3214;
+.btn-submit-form {
+    width: 50%;
+
 }
