@@ -1,16 +1,45 @@
 {% extends '../layout.html'%} 
 {% block main_body %} 
 {% load static %}
+<link rel="stylesheet" href="{% static 'addClass/css/addClass.css' %}" />
 <div class="main">
-    <div class="container">
-        <div class="main_body">
-            <link rel="stylesheet" href="{% static 'addClass/css/addClass.css' %}" />
-            <div class="row gutters-sm">
-                
-                
-                
-            </div>
-            
+    <div class="wrap-form-add-class">
+        <div class="form-box">
+            <h2>Thêm lớp mới</h2>
+            <form>
+                <div class="mb-3">
+                  <label for="form-input" class="form-label">Tên lớp *</label>
+                  <label for="form-input" class="form-text">( VD: KHDL16A, KHMT15BTT ... )</label>
+                  <input type="text" class="form-control" id="form-input">
+                </div>
+                <div class="mb-3">
+                    <label for="form-input" class="form-label">Chuyên ngành *</label>
+                    <label for="form-input" class="form-text">( VD: Khoa học dữ liệu, KHMT ... )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-input" class="form-label">Tổng số tín chỉ *</label>
+                    <label for="form-input" class="form-text">( Khoảng từ 100 đến 120 )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-input" class="form-label">Tổng số học kì *</label>
+                    <label for="form-input" class="form-text">( VD: 9 )</label>
+                    <input type="text" class="form-control" id="form-input">
+                  </div>
+                <div class="wrap-btn">
+                    <button type="submit" class="btn btn-success btn-submit-form">Thêm
+                        <label>
+                            <i class="fas fa-plus"></i>
+                        </label>
+                    </button>
+                    <button type="submit" class="btn btn-danger">Hủy
+                        <label>
+                            <i class="fas fa-arrow-rotate-left"></i>
+                        </label>
+                    </button>
+                </div>
+              </form>
         </div>
     </div>
     
