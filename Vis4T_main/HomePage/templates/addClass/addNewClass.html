@@ -5,41 +5,43 @@
 <div class="main">
     <div class="wrap-form-add-class">
         <div class="form-box">
-            <h2>Thêm lớp mới</h2>
-            <form>
-                <div class="mb-3">
-                  <label for="form-input" class="form-label">Tên lớp *</label>
-                  <label for="form-input" class="form-text">( VD: KHDL16A, KHMT15BTT ... )</label>
-                  <input type="text" class="form-control" id="form-input">
-                </div>
-                <div class="mb-3">
-                    <label for="form-input" class="form-label">Chuyên ngành *</label>
-                    <label for="form-input" class="form-text">( VD: Khoa học dữ liệu, Khoa Học Máy Tính ... )</label>
-                    <input type="text" class="form-control" id="form-input">
-                  </div>
-                  <div class="mb-3">
-                    <label for="form-input" class="form-label">Tổng số tín chỉ *</label>
-                    <label for="form-input" class="form-text">( Ví dụ: 100, 120,... )</label>
-                    <input type="text" class="form-control" id="form-input">
-                  </div>
-                  <div class="mb-3">
-                    <label for="form-input" class="form-label">Tổng số học kì *</label>
-                    <label for="form-input" class="form-text">( VD: 9, 8,... ) (Tối đa 9 học kì)</label>
-                    <input type="text" class="form-control" id="form-input">
-                  </div>
-                <div class="wrap-btn">
-                    <button type="submit" class="btn btn-success btn-submit-form">Thêm
-                        <label>
-                            <i class="fas fa-plus"></i>
-                        </label>
-                    </button>
-                    <button type="submit" class="btn btn-danger">Hủy
-                        <label>
-                            <i class="fas fa-arrow-rotate-left"></i>
-                        </label>
-                    </button>
-                </div>
-              </form>
+          <h2>Thêm lớp mới</h2>
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              {{ form.class_name.label_tag }}
+              <label for="{{ form.class_name.id_for_label }}" class="form-text">{{ form.class_name.widget.attrs.placeholder }}</label>
+              {{ form.class_name }}
+            </div>
+            <div class="mb-3">
+              {{ form.class_major.label_tag }}
+              <label for="{{ form.class_major.id_for_label }}" class="form-text">{{ form.class_major.widget.attrs.placeholder }}</label>
+              {{ form.class_major }}
+            </div>
+            <div class="mb-3">
+              {{ form.total_credit.label_tag }}
+              <label for="{{ form.total_credit.id_for_label }}" class="form-text">{{ form.total_credit.widget.attrs.placeholder }}</label>
+              {{ form.total_credit }}
+            </div>
+            <div class="mb-3">
+              {{ form.total_semester.label_tag }}
+              <label for="{{ form.total_semester.id_for_label }}" class="form-text">{{ form.total_semester.widget.attrs.placeholder }}</label>
+              {{ form.total_semester }}
+            </div>
+            <div class="wrap-btn">
+              <button type="submit" class="btn btn-success btn-submit-form">Thêm
+                <label>
+                  <i class="fas fa-plus"></i>
+                </label>
+              </button>
+              <button type="submit" class="btn btn-danger">Hủy
+                <label>
+                  <i class="fas fa-arrow-rotate-left"></i>
+                </label>
+              </button>
+            </div>
+        </form>
+
         </div>
     </div>
     

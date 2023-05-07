@@ -43,5 +43,23 @@ class UniversityClassForm(ModelForm):
     class Meta:
         model = University_class
         fields = ['class_name', 'class_major', 'total_credit', 'total_semester']
-        widgets = {
+        labels = {
+            'class_name': 'Tên lớp *',
+            'class_major': 'Chuyên ngành *',
+            'total_credit': 'Tổng số tín chỉ *',
+            'total_semester': 'Tổng số học kì *',
         }
+        widgets = {
+            'class_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'class_major': forms.TextInput(attrs={'class': 'form-control'}),
+            'total_credit': forms.NumberInput(attrs={'class': 'form-control'}),
+            'total_semester': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['class_name'].widget.attrs['placeholder'] = '( VD: KHDL16A, KHMT15BTT ... )'
+        self.fields['class_major'].widget.attrs['placeholder'] = '( VD: Khoa học dữ liệu, Khoa Học Máy Tính ... )'
+        self.fields['total_credit'].widget.attrs['placeholder'] = '( Ví dụ: 100, 120,... )'
+        self.fields['total_semester'].widget.attrs['placeholder'] = '( VD: 9, 8,... ) (Tối đa 9 học kì)'
+

@@ -78,6 +78,7 @@ class AddNewClass(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
+    form_class = UniversityClassForm
     def get_queryset(self):
         teacher = self.request.user
         return teacher
@@ -86,8 +87,16 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
+        context['form'] = self.form_class()
         return context
-    
+    def form_valid(self, form):
+        class_ = self.get_object()
+        class_.class_name = form.cleaned_data['class_name']
+        class_.class_major = form.cleaned_data['class_major']
+        class_.total_credit = form.cleaned_data['total_credit']
+        class_.total_semester = form.cleaned_data['total_semester']
+        class_.save()        
+        return super().form_valid(form)
 class UploadFile(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'addClass/upload_file.html'
