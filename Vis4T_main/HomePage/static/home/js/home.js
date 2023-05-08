@@ -28,7 +28,7 @@ var table = new Tabulator(".csv-table", {
         {title: "Điểm chữ", field: "Điểm chữ"},
         {title: "Học lực", field: "Xếp hạng"},
         {title: "Số tín chỉ", field: "Số tín chỉ đã học xong"},
-        {title: "Tốt nghiệp", field: "Đã tốt nghiệp", hozAlign:"center", formatter:"tickCross", sorter:"boolean", editor:true},
+        {title: "Tốt nghiệp", field: "Đã tốt nghiệp", hozAlign:"center", formatter:"tickCross", sorter:"boolean", editor:false},
         ]
     }],
   
@@ -39,10 +39,12 @@ table.on("cellClick", function(e, cell){
   var student_index = student_jsondata.findIndex(function(student) {
     return student.student_id == student_id;
   });
+  let chart_to_studentY = document.querySelector('.chart-to-student').offsetTop;
+  console.log(chart_to_studentY);
+  // tru 110 la do header co height 110px
+  window.scrollTo(0,(chart_to_studentY - 110));
   displayStudentDataOnIndex(student_index);
 });
-
-
 
 
 $(document).ready(function() {

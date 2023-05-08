@@ -6,7 +6,7 @@
         
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-5" style="padding-top: 10px;">   
             <div class="row" style="height: 100%">
-                <div class="col-12">
+                <div class="col-12" style="padding-left: 0;">
                     <div class="wrap-detail-student">
                         <div class="col-12" style="margin-bottom: 20px; position: relative;">
                             <div class="wrap-detail-student" style="overflow: unset;">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="info-detail-student" style="padding-top: 20px;">
+                        <div class="info-detail-student" style="padding-top: 20px; ">
                             <div class="mssv">
                                 <div class="student-id"><label>MSSV: </label><span> {{student.student_id}}</span></div>
                                 <div class="class-major"><label>Chuyên nghành: </label><span> {{class.class_major}}</span></div>
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" >
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding-right: 0;" >
             <div class="row" style="height: 100%;padding-top: 10px;">
                 <div class="row" style="padding-right: 0;">
                     
@@ -118,7 +118,7 @@
                 <div class="col-5">
                     <div class="wrap-detail-student wrap-box">
                         <div class="row">
-                            <div class="rank-in-class">
+                            <div class="rank-in-class" style="height: 60px;">
                                 <p>Điểm môn học</p>
                             </div>
                             {% include './student-subject-table.html' %}
