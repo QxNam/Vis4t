@@ -55,12 +55,11 @@ function drawCreditRadialChart(student_credits, total_credits) {
         drawCreditRadialChart(student_data.passed_credit);
         renderStudentDetailBarChart(student_data.student_id);
     }
-    let student_jsondata = JSON.parse($('#student-json').text());
+let student_jsondata = JSON.parse($('#student-json').text());
     
-    
-    $('.dropdown-class').click(function(){
-        let index = $(this).data('student');
-        displayStudentDataOnIndex(index);
-    });
+$('.dropdown-class').click(function(){
+  let index = $(this).data('student');
+  displayStudentDataOnIndex(index);
+});
 
-    drawCreditRadialChart(document.currentScript.dataset.studentCredit);
+drawCreditRadialChart(document.currentScript.dataset.studentCredit);
