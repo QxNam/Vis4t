@@ -86,14 +86,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding-right: 0;" >
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding-right: 0;height: 350px;" >
             <div class="row" style="height: 100%;padding-top: 10px;">
                 <div class="row" style="padding-right: 0;">
                     
-                    <div class="col-12" style="padding-right: 0;">
+                    <div class="col-12" style="padding-right: 0;" style="height: 400px;">
                         <div class="wrap-detail-student wrap-box">
-                            <div class="note-box">
-                                {% include './student-note.html' %}
+                            <div class="row">
+                                <div class="rank-in-class">
+                                    <p>Tiến độ học tập</p>
+                                    <div class="student-credit"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,11 +108,8 @@
                 
                 <div class="col-3" style="height: 350px;">
                         <div class="wrap-detail-student wrap-box">
-                            <div class="row">
-                                <div class="rank-in-class">
-                                    <p>Tiến độ học tập</p>
-                                    <div class="student-credit"></div>
-                                </div>
+                            <div class="note-box">
+                                {% include './student-note.html' %}
                             </div>
                             
                         </div>
