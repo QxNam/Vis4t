@@ -1,124 +1,105 @@
 <div class="row">
     <div class="col-12">
         <div class="wrap-box">
-            <div class="barChartSubjectStudent"></div>
+            <figure class="highcharts-figure">
+                    <div id="barChartSubjectStudent"></div>
+
+            </figure>
         </div>
     </div>
 </div>
 <script>
-    function renderBarChartSubjectStudent(data){
+    function renderBarChartSubjectStudent(data) {
         var { subject_name, data } = data;
-        excellent = {};
-        good = {};
-        average = {};
-        for(var i = 0; i < data.length; i++){
-            if(data[i].rank == 'Giỏi') {
-                excellent[data[i].student_id] = data[i].score_10;
-            }
-            else if(data[i].rank == 'Khá'){
-                good[data[i].student_id] = data[i].score_10;
-            }
-            else{
-                average[data[i].student_id] = data[i].score_10;
-            }
+        
+        const categories = [];
+        const series = [];
+      
+        for (let i = 0; i < data.length; i++) {
+          const { rank, student_id, score_10, student_name } = data[i];
+          categories.push(student_name);
+          if (rank === "Giỏi") {
+            series.push({ y: score_10, color: "#90ed7d" });
+          } else if (rank === "Khá") {
+            series.push({ y: score_10, color: "#e4d354" });
+          } else {
+                series.push({ y: score_10, color: "#f45b5b" });
+          }
         }
-        console.log(excellent);
-        var options = {
-            series: [
-                {
-                    data: Object.values(excellent),
-                    type: "column",
-                    name: "Học lực giỏi",
-                },
-                {
-                    data: Object.values(good),
-                    type: "column",
-                    name: "Học lực khá",
-                },
-                {
-                    data: Object.values(average),
-                    type: "column",
-                    name: "Học lực trung bình và yếu",
-                },
-            ],
-            chart: [{
-              height: 350,
-              type: "line",
-              toolbar: {
-                  show: !0
-              },
-              height: 350,
-              type: "line",
-              toolbar: {
-                  show: !0
-              },
-              height: 350,
-              type: "line",
-              toolbar: {
-                  show: !0
-              }
-            }],
-            stroke: {
-                width: [0, 3],
-                curve: "smooth"
+      
+        const chartOptions = {
+          chart: {
+            type: "column",
+            height: 400,
+          },
+          title: {
+            text: "ĐIỂM 10 MÔN " + subject_name.toUpperCase() + " CỦA LỚP " + "{{ cached_class_name }}",
+            align: "center",
+            style: {
+              fontSize: "25px",
+              fontFamily: "fangsong",
             },
-            title:{
-              text: "THỐNG KÊ ĐIỂM TỔNG KẾT",
-              align: 'center',
+          },
+          xAxis: {
+            categories,
+            title: {
+              text: "Students",
               style: {
-                fontSize:  '25px',
-                fontFamily: 'fangsong',
-              }
-            },
-            xaxis: {
-              categories: name,
-              title: {
-                floating: true,
-                style: {
-                  fontSize:  '20px',
-                  fontFamily: 'Roboto'
-                },
+                fontSize: "20px",
+                fontFamily: "Roboto",
               },
-                
             },
-            yAxis: {
-              min: 0,
-              max: 10,
-              labels: {
-                overflow: 'justify'
-              }
+            tickAmount: 10,
+          },
+          yAxis: {
+            min: 0,
+            max: 10,
+            title: {
+              text: "Score",
+              style: {
+                fontSize: "20px",
+                fontFamily: "Roboto",
+              },
             },
-            plotOptions: {
-              bar: {
-                  horizontal: !1,
-                  columnWidth: "70%",
-                  borderRadius: 3
-              }
+            labels: {
+              overflow: "top",
             },
-            
-            legend: {
-                show: true
+            tickAmount: 5,
+          },
+          colors: series.map((item) => item.color),
+          plotOptions: {
+            series: {
+                colorByPoint: true,
+                borderRadius: 3,
+                dataLabels: {
+                    enabled: true,
+                    format: "{y:.1f}",
+                },
             },
-            noData: {
-              text: 'Loading...'
+          },
+          series: [
+            {
+              name: "Score",
+              data: series.map((item) => item.y),
             },
-            colors: ["#6d77b9", "#5bceac"],
-            labels: Object.keys(data),
-          };
-        const chart = new ApexCharts(document.querySelector(".barChartSubjectStudent"), options);
-        chart.render();
-
-    }
-    $.ajax({
+          ],
+        };
+      
+        Highcharts.chart("barChartSubjectStudent", chartOptions);
+      }
+      
+      $.ajax({
         url: "{% url 'subject_api' %}" + "?class={{ cached_class_name }}" + "&subject={{ first_subject.subject_id }}",
         type: "GET",
         dataType: "json",
         success: function (data) {
-            renderBarChartSubjectStudent(data)
+          renderBarChartSubjectStudent(data);
         },
         error: function (data) {
-            console.log(data);
-        }
-    })
+          console.log(data);
+        },
+      });
+      
+    
     
 </script>
