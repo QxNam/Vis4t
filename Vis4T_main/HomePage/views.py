@@ -1,16 +1,12 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import UpdateView
 from django.core.cache import cache
 from django.db.models import Q
-from django.http import Http404, HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
+from django.http import Http404, JsonResponse
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_protect
 from django.views.generic.list import ListView
 from rest_framework.views import APIView
-
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -63,13 +59,14 @@ class HomeView(LoginRequiredMixin, ListView):
             context['cached_class_name'] = university_class.class_name
             cache.set('class_name', university_class.class_name)
             
-            
+        subject_class_list = list(Subject_class.objects.filter(class_name=university_class).values())
         student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
         for i in range(len(student_list)):
             student_list[i]['ranking'] = i + 1
         context['student_list'] = student_list
         context['student'] = context['student_list'][0]
-        
+        context['subject'] = subject_class_list
+        context['first_subject'] = subject_class_list[0]
         return context
     
     def class_home(self):
@@ -288,3 +285,15 @@ class StudentSubjectDetail(APIView):
             'english_score':list(english)
         }
         return JsonResponse(res, safe=False)
+
+class SubjectStudentDetail(APIView):
+    def get(self, request):
+        subject_id = request.query_params.get('subject')
+        class_ = request.query_params.get('class').upper()
+        
+        queryset = Student.objects.filter(class_name=class_).filter(subject_student__subject_id=subject_id)\
+            .values('student_name', 'subject_student__score_10')
+        subject_name = Subject.objects.get(subject_id=subject_id).subject_name
+        
+        return JsonResponse({"subject_name": subject_name, "data": list(queryset)}, safe=False)
+        

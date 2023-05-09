@@ -16,6 +16,7 @@ urlpatterns = format_suffix_patterns([
     
     path('class/<str:pk>/', views.ClassDetail.as_view(), name='class_detail_api'),
     path('student/', views.StudentSubjectDetail.as_view(), name = "student_subject_api"),
+    path('subject/', views.SubjectStudentDetail.as_view(), name = "subject_api"),
     path('add_class/', views.AddNewClass.as_view(), name = "add_class"),
     path('upload_file/', views.UploadFile.as_view(), name = "upload_file"),
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
