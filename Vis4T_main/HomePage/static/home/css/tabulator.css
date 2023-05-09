@@ -18,6 +18,7 @@
     /* height: 80%;
     top: 20%; */
     background-color: transparent;
+    border-color: transparent !important ;
 }
 .tabulator-header{
     background-color: black !important;
@@ -88,3 +89,4 @@ div.tabulator-col-group-cols{
 .tabulator .tabulator-header {
     border-radius: 15px;
 }
+
