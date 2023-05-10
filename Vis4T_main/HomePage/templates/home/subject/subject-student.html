@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-12">
+        <div class="wrap-box">
+            <figure class="highcharts-figure">
+                    <div id="barChartSubjectStudent"></div>
+
+            </figure>
+        </div>
+    </div>
+</div>
+<script>
+    function renderBarChartSubjectStudent(data) {
+        var { subject_name, data } = data;
+        
+        const categories = [];
+        const series = [];
+      
+        for (let i = 0; i < data.length; i++) {
+          const { rank, student_id, score_10, student_name } = data[i];
+          categories.push(student_name);
+          if (rank === "Giỏi") {
+            series.push({ y: score_10, color: "#90ed7d" });
+          } else if (rank === "Khá") {
+            series.push({ y: score_10, color: "#e4d354" });
+          } else {
+                series.push({ y: score_10, color: "#f45b5b" });
+          }
+        }
+      
+        const chartOptions = {
+          chart: {
+            type: "column",
+            height: 400,
+          },
+          title: {
+            text: "ĐIỂM 10 MÔN " + subject_name.toUpperCase() + " CỦA LỚP " + "{{ cached_class_name }}",
+            align: "center",
+            style: {
+              fontSize: "25px",
+              fontFamily: "fangsong",
+            },
+          },
+          xAxis: {
+            categories,
+            title: {
+              text: "Students",
+              style: {
+                fontSize: "20px",
+                fontFamily: "Roboto",
+              },
+            },
+            tickAmount: 10,
+          },
+          yAxis: {
+            min: 0,
+            max: 10,
+            title: {
+              text: "Score",
+              style: {
+                fontSize: "20px",
+                fontFamily: "Roboto",
+              },
+            },
+            labels: {
+              overflow: "top",
+            },
+            tickAmount: 5,
+          },
+          colors: series.map((item) => item.color),
+          plotOptions: {
+            series: {
+                colorByPoint: true,
+                borderRadius: 3,
+                dataLabels: {
+                    enabled: true,
+                    format: "{y:.1f}",
+                },
+            },
+          },
+          series: [
+            {
+              name: "Score",
+              data: series.map((item) => item.y),
+            },
+          ],
+        };
+      
+        Highcharts.chart("barChartSubjectStudent", chartOptions);
+      }
+      
+      $.ajax({
+        url: "{% url 'subject_api' %}" + "?class={{ cached_class_name }}" + "&subject={{ first_subject.subject_id }}",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+          renderBarChartSubjectStudent(data);
+        },
+        error: function (data) {
+          console.log(data);
+        },
+      });
+      
+    
+    
+</script>

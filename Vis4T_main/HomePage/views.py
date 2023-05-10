@@ -292,8 +292,12 @@ class SubjectStudentDetail(APIView):
         class_ = request.query_params.get('class').upper()
         
         queryset = Student.objects.filter(class_name=class_).filter(subject_student__subject_id=subject_id)\
-            .values('student_name', 'subject_student__score_10')
+            .values('student_id', 'student_name', 'rank' , 'subject_student__score_10')
+        queryset = list(queryset)
+        for q in queryset:
+            q['score_10'] = float(q['subject_student__score_10'])
+            del q['subject_student__score_10']
         subject_name = Subject.objects.get(subject_id=subject_id).subject_name
-        
-        return JsonResponse({"subject_name": subject_name, "data": list(queryset)}, safe=False)
+    
+        return JsonResponse({"subject_name": subject_name, "data": queryset}, safe=False)
         
