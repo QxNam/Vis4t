@@ -75,14 +75,14 @@
         <div class="sidebar">
             <div class="modal-body" style="padding-top: 65px;">
                 <div class="position-sticky">
-                    <div class="list-group list-group-flush mx-3 mt-4">
+                    <div class="list-group list-group-flush mt-4">
                         <div class="list-group-item list-group-item-action py-2 ripple all-classname" style= "cursor: pointer;">
                             <i class="fas fa-users fa-fw me-3"></i><span>Các lớp chủ nhiệm</span>
                         </div>
                         <script>
                             $(document).ready(function(){
                                 $(".all-classname").click(function(){
-                                    $(".dropdown-classes").toggle();
+                                    $(".dropdown-classes").toggleClass('test');
                                 });
                             });
                         </script>
@@ -94,7 +94,7 @@
                             {% endfor %}
                         </ul>
 
-                        <div class="list-group-item list-group-item-action py-2 ripple" style= "cursor: pointer;">
+                        <div class="list-group-item list-group-item-action act-with-path py-2 ripple" style= "cursor: pointer;">
                             <a href="{% url 'upload_file' %}" style="color: black; text-decoration: none;"><i class="fas fa-calendar fa-fw me-3"></i><span>Cập nhật điểm<span></a>
                         </div>
 
@@ -124,6 +124,18 @@
                                 <span>Đăng xuất</span>
                             </a>
                         </div>
+                        <script>
+                            $(document).ready(function(){
+                                $(".list-group-item").hover(
+                                    function () {
+                                        $(this).addClass("act");
+                                    },
+                                    function () {
+                                        $(this).removeClass("act");
+                                    }
+                                    );
+                            });
+                        </script>
                     </div>
                 </div>
             

@@ -140,21 +140,82 @@
 }
 
 .dropdown-classes {
-    display: none;
+    /* display: none; */
     margin: 0;
     list-style: none;
-    width: 0%;
-    padding:5px 60px;
-    animation: showClassName .6s linear;
+    /* width: 0%; */
+    height: 0;
+    padding : 0 60px;
+    animation: hideClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
 }
 
+.test {
+    height: 60px;
+    animation: showClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
+    padding:0px 60px;
+}
+.list-group-item {
+    border: none !important;
+    margin: 5px 0;
+}
+.list-group-item-action:hover{
+    background-color: aqua !important;
+    border-radius: 12px !important;
+}
+.act {
+    background-color: aqua !important;
+    border-radius: 12px !important;
+}
+.act::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(-2rem - 15px);
+    bottom: 0;
+    width: 30px;
+    border-radius: 12px !important;
+    background-color: aqua;
+}
+
+.act-with-path {
+    background-color: aqua !important;
+    border-radius: 12px !important;
+}
+.act-with-path::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(-2rem - 15px);
+    bottom: 0;
+    width: 30px;
+    border-radius: 12px !important;
+    background-color: aqua;
+}
+.list-group-flush {
+    margin-left: 2rem !important;
+    margin-right: 3px !important;
+}
 @keyframes showClassName {
     from{
+        height: 0;
         width: 0%;
     }
     to{
+        height: 55px !important;
         width: 100%;
     }
+    
+}
+@keyframes hideClassName {
+    from{
+        height: 55px ;
+        width: 100%;
+    }
+    to{
+        height: 0;
+        width: 0%;
+    }
+   
     
 }
 .dropdown-classes ul  {
@@ -163,6 +224,7 @@
 
 .show-dropdown-classname {
     display: block;
+    background-color: #4da1e8;
 }
 .content{
     /* background-color: blue; */
