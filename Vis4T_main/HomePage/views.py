@@ -21,7 +21,7 @@ class Login(LoginView):
     authentication_form = LoginForm
     def get_success_url(self):
         class_ = University_class.objects.filter(teacher=self.request.user).first()
-        class_name = class_.class_name
+        class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
     
     @staticmethod
@@ -35,7 +35,6 @@ class Login(LoginView):
         
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class
-    template_name = 'home/home.html'
     context_object_name = 'classes'
     
     def get_queryset(self):
@@ -47,26 +46,29 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
-        try:
-            university_class = University_class.objects.get(class_name=class_name)
-        except:
-            university_class = University_class.objects.filter(teacher=self.request.user).first()
-        context['class'] = university_class
-        cached_class_name = cache.get('class_name')
-        if cached_class_name == class_name:
-            context['cached_class_name'] = cached_class_name
-        else:
-            context['cached_class_name'] = university_class.class_name
-            cache.set('class_name', university_class.class_name)
-            
-        subject_class_list = list(Subject_class.objects.filter(class_name=university_class).values())
-        student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
-        for i in range(len(student_list)):
-            student_list[i]['ranking'] = i + 1
-        context['student_list'] = student_list
-        context['student'] = context['student_list'][0]
-        context['subject'] = subject_class_list
-        context['first_subject'] = subject_class_list[0]
+        if class_name:
+            self.template_name = 'home/home.html'
+            try:
+                university_class = University_class.objects.get(class_name=class_name)
+            except:
+                university_class = University_class.objects.filter(teacher=self.request.user).first()
+            context['class'] = university_class
+            cached_class_name = cache.get('class_name')
+            if cached_class_name == class_name:
+                context['cached_class_name'] = cached_class_name
+            else:
+                context['cached_class_name'] = university_class.class_name
+                cache.set('class_name', university_class.class_name)
+                
+            subject_class_list = list(Subject_class.objects.filter(class_name=university_class).values())
+            student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
+            for i in range(len(student_list)):
+                student_list[i]['ranking'] = i + 1
+            context['student_list'] = student_list
+            context['student'] = context['student_list'][0]
+            context['subject'] = subject_class_list
+            context['first_subject'] = subject_class_list[0]
+        context['current_link'] = 'home'
         return context
     
     def class_home(self):
@@ -85,13 +87,11 @@ class AddNewClass(LoginRequiredMixin, ListView):
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         context['form'] = self.form_class()
+        context['current_link'] = 'addNewClass'
         return context
     def form_valid(self, form):
-        class_ = self.get_object()
-        class_.class_name = form.cleaned_data['class_name']
-        class_.class_major = form.cleaned_data['class_major']
-        class_.total_credit = form.cleaned_data['total_credit']
-        class_.total_semester = form.cleaned_data['total_semester']
+        class_ = form.save(commit=False)
+        class_.teacher = self.request.user
         class_.save()        
         return super().form_valid(form)
 class UploadFile(LoginRequiredMixin, ListView):
@@ -106,6 +106,7 @@ class UploadFile(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
+        context['current_link'] = 'updateClass'
         return context
      
     # def post(self, request, *args, **kwargs):
@@ -149,6 +150,8 @@ class TeacherView(LoginRequiredMixin, ListView):
         context['undergraduate_classes'] = University_class.objects.filter(teacher=self.request.user, is_active=True)
         context['classes'] = context['undergraduate_classes']
         context['cached_class_name'] = cache.get('class_name')
+        context['current_link'] = 'teacher'
+
         return context
 class TeacherUpdate(LoginRequiredMixin, UpdateView):
     model = Teacher
@@ -190,6 +193,8 @@ class AboutUS(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
+        context['current_link'] = 'aboutus'
+        
         return context
     
     
