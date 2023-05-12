@@ -42,9 +42,10 @@
 .wrap-icon-add-note {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     height: 40px;
     width: 100%;
+    padding-top: 18px;
 }
 .wrap-icon-add-note span{
     font-size: 13px !important;
@@ -59,7 +60,7 @@
     background-color: #e8e8ee;
 }
 .wrap-item-note {
-    height: 165px;
+    height: 230px;
     list-style: none;
     overflow: scroll;
     padding: 0px;
@@ -67,18 +68,37 @@
 }
 .wrap-item-note li {
     display: flex;
-    border-bottom: 1px solid rgb(0 0 0 / 20%);
+    margin: 5px;
+    border: 1px solid rgb(0 0 0 / 20%);
+    border-radius: 10px;
+    overflow: hidden;
 }
-.wrap-item-note li:last-child {
-    border: none;
+.wrap-item-note li button:hover {
+    background-color: #f5f5fd;
+}
+.wrap-item-note button {
+    flex: 1;
 }
 .wrap-item-note li span {
     display:flex;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+}
+.wrap-icon-add-note span {
+    margin: 0;
 }
 .wrap-item-note li label {
-    padding: 2px 4px;
+    padding: 5px;
+    font-size: 12px !important;
     cursor: pointer;
+}
+.wrap-item-note li span:hover {
+    background-color: #fddbd3;
+}
+.custom-close-btn {
+    border: none;
+    background-color: transparent;
 }
 .name-student {
     width: 100%;
