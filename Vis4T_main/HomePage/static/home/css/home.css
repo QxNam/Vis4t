@@ -291,10 +291,14 @@
     border-top: 1px solid rgb(0 0 0 / 4%) !important;
 }
 .dropdown-item:last-child{
-    /* border: none !important; */
+   
     border-bottom: 1px solid rgb(0 0 0 / 4%) !important;
 }
-
+.wrap-modal-note {
+    border: 1px solid rgb(0 0 0 / 20%);
+    margin: 3px 0;
+    border-radius: 10px ;
+}
 .classSize {
     padding-left: 0 !important;
 
