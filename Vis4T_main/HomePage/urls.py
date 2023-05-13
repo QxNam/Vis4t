@@ -21,6 +21,6 @@ urlpatterns = format_suffix_patterns([
     path('upload_file/', views.UploadFile.as_view(), name = "upload_file"),
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
     path('teacher/teacher_update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
-    
+    path('update-cache/', views.update_cache, name='update_cache'),
     path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
 ])

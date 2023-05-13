@@ -7,7 +7,6 @@
         <div class="form-box">
           <h2>Thêm lớp mới</h2>
           <form method="post">
-            {% csrf_token %}
             <div class="mb-3">
               {{ form.class_name.label_tag }}
               <label for="{{ form.class_name.id_for_label }}" class="form-text">{{ form.class_name.widget.attrs.placeholder }}</label>
@@ -28,6 +27,7 @@
               <label for="{{ form.total_semester.id_for_label }}" class="form-text">{{ form.total_semester.widget.attrs.placeholder }}</label>
               {{ form.total_semester }}
             </div>
+            {% csrf_token %}
             <div class="wrap-btn">
               <button type="submit" class="btn btn-success btn-submit-form">Thêm
                 <label>

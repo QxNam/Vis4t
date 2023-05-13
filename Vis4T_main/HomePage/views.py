@@ -1,17 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
-
+import json
 # Create your views here.
     
 class Login(LoginView):
@@ -86,13 +87,13 @@ class HomeView(LoginRequiredMixin, ListView):
     
     def class_home(self):
         return self.render_to_response(self.get_context_data())   
-class AddNewClass(LoginRequiredMixin, ListView):
+class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher
     template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
     form_class = UniversityClassForm
     
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('upload_file')
     def get_queryset(self):
         teacher = self.request.user
         return teacher
@@ -106,8 +107,11 @@ class AddNewClass(LoginRequiredMixin, ListView):
         return context
     def form_valid(self, form):
         class_ = form.save(commit=False)
+        
+        
         class_.teacher = self.request.user
         class_.save()        
+        cache.set('uploading_class', class_.class_name)
         return super().form_valid(form)
 class UploadFile(LoginRequiredMixin, ListView):
     model = Teacher
@@ -122,8 +126,22 @@ class UploadFile(LoginRequiredMixin, ListView):
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         context['current_link'] = 'updateClass'
+        context['uploading_class'] = cache.get('uploading_class')
         return context
-     
+
+@csrf_exempt
+def update_cache(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        class_name = data['class_name']
+        class_ = University_class.objects.filter(class_name=class_name).first()
+        if class_ is None or class_.teacher != request.user:
+            return JsonResponse({'status': False, 'message': 'Class not found.'}, status=404)
+        cache.set('uploading_class', class_name)
+        return JsonResponse({'status': True, 'message': 'Cache updated successfully.'})
+    else:
+        return JsonResponse({'status': False, 'message': 'Invalid request method.'}, status=400)
+
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'

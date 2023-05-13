@@ -109,7 +109,9 @@
                         <ul class="dropdown-update-classes">
                             {% for c in classes %}
                                 <li class="class-name">
-                                    <a href="" style="color: black; text-decoration: none;">{{c.class_name}}</a>                                 
+                                    <a href="{% url 'upload_file' %}" style="color: black; text-decoration: none;" data-class-name="{{ c.class_name }}">
+                                        {{c.class_name}}
+                                    </a>                                 
                                 </li>
                             {% endfor %}
                         </ul>
@@ -119,6 +121,28 @@
                                     $(".dropdown-update-classes").toggleClass('show-ul');
                                 });
                             });
+
+                            $('.class-name a').click(function(e) {
+                                e.preventDefault();
+                                var className = $(this).data('class-name');
+                                $.ajax({
+                                    url: "{% url 'update_cache' %}",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: JSON.stringify({ class_name: className }),
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                    },
+                                    success: function(data) {
+                                        window.location.href = '{% url "upload_file" %}';
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.alert("Lớp không tồn tại");
+                                    }
+                                });
+                            });
+
                         </script>
                         <div class="list-group-item list-group-item-action
                         {% if current_link == 'addNewClass' %}act-with-path{% endif %}
