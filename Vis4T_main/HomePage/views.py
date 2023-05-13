@@ -36,6 +36,13 @@ class Login(LoginView):
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class
     context_object_name = 'classes'
+    template_name = 'home/home.html'
+    
+    def returnHomeNone(self, context):
+        self.template_name = 'home/homeNone.html'
+        context['cached_class_name'] = None
+        context['current_link'] = 'home'
+        return context
     
     def get_queryset(self):
         teacher = self.request.user
@@ -47,11 +54,11 @@ class HomeView(LoginRequiredMixin, ListView):
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
         if class_name:
-            self.template_name = 'home/home.html'
-            try:
-                university_class = University_class.objects.get(class_name=class_name)
-            except:
-                university_class = University_class.objects.filter(teacher=self.request.user).first()
+            
+            university_class = University_class.objects.filter(teacher=self.request.user).first()
+            if university_class is None:
+                return self.returnHomeNone(context)
+                
             context['class'] = university_class
             cached_class_name = cache.get('class_name')
             if cached_class_name == class_name:
@@ -62,12 +69,18 @@ class HomeView(LoginRequiredMixin, ListView):
                 
             subject_class_list = list(Subject_class.objects.filter(class_name=university_class).values())
             student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
+            if len(student_list) == 0:
+                return self.returnHomeNone(context)
+            
             for i in range(len(student_list)):
                 student_list[i]['ranking'] = i + 1
             context['student_list'] = student_list
             context['student'] = context['student_list'][0]
             context['subject'] = subject_class_list
             context['first_subject'] = subject_class_list[0]
+        else:
+            return self.returnHomeNone(context)
+            
         context['current_link'] = 'home'
         return context
     
@@ -78,6 +91,8 @@ class AddNewClass(LoginRequiredMixin, ListView):
     template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
     form_class = UniversityClassForm
+    
+    success_url = reverse_lazy('home')
     def get_queryset(self):
         teacher = self.request.user
         return teacher
@@ -109,33 +124,6 @@ class UploadFile(LoginRequiredMixin, ListView):
         context['current_link'] = 'updateClass'
         return context
      
-    # def post(self, request, *args, **kwargs):
-    #     uploaded_file = request.FILES['file']
-    #     print(uploaded_file.name)
-        # if not uploaded_file.name.endswith('.csv') and not uploaded_file.name.endswith('.xls'):
-            # messages.error(request, 'File type is not supported.')
-        #     return redirect('new_class')
-        # print(uploaded_file.name)
-        # cleaned_data = prep(uploaded_file)
-        # class_name = request.POST.get('class_name')
-        # university_class = University_class.objects.create(name=class_name, teacher=request.user)
-        
-        # for row in cleaned_data:
-        #     student_id, student_name, score = row
-        #     # create new Student instance and save to the database
-        #     student = Student.objects.create(
-        #         id=student_id,
-        #         name=student_name,
-        #         score=score,
-        #         university_class=university_class,
-        #     )
-        # response_data = {
-        #     'status': 'success',
-        #     'message': 'New class added successfully.'
-        # }
-        
-        # Return a JSON response
-        # return JsonResponse(response_data)
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'teacher/teacher.html'
