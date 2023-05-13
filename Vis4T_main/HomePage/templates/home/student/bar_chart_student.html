@@ -1,83 +1,5 @@
 
 <script id='student-bar-script' data-student-detail="{% url 'student_subject_api' %}" data-student-id="{{student.student_id}}">
-    function renderStudentHistogram(chartData){
-        $('studentHist').empty();
-        var rangeBoundaries = [0, 3, 4, 5, 6, 7, 8, 9, 10];
-        var rangeFreq = {
-            "0-3":0,
-            "3-4":0,
-            "4-5":0,
-            "5-6":0,
-            "6-7":0,
-            "7-8":0,
-            "8-9":0,
-            "9-10":0
-        };
-        for (var key in chartData) {
-            var score = chartData[key];
-            score = score.y;
-            if (score < rangeBoundaries[1]) {
-                rangeFreq["0-3"]++;
-            } else if(score < rangeBoundaries[4]) {
-                rangeFreq["3-4"]++;
-            } else if(score < rangeBoundaries[5]) {
-                rangeFreq["4-5"]++;
-            } else if(score < rangeBoundaries[6]) {
-                rangeFreq["5-6"]++;
-            } else if(score < rangeBoundaries[7]) {
-                rangeFreq["6-7"]++;
-            } else if(score < rangeBoundaries[8]) {
-                rangeFreq["7-8"]++;
-            } else if(score < rangeBoundaries[9]) {
-                rangeFreq["8-9"]++;
-            } else {
-                rangeFreq["9-10"]++;
-            } 
-        }
-        var options = {
-            chart: {
-                type: 'column',
-                height: 350
-            },
-            title: {
-                text: 'Histogram phổ điểm trung bình các môn học'
-            },
-            xAxis: {
-                categories: Object.keys(rangeFreq),
-                min: 0,
-                title: {
-                    text: 'Phổ điểm'
-                }
-            },
-            yAxis: {
-                crosshair: true,
-                title: {
-                    text: 'Số lượng'
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0,
-                    groupPadding: 0,
-                    shadow: false
-                },
-                spline: {
-                    lineWidth: 2,
-                    marker: {
-                        enabled: false
-                    }
-                }
-            },
-            series: [{
-                name: 'Số lượng môn học',
-                binwidth: 4,
-                data: Object.values(rangeFreq)
-            }]
-        };
-
-        // Draw the chart
-        chart = Highcharts.chart('studentHist', options);
-    }
     function renderStudentDetailBarChart(student_id) {
       $('.my-bar-chart-student').empty();
       $.ajax({
@@ -90,7 +12,7 @@
                   x: entry["subject__subject_name"],
                   y: entry.score_10,
               }));
-              <!-- renderStudentHistogram(chartData); -->
+              
               const options = {
                   series: [{
                       name: "Điểm theo thang 10",
@@ -133,6 +55,7 @@
                     },
                   },
                   yaxis: {
+                    max: 10,
                       title: {
                           floating: true,
                           style: {
@@ -169,19 +92,19 @@
                   },
                 ]
               };
-              
               const chart = new ApexCharts(
                   document.querySelector(".my-bar-chart-student"),
                   options
               );
+              console.log(chart);
               chart.render();
-              
           },
           error: function(jqXHR, textStatus, errorThrown) {
               console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
           }
       });
     }
+    
     renderStudentDetailBarChart($('#student-bar-script').attr('data-student-id'));
 
     

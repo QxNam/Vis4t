@@ -139,12 +139,20 @@
             </div>
         </div> 
 
-        <div class="col-12" style="padding : 0px; margin-top: 10px;"><div class="wrap-detail-student wrap-box"><div class="my-bar-chart-student"></div></div></div> 
+        <div class="col-12" style="padding : 0px; margin-top: 10px;">
+            <div class="wrap-detail-student wrap-box">
+                <div class="my-bar-chart-student">
+
+                </div>
+                {% include './bar_chart_student.html' %}
+
+            </div>
+        </div> 
     </div>
     
     
 
-    {% include './bar_chart_student.html' %}
+    
     <script 
         src="{% static 'home/js/student.js' %}"
         id="student-script" 

@@ -55,8 +55,9 @@ $(document).ready(function() {
     success: function(data) {
       render_pie_chart(data);
       render_bar_chart(data, class_name);
-      render_box_plot(data, class_name);
       render_hist_chart(data, class_name);
+      // render_box_plot(data, class_name);
+
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log('Error:', errorThrown);
