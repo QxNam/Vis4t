@@ -169,6 +169,14 @@
     justify-content: center;
     display: inline-grid;
 }
+.show-ul li a {
+    display: block;
+    padding: 3px 10px;
+}
+.show-ul li:hover {
+    background-color: aqua;
+    border-radius: 10px;
+}
 .list-group-item {
     border: none !important;
     margin: 5px 0;
