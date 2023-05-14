@@ -140,35 +140,61 @@
 }
 
 .dropdown-classes {
-    /* display: none; */
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     list-style: none;
-    /* width: 0%; */
     height: 0;
     padding : 0 60px;
-    animation: hideClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
+    animation: hideLi .5s cubic-bezier(0, 0, 0.03, 0.6);
+}
+.class-name {
+    height: 0;
 }
 .dropdown-update-classes {
-     /* display: none; */
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     list-style: none;
-    /* width: 0%; */
     height: 0;
-    padding : 0 60px;
-    animation: hideClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
+    padding: 0 60px;
+    animation: hideLi .5s cubic-bezier(0, 0, 0.03, 0.6);
 }
 .dropdown-update-classes ul{
     width: 100%;
     height: 0;
 }
 .show-ul {
+    /* display: inline-grid;
     align-items: center;
-    height: 60px;
-    animation: showClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
+    justify-content: center; */
+    height: 100%;
     padding: 0px 60px;
-    justify-content: center;
-    display: inline-grid;
+    animation: showClassName .5s cubic-bezier(0, 0, 0.03, 0.6);
 }
+.show-ul .class-name{
+    height: 30px;
+    animation: showLi 0.5s cubic-bezier(0, 0, 0.03, 0.6);
+}
+@keyframes showLi {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 30px;
+    }
+}
+@keyframes hideLi {
+    from {
+        height: 30px;
+    }
+    to {
+        height: 10px;
+    }
+}
+
 .show-ul li a {
     display: block;
     padding: 3px 10px;
@@ -224,14 +250,14 @@
         width: 0%;
     }
     to{
-        height: 55px !important;
+        height: 100%;
         width: 100%;
     }
     
 }
 @keyframes hideClassName {
     from{
-        height: 55px ;
+        height: 100% ;
         width: 100%;
     }
     to{
