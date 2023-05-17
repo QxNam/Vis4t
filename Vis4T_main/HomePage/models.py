@@ -55,7 +55,6 @@ class University_class(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     number_of_student = models.IntegerField(null=True)
     class_major = models.CharField(max_length=70)
-    teacher_note = models.TextField(blank=True)
     
     total_credit = models.IntegerField()
     is_active = models.BooleanField(default=True)
