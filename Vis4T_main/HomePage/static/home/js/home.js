@@ -38,14 +38,8 @@ var table = new Tabulator(".csv-table", {
 
 table.on("cellClick", function(e, cell){
   var student_id = cell.getRow().getData()['Mã số'];
-  var student_index = student_jsondata.findIndex(function(student) {
-    return student.student_id == student_id;
-  });
-  let chart_to_studentY = document.querySelector('.chart-to-student').offsetTop;
-  console.log(chart_to_studentY);
-  // tru 110 la do header co height 110px
-  window.scrollTo(0,(chart_to_studentY - 110));
-  displayStudentDataOnIndex(student_index);
+  console.log(student_id);
+  window.location.href = '/student/' + student_id;
 });
 
 

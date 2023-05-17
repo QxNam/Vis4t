@@ -55,8 +55,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
         if class_name:
-            
-            university_class = University_class.objects.filter(teacher=self.request.user).first()
+            university_class = University_class.objects.filter(class_name=class_name).first()
             if university_class is None:
                 return self.returnHomeNone(context)
                 
@@ -100,10 +99,15 @@ class StudentView(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['teacher'] = self.request.user
         
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
-        context['current_link'] = 'student'
+        context['current_link'] = 'home'
+        
+        student_id = self.kwargs['student_id']
+        context['student'] = Student.objects.get(student_id=student_id)      
+        
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher

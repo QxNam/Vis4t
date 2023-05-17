@@ -11,6 +11,8 @@ urlpatterns = format_suffix_patterns([
     path('gmail/', views.Login.send_gmail, name='send_gmail'),
     
     path('home/<str:class_name>/', views.HomeView.as_view(class_home=True), name='home'),
+    path('student/<str:student_id>/', views.StudentView.as_view(), name='student_view'),
+    
     
     path('class_list/<str:pk>', views.ClassListDetail.as_view(), name='class_list_api'),
     
