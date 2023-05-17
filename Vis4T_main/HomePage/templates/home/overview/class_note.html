@@ -11,8 +11,7 @@
                     {% for note in class_note %}
                     <li>
                       <button type="button" class="btn" data-toggle="modal" data-target="#{{ note.id }}" 
-                          data-whatever="{{ note.name|date:'m/d/Y' }}"
-                          data-content="{{note.content}}">{{ note.name|date:'m/d/Y' }}</button>
+                          data-whatever="{{ note.name|date:'m/d/Y' }}">{{ note.name|date:'m/d/Y' }}</button>
                       <span>
                           <label>
                               <i class="fas fa-trash-alt"></i>

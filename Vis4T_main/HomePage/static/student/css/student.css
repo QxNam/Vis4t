@@ -134,3 +134,18 @@
     /* background-color: #4d6fef; */
     /* color: #4567ee; */
 }
+
+.dropdown{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.dropdownStudent{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}

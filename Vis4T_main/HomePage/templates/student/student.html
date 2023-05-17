@@ -26,7 +26,7 @@
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-student" aria-labelledby="dropdownStudentName">
                                                                     {% for s in student_list %}
-                                                                    <a class="dropdown-item dropdown-class" data-student="{{ forloop.counter0 }}">
+                                                                    <a class="dropdown-item dropdown-class" data-student-id="{{s.student_id}}">
                                                                         {{s.student_name}}
                                                                     </a>
                                                                     {% endfor %}
@@ -163,12 +163,7 @@
                                 
                             
                                 
-                                <script 
-                                    src="{% static 'student/js/student.js' %}"
-                                    id="student-script" 
-                                    data-class-total-credit="{{class.total_credit}}" 
-                                    data-student-credit="{{student.passed_credit}}">
-                                </script>
+                               
                             </div>
                         </div>
                        
@@ -179,8 +174,13 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="{% static 'student/css/student.css' %}">
+{{subject_list|json_script:"subject-json"}}
 
+<script src="{% static 'student/js/student.js' %}"
+id="student-script" 
+data-class-total-credit="{{class.total_credit}}" 
+data-student-credit="{{student.passed_credit}}">
+</script>
 
 
 

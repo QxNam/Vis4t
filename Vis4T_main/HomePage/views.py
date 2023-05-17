@@ -75,7 +75,6 @@ class HomeView(LoginRequiredMixin, ListView):
             for i in range(len(student_list)):
                 student_list[i]['ranking'] = i + 1
             context['student_list'] = student_list
-            context['student'] = context['student_list'][0]
             context['subject'] = subject_class_list
             context['first_subject'] = subject_class_list[0]
             context['class_note'] = Note_class.objects.filter(class_name=cached_class_name)
@@ -106,7 +105,19 @@ class StudentView(LoginRequiredMixin, ListView):
         context['current_link'] = 'home'
         
         student_id = self.kwargs['student_id']
-        context['student'] = Student.objects.get(student_id=student_id)      
+        context['student'] = Student.objects.get(student_id=student_id)
+        context['class'] = University_class.objects.get(class_name = context['student'].class_name)     
+         
+        student_list = list(Student.objects.filter(class_name=context['class']).order_by('-score_10').values())
+        for i in range(len(student_list)):
+            student_list[i]['ranking'] = i + 1
+        context['student_list'] = student_list
+        
+        subject = Subject_student.objects.filter(student_id=student_id)\
+            .values("subject_id__subject_name", "subject_id__credit", "score_10")
+        context['subject_list'] = list(subject)
+        
+        context['note'] = Note_student.objects.filter(student_id=student_id)
         
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
