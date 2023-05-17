@@ -5,104 +5,55 @@
 
             <div class="wrap-detail-student" style="height: 300px;">
                 <ul class="wrap-item-note" style="height: 100%;">
+                    {% for note in class_note %}
                     <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
+                      <button type="button" class="btn" data-toggle="modal" data-target="#{{ note.id }}" 
+                          data-whatever="{{ note.name|date:'m/d/Y' }}"
+                          data-content="{{note.content}}">{{ note.name|date:'m/d/Y' }}</button>
+                      <span>
+                          <label>
+                              <i class="fas fa-trash-alt"></i>
+                          </label>
+                      </span>
                     </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li> <li>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
-                        <span>
-                            <label>
-                                <i class="fas fa-trash-alt"></i>
-                            </label>
-                        </span>
-                    </li>
-            
+                    {% endfor %}
                 </ul>
-                <div class="modal fade modal-note" id="modalNote" tabindex="-1" role="dialog" aria-labelledby="ModalLabelNote" aria-hidden="true">
-                  <!-- cái class modal-dialog-centered là để căn center :)) nếu k thích ở giữa thì xóa đi -->
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="ModalLabelNote">Ghi chú</h5>
-                          <button type="button" class="close custom-close-btn" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">
-                                <label>
-                                    <i class="fas fa-times"></i>
-                                </label>
-                            </span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form>
-                            <div class="form-group">
-                              <label for="recipient-name" class="col-form-label">Ngày ghi chú</label>
-                              <h3>18/03/2024</h3>
-                            </div>
-                            <div class="form-group">
-                              <label for="message-text" class="col-form-label">Nội dung</label>
-                              <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                          <button type="button" class="btn btn-primary">Chỉnh sửa</button>
-                        </div>
+
+                {% for note in class_note %}
+                  <div class="modal fade modal-note" id="{{ note.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabelNote" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelNote">Ghi chú</h5>
+                        <button type="button" class="close custom-close-btn" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">
+                              <label>
+                                  <i class="fas fa-times"></i>
+                              </label>
+                          </span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Ngày ghi chú</label>
+                            <h3>{{ note.name|date:'m/d/Y' }}</h3>
+                          </div>
+                          <div class="form-group">
+                            <label for="message-text" class="col-form-label">Nội dung</label>
+                            <textarea class="form-control" id="message-text">{{ note.content }}</textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary">Lưu chỉnh sửa</button>
                       </div>
                     </div>
-                </div>
+                  </div>
+                  </div>
+                {% endfor %}
+                
             </div>
             <div class="wrap-icon-add-note">
                 <span  data-toggle="modal" data-target="#modalAddNoteClass">

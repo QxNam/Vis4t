@@ -106,9 +106,9 @@ class Subject(models.Model):
 class Note_student(models.Model):
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
     content = models.TextField()
-    name = models.DateTimeField(max_length=50)
+    name = models.DateField(max_length=50)
 
 class Note_class(models.Model):
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)
     content = models.TextField()
-    name = models.DateTimeField(max_length=50)
+    name = models.DateField(max_length=50)

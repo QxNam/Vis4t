@@ -79,6 +79,7 @@ class HomeView(LoginRequiredMixin, ListView):
             context['student'] = context['student_list'][0]
             context['subject'] = subject_class_list
             context['first_subject'] = subject_class_list[0]
+            context['class_note'] = Note_class.objects.filter(class_name=cached_class_name)
         else:
             return self.returnHomeNone(context)
             
