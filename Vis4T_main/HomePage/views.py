@@ -124,9 +124,15 @@ class UploadFile(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        class_ = University_class.objects.filter(class_name=self.kwargs['class_name']).first()
+        if class_ is None:
+            raise Http404
+        context['teacher'] = self.request.user
+        if class_.teacher != context['teacher']:
+            raise Http404
         context['uploading_class'] = self.kwargs['class_name']
         
-        context['teacher'] = self.request.user
         
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
