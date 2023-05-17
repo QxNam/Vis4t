@@ -87,14 +87,30 @@ class HomeView(LoginRequiredMixin, ListView):
         return context
     
     def class_home(self):
-        return self.render_to_response(self.get_context_data())   
+        return self.render_to_response(self.get_context_data())  
+    
+class StudentView(LoginRequiredMixin, ListView):
+    model = Student
+    template_name = 'student/student.html'
+    context_object_name = 'student'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
+        context['current_link'] = 'student'
+        return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher
     template_name = 'addClass/addNewClass.html'
     context_object_name = 'teacher'
     form_class = UniversityClassForm
     
-    success_url = reverse_lazy('upload_file')
     def get_queryset(self):
         teacher = self.request.user
         return teacher
@@ -109,11 +125,8 @@ class AddNewClass(LoginRequiredMixin, CreateView):
         return context
     def form_valid(self, form):
         class_ = form.save(commit=False)
-        
-        
         class_.teacher = self.request.user
         class_.save()        
-        cache.set('uploading_class', class_.class_name)
         self.success_url = reverse_lazy('upload_file', kwargs={'class_name': class_.class_name})
         return super().form_valid(form)
 class UploadFile(LoginRequiredMixin, ListView):

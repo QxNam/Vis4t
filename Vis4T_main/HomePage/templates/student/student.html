@@ -1,0 +1,174 @@
+{% extends '../layout.html'%} 
+{% block main_body %} 
+{% load static %}
+<link rel="stylesheet" href="{% static 'student/css/student.css' %}">
+
+<div class="col-12 line-15" style="margin-top: 20px;">
+    <div class="wrap-box">
+        <div class="feature chart-to-student col-12">
+            {{student_list|json_script:"student-json"}}
+        
+            <div class="row" style="width: 100%; height: 100%; padding: 0; margin: 0;">
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-5" style="padding-top: 10px;">   
+                    <div class="row" style="height: 100%">
+                        <div class="col-12" style="padding-left: 0;">
+                            <div class="wrap-detail-student">
+                                <div class="col-12" style="margin-bottom: 20px; position: relative;">
+                                    <div class="wrap-detail-student" style="overflow: unset;">
+                                        <div class="dropdownStudent">
+                                            <button class="btn custom-btn btn-secondary dropdown-toggle" type="button" id="dropdownStudentName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
+                                                <span>{{student.student_name}}</span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-student" aria-labelledby="dropdownStudentName">
+                                                {% for s in student_list %}
+                                                <a class="dropdown-item dropdown-class" data-student="{{ forloop.counter0 }}">
+                                                    {{s.student_name}}
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-detail-student" style="padding-top: 20px; ">
+                                    <div class="mssv">
+                                        <div class="student-id"><label>MSSV: </label><span> {{student.student_id}}</span></div>
+                                        <div class="class-major"><label>Chuyên nghành: </label><span> {{class.class_major}}</span></div>
+                                    </div>
+                                    <div class="mssv">
+                                        <div class="class-name"><label>Tên lớp: </label><span> {{class.class_name}}</span></div>
+                                        <div class="student-gmail"><label>Gmail: </label><span> {{student.student_gmail}}</span></div>
+                                    </div>
+                                    <div class="mssv">
+                                        <div id="toeic-score"><label>Điểm Toeic: </label><span id="toeic-score"> </span></div>
+                                        <div class="student-active"><label>Tình trạng tốt nghiệp: </label><span> 
+                                            {% if student.is_active %}
+                                                Đã tốt nghiệp
+                                            {% else %}
+                                                Chưa tốt nghiệp
+                                            {% endif %}
+                                        </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4" >
+                    <div class="col-12" style="padding-top: 10px;height: 100%;">
+                        <div class="row" style="height: 100%">
+                            <div class="col-6" style="height:50%; padding-bottom: 12px;">
+                                <div class="wrap-detail-student student-detail">
+                                    <div class="rank-in-class student-score10">
+                                        <p>Điểm 10</p>
+                                        <div>{{student.score_10}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6" style="height:50%; padding-bottom: 12px;">
+                                <div class="wrap-detail-student student-detail">
+                                    <div class="rank-in-class student-score4">
+                                        <p>Điểm 4</p>
+                                        <div class="rank">{{student.score_4}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6" style="height:50%; padding-top: 12px;">
+                                <div class="wrap-detail-student student-detail">
+                                    <div class="rank-in-class">
+                                        <p>Điểm chữ</p>
+                                        <div class="student-scorechar">{{student.score_char}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6" style="height:50%; padding-top: 12px;">
+                                <div class="wrap-detail-student student-detail">
+                                    <div class="rank-in-class">
+                                        <p>Học lực</p>
+                                        <div class="student-rank">{{student.rank}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 col-xxl-3" style="padding-right: 0;height: 350px;" >
+                    <div class="row" style="height: 100%;padding-top: 10px;">
+                        <div class="row" style="padding-right: 0;">
+                            
+                            <div class="col-12" style="padding-right: 0;" style="height: 400px;">
+                                <div class="wrap-detail-student wrap-box">
+                                    <div class="row">
+                                        <div class="rank-in-class">
+                                            <p>Tiến độ học tập</p>
+                                            <div class="student-credit"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="padding : 0px; margin-top: 10px;">
+                    <div class="row">
+                        
+                        <div class="col-3">
+                                <div class="wrap-detail-student wrap-box">
+                                    <div class="note-box">
+                                        {% include './student-note.html' %}
+                                    </div>
+                                    
+                                </div>
+                        </div>
+        
+                        <div class="col-5">
+                            <div class="wrap-detail-student wrap-box">
+                                <div class="row">
+                                    <div class="rank-in-class" style="height: 30px;">
+                                        <p>Điểm môn học</p>
+                                    </div>
+                                    {% include './student-subject-table.html' %}
+                                </div>
+                                
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <div class="wrap-detail-student wrap-box">
+                                <div class="row">
+                                    <div class="rank-in-class">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+        
+                <div class="col-12" style="padding : 0px; margin-top: 10px;">
+                    <div class="wrap-detail-student wrap-box">
+                        <div class="my-bar-chart-student">
+        
+                        </div>
+                        {% include './bar_chart_student.html' %}
+        
+                    </div>
+                </div> 
+            </div>
+            
+            
+        
+            
+            <script 
+                src="{% static 'student/js/student.js' %}"
+                id="student-script" 
+                data-class-total-credit="{{class.total_credit}}" 
+                data-student-credit="{{student.passed_credit}}">
+            </script>
+        </div>
+    </div>
+   
+</div>
+
+
+{% endblock %}

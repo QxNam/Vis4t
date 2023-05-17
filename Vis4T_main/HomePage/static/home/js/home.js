@@ -1,4 +1,6 @@
 var tabledata = []
+
+var student_jsondata = JSON.parse($('#student-json').text());
 var student = student_jsondata;
 for (var i = 0; i < student.length; i++) {
     tabledata.push({

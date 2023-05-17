@@ -1,0 +1,109 @@
+<p>Ghi chú của giảng viên về sinh viên</p>
+
+<div class="wrap-detail-student">
+    <ul class="wrap-item-note">
+        <li>
+            <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
+            <span>
+                <label>
+                    <i class="fas fa-trash-alt"></i>
+                </label>
+            </span>
+        </li>
+        <li>
+            <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
+            <span>
+                <label>
+                    <i class="fas fa-trash-alt"></i>
+                </label>
+            </span>
+        </li>
+        <li>
+            <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
+            <span>
+                <label>
+                    <i class="fas fa-trash-alt"></i>
+                </label>
+            </span>
+        </li> <li>
+            <button type="button" class="btn" data-toggle="modal" data-target="#modalNote" data-whatever="18/03/2023">18/03/2023</button>
+            <span>
+                <label>
+                    <i class="fas fa-trash-alt"></i>
+                </label>
+            </span>
+        </li>
+
+    </ul>
+    <div class="modal fade modal-note" id="modalNote" tabindex="-1" role="dialog" aria-labelledby="ModalLabelNote" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabelNote">Ghi chú</h5>
+              <button type="button" class="close custom-close-btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    <label>
+                        <i class="fas fa-times"></i>
+                    </label>
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ngày ghi chú</label>
+                  <h3>18/03/2024</h3>
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Nội dung</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+              <button type="button" class="btn btn-primary">Chỉnh sửa</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="wrap-icon-add-note">
+    <span  data-toggle="modal" data-target="#modalAddNote">
+        <label for="">Thêm</label>
+        <i class="fas fa-plus"></i>
+    </span>
+    <div class="modal fade modal-add-note" id="modalAddNote" tabindex="-1" role="dialog" aria-labelledby="modalAddNoteLabel" aria-hidden="true">
+      <!-- cái class modal-dialog-centered là để căn center :)) nếu k thích ở giữa thì xóa đi -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalAddNoteLabel">Thêm ghi chú</h5>
+              <button type="button" class="close custom-close-btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    <label>
+                        <i class="fas fa-times"></i>
+                    </label>
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ngày</label>
+                  <input type="date" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Nội dung</label>
+                  <textarea class="form-control" id="message-text">hello</textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-primary">Thêm ghi chú</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

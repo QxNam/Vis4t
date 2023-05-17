@@ -3,7 +3,7 @@
 {% load static %}
 
 <div class="main">
-    
+    {{student_list|json_script:"student-json"}}
     <div class="content">
         <div class="wrap-content container-fluid">
             <div class="row">
@@ -60,12 +60,7 @@
                     </div>
                 </div>
                 <link rel="stylesheet" href="{% static 'home/css/student.css' %}">
-                <div class="col-12 line-5" style="margin-top: 20px;">
-                    <div class="wrap-box">
-                        {% include 'home/student/student.html' %}
-                    </div>
-                   
-                </div>
+                
                 <div class="col-12 line-6" style="margin-top: 20px;">
                     {% include 'home/subject/subject-student.html' %}
                 </div>
