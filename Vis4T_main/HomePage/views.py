@@ -58,7 +58,8 @@ class HomeView(LoginRequiredMixin, ListView):
             university_class = University_class.objects.filter(class_name=class_name).first()
             if university_class is None:
                 return self.returnHomeNone(context)
-                
+            if university_class.teacher != self.request.user:
+                raise Http404
             context['class'] = university_class
             cached_class_name = cache.get('class_name')
             if cached_class_name == class_name:
@@ -107,7 +108,11 @@ class StudentView(LoginRequiredMixin, ListView):
         student_id = self.kwargs['student_id']
         context['student'] = Student.objects.get(student_id=student_id)
         context['class'] = University_class.objects.get(class_name = context['student'].class_name)     
-         
+        
+        # check if this class is possed by this teacher
+        if context['class'].teacher != self.request.user:
+            raise Http404
+        
         student_list = list(Student.objects.filter(class_name=context['class']).order_by('-score_10').values())
         for i in range(len(student_list)):
             student_list[i]['ranking'] = i + 1
