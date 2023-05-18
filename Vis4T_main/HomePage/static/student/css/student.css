@@ -112,6 +112,9 @@
     align-items: center;
     padding: 10px;
 }
+.mssv div{
+    height: 100%;
+}
 .mssv label{
     font-size: 13px;
     color: rgb(99, 99, 99);
