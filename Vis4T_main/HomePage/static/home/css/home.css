@@ -76,6 +76,34 @@
     width: 2px;
     background-color: rgb(0 0 0 / 20%);
 }
+.hint-dropdown {
+    display: none;
+    position: absolute;
+    width: 250px;
+    /* height: 180px; */
+    margin-top: 13px;
+    background-color: white;
+    /* background-color: rgb(0 0 0 / 20%); */
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+}
+.item-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.item-list li{
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(0 0 0 / 20%);
+}
+.item-list li:last-child{
+    border-bottom: none;
+}
+.item-list li:hover{
+    background-color: #f5f5fd;
+}
+.show-hint-dropdown {
+    display: block;
+}
 .down{
     display: block;
     padding: 0 0 0 10px;
