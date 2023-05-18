@@ -119,7 +119,7 @@ class StudentView(LoginRequiredMixin, ListView):
         context['student_list'] = student_list
         
         subject = Subject_student.objects.filter(student_id=student_id)\
-            .values("subject_id__subject_name", "subject_id__credit", "score_10")
+            .values("subject__subject_name", "subject__credit", "score_10")
         context['subject_list'] = list(subject)
         
         context['note'] = Note_student.objects.filter(student_id=student_id)
