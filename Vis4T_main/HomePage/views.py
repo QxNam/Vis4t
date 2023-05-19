@@ -344,10 +344,16 @@ class SubjectStudentDetail(APIView):
     
         return JsonResponse({"subject_name": subject_name, "data": queryset}, safe=False)
 
-class Autocomplete(APIView):
+class AutocompleteStudent(APIView):
     def get(self, request):
-        query = request.query_params.get('query')
-        if not query:
-            raise Http404
-        queryset = Student.objects.filter(student_name__icontains=query).values('student_id', 'student_name')
-        return JsonResponse(list(queryset), safe=False)
+        
+        letter = request.GET.get('letter')
+        user = self.request.user
+        classes = University_class.objects.filter(teacher=user)
+        
+        result = []
+        for c in classes:
+            students = Student.objects.filter(class_name=c,
+                student_name__startswith=letter)
+            result += list(students.values('student_id', 'student_name'))
+        return JsonResponse({'students': result}, safe=False)

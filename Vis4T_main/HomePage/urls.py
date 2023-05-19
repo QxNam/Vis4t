@@ -23,5 +23,7 @@ urlpatterns = format_suffix_patterns([
     path('upload_file/<str:class_name>', views.UploadFile.as_view(), name = "upload_file"),
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
     path('teacher/teacher_update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
+                                                   
+    path('autocomplete/', views.AutocompleteStudent.as_view(), name='autocomplete'),
     path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
 ])

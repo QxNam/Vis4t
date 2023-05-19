@@ -54,7 +54,7 @@
                                 <button type="submit" class="btn-search">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
-                                <input type="text" id = "myInput" name="search" placeholder="Tìm kiếm..." class="search">
+                                <input type="text" id = "myInput" name="search" placeholder="Nhập tên sinh viên..." class="search">
                                 
                                 
                                 <div class="hint-dropdown">
@@ -63,50 +63,28 @@
                                 </div>
                             </form>
                             <script>
-                               $(document).ready(function(){
-                                    var arr = [
-                                            "Nguyen van a KHDL16A",
-                                            "tran minh long KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "luu luong vi nhan KHDL16A",
-                                            "nguyen tran lam KHDL16A",
-                                            "le thanh nghia KHDL16A",
-                                            "quach xuan nam KHDL16A",
-                                            "nguyen thien thuan KHDL16A",
-                                            "bap hong pine KHDL16A",
-                                            "vu quang khai KHDL16A",
-                                            "tran phu tho KHDL16A"
-                                        ];                
+                                
+                                $(document).ready(function() {
+                                    $('#myInput').on('keyup', function() {
+                                        var letter = $(this).val();
+                                        $.ajax({
+                                            url: '/autocomplete',
+                                            type: 'GET',
+                                            data: { letter: letter },
+                                            success: function(data) {
+                                                $('.hint-dropdown .item-list').empty();
+                                                var students = data.students.slice(0, 5);
+                                                $.each(students, function(index, student) {
+                                                    $('<li>').text(student.name).appendTo('.hint-dropdown .item-list');
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
 
                                    
                                 
-                                    var input = document.querySelector(".search");
                                     
-                                    input.addEventListener("input", function() {
-                                        $(".hint-dropdown").addClass("show-hint-dropdown");
-                                        var value = input.value;
-                                        var html = arr.map((name ,index ) => {
-                                            const lastName  = name.split(" ")[name.split(" ").length - 2]
-                                            const nameClass = name.split(" ")[name.split(" ").length - 1]
-                                            if (lastName.toLowerCase().startsWith(value.toLowerCase()) && value.length > 0) return `<li class="item"><a href="#">${name}</a></li>`;
-                                        });
-                                        // get 5 name
-                                        html = html.filter((item) => item != undefined).slice(0, 5);
-
-                                        $(".item-list").html(html.join(""));
-                                    });
-                                    input.addEventListener("focus", function() {
-                                        $(".hint-dropdown").addClass("show-hint-dropdown");
-                                    })
-                                    input.addEventListener("blur", function() {
-                                        $(".hint-dropdown").removeClass("show-hint-dropdown");
-                                    })
-                                });
                             </script>
                         </div>
                         <div class="option">
