@@ -74,8 +74,9 @@
                                             success: function(data) {
                                                 $('.hint-dropdown .item-list').empty();
                                                 var students = data.students.slice(0, 5);
+                                                console.log(students);
                                                 $.each(students, function(index, student) {
-                                                    $('<li>').text(student.name).appendTo('.hint-dropdown .item-list');
+                                                    $('<li>').text(student.student_name + " - ").appendTo('.hint-dropdown .item-list');
                                                 });
                                             }
                                         });

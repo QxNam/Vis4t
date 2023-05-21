@@ -77,6 +77,7 @@ class Student(models.Model):
     score_char = models.CharField(max_length=3)
     rank = models.CharField(max_length=20) # học lực
     is_graduated = models.BooleanField(default=False)
+    lastname = models.CharField(max_length=15, null=True)
     
     subjects = models.ManyToManyField('Subject', through='Subject_student', through_fields=('student', 'subject'))
     

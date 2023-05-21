@@ -11,6 +11,8 @@ from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
+from django.db.models import Func, Value, CharField
+from django.db.models.functions import Substr
 import json
 # Create your views here.
     
@@ -345,15 +347,15 @@ class SubjectStudentDetail(APIView):
         return JsonResponse({"subject_name": subject_name, "data": queryset}, safe=False)
 
 class AutocompleteStudent(APIView):
+    
     def get(self, request):
-        
         letter = request.GET.get('letter')
         user = self.request.user
         classes = University_class.objects.filter(teacher=user)
         
         result = []
         for c in classes:
-            students = Student.objects.filter(class_name=c,
-                student_name__startswith=letter)
-            result += list(students.values('student_id', 'student_name'))
+            students = Student.objects.filter(class_name=c, lastname__istartswith=letter).order_by('lastname')
+            result += list(students.values('class_name', 'student_name', 'student_id'))
+
         return JsonResponse({'students': result}, safe=False)
