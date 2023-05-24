@@ -9,7 +9,31 @@
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Hãy chọn file để tải lên</label>
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="formFile" class="form-label">Hãy chọn file để tải lên</label>
+                        <label class="form-label">Tải file điểm mẫu 
+                            <div class="btn-download-example-file">
+                                tại đây
+                                <i class="fa fa-download"></i> 
+                            </div> 
+                            <script>
+                                $('.btn-download-example-file').click(function(){
+                                    // function downloadFile(url, fileName) {
+                                    //     $('<a>')
+                                    //     .attr('href', url)
+                                    //     .attr('download', fileName)
+                                    //     .appendTo('body')
+                                    //     .get(0)
+                                    //     .click();
+                                    // }
+                                    // var fileUrl = './khdl15a_subjects.csv';
+                                    // var fileName = 'exampleFile.csv';
+                                    // downloadFile(fileUrl, fileName);
+                                    alert("download file")
+                                });
+                            </script>
+                        </label>
+                    </div>
                     <input class="form-control" type="file" name="file" id="formFile">
                     {% if file_error %}
                         <div class="text-danger">{{ file_error }}</div>

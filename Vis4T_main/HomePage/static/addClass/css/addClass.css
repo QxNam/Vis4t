@@ -34,3 +34,18 @@
     width: 50%;
 
 }
+.btn-download-example-file {
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    /* text-decoration: underline; */
+    color: black;
+    border-bottom: 1px solid transparent;
+    font-weight: 700;
+}
+
+.btn-download-example-file:hover {
+    color: #2a2a2b;
+    border-bottom: 1px solid  #2a2a2b;
+}
