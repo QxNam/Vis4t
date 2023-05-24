@@ -50,23 +50,40 @@
                 </div>
                 <div class="wrap-option">
                         <div class="option">
-                            <form action="" method="GET">
+                            <form>
                                 <button type="submit" class="btn-search">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                                 <input type="text" id = "myInput" name="search" placeholder="Nhập tên sinh viên..." class="search">
                                 
                                 
-                                <div class="hint-dropdown">
+                                <div class="hint-dropdown show-hint-dropdown">
                                     <ul class="item-list">
+
                                     </ul>
                                 </div>
                             </form>
                             <script>
                                 
                                 $(document).ready(function() {
+                                    $('#myInput').blur(function() {
+                                        setTimeout(() => {
+                                            $('.hint-dropdown').removeClass('show-hint-dropdown');
+                                        },500)
+                                    });
+
+                                    $('#myInput').focus(
+                                        function() {
+                                            $('.hint-dropdown').addClass('show-hint-dropdown');
+                                        }
+
+                                    );
+
+                                   
+
                                     $('#myInput').on('keyup', function() {
                                         var letter = $(this).val();
+
                                         $.ajax({
                                             url: '/autocomplete',
                                             type: 'GET',
@@ -74,10 +91,15 @@
                                             success: function(data) {
                                                 $('.hint-dropdown .item-list').empty();
                                                 var students = data.students.slice(0, 5);
-                                                console.log(students);
-                                                $.each(students, function(index, student) {
-                                                    $('<li>').text(student.student_name + " - ").appendTo('.hint-dropdown .item-list');
+                                                console.log("student :",students);
+                                                const arrHint  = $.map(students, function(student,index) {
+                                                    return (`<li><a href = "/student/${student.student_id}">${student.student_name + " - " + student.class_name}</a></li>`)
                                                 });
+
+                                                // console.log("arrHint : ",arrHint)
+                                                // console.log("letter :", )
+                                                $('.item-list').html(arrHint.join(""));
+                                                // console.log($('.item-list'))
                                             }
                                         });
                                     });
