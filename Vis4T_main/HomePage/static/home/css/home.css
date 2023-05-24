@@ -92,7 +92,7 @@
     margin: 0;
 }
 .item-list li{
-    padding: 5px 10px;
+
     border-bottom: 1px solid rgb(0 0 0 / 20%);
 }
 .item-list li:last-child{
@@ -100,6 +100,12 @@
 }
 .item-list li:hover{
     background-color: #f5f5fd;
+}
+.item-list li a {
+    display: block;
+    padding: 5px 10px;
+    height: 100%;
+    width: 100%;
 }
 .show-hint-dropdown {
     display: block;
