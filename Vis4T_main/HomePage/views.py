@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.edit import UpdateView, CreateView
 from django.core.cache import cache
 from django.db.models import Q
-from django.http import Http404, JsonResponse
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from rest_framework.views import APIView
@@ -14,6 +14,7 @@ from .utils import *
 from django.db.models import Func, Value, CharField
 from django.db.models.functions import Substr
 import json
+
 # Create your views here.
     
 class Login(LoginView):
@@ -155,8 +156,6 @@ class UploadFile(LoginRequiredMixin, ListView):
     model = University_class
     template_name = 'addClass/upload_file.html'
     context_object_name = 'classes'
-    
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
@@ -175,6 +174,23 @@ class UploadFile(LoginRequiredMixin, ListView):
         
         return context
 
+    def post(self, request, *args, **kwargs):
+        class_name = self.kwargs['class_name']
+        file = request.FILES.get('file')
+        # Handle the file upload logic here
+        if file:
+            class_ = University_class.objects.get(class_name=class_name)
+            processor = DataProcessor(file)
+            if processor.get_all_student_detail(class_):
+               print("success") 
+            
+            return HttpResponseRedirect(f'/upload_file/{class_name}')  # Example redirect
+
+        # File upload error occurred
+        file_error = 'Please select a file.'
+        context = self.get_context_data(**kwargs)
+        context['file_error'] = file_error
+        return self.render_to_response(context) 
 
 class TeacherView(LoginRequiredMixin, ListView):
     model = Teacher
