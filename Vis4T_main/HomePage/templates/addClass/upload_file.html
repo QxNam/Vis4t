@@ -5,14 +5,16 @@
 <div class="main">
     <div class="wrap-form-add-class">
         <div class="form-box">
-            <h2>Cập nhật điểm của lớp {{ uploading_class }}
-               
-            </h2>
-            <form>
+            <h2>Cập nhật điểm của lớp {{ uploading_class }}</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Hãy chọn file để tải lên</label>
-                    <input class="form-control" type="file" id="formFile">
-                  </div>
+                    <input class="form-control" type="file" name="file" id="formFile">
+                    {% if file_error %}
+                        <div class="text-danger">{{ file_error }}</div>
+                    {% endif %}
+                </div>
                 <div class="wrap-btn">
                     <button type="submit" class="btn btn-success btn-submit-form">Tải lên
                         <label>                 
@@ -25,9 +27,8 @@
                         </label>
                     </button>
                 </div>
-              </form>
+            </form>
         </div>
     </div>
-    
 </div>
 {% endblock %}
