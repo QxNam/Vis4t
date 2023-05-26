@@ -29,8 +29,8 @@ urlpatterns = format_suffix_patterns([
     path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
     
     
-    path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
-    path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
-    path('reset_password_complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
+    # path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
+    # path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),
+    # path('reset/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
+    # path('reset_password_complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
 ])

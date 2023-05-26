@@ -393,14 +393,14 @@ class AutocompleteStudent(APIView):
         return JsonResponse({'students': result}, safe=False)
 
 # Password reset
-class PasswordReset(PasswordResetView):
-    template_name = 'login/password-reset.html'
-    form = GmailForm
+# class PasswordReset(PasswordResetView):
+#     template_name = 'login/password-reset.html'
+#     form = GmailForm
     
-class PasswordResetSent(PasswordResetDoneView):
-    template_name = 'login/password-reset-sent.html'
-class PasswordResetConfirm(PasswordResetConfirmView):
-    template_name = 'login/password-reset-form.html'
-    # success_url = reverse_lazy('login:password_reset_complete')
-class PasswordResetComplete(PasswordResetCompleteView):
-    template_name = 'login/password-reset-done.html'
+# class PasswordResetSent(PasswordResetDoneView):
+#     template_name = 'login/password-reset-sent.html'
+# class PasswordResetConfirm(PasswordResetConfirmView):
+#     template_name = 'login/password-reset-form.html'
+#     # success_url = reverse_lazy('login:password_reset_complete')
+# class PasswordResetComplete(PasswordResetCompleteView):
+#     template_name = 'login/password-reset-done.html'

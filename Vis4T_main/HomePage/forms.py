@@ -62,3 +62,22 @@ class UniversityClassForm(ModelForm):
         self.fields['class_major'].widget.attrs['placeholder'] = '( VD: Khoa học dữ liệu, Khoa Học Máy Tính ... )'
         self.fields['total_credit'].widget.attrs['placeholder'] = '( Ví dụ: 100, 120,... )'
         self.fields['total_semester'].widget.attrs['placeholder'] = '( VD: 9, 8,... ) (Tối đa 9 học kì)'
+    
+# class GmailForm(forms.Form):
+#     gmail = forms.CharField(
+#         label=False,
+#         widget=forms.TextInput(
+#             attrs={
+#                 'type': 'email',
+#                 'name': 'gmail',
+#                 'class': 'input',
+#                 'placeholder': 'Nhập email *',
+#                 'autofocus': 'autofocus',
+#                 'required': 'required',
+#                 'maxlength': '150',
+#                 'id': 'gmail',
+#             }
+#         )
+#     )
+    
+    
