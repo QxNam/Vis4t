@@ -21,9 +21,16 @@ urlpatterns = format_suffix_patterns([
     path('subject/', views.SubjectStudentDetail.as_view(), name = "subject_api"),
     path('add_class/', views.AddNewClass.as_view(), name = "add_class"),
     path('upload_file/<str:class_name>', views.UploadFile.as_view(), name = "upload_file"),
+    path('upload_file/subject_confirm/<str:class_name>', views.Subject_confirm.as_view(), name = "subject_confirm"),
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
     path('teacher/teacher_update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
                                                    
     path('autocomplete/', views.AutocompleteStudent.as_view(), name='autocomplete'),
     path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
+    
+    
+    path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
+    path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
+    path('reset_password_complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
 ])

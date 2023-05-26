@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.views.generic.edit import UpdateView, CreateView
 from django.core.cache import cache
 from django.db.models import Q
@@ -35,7 +35,7 @@ class Login(LoginView):
             return JsonResponse({'status': 'success'})
         else:
             return JsonResponse({'status': 'error'})
-        
+    
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class
     context_object_name = 'classes'
@@ -78,7 +78,7 @@ class HomeView(LoginRequiredMixin, ListView):
             
             for i in range(len(student_list)):
                 student_list[i]['ranking'] = i + 1
-            context['student_list'] = student_list
+            context['student_list'] = student_list  
             context['subject'] = subject_class_list
             context['first_subject'] = subject_class_list[0]
             context['class_note'] = Note_class.objects.filter(class_name=cached_class_name)
@@ -149,6 +149,7 @@ class AddNewClass(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         class_ = form.save(commit=False)
         class_.teacher = self.request.user
+        class_.is_done = False
         class_.save()        
         self.success_url = reverse_lazy('upload_file', kwargs={'class_name': class_.class_name})
         return super().form_valid(form)
@@ -177,14 +178,13 @@ class UploadFile(LoginRequiredMixin, ListView):
     def post(self, request, *args, **kwargs):
         class_name = self.kwargs['class_name']
         file = request.FILES.get('file')
-        # Handle the file upload logic here
         if file:
             class_ = University_class.objects.get(class_name=class_name)
             processor = DataProcessor(file)
-            if processor.get_all_student_detail(class_):
-               print("success") 
+            processor.get_all_student_detail(class_)
+               
             
-            return HttpResponseRedirect(f'/upload_file/{class_name}')  # Example redirect
+            return HttpResponseRedirect(f'/upload_file/{class_name}')  
 
         # File upload error occurred
         file_error = 'Please select a file.'
@@ -234,7 +234,23 @@ class TeacherUpdate(LoginRequiredMixin, UpdateView):
         teacher.save()
         
         return super().form_valid(form)
-
+class Subject_confirm(LoginRequiredMixin, ListView):
+    model = Teacher
+    template_name = 'addClass/upload_file.html'
+    
+    context_object_name = 'teacher'
+    
+    def get_queryset(self):
+        teacher = self.request.user
+        return teacher
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = University_class.objects.filter(teacher=self.request.user)
+        context['cached_class_name'] = cache.get('class_name')
+        context['current_link'] = 'aboutus'
+        
+        return context
 class AboutUS(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'about_us.html'
@@ -375,3 +391,16 @@ class AutocompleteStudent(APIView):
             result += list(students.values('class_name', 'student_name', 'student_id'))
 
         return JsonResponse({'students': result}, safe=False)
+
+# Password reset
+class PasswordReset(PasswordResetView):
+    template_name = 'login/password-reset.html'
+    form = GmailForm
+    
+class PasswordResetSent(PasswordResetDoneView):
+    template_name = 'login/password-reset-sent.html'
+class PasswordResetConfirm(PasswordResetConfirmView):
+    template_name = 'login/password-reset-form.html'
+    # success_url = reverse_lazy('login:password_reset_complete')
+class PasswordResetComplete(PasswordResetCompleteView):
+    template_name = 'login/password-reset-done.html'
