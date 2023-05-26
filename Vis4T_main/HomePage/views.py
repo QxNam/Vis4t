@@ -236,7 +236,7 @@ class TeacherUpdate(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 class Subject_confirm(LoginRequiredMixin, ListView):
     model = Teacher
-    template_name = 'addClass/upload_file.html'
+    template_name = 'addClass/subject-confirm.html'
     
     context_object_name = 'teacher'
     
