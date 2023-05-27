@@ -11,9 +11,6 @@ from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
-from django.db.models import Func, Value, CharField
-from django.db.models.functions import Substr
-import json
 
 # Create your views here.
     
@@ -27,14 +24,7 @@ class Login(LoginView):
         class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
     
-    @staticmethod
-    def send_gmail(request):
-        if request.method == 'POST':
-            gmail_value = request.POST.get('gmail')
-            print(gmail_value)
-            return JsonResponse({'status': 'success'})
-        else:
-            return JsonResponse({'status': 'error'})
+    
     
 class HomeView(LoginRequiredMixin, ListView):
     model = University_class

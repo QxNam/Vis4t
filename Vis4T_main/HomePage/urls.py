@@ -8,7 +8,6 @@ urlpatterns = format_suffix_patterns([
     path('', views.Login.as_view(), name="login"),
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='login'), name="logout"),
-    path('gmail/', views.Login.send_gmail, name='send_gmail'),
     
     path('home/<str:class_name>/', views.HomeView.as_view(class_home=True), name='home'),
     path('student/<str:student_id>/', views.StudentView.as_view(), name='student_view'),
