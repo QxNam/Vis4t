@@ -8,7 +8,7 @@
           <div class="form-box">
               <h2>Cập nhật danh sách sinh viên lớp {{class.class_name}}</h2>
               <div class="wrap-btn">
-                <a href="{% url 'upload_file' class.class_name %}">
+                <a href="{% url 'upload_file' class.class_name %}" style="display: block; width: 100%;">
                   <button type="submit" class="btn btn-success" style="width : 100%;">Cập nhật
                     <label>
                       <i class="fas fa-plus"></i>
@@ -23,7 +23,7 @@
         <div class="form-box">
             <h2>Thêm lớp mới</h2>
             <div class="wrap-btn">
-              <a href="{% url 'add_class' %}">
+              <a href="{% url 'add_class' %}" style="display: block; width: 100%;" >
                 <button type="submit" class="btn btn-success" style="width : 100%;">Thêm
                 
                   <label>
@@ -39,7 +39,7 @@
           <div class="form-box">
               <h2>Cập nhật học kì và tín chỉ các môn học kì sau</h2>
               <div class="wrap-btn">
-                <a href="{% url 'subject_confirm' class.class_name %}">
+                <a href="{% url 'subject_confirm' class.class_name %}" style="display: block; width: 100%;">
                   <button type="submit" class="btn btn-success" style="width : 100%;">Cập nhật
                     <label>
                       <i class="fas fa-plus"></i>
