@@ -74,9 +74,11 @@ class HomeView(LoginRequiredMixin, ListView):
             else:
                 context['cached_class_name'] = university_class.class_name
                 cache.set('class_name', university_class.class_name)
-            subject_class_list = Subject_class.objects.filter(class_name=university_class)
-            print(subject_class_list)
-            if subject_class_list.first() is None:
+            
+            # query subject_class with class_name = university_class and semester_id != None
+            subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
+            # Check if subject_class_list is empty
+            if len(subject_class_list) == 0:
                 return self.returnHomeNone(context, situation='zero_subject')
             
             subject_class_list = list(subject_class_list.values())
