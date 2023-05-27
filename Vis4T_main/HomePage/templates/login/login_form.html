@@ -1,11 +1,6 @@
 {% extends './index.html' %}
 {% block form_type %}
 {% load static %}
-    <div class="block">
-        <span class="icon"
-            ><i class="fa-sharp fa-solid fa-lock lockIcon"></i
-        ></span>
-    </div>
     
     <div class="form-container">
         <div class="form up-form">
@@ -27,7 +22,7 @@
                 <span>Remember me</span>
               </div>
               <div class="forgot">
-                <a class="forgot-password">
+                <a class="forgot-password" href="{% url 'reset_password' %}">
                   <p>Quên mật khẩu</p>
                 </a>
               </div>
@@ -40,29 +35,7 @@
             <a>VisForTeacher © 2023</a>
           </div>
         </div>
-        <div class="form back-form">
-          
-          <form method="post">
-            {% csrf_token %}
-            <h1 class="title">Nhập gmail</h1>
-            <div class="form-group">
-                <input type="text" name="gmail" class="input" placeholder="Nhập gmail *" autofocus="" required="" maxlength="150" id="gmail">
-            </div>
-            <div class="option">
-              <div class="forgot">
-                <a class="back-to-login">
-                  <p>Quay lại đăng nhập</p>
-                </a>
-              </div>
-            </div>
-            <div class="btn-wrapper">
-                <button class="btn-login" name="login_submit" id="send-gmail">Gửi gmail xác thực</button>
-            </div>
-          </form>
-          <div class="footer">
-            <a>VisForTeacher © 2023</a>
-          </div>
-        </div>
+        
       </div>
 
     <script src="https://kit.fontawesome.com/5466b985c0.js" crossorigin="anonymous"></script>
