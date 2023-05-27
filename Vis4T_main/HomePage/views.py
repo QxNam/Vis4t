@@ -61,7 +61,7 @@ class HomeView(LoginRequiredMixin, ListView):
         if class_name is not None:
             university_class = University_class.objects.filter(class_name=class_name)
             if university_class.first() is None:
-                university_class = university_class[1]
+                university_class = University_class.objects.filter(teacher=self.request.user).first()
             else :
                 university_class = university_class.first()
             if university_class.teacher != self.request.user:
@@ -74,18 +74,19 @@ class HomeView(LoginRequiredMixin, ListView):
             else:
                 context['cached_class_name'] = university_class.class_name
                 cache.set('class_name', university_class.class_name)
-            
+                
             subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
+            student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
+            if len(student_list) == 0:
+                return self.returnHomeNone(context, situation='zero_student')
             if len(subject_class_list) == 0:
                 return self.returnHomeNone(context, situation='zero_subject')
             
             subject_class_list = list(subject_class_list.values())
-            student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
-            if len(student_list) == 0:
-                return self.returnHomeNone(context, situation='zero_student')
             
             for i in range(len(student_list)):
                 student_list[i]['ranking'] = i + 1
+                
             context['student_list'] = student_list  
             context['subject'] = subject_class_list
             context['first_subject'] = subject_class_list[0]
@@ -161,6 +162,7 @@ class AddNewClass(LoginRequiredMixin, CreateView):
         class_.save()        
         self.success_url = reverse_lazy('upload_file', kwargs={'class_name': class_.class_name})
         return super().form_valid(form)
+    
 class UploadFile(LoginRequiredMixin, ListView):
     model = University_class
     template_name = 'addClass/upload_file.html'
