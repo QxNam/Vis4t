@@ -3,19 +3,54 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'addClass/css/addClass.css' %}" />
 <div class="main">
-    
-    <div class="wrap-form-add-class">
+    {% if situation == "zero_student" %}
+      <div class="wrap-form-add-class">
+          <div class="form-box">
+              <h2>Cập nhật danh sách sinh viên lớp {{class.class_name}}</h2>
+              <div class="wrap-btn">
+                <a href="{% url 'upload_file' class.class_name %}">
+                  <button type="submit" class="btn btn-success" style="width : 100%;">Cập nhật
+                    <label>
+                      <i class="fas fa-plus"></i>
+                    </label>
+                  </button>
+                </a>
+              </div>
+          </div>
+      </div>
+    {% elif situation == "zero_class" %}
+      <div class="wrap-form-add-class">
         <div class="form-box">
-            <h2>Cập nhật danh sách các môn học kì sau</h2>
+            <h2>Thêm lớp mới</h2>
             <div class="wrap-btn">
+              <a href="{% url 'add_class' %}">
                 <button type="submit" class="btn btn-success" style="width : 100%;">Thêm
+                
                   <label>
                     <i class="fas fa-plus"></i>
                   </label>
                 </button>
-              </div>
+              </a>
+            </div>
         </div>
-    </div>
+      </div>
+    {% else %}
+      <div class="wrap-form-add-class">
+          <div class="form-box">
+              <h2>Cập nhật học kì và tín chỉ các môn học kì sau</h2>
+              <div class="wrap-btn">
+                <a href="{% url 'subject_confirm' class.class_name %}">
+                  <button type="submit" class="btn btn-success" style="width : 100%;">Cập nhật
+                    <label>
+                      <i class="fas fa-plus"></i>
+                    </label>
+                  </button>
+                </a>
+                  
+              </div>
+          </div>
+      </div>
+    {% endif %}
 </div>
 <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}

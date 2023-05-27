@@ -87,7 +87,7 @@ class Student(models.Model):
 class Subject_class(models.Model):
     subject = models.ForeignKey('Subject', on_delete=models.CASCADE)
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)    
-    semester_id = models.CharField(max_length=1)
+    semester_id = models.CharField(max_length=1, null=True)
     def __str__(self):
         return "{} - {} - {}".format(self.subject_id, self.class_name, self.semester_id)
                     

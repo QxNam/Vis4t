@@ -41,10 +41,11 @@ class HomeView(LoginRequiredMixin, ListView):
     context_object_name = 'classes'
     template_name = 'home/home.html'
     
-    def returnHomeNone(self, context):
+    def returnHomeNone(self, context, situation):
         self.template_name = 'home/homeNone.html'
         context['cached_class_name'] = None
         context['current_link'] = 'home'
+        context['situation'] = situation
         return context
     
     def get_queryset(self):
@@ -58,11 +59,14 @@ class HomeView(LoginRequiredMixin, ListView):
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
         if class_name:
-            university_class = University_class.objects.filter(class_name=class_name).first()
-            if university_class is None:
-                return self.returnHomeNone(context)
+            university_class = University_class.objects.filter(class_name=class_name)
+            if university_class.first() is None:
+                university_class = university_class[1]
+            else :
+                university_class = university_class.first()
             if university_class.teacher != self.request.user:
                 raise Http404
+            
             context['class'] = university_class
             cached_class_name = cache.get('class_name')
             if cached_class_name == class_name:
@@ -70,11 +74,15 @@ class HomeView(LoginRequiredMixin, ListView):
             else:
                 context['cached_class_name'] = university_class.class_name
                 cache.set('class_name', university_class.class_name)
-                
-            subject_class_list = list(Subject_class.objects.filter(class_name=university_class).values())
+            subject_class_list = Subject_class.objects.filter(class_name=university_class)
+            print(subject_class_list)
+            if subject_class_list.first() is None:
+                return self.returnHomeNone(context, situation='zero_subject')
+            
+            subject_class_list = list(subject_class_list.values())
             student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
             if len(student_list) == 0:
-                return self.returnHomeNone(context)
+                return self.returnHomeNone(context, situation='zero_student')
             
             for i in range(len(student_list)):
                 student_list[i]['ranking'] = i + 1
@@ -83,7 +91,7 @@ class HomeView(LoginRequiredMixin, ListView):
             context['first_subject'] = subject_class_list[0]
             context['class_note'] = Note_class.objects.filter(class_name=cached_class_name)
         else:
-            return self.returnHomeNone(context)
+            return self.returnHomeNone(context, situation='zero_class')
             
         context['current_link'] = 'home'
         return context
@@ -393,9 +401,9 @@ class AutocompleteStudent(APIView):
         return JsonResponse({'students': result}, safe=False)
 
 # Password reset
-# class PasswordReset(PasswordResetView):
-#     template_name = 'login/password-reset.html'
-#     form = GmailForm
+class PasswordReset(PasswordResetView):
+    template_name = 'login/password-reset.html'
+    form = GmailForm
     
 # class PasswordResetSent(PasswordResetDoneView):
 #     template_name = 'login/password-reset-sent.html'
