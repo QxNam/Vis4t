@@ -18,18 +18,18 @@
                             </div> 
                             <script>
                                 $('.btn-download-example-file').click(function(){
-                                    // function downloadFile(url, fileName) {
-                                    //     $('<a>')
-                                    //     .attr('href', url)
-                                    //     .attr('download', fileName)
-                                    //     .appendTo('body')
-                                    //     .get(0)
-                                    //     .click();
-                                    // }
-                                    // var fileUrl = './khdl15a_subjects.csv';
-                                    // var fileName = 'exampleFile.csv';
-                                    // downloadFile(fileUrl, fileName);
-                                    alert("download file")
+                                    function downloadFile(url, fileName) {
+                                         $('<a>')
+                                         .attr('href', url)
+                                         .attr('download', fileName)
+                                         .appendTo('body')
+                                         .get(0)
+                                         .click();
+                                     }
+                                     var fileUrl = 'KHDL16A.xlsx';
+                                     var fileName = 'example.csv';
+                                     downloadFile(fileUrl, fileName);
+                                    //alert("download file")
                                 });
                             </script>
                         </label>

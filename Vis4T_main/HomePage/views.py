@@ -58,7 +58,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
-        if class_name:
+        if class_name is not None:
             university_class = University_class.objects.filter(class_name=class_name)
             if university_class.first() is None:
                 university_class = university_class[1]
@@ -75,9 +75,7 @@ class HomeView(LoginRequiredMixin, ListView):
                 context['cached_class_name'] = university_class.class_name
                 cache.set('class_name', university_class.class_name)
             
-            # query subject_class with class_name = university_class and semester_id != None
             subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
-            # Check if subject_class_list is empty
             if len(subject_class_list) == 0:
                 return self.returnHomeNone(context, situation='zero_subject')
             
