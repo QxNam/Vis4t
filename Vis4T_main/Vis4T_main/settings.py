@@ -87,12 +87,12 @@ if environ.get('ENVIRONMENT') == 'PRODUCTION':
 else:
     DATABASES = {
         'default': {
-            'ENGINE': environ['ENGINE'],
-            'NAME': environ['NAME'],
-            'USER': environ['USER'],
-            'PASSWORD': environ['PASSWORD'],
-            'HOST': environ['HOST'],
-            'PORT': environ['PORT'],
+            'ENGINE': environ['VIS4T_DB_ENGINE'],
+            'NAME': environ['VIS4T_DB_NAME'],
+            'USER': environ['VIS4T_DB_USER'],
+            'PASSWORD': environ['VIS4T_DB_PASSWORD'],
+            'HOST': environ['VIS4T_DB_HOST'],
+            'PORT': environ['VIS4T_DB_PORT'],
             
             # 'ENGINE': 'django.db.backends.postgresql',
             # 'NAME': 'railway',
