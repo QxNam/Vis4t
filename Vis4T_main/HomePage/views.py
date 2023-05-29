@@ -130,7 +130,7 @@ class StudentView(LoginRequiredMixin, ListView):
         context['subject_list'] = list(subject)
         
         context['note'] = Note_student.objects.filter(student_id=student_id)
-        
+        context['current_date'] = datetime.now().strftime("%d/%m/%Y")
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher
@@ -282,12 +282,31 @@ class AddClassNote(APIView):
     def post(self, request):
         class_name = cache.get('class_name')
         date = datetime.now()
-        print(date, type(date))
         class_ = University_class.objects.get(class_name=class_name)
         
         note = request.data.get('note')
         try:
             Note_class.objects.create(class_name=class_, content=note, name=date)
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+    @csrf_exempt 
+    def delete(self, request):
+        try:
+            note = Note_class.objects.get(note_id=request.data.get('note_id'))
+            note.delete()
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+
+class AddStudentNote(APIView):
+    @csrf_exempt 
+    def post(self, request):
+        date = datetime.now()
+        note = request.data.get('note')
+        student = Student.objects.get(student_id=request.data.get('student_id'))
+        try:
+            Note_student.objects.create(student=student, content=note, name=date)
             return JsonResponse({'status': 'success'})
         except:
             return JsonResponse({'status': 'error'})
