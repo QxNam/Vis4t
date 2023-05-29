@@ -21,6 +21,10 @@
     </head>
     <body>
         <div class="container-fluid main">
+            {%if reset_confirm %}
+                {% block reset_view %} 
+                {% endblock %}
+            {% else %}
             <div class="row wrapper">
                 <div class="background-img col-md-12 col-xl-8 col-xxl-8">
                     <div class="img-logo">
@@ -52,6 +56,7 @@
                     {% block form_type %} 
                     {% endblock %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </body>

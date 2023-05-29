@@ -12,7 +12,6 @@
 
 
 .main{
-	background-color: aqua;
 	margin: 0;
 	padding: 0;
 	
@@ -22,7 +21,6 @@
 	margin: 0;
 }
 .background-img{
-
 	background-color: #ebfcf9;
 	margin: 0;
 	padding: 0;
@@ -57,6 +55,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 10px;
 }
 .icon{
 	height: 80px;
@@ -144,6 +143,14 @@
 	top: 0;
 	right: 10px;
 }
+.forgot a{
+	display: block;
+	/* text-decoration: none; */
+	font-weight: 600;
+	color: black;
+	border-bottom: 1px solid black ;
+}
+
 /*Hover to class forgot*/
 
 .forgot:hover{
@@ -223,6 +230,31 @@
 
 .up-form.flip-up {
 	animation: flip-up 0.5s ease-in-out forwards;
+}
+
+
+.wrap-password-reset {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.title {
+	font-size: 1.5rem;
+}
+
+
+.btn-wrapper-link-to-email a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	font-size: 1rem;
+	color: black;
+	font-weight: 600;
+	border-bottom: 1px solid rgb(0 0 0 / 60%);
 }
 
 @keyframes flip-down {

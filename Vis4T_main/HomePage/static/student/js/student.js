@@ -5,7 +5,7 @@ function drawCreditRadialChart() {
     var options = {
       series: [100, percentage],
       chart: {
-        height: 340,
+        height: "auto",
         type: 'radialBar'
       },
       plotOptions: {

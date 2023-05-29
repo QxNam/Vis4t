@@ -1,3 +1,4 @@
+from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.views.generic.edit import UpdateView, CreateView
@@ -409,8 +410,12 @@ class PasswordReset(PasswordResetView):
 class PasswordResetSent(PasswordResetDoneView):
     template_name = 'login/password-reset-sent.html'
 class PasswordResetConfirm(PasswordResetConfirmView):
-    pass
-#     template_name = 'login/password-reset-form.html'
+    template_name = 'login/password-reset-form.html'
+
+    def get_context_data(self, **kwargs: Any):
+        context =  super().get_context_data(**kwargs)
+        context['reset_confirm'] = True
+        return context
 #     # success_url = reverse_lazy('login:password_reset_complete')
 class PasswordResetComplete(PasswordResetCompleteView):
     pass
