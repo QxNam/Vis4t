@@ -275,6 +275,29 @@ class AboutUS(LoginRequiredMixin, ListView):
     
 
 # API Views
+class AddClassNote(APIView):
+    def post(self, request):
+        class_name = cache.get('class_name')
+        date = datetime.now()
+        print(date, type(date))
+        class_ = University_class.objects.get(class_name=class_name)
+        
+        note = request.data.get('note')
+        try:
+            Note_class.objects.create(class_name=class_, content=note, name=date)
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+    def delete(self, request):
+        try:
+            note = Note_class.objects.get(note_id=request.data.get('note_id'))
+            note.delete()
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+
+    
+    
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
@@ -314,24 +337,7 @@ class ClassListDetail(APIView):
         student_serializer = StudentSerializer(student, many=True)
         response = {'student': student_serializer.data}
         return JsonResponse(response, safe=False)       
-        
-class TeacherDetail(APIView):
-    def get_object(self, pk: str):
-        try:
-            return Teacher.objects.get(teacher_id=pk)
-        except Teacher.DoesNotExist:
-            raise Http404
     
-    def get(self, request, pk, format=None):
-        teacher = self.get_object(pk)
-        teach_serializer = TeacherSerializer(teacher)
-        class_ = University_class.objects.filter(teacher=teacher)
-        class_serializer = University_classSerializer(class_, many=True)
-        response = {
-            "teacher": teach_serializer.data,
-            "class": class_serializer.data
-        }
-        return JsonResponse(response, safe=False)
 
 class StudentSubjectDetail(APIView):
     def get_object(self, student_id: str):

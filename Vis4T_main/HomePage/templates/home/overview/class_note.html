@@ -1,8 +1,8 @@
 {% load static %}
 
 <div class="col-3">
-    
-    <link rel="stylesheet" href="{% static 'home/css/note.css' %}">
+    {% csrf_token %}
+    <link rel="stylesheet" href="{% static 'home/css/note.css' %}" data-add-note-url="{% url 'add_note_class' %}">
     
     <div class="wrap-box">
         <div class="note-box">
@@ -14,7 +14,7 @@
                     <li>
                       <button type="button" class="btn" data-toggle="modal" data-target="#{{ note.id }}" 
                           data-whatever="{{ note.name|date:'m/d/Y' }}">{{ note.name|date:'m/d/Y' }}</button>
-                      <span>
+                      <span class="delete-class-note" data-note-id="{{note.id}}">
                           <label>
                               <i class="fas fa-trash-alt"></i>
                           </label>
