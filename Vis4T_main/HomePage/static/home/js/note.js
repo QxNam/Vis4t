@@ -55,4 +55,35 @@ $(document).ready(function() {
       });
 
   });
+
+  $('#save-class-note').on('click', function() {
+    var note_id = $(this).data('note-id');
+    var token = $('input[name=csrfmiddlewaretoken]').val();
+    var name = `note-id-${note_id}`;
+    $.ajax({
+      url: `/update_note_class/${note_id}`,
+      type : "PUT",
+      dataType: "json",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        'X-CSRFToken': token
+      },
+      data: {
+        'note': $("textarea[name="+ name + "]").val().trim(),
+      },
+      success: function(data) {
+          
+          if (data['status'] == 'success') {
+            alert("Cập ghi chú thành công");
+            location.reload();
+          }
+          else {
+            alert("Lỗi! Xóa ghi chú thất bại");
+          }
+        }
+      });
+
+  });
+
 });
+

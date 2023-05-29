@@ -12,6 +12,7 @@ from django.views.generic.list import ListView
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt 
 from rest_framework.views import APIView
+import re
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -280,7 +281,6 @@ class AboutUS(LoginRequiredMixin, ListView):
 
 # API Views
 class AddClassNote(APIView):
-    @csrf_exempt 
     def post(self, request):
         class_name = cache.get('class_name')
         date = datetime.now()
@@ -301,6 +301,15 @@ class DeleteClassNote(APIView):
             return JsonResponse({'status': 'success'})
         except Note_class.DoesNotExist:
             return JsonResponse({'status': 'error'})
+class UpdateClassNote(APIView):
+    def put(self, request, note_id):
+        try:
+            note = Note_class.objects.get(id=note_id)
+            note.content = request.data.get('note')
+            note.save()
+            return JsonResponse({'status': 'success'})
+        except Note_class.DoesNotExist:
+            return JsonResponse({'status': 'error'})
 
 class AddStudentNote(APIView):
     def post(self, request):
@@ -315,12 +324,21 @@ class AddStudentNote(APIView):
 class DeleteStudentNote(APIView):
     def delete(self, request, note_id):
         try:
-            note = Note_class.objects.get(note_id=note_id)
+            note = Note_student.objects.get(id=note_id)
             note.delete()
             return JsonResponse({'status': 'success'})
-        except:
+        except Exception as e:
+            print(e)
             return JsonResponse({'status': 'error'})
-
+class UpdateStudentNote(APIView):
+    def put(self, request, note_id):
+        try:
+            note = Note_student.objects.get(id=note_id)
+            note.content = request.data.get('note')
+            note.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'status': 'error'})
     
     
 class ClassDetail(APIView):

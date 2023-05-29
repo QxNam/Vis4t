@@ -39,6 +39,9 @@ class TeacherForm(ModelForm):
             # 'email': forms.EmailInput(attrs={'class': 'input-update'}),
             # 'sex': forms.RadioSelect(choices=(('M', 'Nam'), ('F', 'Nữ')))
         }
+        
+
+    
 class UniversityClassForm(ModelForm):
     class Meta:
         model = University_class
