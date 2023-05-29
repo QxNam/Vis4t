@@ -14,7 +14,7 @@
 .wrap-detail-student {
     padding: 0.625rem;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     border: 2px solid rgb(0 0 0 / 20%);
     border-radius: 0.5rem;
     overflow: hidden;
