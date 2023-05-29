@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from .models import Teacher, University_class
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
@@ -83,4 +83,25 @@ class GmailForm(PasswordResetForm):
         model= Teacher
         fields = ['email']
     
-    
+class PasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(label="Mật khẩu cũ :", widget=forms.PasswordInput(
+        attrs={
+            'type': 'password',
+            'id': 'old_password',
+            'class': 'form-control',
+        }
+    ))
+    new_password1 = forms.CharField(label="Mật khẩu mới :", widget=forms.PasswordInput(
+        attrs={
+            'type': 'password',
+            'id': 'new_password',
+            'class': 'form-control',
+        }
+    ))
+    new_password2 = forms.CharField(label="Xác nhận mật khẩu mới :", widget=forms.PasswordInput(
+        attrs={
+            'type': 'password',
+            'id': 'confirm_new_password',
+            'class': 'form-control',
+        }
+    ))

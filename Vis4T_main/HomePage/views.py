@@ -411,12 +411,12 @@ class PasswordResetSent(PasswordResetDoneView):
     template_name = 'login/password-reset-sent.html'
 class PasswordResetConfirm(PasswordResetConfirmView):
     template_name = 'login/password-reset-form.html'
-
+    form_class = PasswordChangeForm
     def get_context_data(self, **kwargs: Any):
         context =  super().get_context_data(**kwargs)
         context['reset_confirm'] = True
         return context
-#     # success_url = reverse_lazy('login:password_reset_complete')
+    
 class PasswordResetComplete(PasswordResetCompleteView):
     pass
 #     template_name = 'login/password-reset-done.html'
