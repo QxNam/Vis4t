@@ -8,6 +8,7 @@ from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from datetime import datetime
+from django.views.decorators.csrf import csrf_protect 
 from rest_framework.views import APIView
 from .forms import *
 from .models import Student, Teacher, University_class
@@ -277,6 +278,7 @@ class AboutUS(LoginRequiredMixin, ListView):
 
 # API Views
 class AddClassNote(APIView):
+    @csrf_protect 
     def post(self, request):
         class_name = cache.get('class_name')
         date = datetime.now()
@@ -289,6 +291,7 @@ class AddClassNote(APIView):
             return JsonResponse({'status': 'success'})
         except:
             return JsonResponse({'status': 'error'})
+    @csrf_protect 
     def delete(self, request):
         try:
             note = Note_class.objects.get(note_id=request.data.get('note_id'))
