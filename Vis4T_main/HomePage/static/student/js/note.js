@@ -11,11 +11,16 @@ $(document).ready(function() {
       return false;
     }
     var token = $('input[name=csrfmiddlewaretoken]').val();
+    // get current url
+    var url = window.location.href;
+    url = url.split('/');
+    var student_id = url[url.length - 2];
     $.ajax({
       url: '/add_student_note/',
       type : "POST",
       data: {
         'note': note,
+        'student_id': student_id,
         'csrfmiddlewaretoken': token
       },
       success: function(data) {

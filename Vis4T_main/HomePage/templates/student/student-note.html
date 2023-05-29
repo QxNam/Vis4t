@@ -15,7 +15,7 @@
       {% endfor %}
 
     </ul>
-    {% for note in class_note %}
+    {% for note in notes %}
       <div class="modal fade modal-note" id="{{ note.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabelNote" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -88,4 +88,5 @@
         </div>
       </div>
 </div>
+{% csrf_token %}
 <script src="{% static 'student/js/note.js' %}"></script>

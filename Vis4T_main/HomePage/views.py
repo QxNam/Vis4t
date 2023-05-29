@@ -131,7 +131,7 @@ class StudentView(LoginRequiredMixin, ListView):
             .values("subject__subject_name", "subject__credit", "score_10")
         context['subject_list'] = list(subject)
         
-        context['note'] = Note_student.objects.filter(student_id=student_id)
+        context['notes'] = Note_student.objects.filter(student_id=student_id)
         context['current_date'] = datetime.now().strftime("%d/%m/%Y")
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
