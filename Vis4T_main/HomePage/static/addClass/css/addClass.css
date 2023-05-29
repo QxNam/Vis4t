@@ -12,15 +12,15 @@
 }
 .form-box {
     width: 50%;
-    padding: 30px;
+    padding: 2rem;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     border: 1px solid rgb(0 0 0 / 20%);
 }
 .form-box h2 {
     text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.65rem;
     border-bottom: 1px solid rgb(0 0 0 / 20%);
 }
 .wrap-btn {
@@ -61,7 +61,7 @@
 }
 .wrap-dropdown-subject {
     width: 100%;
-    top: calc(50% - 10px);
+    top: calc(50% - 0.625rem);
     left: 0;
     position: absolute;
     display: flex;
@@ -69,12 +69,11 @@
 
 }
 .box-subject-name {
-    height: 180px;
+    height: 11.25rem;
     position: relative;
-    padding: 10px;
-    /* margin-top: 20px; */
+    padding: 0.625rem;
     border: 2px solid rgb(0 0 0 / 20%);
-    border-radius: 20px;
+    border-radius: 1.3rem;
     background-color:  #ffffff;
     border-color: #ffffff;
 }
@@ -84,16 +83,16 @@
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 0.9rem;
     border-bottom: 1px solid rgb(0 0 0 / 20%);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     font-weight: 700;
     text-align: center;
 }
 .btn-subject {
     background-color: rgba(196, 195, 195, 0.2);
     width: 60%;
-    padding: 5px 10px;
+    padding: 0.3rem 0.625rem;
     /* border: 1px solid black !important; */
     box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 20%);
     color: black;
@@ -105,9 +104,9 @@
 .wrap-btn-confirm {
     width: 100%;
     position: fixed;
-    bottom: 20px;
+    bottom: 1.25rem;
     left: 0;
-    margin-top: 20px;
+    margin-top: 1,25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,21 +116,21 @@
     background-color: #198754;
     border-color: #198754;
     box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 20%);
-    padding: 5px 20px;
-    border-radius: 15px;
+    padding: 0.3rem 1.25rem;
+    border-radius: 1rem;
     color: white;
-    font-size: 20px;
+    font-size: 1.2rem;
 }
 .wrap-btn-confirm button:hover{
     /* background-color: ; */
     opacity: 0.8;
 }
 .menu-custom {
-    height: 150px;
+    height: 9.375rem;
     overflow: scroll;
 }
 .menu-custom .dropdown-item {
-    padding: 5px 10px;
+    padding: 0.3rem 1.25rem;
     margin: 3px;
     border: none !important;
     cursor: pointer;
