@@ -28,7 +28,10 @@ urlpatterns = format_suffix_patterns([
     path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
     
     path('add_note_class/', views.AddClassNote.as_view(), name = "add_note_class"),
+    path('delete_note_class/<str:note_id>', views.DeleteClassNote.as_view(), name = "delete_note_class"),
     path('add_student_note/', views.AddStudentNote.as_view(), name = "add_student_note"),
+    path('delete_student_note/<str:note_id>', views.DeleteStudentNote.as_view(), name = "delete_student_note"),
+    
     path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
     path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),

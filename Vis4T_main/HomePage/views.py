@@ -1,7 +1,9 @@
 from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.views.generic.edit import UpdateView, CreateView
+from rest_framework import generics
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
@@ -290,17 +292,17 @@ class AddClassNote(APIView):
             return JsonResponse({'status': 'success'})
         except:
             return JsonResponse({'status': 'error'})
-    @csrf_exempt 
-    def delete(self, request):
+
+class DeleteClassNote(APIView):
+    def delete(self, request, note_id):
         try:
-            note = Note_class.objects.get(note_id=request.data.get('note_id'))
+            note = Note_class.objects.get(id=note_id)
             note.delete()
             return JsonResponse({'status': 'success'})
-        except:
+        except Note_class.DoesNotExist:
             return JsonResponse({'status': 'error'})
 
 class AddStudentNote(APIView):
-    @csrf_exempt 
     def post(self, request):
         date = datetime.now()
         note = request.data.get('note')
@@ -310,10 +312,10 @@ class AddStudentNote(APIView):
             return JsonResponse({'status': 'success'})
         except:
             return JsonResponse({'status': 'error'})
-    @csrf_exempt 
-    def delete(self, request):
+class DeleteStudentNote(APIView):
+    def delete(self, request, note_id):
         try:
-            note = Note_class.objects.get(note_id=request.data.get('note_id'))
+            note = Note_class.objects.get(note_id=note_id)
             note.delete()
             return JsonResponse({'status': 'success'})
         except:

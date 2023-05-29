@@ -1,14 +1,16 @@
 // 'use strict';
 // console.log($('link[href="/static/home/css/note.css"]').data('add-note-url'));
-var token = $('input[name=csrfmiddlewaretoken]').val();
+
 $(document).ready(function() {
   $('.note-class-confirm').on('click', function() {
+    
     var tag = $('textarea[name="message-un-id"]');
     var note = tag.val().trim();
     if (note.length == 0) {
       alert("Không thể thêm ghi chú rỗng. Thầy/cô vui lòng thêm ghi chú trước khi xác nhận");
       return false;
     }
+    var token = $('input[name=csrfmiddlewaretoken]').val();
     $.ajax({
       url: '/add_student_note/',
       type : "POST",
@@ -17,11 +19,9 @@ $(document).ready(function() {
         'csrfmiddlewaretoken': token
       },
       success: function(data) {
-        
         if (data['status'] == 'success') {
           alert("Thêm ghi chú thành công");
           tag.val('');
-          // refresh page
           location.reload();
         }
         else {
@@ -33,13 +33,14 @@ $(document).ready(function() {
 
   $('.delete-class-note').on('click', function() {
     var note_id = $(this).data('note-id');
-    console.log(note_id);
+    var token = $('input[name=csrfmiddlewaretoken]').val();
     $.ajax({
-      url: '/add_student_note/',
+      url: `/delete_student_note/${note_id}`,
       type : "DELETE",
-      data: {
-        'note_id': note_id,
-        'csrfmiddlewaretoken': token
+      dataType: "json",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        'X-CSRFToken': token
       },
       success: function(data) {
           
@@ -54,4 +55,5 @@ $(document).ready(function() {
       });
 
   });
+    
 });
