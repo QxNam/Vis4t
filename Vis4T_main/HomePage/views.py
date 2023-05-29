@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
+from datetime import datetime
 from rest_framework.views import APIView
 from .forms import *
 from .models import Student, Teacher, University_class
@@ -86,6 +87,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['first_subject'] = subject_class_list[0]
         context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
+        context['current_date'] = datetime.now().strftime("%d/%m/%Y")
         return context
     
     def class_home(self):
@@ -395,13 +397,11 @@ class AutocompleteStudent(APIView):
 
 # Password reset
 class PasswordReset(PasswordResetView):
-    # pass
     template_name = 'login/password-reset.html'
     form_class = GmailForm
     
 class PasswordResetSent(PasswordResetDoneView):
-    pass
-#     template_name = 'login/password-reset-sent.html'
+    template_name = 'login/password-reset-sent.html'
 class PasswordResetConfirm(PasswordResetConfirmView):
     pass
 #     template_name = 'login/password-reset-form.html'
