@@ -1,18 +1,21 @@
+from datetime import datetime
 from typing import Any
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
-from django.views.generic.edit import UpdateView, CreateView
-from rest_framework import generics
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import (LoginView, PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView)
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from datetime import datetime
-from django.views.decorators.csrf import csrf_exempt 
+from rest_framework import generics
 from rest_framework.views import APIView
-import re
+
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -26,6 +29,8 @@ class Login(LoginView):
     redirect_authenticated_user = True
     authentication_form = LoginForm
     def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse_lazy('login')
         class_ = University_class.objects.filter(teacher=self.request.user, is_active=True).first()
         class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
@@ -452,13 +457,13 @@ class PasswordReset(PasswordResetView):
 class PasswordResetSent(PasswordResetDoneView):
     template_name = 'login/password-reset-sent.html'
 class PasswordResetConfirm(PasswordResetConfirmView):
-    # template_name = 'login/password-reset-form.html'
-    form_class = PasswordChangeForm
+    template_name = 'login/password-reset-form.html'
+    success_url = reverse_lazy('password_reset_complete')
+    
     def get_context_data(self, **kwargs: Any):
         context =  super().get_context_data(**kwargs)
         context['reset_confirm'] = True
         return context
     
 class PasswordResetComplete(PasswordResetCompleteView):
-    pass
-#     template_name = 'login/password-reset-done.html'
+    template_name = 'login/password-reset-done.html'

@@ -5,8 +5,10 @@ charset-normalizer==3.1.0
 debugpy==1.6.7
 decorator==5.1.1
 Django==4.1.7
+django-cors-headers==4.0.0
 django-js-asset==2.0.0
 django-mptt==0.14.0
+django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
 executing==1.2.0
 idna==3.4

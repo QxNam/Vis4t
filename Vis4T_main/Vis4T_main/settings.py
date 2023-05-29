@@ -36,6 +36,7 @@ CORS_ORIGINS_WHITELIST = ['*']
 
 INSTALLED_APPS = [
     'rest_framework',
+    'widget_tweaks',
     'HomePage',
     'corsheaders',
     'django.contrib.admin',
