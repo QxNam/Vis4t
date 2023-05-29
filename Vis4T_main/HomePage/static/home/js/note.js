@@ -1,5 +1,6 @@
 // 'use strict';
 // console.log($('link[href="/static/home/css/note.css"]').data('add-note-url'));
+var token = $('input[name=csrfmiddlewaretoken]').val();
 $(document).ready(function() {
   $('.note-class-confirm').on('click', function() {
     var tag = $('textarea[name="message-un-id"]');
@@ -13,7 +14,7 @@ $(document).ready(function() {
       type : "POST",
       data: {
         'note': note,
-        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        'csrfmiddlewaretoken': token
       },
       success: function(data) {
         
@@ -37,7 +38,7 @@ $(document).ready(function() {
       type : "DELETE",
       data: {
         'note_id': note_id,
-        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        'csrfmiddlewaretoken': token
       },
       success: function(data) {
           
