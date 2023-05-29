@@ -20,7 +20,7 @@ class Login(LoginView):
     redirect_authenticated_user = True
     authentication_form = LoginForm
     def get_success_url(self):
-        class_ = University_class.objects.filter(teacher=self.request.user).first()
+        class_ = University_class.objects.filter(teacher=self.request.user, is_active=True).first()
         class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
     
@@ -57,13 +57,7 @@ class HomeView(LoginRequiredMixin, ListView):
             if university_class.teacher != self.request.user:
                 raise Http404
             
-            context['class'] = university_class
-            cached_class_name = cache.get('class_name')
-            if cached_class_name == class_name:
-                context['cached_class_name'] = cached_class_name
-            else:
-                context['cached_class_name'] = university_class.class_name
-                cache.set('class_name', university_class.class_name)
+            
                 
             subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
             student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
@@ -72,18 +66,25 @@ class HomeView(LoginRequiredMixin, ListView):
             if len(subject_class_list) == 0:
                 return self.returnHomeNone(context, situation='zero_subject')
             
-            subject_class_list = list(subject_class_list.values())
             
-            for i in range(len(student_list)):
-                student_list[i]['ranking'] = i + 1
-                
-            context['student_list'] = student_list  
-            context['subject'] = subject_class_list
-            context['first_subject'] = subject_class_list[0]
-            context['class_note'] = Note_class.objects.filter(class_name=cached_class_name)
         else:
             return self.returnHomeNone(context, situation='zero_class')
+        context['class'] = university_class
+        cached_class_name = cache.get('class_name')
+        if cached_class_name == class_name:
+            context['cached_class_name'] = cached_class_name
+        else:
+            context['cached_class_name'] = university_class.class_name
+            cache.set('class_name', university_class.class_name)
+            cached_class_name = cache.get('class_name')
+        subject_class_list = list(subject_class_list.values())
+        for i in range(len(student_list)):
+            student_list[i]['ranking'] = i + 1
             
+        context['student_list'] = student_list  
+        context['subject'] = subject_class_list
+        context['first_subject'] = subject_class_list[0]
+        context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
         return context
     
@@ -394,13 +395,17 @@ class AutocompleteStudent(APIView):
 
 # Password reset
 class PasswordReset(PasswordResetView):
+    # pass
     template_name = 'login/password-reset.html'
-    form = GmailForm
+    form_class = GmailForm
     
-# class PasswordResetSent(PasswordResetDoneView):
+class PasswordResetSent(PasswordResetDoneView):
+    pass
 #     template_name = 'login/password-reset-sent.html'
-# class PasswordResetConfirm(PasswordResetConfirmView):
+class PasswordResetConfirm(PasswordResetConfirmView):
+    pass
 #     template_name = 'login/password-reset-form.html'
 #     # success_url = reverse_lazy('login:password_reset_complete')
-# class PasswordResetComplete(PasswordResetCompleteView):
+class PasswordResetComplete(PasswordResetCompleteView):
+    pass
 #     template_name = 'login/password-reset-done.html'
