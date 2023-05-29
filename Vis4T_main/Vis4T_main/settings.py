@@ -29,7 +29,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com/']
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
