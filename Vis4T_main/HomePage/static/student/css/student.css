@@ -11,7 +11,7 @@
 
 .rank-in-class {
     border-radius: 8px;
-    height: 100px;
+    height: 100%;
     text-align: center;
 }
 
@@ -30,7 +30,7 @@
     justify-content: center;
     font-size: 33px;
     font-weight: 500;
-    height: calc(100% + 10px);
+    height: calc(100% - 24px);
 }
 .note-box p{
     font-size: 13px;
@@ -109,7 +109,6 @@
 }
 .mssv{
     display: flex;
-    align-items: center;
     padding: 10px;
 }
 .mssv div{
