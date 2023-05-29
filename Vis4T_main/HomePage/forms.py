@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from .models import Teacher, University_class
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
@@ -63,8 +63,8 @@ class UniversityClassForm(ModelForm):
         self.fields['total_credit'].widget.attrs['placeholder'] = '( Ví dụ: 100, 120,... )'
         self.fields['total_semester'].widget.attrs['placeholder'] = '( VD: 9, 8,... ) (Tối đa 9 học kì)'
     
-class GmailForm(forms.Form):
-    gmail = forms.CharField(
+class GmailForm(PasswordResetForm):
+    email = forms.CharField(
         label=False,
         widget=forms.TextInput(
             attrs={
@@ -79,5 +79,8 @@ class GmailForm(forms.Form):
             }
         )
     )
+    class Meta:
+        model= Teacher
+        fields = ['email']
     
     
