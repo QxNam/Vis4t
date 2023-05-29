@@ -33,6 +33,7 @@ $(document).ready(function() {
 
   $('.delete-class-note').on('click', function() {
     var note_id = $(this).data('note-id');
+    console.log(note_id);
     $.ajax({
       url: '/add_student_note/',
       type : "DELETE",

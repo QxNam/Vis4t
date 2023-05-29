@@ -61,7 +61,7 @@ class HomeView(LoginRequiredMixin, ListView):
                 raise Http404
             
             
-                
+            context['class'] = university_class
             subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
             student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
             if len(student_list) == 0:
