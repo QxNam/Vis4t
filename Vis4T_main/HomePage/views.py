@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Any
-
+from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (LoginView, PasswordResetCompleteView,
                                        PasswordResetConfirmView,
@@ -27,13 +27,12 @@ class Login(LoginView):
     template_name = 'login/login_form.html'
     fields = ['username', 'password']
     redirect_authenticated_user = True
-    authentication_form = LoginForm
+    form_class = LoginForm
     def get_success_url(self):
-        if self.request.user.is_superuser:
-            return reverse_lazy('login')
         class_ = University_class.objects.filter(teacher=self.request.user, is_active=True).first()
         class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
+
     
     
     
@@ -41,7 +40,9 @@ class HomeView(LoginRequiredMixin, ListView):
     model = University_class
     context_object_name = 'classes'
     template_name = 'home/home.html'
-    
+    def handle_no_permission(self):
+         # pass None to redirect_field_name in order to remove the next param
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), None)
     def returnHomeNone(self, context, situation):
         self.template_name = 'home/homeNone.html'
         context['cached_class_name'] = None
