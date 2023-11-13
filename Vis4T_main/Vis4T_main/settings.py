@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'Vis4T_main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if environ.get('ENVIRONMENT') == 'PRODUCTION':
+if environ.get('ENVIRONMENT') == 'DEVELOPMENT':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -91,19 +91,19 @@ if environ.get('ENVIRONMENT') == 'PRODUCTION':
 else:
     DATABASES = {
         'default': {
-            # 'ENGINE': environ['VIS4T_DB_ENGINE'],
-            # 'NAME': environ['VIS4T_DB_NAME'],
-            # 'USER': environ['VIS4T_DB_USER'],
-            # 'PASSWORD': environ['VIS4T_DB_PASSWORD'],
-            # 'HOST': environ['VIS4T_DB_HOST'],
-            # 'PORT': environ['VIS4T_DB_PORT'],
-            
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'railway',
-            'USER': 'postgres',
-            'PASSWORD': 'cc710HgCzASGNpCDlVvL',
-            'HOST': 'db.kfcpqkpzqcmneqvpzbrr.supabase.co',
-            'PORT': '5566',
+            'NAME': environ['NAME'],
+            'USER': environ['USER'],
+            'PASSWORD': environ['PASSWORD'],
+            'HOST': environ['HOST'],
+            'PORT': environ['PORT'],
+            
+            # 'ENGINE': 'django.db.backends.postgresql',
+            # 'NAME': 'railway',
+            # 'USER': 'postgres',
+            # 'PASSWORD': 'cc710HgCzASGNpCDlVvL',
+            # 'HOST': 'db.kfcpqkpzqcmneqvpzbrr.supabase.co',
+            # 'PORT': '5566',
         }
     }
 
