@@ -29,13 +29,16 @@ SECRET_KEY = environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-
+CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com', 'http://localhost:8000']
+CSRF_ALLOWED_ORIGINS  = ['*']
+CORS_ORIGINS_WHITELIST = ['*']
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
+    # 'widget_tweaks',
     'HomePage',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 ]
 STATIC_URL = '/static/' 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'Vis4T_main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if environ.get('ENVIRONMENT') == 'PRODUCTION':
+if environ.get('ENVIRONMENT') == 'DEVELOPMENT':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -87,18 +91,18 @@ if environ.get('ENVIRONMENT') == 'PRODUCTION':
 else:
     DATABASES = {
         'default': {
-            'ENGINE': environ['VIS4T_DB_ENGINE'],
-            'NAME': environ['VIS4T_DB_NAME'],
-            'USER': environ['VIS4T_DB_USER'],
-            'PASSWORD': environ['VIS4T_DB_PASSWORD'],
-            'HOST': environ['VIS4T_DB_HOST'],
-            'PORT': environ['VIS4T_DB_PORT'],
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': environ['NAME'],
+            'USER': environ['USER'],
+            'PASSWORD': environ['PASSWORD'],
+            'HOST': environ['HOST'],
+            'PORT': environ['PORT'],
             
             # 'ENGINE': 'django.db.backends.postgresql',
             # 'NAME': 'railway',
             # 'USER': 'postgres',
             # 'PASSWORD': 'cc710HgCzASGNpCDlVvL',
-            # 'HOST': 'containers-us-west-92.railway.app',
+            # 'HOST': 'db.kfcpqkpzqcmneqvpzbrr.supabase.co',
             # 'PORT': '5566',
         }
     }
@@ -144,7 +148,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = 'login/'
 
 LOGIN_REDIRECT_URL = 'home'
 

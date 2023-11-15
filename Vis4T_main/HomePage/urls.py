@@ -18,15 +18,22 @@ urlpatterns = format_suffix_patterns([
     path('class/<str:pk>/', views.ClassDetail.as_view(), name='class_detail_api'),
     path('student/', views.StudentSubjectDetail.as_view(), name = "student_subject_api"),
     path('subject/', views.SubjectStudentDetail.as_view(), name = "subject_api"),
-    path('add_class/', views.AddNewClass.as_view(), name = "add_class"),
-    path('upload_file/<str:class_name>', views.UploadFile.as_view(), name = "upload_file"),
-    path('subject_confirm/<str:class_name>', views.Subject_confirm.as_view(), name = "subject_confirm"),
+    path('add-class/', views.AddNewClass.as_view(), name = "add_class"),
+    path('upload-file/<str:class_name>', views.UploadFile.as_view(), name = "upload_file"),
+    path('subject-confirm/<str:class_name>', views.Subject_confirm.as_view(), name = "subject_confirm"),
     path('teacher/', views.TeacherView.as_view(), name = "teacher"),
-    path('teacher/teacher_update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
+    path('teacher/teacher-update/', views.TeacherUpdate.as_view(), name = "teacher_update"),
                                                    
     path('autocomplete/', views.AutocompleteStudent.as_view(), name='autocomplete'),
-    path('about_us/H2', views.AboutUS.as_view(), name = "about_us"),
+    path('about-us/H2', views.AboutUS.as_view(), name = "about_us"),
     
+    path('add-note-class/', views.AddClassNote.as_view(), name = "add_note_class"),
+    path('delete-note-class/<str:note_id>', views.DeleteClassNote.as_view(), name = "delete_note_class"),
+    path('update-note_class/<str:note_id>', views.UpdateClassNote.as_view(), name = "update_note_class"),
+    
+    path('add-student-note/', views.AddStudentNote.as_view(), name = "add_student_note"),
+    path('delete-student-note/<str:note_id>', views.DeleteStudentNote.as_view(), name = "delete_student_note"),
+    path('update-student-note/<str:note_id>', views.UpdateStudentNote.as_view(), name = "update_student_note"),
     
     path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
     path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from .models import Teacher, University_class
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
@@ -39,6 +39,9 @@ class TeacherForm(ModelForm):
             # 'email': forms.EmailInput(attrs={'class': 'input-update'}),
             # 'sex': forms.RadioSelect(choices=(('M', 'Nam'), ('F', 'Nữ')))
         }
+        
+
+    
 class UniversityClassForm(ModelForm):
     class Meta:
         model = University_class
@@ -82,5 +85,3 @@ class GmailForm(PasswordResetForm):
     class Meta:
         model= Teacher
         fields = ['email']
-    
-    

@@ -1,13 +1,21 @@
+from datetime import datetime
 from typing import Any
+from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
-from django.views.generic.edit import UpdateView, CreateView
+from django.contrib.auth.views import (LoginView, PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView)
 from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
+from rest_framework import generics
 from rest_framework.views import APIView
+
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -19,11 +27,12 @@ class Login(LoginView):
     template_name = 'login/login_form.html'
     fields = ['username', 'password']
     redirect_authenticated_user = True
-    authentication_form = LoginForm
+    form_class = LoginForm
     def get_success_url(self):
         class_ = University_class.objects.filter(teacher=self.request.user, is_active=True).first()
         class_name = class_.class_name if class_ else False
         return reverse_lazy('home', kwargs={'class_name': class_name})
+
     
     
     
@@ -31,7 +40,9 @@ class HomeView(LoginRequiredMixin, ListView):
     model = University_class
     context_object_name = 'classes'
     template_name = 'home/home.html'
-    
+    def handle_no_permission(self):
+         # pass None to redirect_field_name in order to remove the next param
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), None)
     def returnHomeNone(self, context, situation):
         self.template_name = 'home/homeNone.html'
         context['cached_class_name'] = None
@@ -59,7 +70,7 @@ class HomeView(LoginRequiredMixin, ListView):
                 raise Http404
             
             
-                
+            context['class'] = university_class
             subject_class_list = Subject_class.objects.filter(class_name=university_class, semester_id__isnull=False)
             student_list = list(Student.objects.filter(class_name=university_class).order_by('-score_10').values())
             if len(student_list) == 0:
@@ -87,6 +98,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['first_subject'] = subject_class_list[0]
         context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
+        context['current_date'] = datetime.now().strftime("%d/%m/%Y")
         return context
     
     def class_home(self):
@@ -126,8 +138,8 @@ class StudentView(LoginRequiredMixin, ListView):
             .values("subject__subject_name", "subject__credit", "score_10")
         context['subject_list'] = list(subject)
         
-        context['note'] = Note_student.objects.filter(student_id=student_id)
-        
+        context['notes'] = Note_student.objects.filter(student_id=student_id)
+        context['current_date'] = datetime.now().strftime("%d/%m/%Y")
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher
@@ -248,6 +260,15 @@ class Subject_confirm(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        class_name = self.kwargs.get('class_name')
+        total_semester = University_class.objects.get(class_name=class_name).total_semester
+        
+        number_of_subject = Subject_class.objects.filter(class_name = class_name) 
+        number_of_subject = number_of_subject.filter(semester_id__isnull=False).count()
+        
+        context['number_of_subject'] = range(number_of_subject)
+        context['total_semester'] = range(total_semester)
+        # total_semester = Semester.objects.all().count()
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         context['current_link'] = 'aboutus'
@@ -274,6 +295,67 @@ class AboutUS(LoginRequiredMixin, ListView):
     
 
 # API Views
+class AddClassNote(APIView):
+    def post(self, request):
+        class_name = cache.get('class_name')
+        date = datetime.now()
+        class_ = University_class.objects.get(class_name=class_name)
+        
+        note = request.data.get('note')
+        try:
+            Note_class.objects.create(class_name=class_, content=note, name=date)
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+
+class DeleteClassNote(APIView):
+    def delete(self, request, note_id):
+        try:
+            note = Note_class.objects.get(id=note_id)
+            note.delete()
+            return JsonResponse({'status': 'success'})
+        except Note_class.DoesNotExist:
+            return JsonResponse({'status': 'error'})
+class UpdateClassNote(APIView):
+    def put(self, request, note_id):
+        try:
+            note = Note_class.objects.get(id=note_id)
+            note.content = request.data.get('note')
+            note.save()
+            return JsonResponse({'status': 'success'})
+        except Note_class.DoesNotExist:
+            return JsonResponse({'status': 'error'})
+
+class AddStudentNote(APIView):
+    def post(self, request):
+        date = datetime.now()
+        note = request.data.get('note')
+        student = Student.objects.get(student_id=request.data.get('student_id'))
+        try:
+            Note_student.objects.create(student=student, content=note, name=date)
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
+class DeleteStudentNote(APIView):
+    def delete(self, request, note_id):
+        try:
+            note = Note_student.objects.get(id=note_id)
+            note.delete()
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'status': 'error'})
+class UpdateStudentNote(APIView):
+    def put(self, request, note_id):
+        try:
+            note = Note_student.objects.get(id=note_id)
+            note.content = request.data.get('note')
+            note.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'status': 'error'})
+    
+    
 class ClassDetail(APIView):
     def get_object(self, pk: str):
         try:
@@ -313,24 +395,7 @@ class ClassListDetail(APIView):
         student_serializer = StudentSerializer(student, many=True)
         response = {'student': student_serializer.data}
         return JsonResponse(response, safe=False)       
-        
-class TeacherDetail(APIView):
-    def get_object(self, pk: str):
-        try:
-            return Teacher.objects.get(teacher_id=pk)
-        except Teacher.DoesNotExist:
-            raise Http404
     
-    def get(self, request, pk, format=None):
-        teacher = self.get_object(pk)
-        teach_serializer = TeacherSerializer(teacher)
-        class_ = University_class.objects.filter(teacher=teacher)
-        class_serializer = University_classSerializer(class_, many=True)
-        response = {
-            "teacher": teach_serializer.data,
-            "class": class_serializer.data
-        }
-        return JsonResponse(response, safe=False)
 
 class StudentSubjectDetail(APIView):
     def get_object(self, student_id: str):
@@ -396,7 +461,6 @@ class AutocompleteStudent(APIView):
 
 # Password reset
 class PasswordReset(PasswordResetView):
-    # pass
     template_name = 'login/password-reset.html'
     form_class = GmailForm
     
@@ -404,12 +468,12 @@ class PasswordResetSent(PasswordResetDoneView):
     template_name = 'login/password-reset-sent.html'
 class PasswordResetConfirm(PasswordResetConfirmView):
     template_name = 'login/password-reset-form.html'
-
+    success_url = reverse_lazy('password_reset_complete')
+    
     def get_context_data(self, **kwargs: Any):
         context =  super().get_context_data(**kwargs)
         context['reset_confirm'] = True
         return context
-#     # success_url = reverse_lazy('login:password_reset_complete')
+    
 class PasswordResetComplete(PasswordResetCompleteView):
-    pass
-#     template_name = 'login/password-reset-done.html'
+    template_name = 'login/password-reset-done.html'

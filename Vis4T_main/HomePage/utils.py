@@ -12,7 +12,6 @@ from .models import *
 
     
 class DataProcessor:
-    
     def __init__(self, file) -> None:
         filename = file.name.strip()
         if filename.endswith(".xlsx") or filename.endswith(".xls"):

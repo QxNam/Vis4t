@@ -1,7 +1,8 @@
+{% load static %}
 
 <div class="col-3">
-  {% load static %}
-    <link rel="stylesheet" href="{% static 'home/css/note.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/note.css' %}" data-add-note-url="{% url 'add_note_class' %}">
+    
     <div class="wrap-box">
         <div class="note-box">
             <p>Ghi chú của giảng viên về lớp này</p>
@@ -12,7 +13,7 @@
                     <li>
                       <button type="button" class="btn" data-toggle="modal" data-target="#{{ note.id }}" 
                           data-whatever="{{ note.name|date:'m/d/Y' }}">{{ note.name|date:'m/d/Y' }}</button>
-                      <span>
+                      <span class="delete-class-note" data-note-id="{{note.id}}">
                           <label>
                               <i class="fas fa-trash-alt"></i>
                           </label>
@@ -43,13 +44,13 @@
                           </div>
                           <div class="form-group">
                             <label for="message-text" class="col-form-label">Nội dung</label>
-                            <textarea class="form-control" id="message-text">{{ note.content }}</textarea>
+                            <textarea class="form-control" name="note-id-{{note.id}}" id="message-text note-id-{{note.id}}">{{ note.content }}</textarea>
                           </div>
                         </form>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary">Lưu chỉnh sửa</button>
+                        <button type="button" class="btn btn-primary" id="save-class-note" data-note-id="{{note.id}}">Lưu chỉnh sửa</button>
                       </div>
                     </div>
                   </div>
@@ -63,7 +64,6 @@
                     <i class="fas fa-plus"></i>
                 </span>
                 <div class="modal fade modal-add-note" id="modalAddNoteClass" tabindex="-1" role="dialog" aria-labelledby="modalAddNoteLabelClass" aria-hidden="true">
-                  <!-- cái class modal-dialog-centered là để căn center :)) nếu k thích ở giữa thì xóa đi -->
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -80,11 +80,11 @@
                           <form>
                             <div class="form-group">
                               <label for="recipient-name" class="col-form-label">Ngày</label>
-                              <input type="date" class="form-control" id="recipient-name">
+                              <p class="form-control" id="recipient-name" name='title-un-id' data-date="{{current_date}}">{{current_date}}</p>
                             </div>
                             <div class="form-group">
                               <label for="message-text" class="col-form-label">Nội dung</label>
-                              <textarea class="form-control" id="message-text">hello</textarea>
+                              <textarea class="form-control" name="message-un-id" id="message-text "></textarea>
                             </div>
                           </form>
                         </div>
@@ -98,5 +98,10 @@
             </div>
         </div>
     </div>
-    <script src="{% static 'home/js/note.js' %}"></script>
+    {% csrf_token %}
+
+    <script src="{% static 'home/js/note.js' %}">
+      
+      
+    </script>
 </div>
