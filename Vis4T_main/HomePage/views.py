@@ -260,6 +260,15 @@ class Subject_confirm(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        class_name = self.kwargs.get('class_name')
+        total_semester = University_class.objects.get(class_name=class_name).total_semester
+        
+        number_of_subject = Subject_class.objects.filter(class_name = class_name) 
+        number_of_subject = number_of_subject.filter(semester_id__isnull=False).count()
+        
+        context['number_of_subject'] = range(number_of_subject)
+        context['total_semester'] = range(total_semester)
+        # total_semester = Semester.objects.all().count()
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
         context['cached_class_name'] = cache.get('class_name')
         context['current_link'] = 'aboutus'
