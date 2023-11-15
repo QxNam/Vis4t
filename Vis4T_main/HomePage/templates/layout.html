@@ -236,9 +236,142 @@
             
             </div>
         </div>
+
+        <div class="chat-box">
+            <link rel="stylesheet" href="{% static 'chatBox/main.css' %}" />
+            <div class="button-chat">
+                <img
+                    class="logo"
+                    alt="vis4t"
+                    src="{% static 'login/images/Logo_DS.png' %}"
+                />
+            </div>
+            <div class="modal-chat isShow">
+                <div class="header-chat">
+                    <div class="header-chat-info">
+                        <img
+                            class="logo"
+                            alt="vis4t"
+                            src="{% static 'login/images/Logo_DS.png' %}"
+                        />
+                        <h4>Chat box</h4>
+                    </div>
+                    <div class="header-chat-close">
+                        <i class="fa-solid fa-times"></i>
+                    </div>
+                </div>
+                <div class="body-chat">
+                    <div class="message admin">
+                        <div class="message-admin-info">
+                            <img
+                                class="logo-mess"
+                                alt="vis4t"
+                                src="{% static 'login/images/Logo_DS.png' %}"
+                            />
+                        </div>
+                        <div class="message-admin-content">
+                            <p>Chào mừng bạn đến với Vis4T</p>
+                        </div>
+                    </div>
+                    <div class="message admin">
+                        <div class="message-admin-info">
+                            <img
+                                class="logo-mess"
+                                alt="vis4t"
+                                src="{% static 'login/images/Logo_DS.png' %}"
+                            />
+                        </div>
+                        <div class="message-admin-content">
+                            <p>Chào mừng bạn đến với Vis4T</p>
+                        </div>
+                    </div>
+                    <div class="message admin">
+                        <div class="message-admin-info">
+                            <img
+                                class="logo-mess"
+                                alt="vis4t"
+                                src="{% static 'login/images/Logo_DS.png' %}"
+                            />
+                        </div>
+                        <div class="message-admin-content">
+                            <p>Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T</p>
+                        </div>
+                    </div>
+                 
+                    <div class="message">
+                        <div class="message-content">
+                            <p>Chào mừng bạn</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="message-content">
+                            <p>Chào mừng bạn</p>
+                        </div>
+                    </div>
+                    <div class="message admin">
+                        <div class="message-admin-info">
+                            <img
+                                class="logo-mess"
+                                alt="vis4t"
+                                src="{% static 'login/images/Logo_DS.png' %}"
+                            />
+                        </div>
+                        <div class="message-admin-content">
+                            <p>Chào mừng bạn đến với Vis4T</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="message-content">
+                            <p>Chào mừng bạn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-chat">
+                    <div class="footer-chat-info">
+                        <i class="fa-solid fa-info-circle"></i>
+                    </div>
+                    <div class="wrap-input">
+                        <div class="footer-chat-input">
+                            <input id="input" type="text" placeholder="Nhập tin nhắn..." />
+                        </div>
+                        <div class="footer-chat-send">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    $(".button-chat").click(function(){
+                        $(".modal-chat").toggleClass('isShow');
+                        $(".button-chat").toggleClass('isShow');
+                    });
+                    $(".header-chat-close").click(function(){
+                        $(".modal-chat").toggleClass('isShow');
+                        $(".button-chat").toggleClass('isShow');
+                    });
+                });
+
+                var input = document.getElementById("input");
+                input.addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13) {                
+                        console.log(event.target.value)
+                        input.value = "";
+                    }
+                });
+                $(".footer-chat-send").ready(function(){
+                    $(".footer-chat-send").click(function(){
+                        console.log(input.value)
+                        input.value = "";
+                    });
+                });
+
+            </script>
+        </div>
+
     {% block main_body %}
-    
     {% endblock %}
+
     </body>
         <!--fontawesome icon-->
 <script src="https://kit.fontawesome.com/5466b985c0.js" crossorigin="anonymous"></script>
