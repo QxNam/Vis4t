@@ -61,7 +61,7 @@
 }
 .wrap-dropdown-subject {
     width: 100%;
-    top: calc(50% - 0.625rem);
+    top: calc(50% - 1.625rem);
     left: 0;
     position: absolute;
     display: flex;
@@ -136,3 +136,14 @@
     cursor: pointer;
 }
 
+.subject-priority {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    top: calc(50% - 0.625rem);
+    left: 0;
+}
+.subject-priority-input {
+    margin-right: 0.5rem;
+}
