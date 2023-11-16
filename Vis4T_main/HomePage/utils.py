@@ -10,6 +10,36 @@ warnings.filterwarnings('ignore')
 from django.conf import settings
 from .models import *
 
+def search_for_student(teacher_id, query, page=1,per_page=10):
+    client = settings.TYPESENSE_CLIENT
+    search_parameters = {
+        'q': query,
+        'exhaustive_search': 'true',
+        'collection': teacher_id,
+        'query_by': 'embedding,lastname,student_name',
+        'sort_by': '_text_match:desc,_vector_distance:asc',
+        'prioritize_exact_match': 'true',
+        'prioritize_token_position': 'true',
+        'num_typos': '1',
+        'vector_query': f'embedding:([], distance_threshold:0.50)',
+        'per_page': per_page,
+        'page': page
+    }
+
+    def extract(result):
+        result = result['document']
+        result.pop('embedding', None)
+        result.pop('id', None)
+        return result
+    
+    results = client.multi_search.perform({
+        'searches': [search_parameters]
+    }, {})
+    try:
+        results = results['results'][0]['hits']
+        return list(map(extract, results))
+    except:
+        return results
     
 class DataProcessor:
     def __init__(self, file) -> None:

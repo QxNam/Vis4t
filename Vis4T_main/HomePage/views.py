@@ -10,12 +10,10 @@ from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from rest_framework import generics
 from rest_framework.views import APIView
-
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -450,13 +448,16 @@ class AutocompleteStudent(APIView):
     def get(self, request):
         letter = request.GET.get('letter')
         user = self.request.user
+        # get teacher_id
+        # user = user.teacher_id
+        # user = 'student'
         classes = University_class.objects.filter(teacher=user)
         
         result = []
         for c in classes:
             students = Student.objects.filter(class_name=c, lastname__istartswith=letter).order_by('lastname')
             result += list(students.values('class_name', 'student_name', 'student_id'))
-
+        print(result)
         return JsonResponse({'students': result}, safe=False)
 
 # Password reset
