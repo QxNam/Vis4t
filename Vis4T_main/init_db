@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Uncomment the line below if needed
+# rm db.sqlite3
+
+rm HomePage/migrations/0001_initial.py
+
+python manage.py makemigrations
+python manage.py migrate
+python init_db.py
+
+rm -rf HomePage/migrations/__pycache__
+rm -rf HomePage/__pycache__
+rm -rf Vis4T_main/__pycache__
+
+# Uncomment the line below if needed
+# ./createsuperuser.sh
