@@ -451,14 +451,14 @@ class AutocompleteStudent(APIView):
         # get teacher_id
         # user = user.teacher_id
         # user = 'student'
+        # results = search_for_student(letter, user)
+        results = []
         classes = University_class.objects.filter(teacher=user)
-        
-        result = []
         for c in classes:
             students = Student.objects.filter(class_name=c, lastname__istartswith=letter).order_by('lastname')
-            result += list(students.values('class_name', 'student_name', 'student_id'))
-        print(result)
-        return JsonResponse({'students': result}, safe=False)
+            results += list(students.values('class_name', 'student_name', 'student_id'))
+        # print(results)
+        return JsonResponse({'students': results}, safe=False)
 
 # Password reset
 class PasswordReset(PasswordResetView):

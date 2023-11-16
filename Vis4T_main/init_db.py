@@ -209,4 +209,24 @@ for i in class_name:
                 )
                 subject_student.save()
                 s.subjects.add(subject)
- 
+
+Typesense.objects.create(
+    node = 'ampl8ksdvr0q2bchp-1.a1.typesense.net',
+    admin_key = 'WvBVyDT9uGaSE0qyinEQdlQMu1Mngefq',
+    search_key = 'zo3PrbwesZ3fk0AjAuT2FUWVAQSMN2VZ',
+    class_name = khdl15a,
+    teacher = t2)
+
+Typesense.objects.create(
+    node = 'z8i9p4st7hvj21xfp-1.a1.typesense.net',
+    admin_key = 'XLBHDkVPohJDgqq2AfxQzXaTD6ZGUCNj',
+    search_key = 'JdXKvpX0HUY5SsmYK90ulZwZJ7LRc2MZ',
+    class_name = khmt13a,
+    teacher = t2)
+
+Typesense.objects.create(
+    node = 'f0dmgj8v7bzpyr9tp-1.a1.typesense.net',
+    admin_key = 'EWlZebXfKJjAk3EtQMY2Xye97KyOB559',
+    search_key = 'ko4xnhWpiCDZdDMdIuLHRAaLDJ4s13x0',
+    class_name = khdl16a,
+    teacher = t1)

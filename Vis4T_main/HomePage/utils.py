@@ -5,13 +5,11 @@ import warnings
 import numpy as np
 from unidecode import unidecode
 import pandas as pd
-from django.db import connection
 warnings.filterwarnings('ignore')
 from django.conf import settings
 from .models import *
 
 def search_for_student(teacher_id, query, page=1,per_page=10):
-    client = settings.TYPESENSE_CLIENT
     search_parameters = {
         'q': query,
         'exhaustive_search': 'true',
@@ -32,9 +30,10 @@ def search_for_student(teacher_id, query, page=1,per_page=10):
         result.pop('id', None)
         return result
     
-    results = client.multi_search.perform({
+    results = settings.TYPESENSE_CLIENT.multi_search.perform({
         'searches': [search_parameters]
     }, {})
+    print(results)
     try:
         results = results['results'][0]['hits']
         return list(map(extract, results))

@@ -17,15 +17,15 @@ import typesense
 load_dotenv("./.env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TYPESENSE_CLIENT = typesense.Client({
-  'nodes': [{
-    'host': 'f0dmgj8v7bzpyr9tp-1.a1.typesense.net',
-    'port': '443',
-    'protocol': 'https'
-  }],
-  'api_key': 'EWlZebXfKJjAk3EtQMY2Xye97KyOB559',
-  'connection_timeout_seconds': 10
-})
+# TYPESENSE_CLIENT = typesense.Client({
+#   'nodes': [{
+#     'host': 'f0dmgj8v7bzpyr9tp-1.a1.typesense.net',
+#     'port': '443',
+#     'protocol': 'https'
+#   }],
+#   'api_key': environ.get('TYPESENSE_APIKEY'),
+#   'connection_timeout_seconds': 10
+# })
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
