@@ -5,11 +5,20 @@ import warnings
 import numpy as np
 from unidecode import unidecode
 import pandas as pd
+import typesense
 warnings.filterwarnings('ignore')
-from django.conf import settings
 from .models import *
 
-def search_for_student(teacher_id, query, page=1,per_page=10):
+def search_for_student(teacher_id, query, node, search_key, page=1,per_page=10):
+    client = typesense.Client({
+    'nodes': [{
+        'host': node,
+        'port': '443',
+        'protocol': 'https'
+    }],
+        'api_key': search_key,
+        'connection_timeout_seconds': 10
+    })
     search_parameters = {
         'q': query,
         'exhaustive_search': 'true',
@@ -30,7 +39,7 @@ def search_for_student(teacher_id, query, page=1,per_page=10):
         result.pop('id', None)
         return result
     
-    results = settings.TYPESENSE_CLIENT.multi_search.perform({
+    results = client.multi_search.perform({
         'searches': [search_parameters]
     }, {})
     print(results)
