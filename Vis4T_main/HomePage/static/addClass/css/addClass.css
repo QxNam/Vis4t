@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .form-box {
     width: 50%;
@@ -141,9 +142,29 @@
     justify-content: center;
     position: relative;
     width: 100%;
-    top: calc(50% - 0.625rem);
+    top: calc(50% - 0.825rem);
     left: 0;
 }
 .subject-priority-input {
+    margin-right: 0.5rem;
+}
+
+.number-range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 0.5rem;
+    top: calc(50% - 0.425rem);
+    left: 0;
+}
+.number-range  input{
+    width: 35%;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(0 0 0 / 20%);
+    padding: 0.3rem 0.625rem;
+    text-align: center;
+    font-size: 1rem;
     margin-right: 0.5rem;
 }
