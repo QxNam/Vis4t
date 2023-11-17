@@ -5,10 +5,10 @@
 <div class="main" style="padding: 0;">
     <div class="container-fluid" style="padding: 6.875rem 1.25rem 5rem 17.5rem; background-color: #f5f7f9;">
         <div class="row">
-            {% for subject in number_of_subject %}
+            {% for subject in subjects %}
                 <div class="col-2 mt-4">
                     <div class="box-subject-name">
-                        <p class="subject-name"> Toan cc</p>
+                        <p class="subject-name" id="{{subject.subject__subject_id}}"> {{subject.subject__subject_name}}</p>
                         <div class="form-check form-switch subject-priority">
                             <input class="form-check-input subject-priority-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                             <label class="form-check-label" for="flexSwitchCheckChecked">Bắt buộc</label>
@@ -19,7 +19,7 @@
                             </button>
                             <div class="dropdown-menu menu-custom" aria-labelledby="dropdownSubject">
                                 {% for item in total_semester %}
-                                    <li><p class="dropdown-item">HK {{ forloop.counter }}</p></li>
+                                    <li><p class="semester dropdown-item" id = "{{forloop.counter}}">HK {{ forloop.counter }}</p></li>
                                 {% endfor %}
                             </div>
                         </div>
@@ -33,5 +33,42 @@
             <button>Xác nhận tất cả</button>
         </div>
     </div>
+    <script>
+        var total_data = []
+        
+        $('.semester').click(function(){
+            var subject_name = $(this).parent().parent().parent().parent().find('.subject-name').text();
+            var subject_id = $(this).parent().parent().parent().parent().find('.subject-name').attr('id');
+            var semester = $(this).attr('id');
+            for (var i = 0; i < total_data.length; i++) {
+                if (total_data[i]['subject_id'] == subject_id) {
+                    if(total_data[i]['semester'] == semester) {
+                        return;
+                    }
+                    total_data[i]['semester'] = semester;
+                    $(this).parent().parent().parent().parent().find('.btn-subject').find('span').text($(this).text());
+                    return;
+                }
+            }
+            total_data.push({
+                'subject_name': subject_name,
+                'subject_id': subject_id,
+                'semester': semester
+            })
+            $(this).parent().parent().parent().parent().find('.btn-subject').find('span').text($(this).text());
+            
+        })
+        
+
+        $('.wrap-btn-confirm').click(function(){
+            // get all semester of subject (based on text of dropdown button)
+            var semesters = document.getElementsByClassName('semester');
+            var semesters_id = [];
+            for (var i = 0; i < semesters.length; i++) {
+                semesters_id.push(semesters[i].textContent);
+            }
+            console.log(semesters_id);
+        });
+    </script>
 </div>
 {% endblock %}
