@@ -2,6 +2,7 @@
 @REM del db.sqlite3
 del HomePage\migrations\0001_initial.py
 
+call python manage.py flush --no-input
 call migrate.bat
 call python init_db.py
 
