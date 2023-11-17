@@ -91,29 +91,33 @@ class Student(models.Model):
         return "{} - {} - {}".format(self.student_id, self.student_name, self.class_name)
     class Meta:
         db_table = "Student"
+        
 class Subject_class(models.Model):
     subject = models.ForeignKey('Subject', on_delete=models.CASCADE)
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)    
     semester_id = models.CharField(max_length=1, null=True)
     is_mandatory = models.BooleanField(default=False)
+    credit = models.IntegerField()
     def __str__(self):
         return "{} - {} - {}".format(self.subject_id, self.class_name, self.semester_id)
     class Meta:
-        db_table = "Subject_class"    
+        db_table = "Subject_class" 
+           
 class Subject_student(models.Model):
     subject = models.ForeignKey('Subject', on_delete=models.CASCADE, null=True)
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
     score_10 = models.FloatField(null = True)
     class Meta:
         db_table = "Subject_student"
+        
 class Subject(models.Model):
     subject_id = models.CharField(max_length=10, primary_key=True, unique=True)
     subject_name = models.CharField(max_length=100)
-    credit = models.IntegerField()
     def __str__(self):
         return "{} - {}".format(self.subject_id, self.subject_name)
     class Meta:
         db_table = "Subject"
+        
 class Typesense(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     node = models.CharField(max_length=100, null=True, unique=True)
@@ -122,12 +126,14 @@ class Typesense(models.Model):
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE, null=False)
     class Meta:
         db_table = "TypesenseApi"
+        
 class Note_student(models.Model):
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
     content = models.TextField()
     name = models.DateField(max_length=50)
     class Meta:
         db_table = "Note_student"
+        
 class Note_class(models.Model):
     class_name = models.ForeignKey('University_class', on_delete=models.CASCADE)
     content = models.TextField()

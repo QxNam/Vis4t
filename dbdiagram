@@ -1,0 +1,79 @@
+Table Teacher as T {
+  username varchar
+  teacher_fullname varchar
+  password varchar
+
+  teacher_id varchar [pk]
+  year_of_birth int
+  academic_title varchar
+  major varchar
+  sex varchar
+  number_of_current_class int
+  phone_number varchar
+}
+
+table University_class as C{
+  teacher_id varchar [ref: > T.teacher_id]
+  class_name varchar [pk]
+  number_of_student int
+  class_major varchar
+  teacher_note text
+  total_credit int
+  is_active boolen
+  total_semester int
+}
+
+table Student as S{
+  student_id varchar [pk]
+  class_name varchar [ref: > C.class_name]
+  student_name varchar
+  student_gmail varchar
+  passed_credit int
+  score_10 float
+  score_4 float
+  score_char varchar
+  rank varchar
+  is_graduated boolen
+  lastname str
+}
+
+table Subject as Sj{
+  subject_id varchar [pk]
+  subject_name varchar
+}
+
+table Subject_Student as Sj_ss{
+  student_id varchar [ref: - S.student_id]
+  subject_id varchar [ref: - Sj.subject_id]
+  score_10 varchar 
+}
+
+table Subject_Class as Sj_c{
+  class_name varchar [ref: - C.class_name]
+  subject_id varchar [ref: - Sj.subject_id]
+  semester_number int
+  is_mandatory boolen
+  credit int
+}
+
+table Class_note as Cn{
+  class_name varchar [ref: - C.class_name]
+  class_note_id varchar
+  content text
+  date_of_created datetime
+}
+
+table Student_note as Sn{
+  student_note_id varchar
+  content text
+  date_of_created datetime
+  student_id varchar [ref: - S.student_id]
+}
+
+table Typesense as Ty{
+  teacher_id varchar [ref: < T.teacher_id]
+  class_name varchar [ref: - C.class_name]
+  api varchar
+  admin_key varchar
+  search_key varchar
+}
