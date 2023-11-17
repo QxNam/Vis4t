@@ -231,20 +231,20 @@ import pandas as pd
 #     content = "Hôm nay là ngày 16/5/2023"
 # )
 # note.save()
-with open("../data_processing/dummy_data/mandatory_subject_khdl16.json", 'r', encoding='utf-8') as f:
-    data = json.load(f)
-khd16a = University_class.objects.get(class_name='KHDL16A')
-for semester in data:
-    for d in data[semester]:
-        try:
-            sub = Subject.objects.filter(subject_name=d['subject_name'])
-            sub = sub.first()
-            sub = Subject_class.objects.filter(subject=sub, class_name=khd16a)
-            sub = sub.first()
-            sub.is_mandatory = True
-            sub.save()
-        except:
-            print(d['subject_name'], "not found")
+# with open("../data_processing/dummy_data/mandatory_subject_khdl16.json", 'r', encoding='utf-8') as f:
+#     data = json.load(f)
+# khd16a = University_class.objects.get(class_name='KHDL16A')
+# for semester in data:
+#     for d in data[semester]:
+#         try:
+#             sub = Subject.objects.filter(subject_name=d['subject_name'])
+#             sub = sub.first()
+#             sub = Subject_class.objects.filter(subject=sub, class_name=khd16a)
+#             sub = sub.first()
+#             sub.is_mandatory = True
+#             sub.save()
+#         except:
+#             print(d['subject_name'], "not found")
 
 with open("../data_processing/dummy_data/mandatory_subject_khdl15a.json", 'r', encoding='utf-8') as f:
     data = json.load(f)
