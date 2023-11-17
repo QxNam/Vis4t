@@ -1,0 +1,298 @@
+{
+    "1": [
+        {
+            "subject_name": "Những nguyên lý cơ bản của Chủ nghĩa Mác – Lênin",
+            "subject_id": "4203000685",
+            "credit": "5",
+            "theory_lesson": "75",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Nhập môn Tin học",
+            "subject_id": "4203002009",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Giáo dục Quốc phòng và An ninh 1",
+            "subject_id": "4203003242",
+            "credit": "4",
+            "theory_lesson": "60",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Toán cao cấp 1",
+            "subject_id": "4203003259",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Giáo dục thể chất 1",
+            "subject_id": "4203003307",
+            "credit": "2",
+            "theory_lesson": "0",
+            "practice_lesson": "60"
+        },
+        {
+            "subject_name": "Nhập môn Lập trình",
+            "subject_id": "4203003848",
+            "credit": "2",
+            "theory_lesson": "0",
+            "practice_lesson": "60"
+        }
+    ],
+    "2": [
+        {
+            "subject_name": "Kỹ thuật lập trình",
+            "subject_id": "4203000941",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Hệ thống Máy tính",
+            "subject_id": "4203002137",
+            "credit": "4",
+            "theory_lesson": "45",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Tiếng anh 1",
+            "subject_id": "4203003067",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Kỹ năng làm việc nhóm",
+            "subject_id": "4203003192",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Toán cao cấp 2",
+            "subject_id": "4203003288",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Giáo dục thể chất 2",
+            "subject_id": "4203003306",
+            "credit": "2",
+            "theory_lesson": "0",
+            "practice_lesson": "60"
+        },
+        {
+            "subject_name": "Giáo dục quốc phòng và an ninh 2",
+            "subject_id": "4203003354",
+            "credit": "4",
+            "theory_lesson": "30",
+            "practice_lesson": "60"
+        }
+    ],
+    "3": [
+        {
+            "subject_name": "Cấu trúc rời rạc",
+            "subject_id": "4203000901",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Cấu trúc dữ liệu và giải thuật",
+            "subject_id": "4203000942",
+            "credit": "4",
+            "theory_lesson": "45",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Hệ cơ sở dữ liệu",
+            "subject_id": "4203001146",
+            "credit": "4",
+            "theory_lesson": "45",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Tiếng Anh 2",
+            "subject_id": "4203002421",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Lập trình hướng đối tượng",
+            "subject_id": "4203003591",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Xác suất trong Khoa học Dữ liệu",
+            "subject_id": "4203014061",
+            "credit": "2",
+            "theory_lesson": "15",
+            "practice_lesson": "30"
+        }
+    ],
+    "4": [
+        {
+            "subject_name": "Mạng máy tính",
+            "subject_id": "4203001058",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Pháp luật đại cương",
+            "subject_id": "4203002422",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Phương pháp luận nghiên cứu khoa học",
+            "subject_id": "4203003198",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Thống kê máy tính và ứng dụng",
+            "subject_id": "4203003451",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Nhập môn Khoa học Dữ liệu",
+            "subject_id": "4203014104",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Lập trình phân tích dữ liệu",
+            "subject_id": "4203014105",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        }
+    ],
+    "5": [
+        {
+            "subject_name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+            "subject_id": "4203003347",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Khai thác dữ liệu và ứng dụng",
+            "subject_id": "4203003443",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Phát triển ứng dụng",
+            "subject_id": "4203003501",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Máy học",
+            "subject_id": "4203003711",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Tối ưu hóa cho Khoa học dữ liệu",
+            "subject_id": "4203014109",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        }
+    ],
+    "6": [
+        {
+            "subject_name": "Tư tưởng Hồ Chí Minh",
+            "subject_id": "4203000664",
+            "credit": "2",
+            "theory_lesson": "30",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Xử lý ngôn ngữ tự nhiên",
+            "subject_id": "4203001385",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Nhập môn dữ liệu lớn",
+            "subject_id": "4203002329",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        }
+    ],
+    "7": [
+        {
+            "subject_name": "Đường lối cách mạng của Đảng Cộng sản Việt Nam",
+            "subject_id": "4203000597",
+            "credit": "3",
+            "theory_lesson": "45",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+            "subject_id": "4203003147",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Học sâu",
+            "subject_id": "4203004116",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        },
+        {
+            "subject_name": "Thị giác máy tính",
+            "subject_id": "4203014118",
+            "credit": "3",
+            "theory_lesson": "30",
+            "practice_lesson": "30"
+        }
+    ],
+    "8": [
+        {
+            "subject_name": "Chứng chỉ TOEIC 450",
+            "subject_id": "4203002027",
+            "credit": "0",
+            "theory_lesson": "0",
+            "practice_lesson": "0"
+        },
+        {
+            "subject_name": "Khóa luận tốt nghiệp",
+            "subject_id": "4203002790",
+            "credit": "5",
+            "theory_lesson": "0",
+            "practice_lesson": "150"
+        },
+        {
+            "subject_name": "Thực tập doanh nghiệp",
+            "subject_id": "4203003098",
+            "credit": "5",
+            "theory_lesson": "0",
+            "practice_lesson": "150"
+        }
+    ]
+}

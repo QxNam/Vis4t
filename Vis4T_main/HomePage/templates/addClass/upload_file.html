@@ -53,6 +53,21 @@
                 </div>
             </form>
         </div>
+        {% if situation == "non_zero_student" %}
+            <div class="form-box">
+                <h2>Cập nhật môn học của lớp {{ uploading_class }}</h2>
+                <a href="{% url 'subject_confirm' uploading_class %}">
+                    <div class="wrap-btn">
+                        <button type="submit" class="btn btn-success" style="width : 100%;">Cập nhật
+                            <label>
+                            <i class="fas fa-plus"></i>
+                            </label>
+                        </button>
+                    
+                    </div>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

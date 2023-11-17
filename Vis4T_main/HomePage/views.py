@@ -10,12 +10,10 @@ from django.core.cache import cache
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from rest_framework import generics
 from rest_framework.views import APIView
-
 from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
@@ -173,8 +171,13 @@ class UploadFile(LoginRequiredMixin, ListView):
     context_object_name = 'classes'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+        context['situation'] = 'non_zero_student'
         class_ = University_class.objects.filter(class_name=self.kwargs['class_name']).first()
+        
+        student_list = list(Student.objects.filter(class_name=class_).order_by('-score_10').values())
+        if len(student_list) == 0:
+            context['situation'] = 'zero_student'
+            
         if class_ is None:
             raise Http404
         context['teacher'] = self.request.user
@@ -261,12 +264,12 @@ class Subject_confirm(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         class_name = self.kwargs.get('class_name')
-        total_semester = University_class.objects.get(class_name=class_name).total_semester
+        semester = University_class.objects.get(class_name=class_name)
         
-        number_of_subject = Subject_class.objects.filter(class_name = class_name) 
-        number_of_subject = number_of_subject.filter(semester_id__isnull=False).count()
-        
-        context['number_of_subject'] = range(number_of_subject)
+        total_semester = semester.total_semester
+        subjects = Subject_class.objects.filter(class_name = class_name)
+        subjects = list(subjects.values('subject__subject_name', 'subject__subject_id'))
+        context['subjects'] = subjects
         context['total_semester'] = range(total_semester)
         # total_semester = Semester.objects.all().count()
         context['classes'] = University_class.objects.filter(teacher=self.request.user)
@@ -450,14 +453,11 @@ class AutocompleteStudent(APIView):
     def get(self, request):
         letter = request.GET.get('letter')
         user = self.request.user
-        classes = University_class.objects.filter(teacher=user)
-        
-        result = []
-        for c in classes:
-            students = Student.objects.filter(class_name=c, lastname__istartswith=letter).order_by('lastname')
-            result += list(students.values('class_name', 'student_name', 'student_id'))
+        typesense_data = list(Typesense.objects.filter(teacher=user).values('node', 'search_key'))
 
-        return JsonResponse({'students': result}, safe=False)
+        results = search_for_student(user.teacher_id, letter, node=typesense_data[0]['node'], search_key=typesense_data[0]['search_key'], per_page=3)
+
+        return JsonResponse({'students': results}, safe=False)
 
 # Password reset
 class PasswordReset(PasswordResetView):
