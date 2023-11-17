@@ -9,7 +9,7 @@ import typesense
 warnings.filterwarnings('ignore')
 from .models import *
 
-def search_for_student(teacher_id, query, node, search_key, page=1,per_page=10):
+def search_for_student(query, node, search_key, page=1,per_page=10):
     client = typesense.Client({
     'nodes': [{
         'host': node,
@@ -22,7 +22,7 @@ def search_for_student(teacher_id, query, node, search_key, page=1,per_page=10):
     search_parameters = {
         'q': query,
         'exhaustive_search': 'true',
-        'collection': teacher_id,
+        'collection': 'student',
         'query_by': 'embedding,lastname,student_name',
         'sort_by': '_text_match:desc,_vector_distance:asc',
         'prioritize_exact_match': 'true',
@@ -42,7 +42,6 @@ def search_for_student(teacher_id, query, node, search_key, page=1,per_page=10):
     results = client.multi_search.perform({
         'searches': [search_parameters]
     }, {})
-    print(results)
     try:
         results = results['results'][0]['hits']
         return list(map(extract, results))

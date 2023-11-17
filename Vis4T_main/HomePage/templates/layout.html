@@ -90,16 +90,13 @@
                                             data: { letter: letter },
                                             success: function(data) {
                                                 $('.hint-dropdown .item-list').empty();
-                                                var students = data.students.slice(0, 5);
-                                                console.log("student :",students);
+                                                var students = data.students;
+                                                
                                                 const arrHint  = $.map(students, function(student,index) {
                                                     return (`<li><a href = "/student/${student.student_id}">${student.student_name + " - " + student.class_name}</a></li>`)
                                                 });
 
-                                                // console.log("arrHint : ",arrHint)
-                                                // console.log("letter :", )
                                                 $('.item-list').html(arrHint.join(""));
-                                                // console.log($('.item-list'))
                                             }
                                         });
                                     });
@@ -113,7 +110,6 @@
                         <div class="option">
                             <a class="bell_notification_clicker" href="#"> 
                                 <img src="{% static 'home/images/bell.svg'%}" alt="">
-                                <!-- <span>04</span> -->
                             </a>
                             
                         </div>

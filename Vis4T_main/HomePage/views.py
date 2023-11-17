@@ -454,9 +454,9 @@ class AutocompleteStudent(APIView):
         letter = request.GET.get('letter')
         user = self.request.user
         typesense_data = list(Typesense.objects.filter(teacher=user).values('node', 'search_key'))
-
-        results = search_for_student(user.teacher_id, letter, node=typesense_data[0]['node'], search_key=typesense_data[0]['search_key'], per_page=3)
-
+        results = []
+        for data in typesense_data:
+            results += search_for_student(letter, node=data['node'], search_key=data['search_key'], per_page=5)
         return JsonResponse({'students': results}, safe=False)
 
 # Password reset
