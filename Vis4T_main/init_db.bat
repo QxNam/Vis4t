@@ -1,6 +1,7 @@
 @echo off
 @REM del db.sqlite3
 del HomePage\migrations\0001_initial.py
+del db.sqlite3
 
 call python manage.py flush --no-input
 call migrate.bat

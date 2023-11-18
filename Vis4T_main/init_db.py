@@ -148,23 +148,25 @@ with open('../data_processing/dummy_data/KHDL15A.json', 'r', encoding='utf-8') a
         
 with open("../data_processing/dummy_data/subjects.json", 'r', encoding='utf-8') as f:
     subjects_data = json.load(f)
-subjects = [
-]
+subjects = []
 for k in subjects_data:
-    if Subject.objects.filter(subject_id = k['name_code']).exists():
+    exist_subjects = Subject.objects.filter(subject_name = k['name'].strip().lower())
+    if exist_subjects.exists():
         continue
     r = Subject(
         subject_id = k['name_code'],
-        subject_name = k['name'].strip(),
+        subject_name = k['name'].strip().lower(),
     )
     subjects.append(r)
     r.save()
+    
 with open("../data_processing/dummy_data/subjects_class.json", 'r', encoding='utf-8') as f:
     subject_class_data = json.load(f)
 for k in subject_class_data:
     class_ = University_class.objects.get(class_name=k)
     for i in subject_class_data[k]:
-        subject = Subject.objects.get(subject_id=i['name_code'])
+        subject = Subject.objects.get(subject_name=i['name'].strip().lower())
+        
         Subject_class.objects.create(
             class_name = class_, 
             subject = subject,
@@ -182,10 +184,10 @@ for i in class_name:
             for j in data[i]:
                 if j['score_10'] < 0:
                     continue
-                subject_class = Subject_class.objects.filter(class_name=uc, subject__subject_name=j['subject_name'].strip()).first()
+                subject_class = Subject_class.objects.filter(class_name=uc, subject__subject_name=j['subject_name'].strip().lower()).first()
                 if subject_class is None:
                     try:
-                        subject = Subject.objects.filter(subject_name__icontains=j['subject_name'].strip()).first()
+                        subject = Subject.objects.filter(subject_name__icontains=j['subject_name'].strip().lower()).first()
                     except:
                         print(uc, j)
                         continue
@@ -199,6 +201,7 @@ for i in class_name:
                 subject_student.save()
                 s.subjects.add(subject)
 
+# Insert Typesense data
 Typesense.objects.create(
     node = 'ampl8ksdvr0q2bchp-1.a1.typesense.net',
     admin_key = 'WvBVyDT9uGaSE0qyinEQdlQMu1Mngefq',
@@ -219,18 +222,20 @@ Typesense.objects.create(
     search_key = 'ko4xnhWpiCDZdDMdIuLHRAaLDJ4s13x0',
     class_name = khdl16a,
     teacher = t1)
+
+# Insert note
 khdl15a = University_class.objects.get(class_name='KHDL15A')
 note = Note_class(
     class_name = khdl15a,
     name = '2023-05-17',
-    content = "Hôm nay là ngày 17/5/2023"
+    content = "Hôm nay là ngày 17/12/2023"
 )
 note.save()
 
 note = Note_class(
     class_name = khdl15a,
     name = '2023-05-16',
-    content = "Hôm nay là ngày 16/5/2023"
+    content = "Hôm nay là ngày 16/12/2023"
 )
 note.save()
 
@@ -240,25 +245,22 @@ khd16a = University_class.objects.get(class_name='KHDL16A')
 khdl16a_subject = pd.read_csv('../data_processing/dummy_data/khdl16a_subjects.csv')
 for semester in data:
     for d in data[semester]:
-        try:
-            sub = Subject.objects.filter(subject_name__icontains=d['subject_name'])
-            sub = sub.first()
-            subject = Subject_class.objects.filter(subject=sub, class_name=khd16a)
-            if not subject.exists():
-                subject = khdl16a_subject[khdl16a_subject['name'] == sub.subject_name.strip()]
-                Subject_class.objects.create(
-                    subject=sub,
-                    class_name = khdl16a,
-                    semester_id = subject['semester_id'].iloc[0],
-                    credit = subject['credit'].iloc[0],
-                    is_mandatory = True
-                )
-            else:
-                sub = subject.first()
-                sub.is_mandatory = True
-                sub.save()
-        except:
-            print(d['subject_name'], "not found")
+        sub = Subject.objects.filter(subject_name__icontains=d['subject_name'].strip().lower())
+        sub = sub.first()
+        subject = Subject_class.objects.filter(subject=sub, class_name=khd16a)
+        if not subject.exists():
+            subject = khdl16a_subject[khdl16a_subject['name'] == sub.subject_name.strip().lower()]
+            Subject_class.objects.create(
+                subject=sub,
+                class_name = khdl16a,
+                semester_id = subject['semester_id'].iloc[0],
+                credit = subject['credit'].iloc[0],
+                is_mandatory = True
+            )
+        else:
+            sub = subject.first()
+            sub.is_mandatory = True
+            sub.save()
 
 with open("../data_processing/dummy_data/mandatory_subject_khdl15a.json", 'r', encoding='utf-8') as f:
     data = json.load(f)
@@ -266,22 +268,20 @@ khd15a = University_class.objects.get(class_name='KHDL15A')
 khdl15a_subject = pd.read_csv('../data_processing/dummy_data/khdl15a_subjects.csv')
 for semester in data:
     for d in data[semester]:
-        try:
-            sub = Subject.objects.filter(subject_name__icontains=d['subject_name'])
-            sub = sub.first()
-            subject = Subject_class.objects.filter(subject=sub, class_name=khd15a)
-            if not subject.exists():
-                subject = khdl15a_subject[khdl15a_subject['name'] == sub.subject_name.strip()]
-                Subject_class.objects.create(
-                    subject=sub,
-                    class_name = khd15a,
-                    semester_id = subject['semester_id'].iloc[0],
-                    credit = subject['credit'].iloc[0],
-                    is_mandatory = True
-                )
-            else:
-                sub = subject.first()
-                sub.is_mandatory = True
-                sub.save()
-        except:
-            print(d['subject_name'], "not found")
+        sub = Subject.objects.filter(subject_name__icontains=d['subject_name'].strip().lower())
+        sub = sub.first()
+        subject = Subject_class.objects.filter(subject=sub, class_name=khd15a)
+        if not subject.exists():
+            subject = khdl15a_subject[khdl15a_subject['name'] == sub.subject_name.strip().lower()]
+            Subject_class.objects.create(
+                subject=sub,
+                class_name = khd15a,
+                semester_id = subject['semester_id'].iloc[0],
+                credit = subject['credit'].iloc[0],
+                is_mandatory = True
+            )
+        else:
+            sub = subject.first()
+            sub.is_mandatory = True
+            sub.save()
+        
