@@ -28,7 +28,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com', 'http://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com', 'http://localhost:8000', 'https://vis4teacher.azurewebsites.net']
 CSRF_ALLOWED_ORIGINS  = ['*']
 CORS_ORIGINS_WHITELIST = ['*']
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 STATIC_URL = '/static/' 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -166,3 +167,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'aiclub.iuh@gmail.com'
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
