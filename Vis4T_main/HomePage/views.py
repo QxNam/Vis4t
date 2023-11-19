@@ -19,6 +19,7 @@ from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
 from .metabase import *
+from .search_engine import *
 # Create your views here.
     
 class Login(LoginView):
@@ -97,7 +98,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
         context['current_date'] = datetime.now().strftime("%d/%m/%Y")
-        context['iframeUrl'] = get_iframe_from_dashboard_id(1, cached_class_name)
+        context['iframeUrl'] = get_iframe_from_dashboard_id(1)
         return context
     
     def class_home(self):
@@ -457,10 +458,7 @@ class AutocompleteStudent(APIView):
     def get(self, request):
         letter = request.GET.get('letter')
         user = self.request.user
-        typesense_data = list(Typesense.objects.filter(teacher=user).values('node', 'search_key'))
-        results = []
-        for data in typesense_data:
-            results += search_for_student(letter, node=data['node'], search_key=data['search_key'], per_page=5)
+        results = search_for_student(letter, user.teacher_id)
         return JsonResponse({'students': results}, safe=False)
 
 # Password reset
