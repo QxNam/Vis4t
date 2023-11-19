@@ -40,6 +40,7 @@ table Student as S{
 table Subject as Sj{
   subject_id varchar [pk]
   subject_name varchar
+  
 }
 
 table Subject_Student as Sj_ss{
@@ -52,8 +53,8 @@ table Subject_Class as Sj_c{
   class_name varchar [ref: - C.class_name]
   subject_id varchar [ref: - Sj.subject_id]
   semester_number int
-  is_mandatory boolen
   credit int
+  is_mandatory boolen
 }
 
 table Class_note as Cn{
