@@ -18,7 +18,7 @@ from .forms import *
 from .models import Student, Teacher, University_class
 from .serializers import *
 from .utils import *
-
+from .metabase import *
 # Create your views here.
     
 class Login(LoginView):
@@ -97,6 +97,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
         context['current_date'] = datetime.now().strftime("%d/%m/%Y")
+        context['iframeUrl'] = get_iframe_from_dashboard_id(1, cached_class_name)
         return context
     
     def class_home(self):
@@ -169,8 +170,9 @@ class UploadFile(LoginRequiredMixin, ListView):
     model = University_class
     template_name = 'addClass/upload_file.html'
     context_object_name = 'classes'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    
+    def get_context_data(self):
+        context = super().get_context_data()
         context['situation'] = 'non_zero_student'
         class_ = University_class.objects.filter(class_name=self.kwargs['class_name']).first()
         
@@ -197,14 +199,15 @@ class UploadFile(LoginRequiredMixin, ListView):
         file = request.FILES.get('file')
         if file:
             class_ = University_class.objects.get(class_name=class_name)
+            
             processor = DataProcessor(file)
-            processor.get_all_student_detail(class_)
-               
+            print(processor.df.shape)
+            
             
             return HttpResponseRedirect(f'/upload_file/{class_name}')  
 
         # File upload error occurred
-        file_error = 'Please select a file.'
+        file_error = 'Chưa chọn file hoặc file không đúng định dạng'
         context = self.get_context_data(**kwargs)
         context['file_error'] = file_error
         return self.render_to_response(context) 
@@ -251,6 +254,7 @@ class TeacherUpdate(LoginRequiredMixin, UpdateView):
         teacher.save()
         
         return super().form_valid(form)
+
 class Subject_confirm(LoginRequiredMixin, ListView):
     model = Teacher
     template_name = 'addClass/subject-confirm.html'
@@ -268,7 +272,7 @@ class Subject_confirm(LoginRequiredMixin, ListView):
         
         total_semester = semester.total_semester
         subjects = Subject_class.objects.filter(class_name = class_name)
-        subjects = list(subjects.values('subject__subject_name', 'subject__subject_id'))
+        subjects = list(subjects.values('subject__subject_name', 'subject__subject_id', 'semester_id', 'credit'))
         context['subjects'] = subjects
         context['total_semester'] = range(total_semester)
         # total_semester = Semester.objects.all().count()

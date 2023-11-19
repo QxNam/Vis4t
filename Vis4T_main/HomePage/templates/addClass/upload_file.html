@@ -7,7 +7,7 @@
         <div class="form-box">
             <h2>Cập nhật điểm của lớp {{ uploading_class }}</h2>
             <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
+            {% csrf_token %}
                 <div class="mb-3">
                     <div style="display: flex; justify-content: space-between;">
                         <label for="formFile" class="form-label">Hãy chọn file để tải lên</label>
@@ -40,25 +40,28 @@
                     {% endif %}
                 </div>
                 <div class="wrap-btn">
-                    <button type="submit" class="btn btn-success btn-submit-form">Tải lên
-                        <label>                 
-                            <!-- <i class="fa-light fa-upload"></i>               -->
-                        </label>
-                    </button>
-                    <button type="submit" class="btn btn-danger">Hủy
+                    <button type="submit" class="btn btn-success btn-submit-form" style="width:100%">Tải lên</button>
+                    <!-- <button class="btn btn-danger">Hủy
                         <label>
                             <i class="fas fa-arrow-rotate-left"></i>
                         </label>
+                        
                     </button>
+                    <script>
+                         $('.btn-danger').click(function(){
+                            window.location.href = "{% url 'home' cached_class_name %}";
+                        }); 
+                    </script> -->
                 </div>
             </form>
         </div>
 
-        <div class="mt-3 mb-3">
-            <h4>Hoặc</h4>
-        </div>
+        
 
         {% if situation == "non_zero_student" %}
+            <div class="mt-3 mb-3">
+                <h4>Hoặc</h4>
+            </div>
             <div class="form-box">
                 <h2>Cập nhật môn học của lớp {{ uploading_class }}</h2>
                 <a href="{% url 'subject_confirm' uploading_class %}">

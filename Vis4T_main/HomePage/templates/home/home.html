@@ -7,46 +7,16 @@
     <div class="content">
         <div class="wrap-content container-fluid">
             <div class="row">
-                <div class="col-12 line-1 " style="margin-top: 1.25rem;">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 ">
-                            <div class="wrap-box" style="background-color: #e0fbff;color: #4da1e8;border-color:#e0fbff">
-                                <div class="portlet">
-                                    <h3>{{ cached_class_name }}</h3>
-                                    <p>Tên lớp</p>
-                                </div>
-                                <div class="portlet">
-                                    <h3 >{{class.number_of_student}}</h3>
-                                    <p>Sĩ số</p>
-                                </div>
-                                <div class="portlet">
-                                    <h3>{{class.class_major}}</h3>
-                                    <p>Chuyên ngành</p>
-                                </div>
-                                <div class="portlet">
-                                    <h3 >{{teacher.teacher_fullname}}</h3>
-                                    <p>Giáo viên chủ nhiệm</p>
-                                </div>
-                            </div>
-                        </div>
-                        {% include 'home/overview/bar_chart_student.html' %}
+                <div class="col-12" style="margin-top: 1.25rem;">
+                    <div class="row wrap-box">
+                        <iframe src="{{iframeUrl}}" frameborder="2"
+                                width="800"
+                                height="600"
+                                allowtransparency></iframe>
+                        
                     </div>
                 </div>
-                <div class="col-12 line-2" style="margin-top: 1.25rem;">
-                    <div class="row">
-                        {% include 'home/overview/bar_chart_overview.html' %}
-
-                    </div>
-                </div>
-                <div class="col-12 line-3" style="margin-top: 1.25rem;">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="wrap-box" style="height: 25rem;">
-                                {% include 'home/overview/histogram_score_10.html' %}
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                
                 <div class="col-12 line-4" style="margin-top: 1.25rem;">
                     <div class="row">
                         <div class="col-9">
@@ -63,13 +33,6 @@
                 <div class="col-12 line-6" style="margin: 1.25rem 0;">
                     {% include 'home/subject/subject-student.html' %}
                 </div>
-                <!-- <div class="col-12 footer" style="margin-top: 1.25rem;">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="wrap-box"></div>
-                        </div>
-                    </div>
-                </div>                 -->
             </div>
         </div>
 
