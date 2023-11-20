@@ -98,7 +98,7 @@ class HomeView(LoginRequiredMixin, ListView):
         context['class_note'] = Note_class.objects.filter(class_name=cached_class_name) 
         context['current_link'] = 'home'
         context['current_date'] = datetime.now().strftime("%d/%m/%Y")
-        context['iframeUrl'] = get_iframe_from_dashboard_id(1)
+        context['iframeUrl'] = get_iframe_url(1, class_name = cached_class_name)
         return context
     
     def class_home(self):
@@ -134,12 +134,13 @@ class StudentView(LoginRequiredMixin, ListView):
             student_list[i]['ranking'] = i + 1
         context['student_list'] = student_list
         
-        subject = Subject_student.objects.filter(student_id=student_id)\
-            .values("subject__subject_name", "subject__credit", "score_10")
-        context['subject_list'] = list(subject)
+        # subject = Subject_student.objects.filter(student_id=student_id)\
+        #     .values("subject__subject_name", "subject__credit", "score_10")
+        # context['subject_list'] = list(subject)
         
         context['notes'] = Note_student.objects.filter(student_id=student_id)
         context['current_date'] = datetime.now().strftime("%d/%m/%Y")
+        context['iframeUrl'] = get_iframe_url(3, student_id=student_id)
         return context 
 class AddNewClass(LoginRequiredMixin, CreateView):
     model = Teacher
