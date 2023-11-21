@@ -28,7 +28,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com', 'http://localhost:8000', 'https://vis4teacher.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['https://vis4t.iuhcoder.com', 'http://localhost:8000', 'https://vis4teacher.azurewebsites.net', 'http://13.215.185.217:8000']
 CSRF_ALLOWED_ORIGINS  = ['*']
 CORS_ORIGINS_WHITELIST = ['*']
 # Application definition
