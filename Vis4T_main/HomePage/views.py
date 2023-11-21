@@ -20,6 +20,8 @@ from .serializers import *
 from .utils import *
 from .metabase import *
 from .search_engine import *
+import string
+from random import choices
 # Create your views here.
     
 class Login(LoginView):
@@ -56,6 +58,7 @@ class HomeView(LoginRequiredMixin, ListView):
         return queryset
     
     def get_context_data(self, **kwargs):
+        self.request.META['assistant_id'] = "".join(choices(string.ascii_letters + string.digits, k=10))
         context = super().get_context_data(**kwargs)
         context['teacher'] = self.request.user
         class_name = self.kwargs['class_name']
@@ -122,17 +125,17 @@ class StudentView(LoginRequiredMixin, ListView):
         context['current_link'] = 'home'
         
         student_id = self.kwargs['student_id']
-        context['student'] = Student.objects.get(student_id=student_id)
-        context['class'] = University_class.objects.get(class_name = context['student'].class_name)     
+        # context['student'] = Student.objects.get(student_id=student_id)
+        # context['class'] = University_class.objects.get(class_name = context['student'].class_name)     
         
-        # check if this class is possed by this teacher
-        if context['class'].teacher != self.request.user:
-            raise Http404
+        # # check if this class is possed by this teacher
+        # if context['class'].teacher != self.request.user:
+        #     raise Http404
         
-        student_list = list(Student.objects.filter(class_name=context['class']).order_by('-score_10').values())
-        for i in range(len(student_list)):
-            student_list[i]['ranking'] = i + 1
-        context['student_list'] = student_list
+        # student_list = list(Student.objects.filter(class_name=context['class']).order_by('-score_10').values())
+        # for i in range(len(student_list)):
+        #     student_list[i]['ranking'] = i + 1
+        # context['student_list'] = student_list
         
         # subject = Subject_student.objects.filter(student_id=student_id)\
         #     .values("subject__subject_name", "subject__credit", "score_10")
@@ -462,6 +465,10 @@ class AutocompleteStudent(APIView):
         results = search_for_student(letter, user.teacher_id)
         return JsonResponse({'students': results}, safe=False)
 
+class AssistantAnswer(APIView):
+    def get(self, request):
+        print(request.headers['Question'])
+        return JsonResponse({'answer': "true"}, safe=False)
 # Password reset
 class PasswordReset(PasswordResetView):
     template_name = 'login/password-reset.html'
