@@ -16,9 +16,6 @@
     <!-- <script src="jquery-3.6.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!--dropdown Lib-->
-    <!-- <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script> -->
-    <!-- <script src="https://unpkg.com/@popperjs/core@2"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <!--Bootstrap-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -74,7 +71,6 @@
                                         }
 
                                     );
-
                                    
 
                                     $('#myInput').on('keyup', function() {
@@ -232,21 +228,13 @@
         <div class="chat-box">
             <link rel="stylesheet" href="{% static 'chatBox/main.css' %}" />
             <div class="button-chat isShow">
-                <img
-                    class="logo"
-                    alt="vis4t"
-                    src="{% static 'login/images/Logo_DS.png' %}"
-                />
+                <img class="logo" alt="vis4t" src="{% static 'login/images/Logo_DS.png' %}" />
             </div>
             <div class="modal-chat">
                 <div class="header-chat">
                     <div class="header-chat-info">
-                        <img
-                            class="logo"
-                            alt="vis4t"
-                            src="{% static 'login/images/Logo_DS.png' %}"
-                        />
-                        <h4>Chat box</h4>
+                        <img class="logo" alt="vis4t" src="{% static 'login/images/Logo_DS.png' %}" />
+                        <h4>Vis4T Assistant</h4>
                     </div>
                     <div class="header-chat-close">
                         <i class="fa-solid fa-times"></i>
@@ -255,66 +243,10 @@
                 <div class="body-chat">
                     <div class="message admin">
                         <div class="message-admin-info">
-                            <img
-                                class="logo-mess"
-                                alt="vis4t"
-                                src="{% static 'login/images/Logo_DS.png' %}"
-                            />
+                            <img class="logo-mess" alt="vis4t" src="{% static 'login/images/Logo_DS.png' %}">
                         </div>
                         <div class="message-admin-content">
-                            <p>Chào mừng bạn đến với Vis4T</p>
-                        </div>
-                    </div>
-                    <div class="message admin">
-                        <div class="message-admin-info">
-                            <img
-                                class="logo-mess"
-                                alt="vis4t"
-                                src="{% static 'login/images/Logo_DS.png' %}"
-                            />
-                        </div>
-                        <div class="message-admin-content">
-                            <p>Chào mừng bạn đến với Vis4T</p>
-                        </div>
-                    </div>
-                    <div class="message admin">
-                        <div class="message-admin-info">
-                            <img
-                                class="logo-mess"
-                                alt="vis4t"
-                                src="{% static 'login/images/Logo_DS.png' %}"
-                            />
-                        </div>
-                        <div class="message-admin-content">
-                            <p>Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T Chào mừng bạn đến với Vis4T</p>
-                        </div>
-                    </div>
-                 
-                    <div class="message">
-                        <div class="message-content">
-                            <p>Chào mừng bạn</p>
-                        </div>
-                    </div>
-                    <div class="message">
-                        <div class="message-content">
-                            <p>Chào mừng bạn</p>
-                        </div>
-                    </div>
-                    <div class="message admin">
-                        <div class="message-admin-info">
-                            <img
-                                class="logo-mess"
-                                alt="vis4t"
-                                src="{% static 'login/images/Logo_DS.png' %}"
-                            />
-                        </div>
-                        <div class="message-admin-content">
-                            <p>Chào mừng bạn đến với Vis4T</p>
-                        </div>
-                    </div>
-                    <div class="message">
-                        <div class="message-content">
-                            <p>Chào mừng bạn</p>
+                            <p>Chào mừng bạn đến với Vis4Teacher, tôi là Assistant và tôi ở đây để hỗ trợ bạn</p>
                         </div>
                     </div>
                 </div>
@@ -332,32 +264,102 @@
                     </div>
                 </div>
             </div>
+            <style>
+                .message-admin-content {
+                    position: relative;
+                }
+        
+                .message-loading-icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: spin 1s infinite linear;
+                }
+        
+                @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
             <script>
-                $(document).ready(function(){
-                    $(".button-chat").click(function(){
+                $(document).ready(function () {
+                    $(".button-chat").click(function () {
                         $(".modal-chat").toggleClass('isShow');
                         $(".button-chat").toggleClass('isShow');
                     });
-                    $(".header-chat-close").click(function(){
+                    $(".header-chat-close").click(function () {
                         $(".modal-chat").toggleClass('isShow');
                         $(".button-chat").toggleClass('isShow');
                     });
                 });
-
                 var input = document.getElementById("input");
-                input.addEventListener("keyup", function(event) {
-                    if (event.keyCode === 13) {                
-                        console.log(event.target.value)
-                        input.value = "";
+        
+                function getAssistantAnswer(input) {
+                    if (input.value === "") return;
+        
+                    var html = `<div class="message">
+                                    <div class="message-content">
+                                        <p>${input.value}</p>
+                                    </div>
+                                </div>`;
+                    $('.body-chat').append(html);
+        
+                    var loadingHTML = `<div class="message admin">
+                                        <div class="message-admin-info">
+                                            <img class="logo-mess" alt="vis4t" src="{% static 'login/images/Logo_DS.png' %}">
+                                        </div>
+                                        <div class="message-admin-content">
+                                            <div class="message-loading-icon">
+                                                <i class="fa-solid fa-spinner"></i>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    $('.body-chat').append(loadingHTML);
+        
+                    $.ajax({
+                        url: "/answer/",
+                        method: "GET",
+                        data: {
+                            Question: input.value
+                        },
+                        success: function (data) {
+                            $('.message.admin:last').remove();
+        
+                            var answer = data.answer;
+                            var html = `<div class="message admin">
+                                            <div class="message-admin-info">
+                                                <img class="logo-mess" alt="vis4t" src="{% static 'login/images/Logo_DS.png' %}">
+                                            </div>
+                                            <div class="message-admin-content">
+                                                <p>${answer}</p>
+                                            </div>
+                                        </div>`;
+                            $('.body-chat').append(html);
+        
+                            // Scroll to the bottom of the chat box after receiving the response
+                            $('.modal-chat .body-chat').scrollTop($('.modal-chat .body-chat')[0].scrollHeight);
+                        }
+                    });
+        
+                    input.value = "";
+                }
+        
+                input.addEventListener("keyup", function (event) {
+                    if (event.keyCode === 13) {
+                        getAssistantAnswer(input);
                     }
                 });
-                $(".footer-chat-send").ready(function(){
-                    $(".footer-chat-send").click(function(){
-                        console.log(input.value)
-                        input.value = "";
+        
+                $(".footer-chat-send").ready(function () {
+                    $(".footer-chat-send").click(function () {
+                        getAssistantAnswer(input);
                     });
                 });
-
             </script>
         </div>
 

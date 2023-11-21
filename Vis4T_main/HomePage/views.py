@@ -20,6 +20,7 @@ from .serializers import *
 from .utils import *
 from .metabase import *
 from .search_engine import *
+from .assistant import Assistant
 import string
 from random import choices
 # Create your views here.
@@ -467,8 +468,13 @@ class AutocompleteStudent(APIView):
 
 class AssistantAnswer(APIView):
     def get(self, request):
-        print(request.headers['Question'])
-        return JsonResponse({'answer': "true"}, safe=False)
+        question = request.GET.get('Question')
+        uc = University_class.objects.filter(teacher__teacher_id=request.user).values('class_name')
+        prefix = "Câu trả lời cuối cùng phải là tiếng Việt. Các lớp cần tìm có cột class_name là: " + ", ".join([x['class_name'] for x in uc]) + ". "
+        answer = Assistant(prefix).run(question)
+        print(answer)
+        return JsonResponse(
+            {'answer': "true", 'answer': answer}, safe=False)
 # Password reset
 class PasswordReset(PasswordResetView):
     template_name = 'login/password-reset.html'
