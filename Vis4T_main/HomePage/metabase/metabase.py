@@ -29,13 +29,11 @@ def get_class_dashboard_from_class_name(dashboard_id, class_name_id):
 def get_iframe_url(dashboard_id, **kwargs):
     class_name_id = kwargs.get('class_name')
     student_id = kwargs.get('student_id')
-    semester_id = kwargs.get('semester_id', 1)
     params = {}
     if class_name_id:
         params['class_name_id'] = class_name_id
     if student_id:
         params['student_id'] = student_id
-        params['semester_id'] = semester_id
     payload = {
         "resource": {"dashboard": dashboard_id},
         "params": params,
