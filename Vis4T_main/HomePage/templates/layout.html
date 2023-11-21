@@ -32,11 +32,7 @@
     <!--AOS-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!--Highcharts.js-->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    
     <body>
         <script>
             AOS.init();
@@ -235,14 +231,14 @@
 
         <div class="chat-box">
             <link rel="stylesheet" href="{% static 'chatBox/main.css' %}" />
-            <div class="button-chat">
+            <div class="button-chat isShow">
                 <img
                     class="logo"
                     alt="vis4t"
                     src="{% static 'login/images/Logo_DS.png' %}"
                 />
             </div>
-            <div class="modal-chat isShow">
+            <div class="modal-chat">
                 <div class="header-chat">
                     <div class="header-chat-info">
                         <img
