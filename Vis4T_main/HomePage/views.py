@@ -21,6 +21,7 @@ from .utils import *
 from .metabase import *
 from .search_engine import *
 from .assistant import Assistant
+from .processor import DataProcessor
 import string
 from random import choices
 # Create your views here.
@@ -205,12 +206,38 @@ class UploadFile(LoginRequiredMixin, ListView):
         file = request.FILES.get('file')
         if file:
             class_ = University_class.objects.get(class_name=class_name)
+            dp = DataProcessor(file, class_name)
+            # student_dict = dp.get_student().to_dict(orient='records')
+            # Student.objects.bulk_create([
+            #     Student(
+            #         student_id=d['student_id'],
+            #         passed_credit=d['passed_credit'],
+            #         score_10=d['score_10'],
+            #         score_4=d['score_4'],
+            #         score_char=d['score_char'],
+            #         rank=d['rank'],
+            #         lastname=d['lastname'],
+            #         student_name=d['student_name'],
+            #         student_gmail=d['student_gmail'],
+            #         class_name=class_
+            #     ) for d in student_dict
+            # ])
+            # del student_dict
+            data = dp.get_subject_student().to_dict(orient='records')
+            subject_students = []
+            for d in data:
+                try:
+                    subject_student = Subject_student(
+                        student=Student.objects.get(student_id=d['student_id']),
+                        subject=Subject.objects.get(subject_id=d['subject_id']),
+                        score_10=float(d['score_10'])
+                    )
+                    subject_students.append(subject_student)
+                except:
+                    print(d['subject_id'])
+            Subject_student.objects.bulk_create(subject_students)
             
-            processor = DataProcessor(file)
-            print(processor.df.shape)
-            
-            
-            return HttpResponseRedirect(f'/upload_file/{class_name}')  
+            return HttpResponseRedirect(f'/subject-confirm/{class_name}')  
 
         # File upload error occurred
         file_error = 'Chưa chọn file hoặc file không đúng định dạng'
