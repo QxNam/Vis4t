@@ -34,6 +34,7 @@ urlpatterns = format_suffix_patterns([
     path('add-student-note/', views.AddStudentNote.as_view(), name = "add_student_note"),
     path('delete-student-note/<str:note_id>', views.DeleteStudentNote.as_view(), name = "delete_student_note"),
     path('update-student-note/<str:note_id>', views.UpdateStudentNote.as_view(), name = "update_student_note"),
+    path('answer/', views.AssistantAnswer.as_view(), name = "assistant_answer"),
     
     path('reset_password/', views.PasswordReset.as_view(), name='reset_password'),
     path('reset_password_sent/', views.PasswordResetSent.as_view(), name='password_reset_done'),
