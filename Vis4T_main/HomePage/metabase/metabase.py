@@ -27,7 +27,7 @@ def get_class_dashboard_from_class_name(dashboard_id, class_name_id):
     return iframe_url
 
 def get_iframe_url(dashboard_id, **kwargs):
-    class_name_id = kwargs.get('class_name_id')
+    class_name_id = kwargs.get('class_name')
     student_id = kwargs.get('student_id')
     semester_id = kwargs.get('semester_id', 1)
     params = {}
